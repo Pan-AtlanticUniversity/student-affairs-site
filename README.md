@@ -20,7 +20,7 @@ Clone the repository to your local machine:
 
 ```bash
 git clone https://github.com/dominioncruz/student-affairs-site.git
-cd student-affiars-site
+cd student-affairs-site
 ```
 
 ### Setup backend
