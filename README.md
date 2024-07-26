@@ -1,6 +1,6 @@
 ---
 
-# Backend Project Setup
+# Project Setup
 
 ## Overview
 
