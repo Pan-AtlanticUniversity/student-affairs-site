@@ -19,8 +19,8 @@ This document provides instructions for setting up the project. The backend is b
 Clone the repository to your local machine:
 
 ```bash
-git clone [text](https://github.com/dominioncruz/student-affairs-site.git)
-cd cd student-affiars-site
+git clone https://github.com/dominioncruz/student-affairs-site.git
+cd student-affiars-site
 ```
 
 ### Setup backend
