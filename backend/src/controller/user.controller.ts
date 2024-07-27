@@ -6,6 +6,8 @@ import { StatusCodes } from "http-status-codes";
 export const signup = async (req: Request, res: Response, next: NextFunction) => {
 
     try {
+      
+
 
         const { fullname, email, password } = req.body;
 
