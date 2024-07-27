@@ -1,13 +1,13 @@
 import express from 'express';
 import authRoute from './authRoute';
 import clubRoute from './clubRoute';
-import bookRoute from './bookRoute';
+import blogRoute from './blogRoute';
 //could have added books
 
 const router = express.Router();
 
 router.use('/auth', authRoute);
 router.use('/club', clubRoute);
-router.use('/book', bookRoute);
+router.use('/blog', blogRoute);
 
 export default router;

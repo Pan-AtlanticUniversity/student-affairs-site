@@ -5,6 +5,8 @@ import React from "react";
 
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from './home/Home';
+import Clubs from './clubs/Clubs.tsx';
+import Blogs from './blogs/Blogs';
 
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
     <Routes>
       {/* route to the home page */}
       <Route path="/" element={<Home />} />
+      <Route path="/club" element = {<Clubs/>}></Route>
+      <Route path="/blog" element = {<Blogs/>}></Route>
 
     </Routes>
     </div>

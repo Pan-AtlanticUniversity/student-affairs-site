@@ -9,7 +9,7 @@ function Landing() {
       <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, alignItems: "center" }}>
         <Box sx={{ flex: 1, order: { xs: 2, md: 1 }, mt: { xs: 12, md: 36 }, px: { xs: 2, md: 4 } }}>
           <Typography variant="h4" component="h1" sx={{ fontWeight: 'bold', mb: 3 }}>
-            The site for PAU Student Affairs!{" "}
+            About PAU Student Affairs!{" "}
             <span style={{ color: "#ec407a" }}>we groom youngins into proffesionals</span>
           </Typography>
           <Typography variant="body1" sx={{ mb: 2 }}>
@@ -36,7 +36,11 @@ function Landing() {
           <img src={Image} alt="and image ought to show lol" style={{ maxWidth: "100%", height: "auto" }} />
         </Box>
       </Box>
+      <Box>
+    
+      </Box>
     </Container>
+
   );
 }
 
