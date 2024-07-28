@@ -13,6 +13,12 @@ interface ClubItem {
     price?: number;
 }
 
+const AUTH_HEADER = {
+    headers: {
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTUzYWY1Njc1MjIyMGU1NmFhM2YwNyIsImlhdCI6MTcyMjEwNDU2NSwiZXhwIjoxNzIyMjc3MzY1fQ.cZICjRGna_qC5N8KibRi35Ew2RuVlqYXV2xtu7KfAkE`
+    }
+  };
+
 function Club() {
     // Call to the database
     const [club, setClub] = useState<ClubItem[]>([]);
@@ -20,11 +26,7 @@ function Club() {
     useEffect(() => {
         const getClub = async () => {
             try {
-                const res = await axios.get<ClubItem[]>("http://localhost:4001/api/v1/club", {
-                    headers: {
-                        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTUzYWY1Njc1MjIyMGU1NmFhM2YwNyIsImlhdCI6MTcyMjEwNDU2NSwiZXhwIjoxNzIyMjc3MzY1fQ.cZICjRGna_qC5N8KibRi35Ew2RuVlqYXV2xtu7KfAkE`
-                    }
-                }); // Fetches from db with token
+                const res = await axios.get<ClubItem[]>("http://localhost:4001/api/v1/club", AUTH_HEADER); // Fetches from db with token
                 console.log("Response data:", res.data);
                 setClub(res.data);
             } catch (error) {

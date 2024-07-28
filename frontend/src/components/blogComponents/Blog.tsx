@@ -21,6 +21,12 @@ interface BlogItem {
   image: string;
 }
 
+const AUTH_HEADER = {
+  headers: {
+    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTUzYWY1Njc1MjIyMGU1NmFhM2YwNyIsImlhdCI6MTcyMjEwNDU2NSwiZXhwIjoxNzIyMjc3MzY1fQ.cZICjRGna_qC5N8KibRi35Ew2RuVlqYXV2xtu7KfAkE`
+  }
+};
+
 function Blog() {
   // Call to the database
   const [blogs, setBlogs] = useState<BlogItem[]>([]);
@@ -28,11 +34,7 @@ function Blog() {
   useEffect(() => {
     const getBlogs = async () => {
       try {
-        const res = await axios.get<BlogItem[]>("http://localhost:4001/api/v1/blog", {
-          headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTUzYWY1Njc1MjIyMGU1NmFhM2YwNyIsImlhdCI6MTcyMjEwNDU2NSwiZXhwIjoxNzIyMjc3MzY1fQ.cZICjRGna_qC5N8KibRi35Ew2RuVlqYXV2xtu7KfAkE`
-          }
-        }); // Fetches from db with token
+        const res = await axios.get<BlogItem[]>("http://localhost:4001/api/v1/blog", AUTH_HEADER); // Fetches from db with token
         console.log("Response data:", res.data);
         setBlogs(res.data);
       } catch (error) {
@@ -63,6 +65,8 @@ function Blog() {
           blogs.map((item) => (
             <Grid item xs={12} md={3} key={item.id}>
               <Card sx={{ height: '100%', transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.05)' }, backgroundColor: 'background.paper' }}>
+                
+                
                 {item.image && (
                   <CardMedia
                     component="img"
@@ -71,6 +75,8 @@ function Blog() {
                     sx={{ height: 140 }}
                   />
                 )}
+
+
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     {item.name || 'No Blog Name'}
@@ -82,6 +88,8 @@ function Blog() {
                     Date: {item.date}
                   </Typography>
                 </CardContent>
+
+
               </Card>
             </Grid>
           ))

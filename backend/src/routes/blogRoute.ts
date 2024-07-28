@@ -1,9 +1,17 @@
 import express from "express";
-import { getBlog } from "../controller/blog.controller";
+import { getBlog, createBlog, updateBlog, deleteBlog } from "../controller/blog.controller";
 import authenticateTokenMiddleware from "../middleware/authenticateTokenMiddleware";
 
 const router = express.Router();
 
-router.route("/").get(authenticateTokenMiddleware, getBlog);
+router.route("/").get(authenticateTokenMiddleware, getBlog)
+                 .post(authenticateTokenMiddleware,createBlog);
 
+router.route('/:_id')
+                 .put(authenticateTokenMiddleware, updateBlog)
+                 .delete(authenticateTokenMiddleware,deleteBlog);
+
+                //  so now the route facilitates get put post and delete
 export default router;
+
+

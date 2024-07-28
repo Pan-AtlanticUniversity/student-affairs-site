@@ -125,6 +125,7 @@ function Navbar() {
             <MenuItem onClick={handleMenuClose} component="a" href="/club">Clubs</MenuItem>
             <MenuItem onClick={handleMenuClose} component="a" href="/blog">Blogs</MenuItem>
             <MenuItem onClick={handleMenuClose} component="a" href="/rules-guidelines">Rules & Guidelines</MenuItem>
+            <MenuItem onClick={handleMenuClose} component="a" href="/rules-guidelines">Add Content</MenuItem>
             {/* Add more MenuItem components for other navigation links */}
 
             
@@ -139,6 +140,7 @@ function Navbar() {
             <Button color="inherit" href="/club">Clubs</Button>
             <Button color="inherit" href="/blog">Blogs</Button>
             <Button color="inherit" href="/rules-guidelines">Rules & Guidelines</Button>
+            <Button color="inherit" href="/admin">Add Content</Button>
             {/* Add more Button components for other navigation links */}
 
           </Box>

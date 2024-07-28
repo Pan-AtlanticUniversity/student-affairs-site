@@ -23,9 +23,11 @@ function Footer() {
             <IconButton href="#" color="inherit">
               <TwitterIcon />
             </IconButton>
+
             <IconButton href="#" color="inherit">
               <YouTubeIcon />
             </IconButton>
+
             <IconButton href="#" color="inherit">
               <FacebookIcon />
             </IconButton>

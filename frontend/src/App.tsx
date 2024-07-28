@@ -7,6 +7,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Home from './home/Home';
 import Clubs from './clubs/Clubs.tsx';
 import Blogs from './blogs/Blogs';
+import Admins from './admins/Admins.tsx';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/club" element = {<Clubs/>}></Route>
       <Route path="/blog" element = {<Blogs/>}></Route>
+      <Route path="/admin" element = {<Admins/>}></Route>
 
     </Routes>
     </div>
