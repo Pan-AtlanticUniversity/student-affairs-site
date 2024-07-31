@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import { notFound, errorHandlerMiddleware } from './middleware';
 import router from './routes/router';
 import connectDB from './db/connection';
-
+import path from 'path';
 dotenv.config();
 
 const host = process.env.HOST ?? 'localhost';
@@ -15,9 +15,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-
-
+app.use('/public', express.static(path.join(__dirname, '../public')));
 
 app.get('/', (req, res) => {
     res.send({ message: 'Hello API' });

@@ -2,20 +2,24 @@ import { Request, Response, NextFunction } from "express";
 import { User } from "../model";
 import { BadRequest, CustomAPIError } from "../errors";
 import { StatusCodes } from "http-status-codes";
+import { sendMail, sendUpdateMail } from "../services/mail";
+import passfather from "passfather";
 
 export const signup = async (req: Request, res: Response, next: NextFunction) => {
 
     try {
 
-        const { fullname, email, password } = req.body;
+        const { fullname, email } = req.body;
 
-        if (!fullname || !email || !password) throw new CustomAPIError("Provide all fields", StatusCodes.BAD_REQUEST);
+        if (!fullname || !email) throw new CustomAPIError("Provide all fields", StatusCodes.BAD_REQUEST);
 
         const user = await User.findOne({ email });
 
         if (user) throw new CustomAPIError("User already exists", StatusCodes.FORBIDDEN);
 
-        const createdUser = await User.create(req.body);
+        const password = passfather();
+        const createdUser = await User.create({ ...req.body, password });
+        await sendMail(email, password);
         const token = createdUser.getToken();
 
         res.status(StatusCodes.CREATED).json({
@@ -46,6 +50,30 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
             user: user.fullname,
             token
         });
+
+    } catch (err) {
+        next(err);
+    }
+
+
+};
+
+export const forgotPassword = async (req: Request, res: Response, next: NextFunction) => {
+
+    try {
+
+        const { email } = req.body;
+        const user = await User.findOne({ email });
+
+        if (!user) throw new BadRequest("User does not exist");
+
+        const password = passfather();
+        user.password = password;
+        await user.save();
+
+        await sendUpdateMail(email, password);
+
+        res.status(StatusCodes.OK).json("User password updated successfully");
 
     } catch (err) {
         next(err);
