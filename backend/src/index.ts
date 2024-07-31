@@ -26,6 +26,7 @@ app.get('/', (req, res) => {
 app.use('/api/v1/', router); //get's the route declared above
 
 
+  
 app.use(notFound);
 
 app.use(errorHandlerMiddleware);
