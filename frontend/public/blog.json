@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Science Fair 2024",
+        "news": 1,
+        "date": "2024-07-01",
+        "image": "https://cdn.pixabay.com/photo/2016/03/09/15/23/stem-1246280_960_720.jpg"
+    },
+    {
+        "name": "Sports Day Highlights",
+        "news": 2,
+        "date": "2024-06-15",
+        "image": "https://cdn.pixabay.com/photo/2016/08/20/14/15/running-track-1601058_960_720.jpg"
+    },
+    {
+        "name": "Art Exhibition",
+        "news": 3,
+        "date": "2024-05-20",
+        "image": "https://cdn.pixabay.com/photo/2016/08/08/14/47/painter-1573350_960_720.jpg"
+    },
+    {
+        "name": "Annual School Play",
+        "news": 4,
+        "date": "2024-04-12",
+        "image": "https://cdn.pixabay.com/photo/2015/10/30/20/13/audience-1015439_960_720.jpg"
+    },
+    {
+        "name": "Tech Innovations Day",
+        "news": 5,
+        "date": "2024-03-25",
+        "image": "https://cdn.pixabay.com/photo/2014/05/02/21/50/circuit-board-336812_960_720.jpg"
+    },
+    {
+        "name": "Music Concert",
+        "news": 6,
+        "date": "2024-02-10",
+        "image": "https://cdn.pixabay.com/photo/2015/05/15/14/46/concert-768722_960_720.jpg"
+    },
+    {
+        "name": "Inter-School Debate Competition",
+        "news": 7,
+        "date": "2024-01-15",
+        "image": "https://cdn.pixabay.com/photo/2015/07/28/22/07/people-865104_960_720.jpg"
+    },
+    {
+        "name": "Environmental Awareness Week",
+        "news": 8,
+        "date": "2023-12-01",
+        "image": "https://cdn.pixabay.com/photo/2016/11/08/05/11/environment-1807466_960_720.jpg"
+    },
+    {
+        "name": "Cultural Day Celebrations",
+        "news": 9,
+        "date": "2023-11-20",
+        "image": "https://cdn.pixabay.com/photo/2014/12/15/17/16/people-569073_960_720.jpg"
+    },
+    {
+        "name": "Book Fair",
+        "news": 10,
+        "date": "2023-10-10",
+        "image": "https://cdn.pixabay.com/photo/2015/11/19/21/11/book-1052014_960_720.jpg"
+    }
+]

@@ -21,7 +21,8 @@ app.get('/', (req, res) => {
     res.send({ message: 'Hello API' });
 });
 
-app.use('/api/v1/', router);
+app.use('/api/v1/', router); //get's the route declared above
+
 
 app.use(notFound);
 

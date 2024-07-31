@@ -8,6 +8,8 @@ import passfather from "passfather";
 export const signup = async (req: Request, res: Response, next: NextFunction) => {
 
     try {
+      
+
 
         const { fullname, email } = req.body;
 

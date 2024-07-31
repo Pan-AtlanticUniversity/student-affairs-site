@@ -4,6 +4,6 @@ import authenticateTokenMiddleware from "../middleware/authenticateTokenMiddlewa
 
 const router = express.Router();
 
-router.route("/book").get(authenticateTokenMiddleware, getBook);
+router.route("/").get(authenticateTokenMiddleware, getBook);
 
 export default router;
