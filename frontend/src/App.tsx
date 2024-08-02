@@ -10,6 +10,7 @@ import Blogs from './blogs/Blogs';
 import Admins from './admins/Admins.tsx';
 // import ClubDetails from './components/clubComponents/ClubDetails.tsx';
 import ClubDetails from './clubDetails/ClubDetail.tsx';
+import BlogDetails from './blogDetails/BlogDetail';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
       <Route path="/club" element = {<Clubs/>}></Route>
       <Route path="/club/:_id" element={<ClubDetails/>} />
       <Route path="/blog" element = {<Blogs/>}></Route>
+      <Route path="/blog/:_id" element={<BlogDetails/>} />
       <Route path="/admin" element = {<Admins/>}></Route>
       
 

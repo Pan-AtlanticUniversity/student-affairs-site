@@ -40,7 +40,7 @@ function Club() {
         <Container maxWidth="xl" sx={{ mt: 10 }}>
           <Box sx={{ textAlign: 'center', mt: 10 }}> 
             <Typography variant="h4" component="h1">
-              Trending news <span style={{ color: "#ec407a" }}>🎉!</span>
+              Meet our clubs <span style={{ color: "#ec407a" }}>🎉!</span>
             </Typography>
           </Box>
     

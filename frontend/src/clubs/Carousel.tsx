@@ -4,9 +4,9 @@ import { Container, Box, Typography, Button, Grid } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import architecture3 from "../../public/assets/architecture3.jpg"; // Replace with your actual image paths
-import imagetolife from "../../public/assets/imagetolife.jpg"; // Replace with your actual image paths
-import architecture2 from "../../public/assets/architecture2.webp";
+import tic from "../../public/images/goggle-kid.png"; // Replace with your actual image paths
+import publicSpeaking from "../../public/images/speaking-guy.jpg"; // Replace with your actual image paths
+import sports from "../../public/images/sports-guy.jpg";
 
 function Carousel() {
   const sliderSettings = {
@@ -23,19 +23,19 @@ function Carousel() {
 
   const slides = [
     {
-      background: architecture3,
+      background: tic,
       title: "DESIGN | CONSTRUCTION | DEVELOPMENT",
       description:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque nemo quas sequi dolorem iusto dolore similique saepe mollitia fugiat consectetur iste dolores eaque, magnam aspernatur, quam commodi reprehenderit asperiores quis.",
     },
     {
-      background: imagetolife,
+      background: publicSpeaking,
       title: "Bringing your designs to life...",
       description:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque nemo quas sequi dolorem iusto dolore similique saepe mollitia fugiat consectetur iste dolores eaque, magnam aspernatur, quam commodi reprehenderit asperiores quis.",
     },
     {
-      background: architecture2,
+      background: sports,
       title: "From concept to design",
       description:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque nemo quas sequi dolorem iusto dolore similique saepe mollitia fugiat consectetur iste dolores eaque, magnam aspernatur, quam commodi reprehenderit asperiores quis.",
@@ -53,7 +53,7 @@ function Carousel() {
             sx={{
               background: `url(${slide.background}) no-repeat center center`,
               backgroundSize: "cover",
-              height: "50vh",
+              height: "55vh",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -92,12 +92,7 @@ function Carousel() {
         ))}
       </Slider>
 
-      {/* short content */}
-      <Box sx={{ textAlign: 'center', mt: 10 }}>
-        <Typography variant="body1" sx={{ mt: 3 }}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro, assumenda? Repellendus, iste corrupti? Tempore laudantium repellendus accusamus accusantium sed architecto odio, nisi expedita quas quidem nesciunt debitis dolore non aspernatur praesentium assumenda sint quibusdam, perspiciatis, explicabo sequi fugiat amet animi eos aut. Nobis quisquam reiciendis sunt quis sed magnam consequatur!
-        </Typography>
-      </Box>
+
 
 
     </Container>

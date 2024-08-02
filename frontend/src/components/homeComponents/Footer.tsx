@@ -6,10 +6,12 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 
 function Footer() {
   return (
-    <Box component="footer" sx={{ p: 4, bgcolor: "blue", color: "text.primary", textAlign: "center", borderTop: 1, borderColor: "divider" }}>
+    <Box component="footer" sx={{ p: 4, bgcolor: "#071952", color: "white", textAlign: "center", borderTop: 1, borderColor: "divider" }}>
       <Box sx={{ mb: 2 }}>
         <nav>
           <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
+
+            {/* edit these guys */}
             <Link href="#" sx={{ textDecoration: "none", color: "inherit" }}>About us</Link>
             <Link href="#" sx={{ textDecoration: "none", color: "inherit" }}>Contact</Link>
             <Link href="#" sx={{ textDecoration: "none", color: "inherit" }}>Jobs</Link>

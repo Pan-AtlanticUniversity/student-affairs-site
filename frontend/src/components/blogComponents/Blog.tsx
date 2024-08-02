@@ -14,7 +14,7 @@ import {
 
 // Define the types for the blog items
 interface BlogItem {
-  id: string;
+  _id: string;
   name: string;
   news: number;
   date: string;
@@ -48,23 +48,27 @@ function Blog() {
     <Container maxWidth="xl" sx={{ mt: 10 }}>
       <Box sx={{ textAlign: 'center', mt: 10 }}>
         <Typography variant="h4" component="h1">
-          What's poppin  <span style={{ color: "#ec407a" }}>PAU!</span>
+          Trending <span style={{ color: "#ec407a" }}>News!!!!</span>
         </Typography>
-        <Typography variant="body1" sx={{ mt: 3 }}>
+        {/* <Typography variant="body1" sx={{ mt: 3 }}>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, assumenda? Repellendus, iste corrupti? Tempore laudantium repellendus accusamus accusantium sed architecto odio, nisi expedita quas quidem nesciunt debitis dolore non aspernatur praesentium assumenda sint quibusdam, perspiciatis, explicabo sequi fugiat amet animi eos aut. Nobis quisquam reiciendis sunt quis sed magnam consequatur!
-        </Typography>
-        <Link to="/">
+        </Typography> */}
+        {/* <Link to="/">
           <Button variant="contained" color="secondary" sx={{ mt: 3 }}>
             Back
           </Button>
-        </Link>
+        </Link> */}
       </Box>
 
       <Grid container spacing={4} sx={{ mt: 3 }}>
         {blogs.length > 0 ? (
           blogs.map((item) => (
-            <Grid item xs={12} md={3} key={item.id}>
-              <Card sx={{ height: '100%', transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.05)' }, backgroundColor: 'background.paper' }}>
+            <Grid item xs={12} md={3} key={item._id}>
+              <Card sx={{ height: '100%', transition: 
+                'transform 0.2s', 
+                '&:hover': { transform: 'scale(1.05)' }, 
+                backgroundColor: 'background.paper' }}
+                component={Link} to={`/blog/${item._id}`}>
                 
                 
                 {item.image && (

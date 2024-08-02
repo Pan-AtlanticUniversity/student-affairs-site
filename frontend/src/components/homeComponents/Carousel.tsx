@@ -4,9 +4,9 @@ import { Container, Box, Typography, Button, Grid } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import architecture3 from "../../../public/pau_logo.png"; // Replace with your actual image paths
-import imagetolife from "../../../public/pau_logo.png"; // Replace with your actual image paths
-import architecture2 from "../../../public/pau_logo.png"; // Replace with your actual image paths
+import welcomeToPAU from "../../../public/images/welcome-to-pau.png"; // Replace with your actual image paths
+import guysChilling from "../../../public/images/guys-chilling.jpg"; // Replace with your actual image paths
+import people from "../../../public/images/chudi.png"; // Replace with your actual image paths
 
 function Carousel() {
   const sliderSettings = {
@@ -23,19 +23,19 @@ function Carousel() {
 
   const slides = [
     {
-      background: architecture3,
+      background: welcomeToPAU,
       title: "DESIGN | CONSTRUCTION | DEVELOPMENT",
       description:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque nemo quas sequi dolorem iusto dolore similique saepe mollitia fugiat consectetur iste dolores eaque, magnam aspernatur, quam commodi reprehenderit asperiores quis.",
     },
     {
-      background: imagetolife,
+      background: guysChilling,
       title: "Bringing your designs to life...",
       description:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque nemo quas sequi dolorem iusto dolore similique saepe mollitia fugiat consectetur iste dolores eaque, magnam aspernatur, quam commodi reprehenderit asperiores quis.",
     },
     {
-      background: architecture2,
+      background: people,
       title: "From concept to design",
       description:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque nemo quas sequi dolorem iusto dolore similique saepe mollitia fugiat consectetur iste dolores eaque, magnam aspernatur, quam commodi reprehenderit asperiores quis.",
@@ -53,7 +53,7 @@ function Carousel() {
             sx={{
               background: `url(${slide.background}) no-repeat center center`,
               backgroundSize: "cover",
-              height: "50vh",
+              height: "55vh",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",

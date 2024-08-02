@@ -8,11 +8,11 @@ function ClubDetail() {
   return (
     <>
       <Navbar />
-     
+      {/* <Carousel /> */}
       <div className=" min-h-screen">
         <Clubdetail />
       </div>
-      
+
       <Footer />
     </>
   );

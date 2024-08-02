@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Container, Box, Typography } from "@mui/material";
+import { Container, Box, Typography, Avatar, Grid, CircularProgress, Card, CardContent, IconButton } from "@mui/material";
 import Footer from "../../components/homeComponents/Footer";
 import Navbar from "../../components/homeComponents/Navbar";
+import architecture3 from "../../../public/pau_logo.png"; // Replace with your actual image paths
+import imagetolife from "../../../public/pau_logo.png"; // Replace with your actual image paths
+import architecture2 from "../../../public/pau_logo.png"; // Replace with your actual image paths
+import TwitterIcon from "@mui/icons-material/Twitter";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import FacebookIcon from "@mui/icons-material/Facebook";
 
 // Define the types for the club item
 interface ClubItem {
@@ -44,7 +50,7 @@ const ClubDetails: React.FC = () => {
   }, [_id]);
 
   if (loading) {
-    return <Typography>Loading...</Typography>;
+    return <CircularProgress />;
   }
 
   if (error) {
@@ -56,32 +62,89 @@ const ClubDetails: React.FC = () => {
   }
 
   return (
+    <>
 
-    <Container maxWidth="md" sx={{ mt: 5 }}>
-    
+      <Container maxWidth="md" sx={{ mt: 5 }}>
+        {/* club details */}
+        <Box sx={{ textAlign: 'center', mb: 4 }}>
+
+          <img src="../../../public/assets/image.jpg" alt="Club Image" style={{ width: '100%', borderRadius: '8px' }} />
+
+          <Typography variant="h3" component="h1" sx={{ mt: 2 }}>
+            {club.nameOfClub}, {club.school}
+          </Typography>
+
+          <Typography variant="body1" sx={{ mt: 2 }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </Typography>
+
+        </Box>
+
+        {/* executives */}
+        <Box sx={{ textAlign: 'center', mb: 4 }}>
+          <Typography variant="h4" component="h2" sx={{ mb: 2 }}>
+            Executives
+          </Typography>
+          <Grid container spacing={2} justifyContent="center">
+            {["President", "Vice President", "Secretary", "Treasurer"].map((title, index) => (
+              <Grid item xs={6} md={3} key={index}>
+                <Box sx={{ textAlign: 'center' }}>
+                  <Avatar sx={{ width: 80, height: 80, margin: '0 auto' }}>JD</Avatar>
+                  <Typography variant="h6" component="h3">
+                    John Doe
+                  </Typography>
+                  <Typography variant="subtitle1" color="textSecondary">
+                    {title}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+        
+
+        {/* more info */}
+        <Box sx={{ textAlign: 'center', mb: 4 }}>
+          <Card sx={{ height: '100%', transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.05)' }, backgroundColor: 'background.paper' }}>
+
+            <CardContent>
+              {/* text 1 */}
+              <Typography gutterBottom variant="h5" component="div">
+                More Info
+              </Typography>
+
+              {/*text 2  */}
+              <Typography variant="body2" color="text.secondary">
+                Meeting Time: ...to be gotten from db
+              </Typography>
+
+              {/* social media icons */}
+              <Typography variant="body2" color="text.secondary">
+                <nav>
+                  <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
+                    <IconButton href="#" color="inherit">
+                      <TwitterIcon />
+                    </IconButton>
+
+                    <IconButton href="#" color="inherit">
+                      <YouTubeIcon />
+                    </IconButton>
+
+                    <IconButton href="#" color="inherit">
+                      <FacebookIcon />
+                    </IconButton>
+                  </Box>
+                </nav>
+              </Typography>
+
+            </CardContent>
+          </Card>
+        </Box>
 
 
-      <Box>
-        <Typography>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore odit enim reiciendis, 
-            nulla, quos sapiente animi iure ad distinctio explicabo voluptatem reprehenderit. 
-            Libero voluptate architecto sapiente maiores labore eaque eum.
-        </Typography>
-        <Typography variant="h3" component="h1">
-          Welcome to the {club.nameOfClub} !!
-        </Typography>
-        <Typography variant="h6" color="textSecondary">
-          {club.school}
-        </Typography>
-        {/* <Typography variant="body1" sx={{ mt: 3 }}>
-          {club.description}
-        </Typography> */}
-        {/* Add more details as necessary */}
-      </Box>
+      </Container>
 
-  
-
-    </Container>
+    </>
   );
 };
 

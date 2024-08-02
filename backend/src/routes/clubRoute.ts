@@ -4,13 +4,21 @@ import authenticateTokenMiddleware from "../middleware/authenticateTokenMiddlewa
 
 const router = express.Router();
 
-router.route("/").get(authenticateTokenMiddleware, getClub)
-                 .post(authenticateTokenMiddleware, createClub);
+router.route("/").get(getClub)
+                 .post(createClub);
 
 router.route('/:_id')
-                .get(authenticateTokenMiddleware, getClubById)
-                .put(authenticateTokenMiddleware, updateClub)
-                .delete(authenticateTokenMiddleware, deleteClub);
+                .get(getClubById)
+                .put(updateClub)
+                .delete(deleteClub);
+
+//                 router.route("/").get(authenticateTokenMiddleware, getClub)
+//                  .post(authenticateTokenMiddleware, createClub);
+
+// router.route('/:_id')
+//                 .get(authenticateTokenMiddleware, getClubById)
+//                 .put(authenticateTokenMiddleware, updateClub)
+//                 .delete(authenticateTokenMiddleware, deleteClub);
 
 
 export default router;

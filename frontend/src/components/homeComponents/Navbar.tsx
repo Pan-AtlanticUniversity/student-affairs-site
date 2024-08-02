@@ -103,7 +103,7 @@ function Navbar() {
 
   return (
     // primary main is normally blue "primary.main"
-    <AppBar position="fixed" sx={{ zIndex: 1400, bgcolor: theme === "dark" ? "grey.900" : "blue" }}>
+    <AppBar position="fixed" sx={{ zIndex: 1400, bgcolor: theme === "dark" ? "grey.900" : "#071952" }}>
       <Container>
         <Toolbar>
           <IconButton
