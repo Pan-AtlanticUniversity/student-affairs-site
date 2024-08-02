@@ -1,26 +1,62 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { About, Admins, Blogs, Clubs, Home, Login, Register, Rules } from "./pages"
+import { ProtectedRoute } from './components';
+import { AuthProvider } from './context/AuthProvider';
 
 
 
 function App() {
 
   return (
-    <Router>
+    <AuthProvider>
       <Routes>
-        {/* route to the home page */}
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/clubs" element={<Clubs />}></Route>
-        <Route path="/blogs" element={<Blogs />}></Route>
-        <Route path="/rules" element={<Rules />}></Route>
-        <Route path="/admin" element={<Admins />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/signup" element={<Register />}></Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Register />} />
+
+
+        <Route
+          path="/about"
+          element={
+            <ProtectedRoute>
+              <About />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/clubs"
+          element={
+            <ProtectedRoute>
+              <Clubs />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/blogs"
+          element={
+            <ProtectedRoute>
+              <Blogs />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/rules"
+          element={
+            <ProtectedRoute>
+              <Rules />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <Admins />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
-
-    </Router>
-
+    </AuthProvider>
   )
 }
 

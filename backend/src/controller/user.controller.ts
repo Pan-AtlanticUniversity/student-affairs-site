@@ -8,7 +8,7 @@ import passfather from "passfather";
 export const signup = async (req: Request, res: Response, next: NextFunction) => {
 
     try {
-      
+
 
 
         const { fullname, email } = req.body;
@@ -49,7 +49,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
         res.status(StatusCodes.OK).json({
             message: "Login successful",
-            user: user.fullname,
+            user: user.fullname.split(' ')[0],
             token
         });
 

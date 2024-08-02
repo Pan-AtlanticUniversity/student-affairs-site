@@ -5,8 +5,9 @@ import LockIcon from '@mui/icons-material/Lock';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Image from 'mui-image';
-import { AuthNavBar, Footer } from '../components';
+import { AuthNavBar, Footer, Message } from '../components';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../context/authContext';
 
 const Login = () => {
 
@@ -16,25 +17,32 @@ const Login = () => {
         email: '',
         password: ''
     });
+
     const [showPassword, setShowPassword] = useState(false);
+
+    const [message, setMessage] = useState<string | null>(null);
+    const [openState, setOpenState] = useState(false);
+    const [mode, setMode] = useState("");
+    const { login } = useAuth();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
-
     const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
     };
-
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Handle form submission 
+        setMessage(null);
+
+        await login(formData.email, formData.password, setMessage, setMode, setOpenState);
     };
 
     return (
         <Stack sx={{ overflowY: "scroll", overflowX: "hidden" }} alignItems={"center"} gap={3} >
             <AuthNavBar />
+            <Message message={message} openState={openState} setOpenState={setOpenState} mode={mode} />
             <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center" }} width={"100%"} >
                 <Stack component="form" onSubmit={handleSubmit} sx={{ minWidth: "400px", maxWidth: "40%", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
                     <Typography variant='h5' color={"primary"} fontFamily={"leckerli-one"} sx={{ textAlign: "center" }}>
