@@ -11,7 +11,7 @@ const StyledToolBar = styled(Toolbar)({
 const AuthNavBar = () => {
     const navigate = useNavigate();
     return (
-        <AppBar position="sticky" sx={{ backgroundColor: "transparent", boxShadow: "none", paddingTop: "15px" }}>
+        <AppBar position="sticky" sx={{ backgroundColor: "transparent", boxShadow: "none", paddingTop: "10px 10px" }}>
             <StyledToolBar>
                 <Box sx={{ width: { xs: "125px", md: "150px", lg: "175px" } }}>
                     <Image src="/images/transparent-pau-logo.png" style={{ height: "100%" }} />

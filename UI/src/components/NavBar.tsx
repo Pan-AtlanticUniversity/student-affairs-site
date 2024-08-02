@@ -1,9 +1,10 @@
-import { AppBar, styled, Toolbar, Box, Button, Stack, Menu, MenuItem } from '@mui/material';
+import { AppBar, styled, Toolbar, Box, Button, Stack, Menu, MenuItem, Typography } from '@mui/material';
 import { Image } from 'mui-image'
 import React from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../context/authContext';
 
 const StyledToolBar = styled(Toolbar)({
     display: "flex",
@@ -19,6 +20,7 @@ interface NavBarProps {
 
 const NavBar: React.FC<NavBarProps> = ({ route }) => {
     const navigate = useNavigate();
+    const { user } = useAuth();
 
     const handleNavigation = (path: string) => {
         navigate(path);
@@ -34,13 +36,13 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
         setAnchorEl(null);
     };
     return (
-        <AppBar position="sticky" sx={{ backgroundColor: "#F8F8FF", boxShadow: "none", padding: 0 }}>
+        <AppBar position="sticky" sx={{ backgroundColor: "#F8F8FF", boxShadow: "none", padding: "10px 10px" }}>
             <StyledToolBar sx={{ padding: 0 }}>
                 <Box sx={{ width: { xs: "125px", md: "150px", lg: "175px" } }}>
                     <Image src="/images/transparent-pau-logo.png" style={{ height: "100%" }} />
                 </Box>
 
-                <Stack direction="row" gap={3}>
+                <Stack direction="row" gap={3} alignItems={'center'}>
                     <Button
                         id="basic-button"
                         aria-controls={open ? 'basic-menu' : undefined}
@@ -67,10 +69,14 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
                         <StyledMenuItem onClick={() => handleNavigation('/blogs')}>Blog</StyledMenuItem>
                         <StyledMenuItem onClick={() => handleNavigation('/rules')}>Rules</StyledMenuItem>
                     </Menu>
+                    {
+                        user
+                            ? <Typography variant='body1' color={'primary'} fontWeight={"400"} component={'h6'}>{user}</Typography>
+                            : <Button variant='contained' sx={{ textTransform: 'none', padding: "10px 20px" }} onClick={() => handleNavigation('/login')}>
+                                Login
+                            </Button>
 
-                    <Button variant='contained' sx={{ textTransform: 'none', padding: "10px 20px" }} onClick={() => handleNavigation('/login')}>
-                        Login
-                    </Button>
+                    }
                 </Stack>
 
 
