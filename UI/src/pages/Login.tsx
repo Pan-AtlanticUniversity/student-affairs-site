@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { ChangeEvent, useState, FormEvent, MouseEvent } from 'react';
 import { Stack, Typography, TextField, InputAdornment, FormControl, InputLabel, OutlinedInput, IconButton, Button, Box } from '@mui/material';
 import MailIcon from '@mui/icons-material/Mail';
 import LockIcon from '@mui/icons-material/Lock';
@@ -12,25 +12,42 @@ const Login = () => {
 
     const navigate = useNavigate();
 
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    });
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
+    };
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        // Handle form submission 
     };
 
     return (
         <Stack sx={{ overflowY: "scroll", overflowX: "hidden" }} alignItems={"center"} gap={3} >
             <AuthNavBar />
             <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center" }} width={"100%"} >
-                <Stack sx={{ minWidth: "400px", maxWidth: "40%", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
+                <Stack component="form" onSubmit={handleSubmit} sx={{ minWidth: "400px", maxWidth: "40%", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
                     <Typography variant='h5' color={"primary"} fontFamily={"leckerli-one"} sx={{ textAlign: "center" }}>
                         Hello there again!!!
                     </Typography>
 
                     <TextField
-                        id="outlined-basic"
+                        id="email"
+                        name="email"
                         variant="outlined"
                         label="Email address"
+                        value={formData.email}
+                        onChange={handleChange}
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
@@ -43,8 +60,11 @@ const Login = () => {
                     <FormControl variant="outlined">
                         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                         <OutlinedInput
-                            id="outlined-adornment-password"
+                            id="password"
+                            name="password"
                             type={showPassword ? 'text' : 'password'}
+                            value={formData.password}
+                            onChange={handleChange}
                             startAdornment={
                                 <InputAdornment position="start">
                                     <IconButton edge="start">
@@ -68,7 +88,7 @@ const Login = () => {
                         />
                     </FormControl>
                     <Stack alignItems={"center"} width={"100%"} gap={2}>
-                        <Button variant='contained' sx={{ textTransform: 'none', padding: "15px 0", width: "100%" }} >
+                        <Button variant='contained' sx={{ textTransform: 'none', padding: "15px 0", width: "100%" }} type='submit'>
                             Sign In
                         </Button>
                         <Typography variant='caption' color={"#787A81"}>
