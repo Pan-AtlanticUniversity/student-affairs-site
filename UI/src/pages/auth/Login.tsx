@@ -5,9 +5,10 @@ import LockIcon from '@mui/icons-material/Lock';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Image from 'mui-image';
-import { AuthNavBar, Footer, Message } from '../components';
+import { AuthNavBar, Footer, Message } from '../../components';
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../context/authContext';
+import useAuth from '../../context/authContext';
+import { disabled, purple } from '../../context/theme';
 
 const Login = () => {
 
@@ -44,7 +45,7 @@ const Login = () => {
             <AuthNavBar />
             <Message message={message} openState={openState} setOpenState={setOpenState} mode={mode} />
             <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center" }} width={"100%"} >
-                <Stack component="form" onSubmit={handleSubmit} sx={{ minWidth: "400px", maxWidth: "40%", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
+                <Stack component="form" onSubmit={handleSubmit} sx={{ minWidth: "350px", maxWidth: "40%", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
                     <Typography variant='h5' color={"primary"} fontFamily={"leckerli-one"} sx={{ textAlign: "center" }}>
                         Hello there again!!!
                     </Typography>
@@ -99,7 +100,7 @@ const Login = () => {
                         <Button variant='contained' sx={{ textTransform: 'none', padding: "15px 0", width: "100%" }} type='submit'>
                             Sign In
                         </Button>
-                        <Typography variant='caption' color={"#787A81"}>
+                        <Typography variant='caption' color={disabled}>
                             Don't have an account yet?
                             {
                                 <Button sx={{ textTransform: 'none', fontWeight: "400" }} onClick={() => navigate("../signup")}>
@@ -117,7 +118,7 @@ const Login = () => {
 
             <Box
                 sx={{ width: "60vw", aspectRatio: "1", right: { xs: "-15vw", md: "-10vw" }, top: { md: "-7vw" }, maxWidth: "450px", }}
-                bgcolor={"#A673B1"}
+                bgcolor={purple}
                 position="absolute"
                 zIndex={0}
                 borderRadius={500}

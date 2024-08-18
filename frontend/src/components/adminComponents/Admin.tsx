@@ -34,7 +34,7 @@ interface ClubItem {
 
 const AUTH_HEADER = {
     headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTUzYWY1Njc1MjIyMGU1NmFhM2YwNyIsImlhdCI6MTcyMjEwNDU2NSwiZXhwIjoxNzIyMjc3MzY1fQ.cZICjRGna_qC5N8KibRi35Ew2RuVlqYXV2xtu7KfAkE`
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YWE0YTJkMGJjNGM4MjM5MjNkN2U5MCIsImlhdCI6MTcyMjQzNjE0MSwiZXhwIjoxNzIyNjA4OTQxfQ.I_K94SKf5404s6ysnQiDutXgz9Cc0DG4nLsnBsXzBpE`
     }
 };
 

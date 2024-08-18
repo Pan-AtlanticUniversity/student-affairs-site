@@ -2,6 +2,7 @@ import { AppBar, styled, Toolbar, Box, Button } from '@mui/material';
 import { Image } from 'mui-image'
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
+import { grey } from '../context/theme';
 
 const StyledToolBar = styled(Toolbar)({
     display: "flex",
@@ -16,7 +17,7 @@ const AuthNavBar = () => {
                 <Box sx={{ width: { xs: "125px", md: "150px", lg: "175px" } }}>
                     <Image src="/images/transparent-pau-logo.png" style={{ height: "100%" }} />
                 </Box>
-                <Button sx={{ textTransform: 'none', color: "#F8F8FF" }} endIcon={<HomeIcon />} onClick={() => navigate("/")}>
+                <Button sx={{ textTransform: 'none', color: grey }} endIcon={<HomeIcon />} onClick={() => navigate("/")}>
                     Home
                 </Button>
             </StyledToolBar>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Container, Box, Typography, Button, Grid, Card, CardContent, Badge } from "@mui/material";
+import { Container, Box, Typography, Button, Grid, Card, CardContent, Badge , CardMedia} from "@mui/material";
 
 // Define the types for the club items
 interface ClubItem {
-    id: string;
+    _id: string;
     nameOfClub: string;
     school: string;
     title: string;
@@ -13,9 +13,10 @@ interface ClubItem {
     price?: number;
 }
 
+
 const AUTH_HEADER = {
     headers: {
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTUzYWY1Njc1MjIyMGU1NmFhM2YwNyIsImlhdCI6MTcyMjEwNDU2NSwiZXhwIjoxNzIyMjc3MzY1fQ.cZICjRGna_qC5N8KibRi35Ew2RuVlqYXV2xtu7KfAkE`
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YWE0YTJkMGJjNGM4MjM5MjNkN2U5MCIsImlhdCI6MTcyMjQzNjE0MSwiZXhwIjoxNzIyNjA4OTQxfQ.I_K94SKf5404s6ysnQiDutXgz9Cc0DG4nLsnBsXzBpE`
     }
   };
 
@@ -37,63 +38,66 @@ function Club() {
     }, []);
     return (
         <Container maxWidth="xl" sx={{ mt: 10 }}>
-            <Box sx={{ textAlign: 'center', mt: 10 }}>
-                <Typography variant="h4" component="h1">
-                    School Clubs <span style={{ color: "#ec407a" }}>Here! :)</span>
-                </Typography>
-                <Typography variant="body1" sx={{ mt: 3 }}>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro, assumenda? Repellendus, iste corrupti? Tempore laudantium repellendus accusamus accusantium sed architecto odio, nisi expedita quas quidem nesciunt debitis dolore non aspernatur praesentium assumenda sint quibusdam, perspiciatis, explicabo sequi fugiat amet animi eos aut. Nobis quisquam reiciendis sunt quis sed magnam consequatur!
-                </Typography>
-                <Link to="/">
-                    <Button variant="contained" color="secondary" sx={{ mt: 3 }}>
-                        Back
-                    </Button>
-                </Link>
-            </Box>
-
-            <Grid container spacing={4} sx={{ mt: 3 }}>
-                {club.length > 0 ? (
-                    club.map((item) => (
-                        <Grid item xs={12} md={3} key={item.id}>
-                            <Card sx={{ height: '100%', transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.05)' }, backgroundColor: 'background.paper' }}>
-                                {/* Uncomment if images are needed */}
-                                {/* {item.image && (
-                  <CardMedia
-                    component="img"
-                    image={item.image}
-                    alt={item.nameOfClub}
-                    sx={{ height: 140 }}
-                  />
-                )} */}
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        {item.nameOfClub || 'No Club Name'}
-                                        {/* {item.school && (
-                                            <Badge badgeContent={item.school} color="secondary" sx={{ ml: 1 }} />
-                                        )} */}
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        {item.school || 'No Title Available'}
-                                    </Typography>
-                                </CardContent>
-                                {/* Uncomment if card actions are needed */}
-                                {/* <CardActions sx={{ justifyContent: 'space-between' }}>
-                  <Badge badgeContent={`$${item.price || 'N/A'}`} color="primary" />
-                  <Button variant="outlined" color="secondary">
-                    Buy Now
-                  </Button>
-                </CardActions> */}
-                            </Card>
-                        </Grid>
-                    ))
-                ) : (
-                    <Typography variant="h6" sx={{ mt: 3 }}>
-                        No clubs available.
-                    </Typography>
-                )}
-            </Grid>
+          <Box sx={{ textAlign: 'center', mt: 10 }}> 
+            <Typography variant="h4" component="h1">
+              Meet our clubs <span style={{ color: "#ec407a" }}>🎉!</span>
+            </Typography>
+          </Box>
+    
+          <Box
+            sx={{
+              overflowX: 'auto',
+              display: 'flex',
+              whiteSpace: 'nowrap',
+              mt: 3,
+              pb: 3,
+              '&::-webkit-scrollbar': {
+                height: '10px',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: '#888',
+                borderRadius: '5px',
+              },
+              '&::-webkit-scrollbar-thumb:hover': {
+                backgroundColor: '#555',
+              },
+            }}
+          >
+            {club.length > 0 ? (
+              club.map((item) => (
+                <Box key={item._id} sx={{ display: 'inline-block', minWidth: '300px', pr: 2 }}>
+                  <Card
+                    sx={{ height: '100%', transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.05)' }, backgroundColor: 'background.paper' }}
+                    component={Link} to={`/club/${item._id}`} //passes the ID of the item clicked
+                  >
+                    {/* {item.image && (
+                      <CardMedia
+                        component="img"
+                        image={item.image}
+                        alt={item.nameOfClub}
+                        sx={{ height: 140 }}
+                      />
+                    )} */}
+    
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {item.nameOfClub || 'No Club Name'}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {item.school || 'No Title Available'}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Box>
+              ))
+            ) : (
+              <Typography variant="h6" sx={{ mt: 3 }}>
+                No blogs available.
+              </Typography>
+            )}
+          </Box>
         </Container>
-    );
+      );
 }
 
 export default Club;

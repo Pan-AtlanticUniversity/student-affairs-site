@@ -1,13 +1,19 @@
 import AuthNavBar from "./AuthNavBar";
+import Carousel from "./Carousel";
 import Footer from "./Footer";
 import Message from "./Message";
 import NavBar from "./NavBar";
 import ProtectedRoute from "./ProtectedRoutes";
+import Banner from "./Banner";
+import Title from "./Title";
 
 export {
-    AuthNavBar,
-    NavBar,
-    Footer,
-    Message,
-    ProtectedRoute
-}
+  AuthNavBar,
+  NavBar,
+  Footer,
+  Message,
+  ProtectedRoute,
+  Carousel,
+  Banner,
+  Title,
+};

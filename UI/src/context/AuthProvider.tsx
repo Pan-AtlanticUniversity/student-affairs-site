@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, ReactNode, useMemo } from 'react';
+import React, { createContext, useState, ReactNode, useMemo } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,13 +18,8 @@ export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const navigate = useNavigate();
-    const [user, setUser] = useState<string | null>(null);
-    const [token, setToken] = useState<string | null>(null);
-
-    useEffect(() => {
-        setToken(localStorage.getItem('token') ?? null);
-        setUser(localStorage.getItem('user') ?? null);
-    }, []);
+    const [user, setUser] = useState<string | null>(localStorage.getItem('user'));
+    const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
 
     const login = async (email: string, password: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<string>>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => {
         try {
@@ -56,6 +51,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                 fullname: `${firstName} ${lastName}`,
                 email: email,
             });
+
             setMessage(response.data.message)
             setMode("success");
 

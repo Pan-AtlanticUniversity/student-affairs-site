@@ -5,6 +5,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../context/authContext';
+import { grey } from '../context/theme';
 
 const StyledToolBar = styled(Toolbar)({
     display: "flex",
@@ -36,7 +37,7 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
         setAnchorEl(null);
     };
     return (
-        <AppBar position="sticky" sx={{ backgroundColor: "#F8F8FF", boxShadow: "none", padding: "10px 10px" }}>
+        <AppBar position="fixed" sx={{ backgroundColor: grey, boxShadow: "none", padding: "10px 10px" }}>
             <StyledToolBar sx={{ padding: 0 }}>
                 <Box sx={{ width: { xs: "125px", md: "150px", lg: "175px" } }}>
                     <Image src="/images/transparent-pau-logo.png" style={{ height: "100%" }} />
@@ -71,7 +72,13 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
                     </Menu>
                     {
                         user
-                            ? <Typography variant='body1' color={'primary'} fontWeight={"400"} component={'h6'}>{user}</Typography>
+                            ? <Stack direction={"row"} alignItems={"center"} gap={1}>
+                                <Typography variant='body1' color={'primary'} fontWeight={"400"} component={'h6'}>{user}</Typography>
+                                <Box sx={{ width: "35px" }}>
+                                    <Image src="/svgs/default-user.svg" style={{ height: "100%" }} />
+                                </Box>
+                            </Stack>
+
                             : <Button variant='contained' sx={{ textTransform: 'none', padding: "10px 20px" }} onClick={() => handleNavigation('/login')}>
                                 Login
                             </Button>
