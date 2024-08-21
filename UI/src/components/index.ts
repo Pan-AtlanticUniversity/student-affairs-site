@@ -6,6 +6,7 @@ import NavBar from "./NavBar";
 import ProtectedRoute from "./ProtectedRoutes";
 import Banner from "./Banner";
 import Title from "./Title";
+import Blog from "./Blog";
 
 export {
   AuthNavBar,
@@ -16,4 +17,5 @@ export {
   Carousel,
   Banner,
   Title,
+  Blog
 };

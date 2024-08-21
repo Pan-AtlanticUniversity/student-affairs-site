@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 const blogSchema = new mongoose.Schema({
-    name: String,
-    news: Number,
-    date: String,
-    image: String,
-    
+  title: String,
+  content: String,
+  date: { type: Date, default: Date.now },
+  image: String,
+  read_count: { type: Number, default: 0 },
 });
 const Blog = mongoose.model("Blog", blogSchema);
 

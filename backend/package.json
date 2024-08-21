@@ -17,6 +17,7 @@
     "http-status-codes": "^2.3.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.5.1",
+    "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.14",
     "passfather": "^3.0.6",
     "tslib": "^2.3.0"
@@ -31,6 +32,7 @@
     "@types/jest": "^29.4.0",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/mongoose": "^5.11.96",
+    "@types/multer": "^1.4.11",
     "@types/nodemailer": "^6.4.15",
     "nodemon": "^3.1.4",
     "ts-node": "10.9.1",
