@@ -9,8 +9,6 @@ export const signup = async (req: Request, res: Response, next: NextFunction) =>
 
     try {
 
-
-
         const { fullname, email } = req.body;
 
         if (!fullname || !email) throw new CustomAPIError("Provide all fields", StatusCodes.BAD_REQUEST);
