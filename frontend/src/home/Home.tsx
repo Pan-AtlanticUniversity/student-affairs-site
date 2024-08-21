@@ -4,6 +4,7 @@ import Navbar from '../components/homeComponents/Navbar'
 import Footer from '../components/homeComponents/Footer'
 import Carousel from '../components/homeComponents/Carousel'
 import News from '../components/homeComponents/News'
+import Date from '../components/homeComponents/Date'
 
 
 function Home() {
@@ -12,6 +13,7 @@ function Home() {
             <Navbar />
             <Carousel />
             <News/>
+            <Date/>
             <Footer/>
             
         </>
