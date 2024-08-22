@@ -6,10 +6,8 @@ import {
   deleteBlog,
   getBlogById,
 } from "../controller/blog.controller";
-import multer from "multer";
 import authenticateTokenMiddleware from "../middleware/authenticateTokenMiddleware";
-
-const upload = multer({ storage: multer.memoryStorage() });
+import uploadHandler from "../middleware/fileUploadMiddleware";
 
 const router = express.Router();
 
@@ -17,7 +15,7 @@ router.route("/").get(getBlog);
 
 router
   .route("/create")
-  .post(authenticateTokenMiddleware, upload.single("image"), createBlog);
+  .post(authenticateTokenMiddleware, uploadHandler, createBlog);
 
 router
   .route("/:_id")
