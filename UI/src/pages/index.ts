@@ -6,6 +6,7 @@ import About from "./content/About";
 import Rules from "./content/Rules";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
+import BlogDetail from "./content/BlogDetail";
 
 export {
     Admins,
@@ -15,5 +16,6 @@ export {
     About,
     Rules,
     Login,
-    Register
+    Register,
+    BlogDetail,
 }

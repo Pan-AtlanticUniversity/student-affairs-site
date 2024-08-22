@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Typography,
   Card,
   CardContent,
-  CardHeader,
   CardMedia,
   Stack,
   Button
@@ -15,11 +14,10 @@ import useAuth from "../context/authContext";
 import { dark, disabled, grey } from "../context/theme";
 import dayjs from "dayjs";
 
-
-// Define the types for the blog items
 export interface BlogItem {
   _id: string;
   title: string;
+  author: string;
   content: number;
   date: string;
   image: string;
@@ -29,6 +27,7 @@ export interface BlogItem {
 
 const Blog = () => {
   const [blogs, setBlogs] = useState<BlogItem[]>([]);
+  const navigate = useNavigate();
 
   const { token } = useAuth();
 
@@ -59,10 +58,10 @@ const Blog = () => {
           content: '""',
           position: 'absolute',
           top: { xs: '50%', md: '25%' },
-          left: { xs: '-50vw', md: '85vw' },
-          transform: 'translateY(-50%)  rotate(35deg)',
+          left: { xs: '-50vw', md: '-25%' },
+          transform: 'translateY(-10%)  rotate(35deg)',
           zIndex: -1,
-          border: '15px #A673B1 solid',
+          border: '15px #18BC9C solid',
           width: { xs: '65vw' },
           aspectRatio: "3/5",
           maxWidth: "350px",
@@ -127,7 +126,11 @@ const Blog = () => {
                         </Typography>
                       </Stack>
 
-                      <Button variant="outlined" sx={{ width: '100%', borderColor: 'secondary.main', textTransform: "none", paddingY: 1, fontWeight: 300 }} >
+                      <Button
+                        variant="outlined"
+                        sx={{ width: '100%', borderColor: 'secondary.main', textTransform: "none", paddingY: 1, fontWeight: 300 }}
+                        onClick={() => navigate(`/blogs/${item._id}`, { replace: true })}
+                      >
                         Read More
                       </Button>
 

@@ -9,11 +9,12 @@ export const getBlog = async (req: Request, res: Response) => {
 
 export const createBlog = async (req: Request, res: Response) => {
   try {
-    const { title, content } = req.body;
+    const { title, content, author } = req.body;
 
     let imageBase64 = req.file?.buffer.toString("base64") ?? "";
 
     const newPost = new Blog({
+      author,
       title,
       content,
       image: imageBase64,

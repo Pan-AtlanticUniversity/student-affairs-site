@@ -6,9 +6,11 @@ interface BannerProps {
     bannerTitle?: string;
     titleColor?: string;
     titleBackground?: string;
+    bannerImage?: string;
+    bannerImageFormat?: string
 }
 
-const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackground }) => {
+const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackground, bannerImage, bannerImageFormat }) => {
     return (
         <Container
             maxWidth="xl"
@@ -35,16 +37,16 @@ const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackgroun
                         left: 0,
                         transform: 'translate(-50%, 50%)',
                         width: "clamp(150px, 25%, 300px)",
-                        aspectRatio: "1", 
+                        aspectRatio: "1",
                         borderRadius: '50%',
-                        backgroundColor: accent, 
+                        backgroundColor: accent,
                         zIndex: -1,
                     }
                 }}
             >
                 <Box
                     component="img"
-                    src='/images/chudi.png'
+                    src={bannerImage ? `data:image/${bannerImageFormat};base64,${bannerImage}` : '/images/chudi.png'}
                     sx={{
                         objectFit: 'cover',
                         backgroundSize: "cover",
@@ -52,7 +54,7 @@ const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackgroun
                         height: '100%',
                         borderRadius: "10px",
                     }}
-                    alt="PAU Logo"
+                    alt="Banner"
                 />
             </Box>
             {bannerTitle && (
