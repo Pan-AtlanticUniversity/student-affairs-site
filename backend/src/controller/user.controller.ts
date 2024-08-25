@@ -51,12 +51,15 @@ export const login = async (
 
     res.status(StatusCodes.OK).json({
       message: "Login successful",
-      user: user.fullname.split(" ")[0],
       token,
     });
   } catch (err) {
     next(err);
   }
+};
+
+export const validateToken = async (req: Request, res: Response) => {
+  res.status(StatusCodes.OK).json({ valid: true, message: "Token is valid" });
 };
 
 export const forgotPassword = async (
