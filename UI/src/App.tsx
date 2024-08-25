@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { About, Admins, BlogDetail, Blogs, Clubs, Home, Login, Register, Rules } from "./pages"
+import { About, Admins, BlogDetail, Blogs, ClubDetail, Clubs, Home, Login, Register, Rules } from "./pages"
 import { ProtectedRoute } from './components';
 import { AuthProvider } from './context/AuthProvider';
 
@@ -28,6 +28,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Clubs />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/clubs/:_id"
+          element={
+            <ProtectedRoute>
+              <ClubDetail />
             </ProtectedRoute>
           }
         />

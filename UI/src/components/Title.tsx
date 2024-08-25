@@ -2,6 +2,7 @@ import { Box, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { dark, disabled } from '../context/theme'
 import { Image } from 'mui-image'
+import DefaultUser from '../assets/svgs/default-user.svg';
 
 interface TitleProps {
     position: string;
@@ -17,7 +18,7 @@ const Title: React.FC<TitleProps> = ({ position, name, email, phone }) => {
                 {position}
             </Typography>
             <Box sx={{ width: { xs: "35%", sm: "150px", lg: '200px' } }}>
-                <Image src="/svgs/default-user.svg" style={{ height: "100%" }} alt="User Icon" />
+                <Image src={DefaultUser} style={{ height: "100%" }} alt="User Icon" />
             </Box>
             <Stack direction={'column'} alignItems={'center'} sx={{ gap: 0.5 }}>
                 <Typography variant="body1" fontFamily={"Poppins"} color={disabled}>

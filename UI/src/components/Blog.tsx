@@ -21,7 +21,6 @@ export interface BlogItem {
   content: number;
   date: string;
   image: string;
-  fileType: string;
   read_count: number
 }
 
@@ -96,15 +95,17 @@ const Blog = () => {
                   {item.image && (
                     <CardMedia
                       component="img"
-                      image={`data:image/${item.fileType};base64,${item.image}`}
+                      image={item.image}
                       alt={item.title}
                       sx={{ borderRadius: 3, aspectRatio: "9/5" }}
                     />
                   )}
                   <CardContent sx={{ paddingX: 0, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                    <Typography gutterBottom variant="body1" component="div" textTransform={'capitalize'} fontWeight={400}>
+
+                    <Typography variant="body1" component="div" textTransform={'capitalize'} fontWeight={400}>
                       {item.title ?? 'No Blog Name'}
                     </Typography>
+
                     <Typography gutterBottom variant="body2" component="div" sx={{
                       display: '-webkit-box',
                       WebkitLineClamp: { xs: 1, sm: 3 },

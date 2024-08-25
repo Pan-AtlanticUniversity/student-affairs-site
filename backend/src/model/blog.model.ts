@@ -6,7 +6,6 @@ const blogSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
   image: String,
   author: String,
-  fileType: String,
   read_count: { type: Number, default: 0 },
 });
 const Blog = mongoose.model("Blog", blogSchema);

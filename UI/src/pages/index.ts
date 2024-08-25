@@ -7,6 +7,7 @@ import Rules from "./content/Rules";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import BlogDetail from "./content/BlogDetail";
+import ClubDetail from "./content/ClubDetail";
 
 export {
     Admins,
@@ -18,4 +19,5 @@ export {
     Login,
     Register,
     BlogDetail,
+    ClubDetail
 }

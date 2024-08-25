@@ -7,6 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import useAuth from '../context/authContext';
 import { grey } from '../context/theme';
 
+import PAULogo from '../assets/images/transparent-pau-logo.png';
+import DefaultUser from '../assets/svgs/default-user.svg';
+
 const StyledToolBar = styled(Toolbar)({
     display: "flex",
     justifyContent: "space-between",
@@ -40,10 +43,10 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
         <AppBar position="fixed" sx={{ backgroundColor: grey, boxShadow: "none", padding: "10px 10px" }}>
             <StyledToolBar sx={{ padding: 0 }}>
                 <Box sx={{ width: { xs: "125px", md: "150px", lg: "175px" } }}>
-                    <Image src="/images/transparent-pau-logo.png" style={{ height: "100%" }} />
+                    <Image src={PAULogo} style={{ height: "100%" }} />
                 </Box>
 
-                <Stack direction="row" gap={3} alignItems={'center'}>
+                <Stack direction="row" sx={{ gap: { xs: 1, md: 3 } }} alignItems={'center'}>
                     <Button
                         id="basic-button"
                         aria-controls={open ? 'basic-menu' : undefined}
@@ -75,7 +78,7 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
                             ? <Stack direction={"row"} alignItems={"center"} gap={1}>
                                 <Typography variant='body1' color={'primary'} fontWeight={"400"} component={'h6'}>{user}</Typography>
                                 <Box sx={{ width: "35px" }}>
-                                    <Image src="/svgs/default-user.svg" style={{ height: "100%" }} />
+                                    <Image src={DefaultUser} style={{ height: "100%" }} />
                                 </Box>
                             </Stack>
 

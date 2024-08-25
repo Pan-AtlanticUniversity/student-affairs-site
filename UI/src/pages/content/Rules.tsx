@@ -1,7 +1,11 @@
-import { Box, Button, Paper, Stack, styled, Typography } from "@mui/material"
-import { Banner, Carousel, Footer, NavBar } from "../../components"
-import { accent, dark, grey } from "../../context/theme"
+import { Box, Button, Stack, styled, Typography } from "@mui/material"
+import { Banner, Footer, NavBar } from "../../components"
+import { dark, grey } from "../../context/theme"
 import DownloadIcon from '@mui/icons-material/Download';
+import ChudiImage from '../../assets/images/chudi.png';
+import Smiley from '../../assets/images//smiley.png';
+import GuideLines from '../../assets/svgs/guidelines.svg';
+import DressSense from '../../assets/svgs/dress-sense.svg';
 
 const StyledButton = styled(Button)({
     padding: "20px 0",
@@ -19,13 +23,13 @@ const About = () => {
     return (
         <Stack minHeight={"100vh"} sx={{ gap: { xs: 14, md: 18, lg: 20 } }}>
             <NavBar route="Rules" />
-            <Banner bannerTitle="Rules and Regulations" titleBackground={grey} titleColor={"primary.main"} />
+            <Banner bannerTitle="Rules and Regulations" titleBackground={grey} titleColor={"primary.main"} bannerImage={ChudiImage} />
             <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }} alignItems={'center'}>
                 <Typography fontFamily={"Poppins"} color={dark} sx={{ fontSize: { xs: '1rem', md: '1.2rem' }, textAlign: 'center' }}>
                     To ensure a smooth experience here at PAU, here are a few guidelines to get you up and going<span>
                         <Box
                             component="img"
-                            src='/images/smiley.png'
+                            src={Smiley}
                             pl={1}
                             sx={{
                                 objectFit: 'contain',
@@ -75,7 +79,7 @@ const About = () => {
                         </Stack>
                         <Box
                             component="img"
-                            src='/svgs/dress-sense.svg'
+                            src={DressSense}
                             sx={{
                                 objectFit: 'cover',
                                 backgroundSize: "cover",
@@ -113,7 +117,7 @@ const About = () => {
                     <Stack sx={{ flexDirection: { xs: "column", md: "row" }, justifyContent: "space-evenly", alignItems: "center" }} >
                         <Box
                             component="img"
-                            src='/svgs/guidelines.svg'
+                            src={GuideLines}
                             sx={{
                                 objectFit: 'cover',
                                 backgroundSize: "cover",

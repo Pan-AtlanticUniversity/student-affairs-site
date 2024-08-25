@@ -7,6 +7,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { AuthNavBar, Footer, Message } from '../../components';
 import useAuth from '../../context/authContext';
 import { disabled, purple } from '../../context/theme';
+import registerSVG from '../../assets/svgs/register.svg';
 
 const Register = () => {
 
@@ -38,11 +39,26 @@ const Register = () => {
 
 
   return (
-    <Stack sx={{ overflowY: "scroll", overflowX: "hidden" }} alignItems={"center"} gap={3} >
+    <Stack alignItems={"center"} gap={3}
+      sx={{
+        overflowY: "scroll", overflowX: "hidden", position: 'relative', zIndex: 0,
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: '0',
+          left: '100%',
+          transform: 'translate(-75%, -25%)',
+          zIndex: -1,
+          backgroundColor: 'secondary.main',
+          width: "clamp(200px, 50vw, 400px)",
+          aspectRatio: 1,
+          borderRadius: '50%'
+        }
+      }} >
       <AuthNavBar />
       <Message message={message} openState={openState} setOpenState={setOpenState} mode={mode} />
       <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center" }} width={"100%"} >
-        <Stack component="form" onSubmit={handleSubmit} sx={{ minWidth: "350px", maxWidth: "40%", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
+        <Stack component="form" onSubmit={handleSubmit} sx={{ width: { xs: "100%", sm: "400px" }, marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
           <Typography variant='h5' color={"primary"} fontFamily={"leckerli-one"} sx={{ textAlign: "center" }}>
             The place for professionals
           </Typography>
@@ -111,18 +127,10 @@ const Register = () => {
           </Stack>
         </Stack>
         <Box sx={{ flexGrow: 1, maxWidth: "500px" }} zIndex={1}>
-          <Image src="/svgs/register.svg" style={{ height: "100%" }} />
+          <Image src={registerSVG} style={{ height: "100%" }} />
         </Box>
       </Stack>
       <Footer />
-
-      <Box
-        sx={{ width: "60vw", aspectRatio: "1", right: { xs: "-15vw", md: "-10vw" }, top: { md: "-7vw" }, maxWidth: "450px", }}
-        bgcolor={purple}
-        position="absolute"
-        zIndex={0}
-        borderRadius={500}
-      />
     </Stack>
   );
 };

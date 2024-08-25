@@ -17,8 +17,7 @@ export const createBlog = async (req: Request, res: Response) => {
       author,
       title,
       content,
-      image: imageBase64,
-      fileType: req.file?.mimetype.split("/")[1],
+      image: `data:${req.file?.mimetype};base64,${imageBase64}`,
     });
 
     await newPost.save();

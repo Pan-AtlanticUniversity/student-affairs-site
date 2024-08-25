@@ -13,7 +13,7 @@ const StyledMenuItem = styled(IconButton)({
 
 const Footer = () => {
     return (
-        <Stack gap={5} bgcolor={primary} width={"100%"} alignItems={"center"} pt={"5vh"} pb={"10vh"} borderRadius={"20px 20px 0 0"}>
+        <Stack gap={5} bgcolor={primary} width={"100%"} alignItems={"center"} pt={"5vh"} pb={"10vh"} borderRadius={"20px 20px 0 0"} zIndex={1}>
             <Typography variant="h6" color={grey}>
                 PAU Student Affairs
             </Typography>

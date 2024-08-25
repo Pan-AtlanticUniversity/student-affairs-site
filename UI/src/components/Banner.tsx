@@ -7,10 +7,10 @@ interface BannerProps {
     titleColor?: string;
     titleBackground?: string;
     bannerImage?: string;
-    bannerImageFormat?: string
+    pushDownBanner?: boolean
 }
 
-const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackground, bannerImage, bannerImageFormat }) => {
+const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackground, bannerImage, pushDownBanner }) => {
     return (
         <Container
             maxWidth="xl"
@@ -46,13 +46,14 @@ const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackgroun
             >
                 <Box
                     component="img"
-                    src={bannerImage ? `data:image/${bannerImageFormat};base64,${bannerImage}` : '/images/chudi.png'}
+                    src={bannerImage}
                     sx={{
                         objectFit: 'cover',
-                        backgroundSize: "cover",
+                        objectPosition: pushDownBanner ? 'top' : 'center',
                         width: '100%',
                         height: '100%',
                         borderRadius: "10px",
+
                     }}
                     alt="Banner"
                 />
@@ -69,7 +70,7 @@ const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackgroun
                         transform: 'translateX(-50%)',
                         backgroundColor: titleBackground,
                         padding: { xs: '10px 25px', md: '15px 30px' },
-                        borderRadius: '20px',
+                        borderRadius: '50px',
                         marginBottom: 2,
                         fontSize: { xs: '1rem', md: '1.2rem' },
                         zIndex: 2,

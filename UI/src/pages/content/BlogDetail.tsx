@@ -37,7 +37,7 @@ const BlogDetail = () => {
         <Stack minHeight={"100vh"} sx={{ gap: { xs: 5, md: 8 } }}>
             <NavBar route="Blog" />
             <Stack sx={{ gap: { xs: 1, md: 5 } }}>
-                <Banner bannerImage={blog?.image} bannerImageFormat={blog?.fileType} />
+                <Banner bannerImage={blog?.image} />
                 <Typography sx={{ fontSize: { xs: '24px', md: '32px' } }} width={'100%'} textAlign={'center'} fontFamily={'leckerli-one'} color={dark}>{blog?.title}</Typography>
             </Stack>
 
@@ -54,7 +54,7 @@ const BlogDetail = () => {
                     {blog?.content} views
                 </Typography>
                 <Stack gap={5} direction={'row'} justifyContent={'space-between'} alignItems={'center'} >
-                    <Stack flexWrap={'wrap'} flexGrow={1} gap={1} direction={'row'} alignItems={'inherit'}> 
+                    <Stack flexWrap={'wrap'} flexGrow={1} gap={1} direction={'row'} alignItems={'inherit'}>
                         <Box
                             component="img"
                             src={avatar}
