@@ -8,7 +8,7 @@ import Image from 'mui-image';
 import { AuthNavBar, Footer, Message } from '../../components';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../context/authContext';
-import { disabled, purple } from '../../context/theme';
+import { disabled } from '../../context/theme';
 
 import loginSVG from '../../assets/svgs/login.svg';
 
@@ -115,10 +115,15 @@ const Login = () => {
                             label="Password"
                         />
                     </FormControl>
-                    <Stack alignItems={"center"} width={"100%"} gap={2}>
+                    <Stack alignItems={"center"} width={"100%"} gap={1}>
                         <Button variant='contained' sx={{ textTransform: 'none', padding: "15px 0", width: "100%" }} type='submit'>
                             Sign In
                         </Button>
+
+                        <Button sx={{ textTransform: 'none', fontWeight: "400", fontSize: '12px', color: disabled, padding: 0 }} onClick={() => navigate("../forgot_password")}>
+                            Forgot Password
+                        </Button>
+
                         <Typography variant='caption' color={disabled}>
                             Don't have an account yet?
                             {
@@ -127,6 +132,7 @@ const Login = () => {
                                 </Button>
                             }
                         </Typography>
+
                     </Stack>
                 </Stack>
                 <Box sx={{ flexGrow: 1, maxWidth: "500px" }} zIndex={1}>

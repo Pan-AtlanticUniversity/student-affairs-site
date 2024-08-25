@@ -8,6 +8,7 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import BlogDetail from "./content/BlogDetail";
 import ClubDetail from "./content/ClubDetail";
+import ForgotPassword from "./auth/ForgotPassword";
 
 export {
     Admins,
@@ -19,5 +20,6 @@ export {
     Login,
     Register,
     BlogDetail,
-    ClubDetail
+    ClubDetail,
+    ForgotPassword
 }

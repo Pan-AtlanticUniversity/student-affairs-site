@@ -79,7 +79,9 @@ export const forgotPassword = async (
 
     await sendUpdateMail(email, password);
 
-    res.status(StatusCodes.OK).json("User password updated successfully");
+    res
+      .status(StatusCodes.OK)
+      .json({ message: "A new password has been sent to your mail" });
   } catch (err) {
     next(err);
   }
