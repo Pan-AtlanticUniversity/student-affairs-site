@@ -9,6 +9,8 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { useState } from "react";
 import Title from "../../components/Title";
 
+import PAULogo from '../../assets/svgs/Logo_of_Pan-Atlantic_University.svg';
+
 const About = () => {
     const [value, setValue] = useState<Dayjs | null>(dayjs('2024-08-22'));
     return (
@@ -46,7 +48,7 @@ const About = () => {
                                 transform: 'translate(-50%, -50%)',
                                 width: { xs: "50%", md: '30%', lg: "20%" },
                                 height: '80%',
-                                backgroundImage: 'url(svgs/Logo_of_Pan-Atlantic_University.svg)',
+                                backgroundImage: `url(${PAULogo})`,
                                 backgroundSize: 'contain',
                                 backgroundPosition: 'center',
                                 backgroundRepeat: 'no-repeat',
@@ -109,25 +111,26 @@ const About = () => {
                     <Typography variant="h5" fontFamily={"leckerli-one"} color={dark}>
                         Meet the Student Council
                     </Typography>
-                    <Stack alignItems={'center'} justifyContent={"center"} flexWrap={"wrap"} sx={{ 
-                        gap:  7, 
+                    <Stack alignItems={'center'} justifyContent={"center"} flexWrap={"wrap"} sx={{
+                        gap: 7,
                         flexDirection: "row",
-                    '&::before': {
-                        content: '""',
-                        position: 'absolute',
-                        top: '50%',
-                        left: {xs: '-50vw'},
-                        transform: 'translateY(-50%)  rotate(35deg)',
-                        zIndex: -1,
-                        border: '15px #18BC9C solid',
-                        width: {xs: '65vw'},
-                        aspectRatio: "3/5",
-                        maxWidth: "350px",
-                        borderRadius: 5,
-                        display: {xs: "block", md: "none"}
-                        
+                        '&::before': {
+                            content: '""',
+                            position: 'absolute',
+                            top: '50%',
+                            left: { xs: '-50vw' },
+                            transform: 'translateY(-50%)  rotate(35deg)',
+                            zIndex: -1,
+                            border: '15px #18BC9C solid',
+                            width: { xs: '65vw' },
+                            aspectRatio: "3/5",
+                            maxWidth: "350px",
+                            borderRadius: 5,
+                            display: { xs: "block", md: "none" }
 
-                    }}
+
+                        }
+                    }
                     }>
                         {Array(7).fill(< Title position={"President"} name={"Miracle Nnadiukwu"} email={'miracle@mail.com'} phone={'+234 812 456 2930'} />)}
                     </Stack>
