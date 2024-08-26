@@ -32,9 +32,15 @@ interface ClubItem {
     school: string;
 }
 
+interface DateItem{
+    _id: string;
+    date: string;
+    event: string;
+}
+
 const AUTH_HEADER = {
     headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTUzYWY1Njc1MjIyMGU1NmFhM2YwNyIsImlhdCI6MTcyMjEwNDU2NSwiZXhwIjoxNzIyMjc3MzY1fQ.cZICjRGna_qC5N8KibRi35Ew2RuVlqYXV2xtu7KfAkE`
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YWE0YTJkMGJjNGM4MjM5MjNkN2U5MCIsImlhdCI6MTcyMjQzNjE0MSwiZXhwIjoxNzIyNjA4OTQxfQ.I_K94SKf5404s6ysnQiDutXgz9Cc0DG4nLsnBsXzBpE`
     }
 };
 
@@ -43,10 +49,15 @@ const AUTH_HEADER = {
 function Admin() {
     const [blogs, setBlogs] = useState<BlogItem[]>([]);
     const [clubs, setClubs] = useState<ClubItem[]>([]);
+    const [dates, setDates] = useState<DateItem[]>([]);
+
     const [newBlog, setNewBlog] = useState<Partial<BlogItem>>({});
     const [newClub, setNewClub] = useState<Partial<ClubItem>>({});
+    const [newDate, setNewDate] = useState<Partial<DateItem>>({});
+
     const [editingBlog, setEditingBlog] = useState<Partial<BlogItem> | null>(null);
     const [editingClub, setEditingClub] = useState<Partial<ClubItem> | null>(null);
+    const [editingDate, setEditingDate] = useState<Partial<DateItem> | null>(null);
 
     // Fetch blogs and clubs
     useEffect(() => {
@@ -68,8 +79,18 @@ function Admin() {
             }
         };
 
+        const getDates = async () => {
+            try {
+                const res = await axios.get<DateItem[]>("http://localhost:4001/api/v1/date", AUTH_HEADER);
+                setDates(res.data);
+            } catch (error) {
+                console.error("Error fetching dates:", error);
+            }
+        };
+
         getBlogs();
         getClubs();
+        getDates();
     }, []);
 
     // CRUD operations for blogs
@@ -137,6 +158,38 @@ function Admin() {
         }
     };
 
+
+        // CRUD operations for dates
+        const handleCreateDate = async () => {
+            try {
+                const res = await axios.post("http://localhost:4001/api/v1/date", newDate, AUTH_HEADER);
+                setDates([...dates, res.data]);
+                setNewDate({});
+            } catch (error) {
+                console.error("Error creating date:", error);
+            }
+        };
+    
+        const handleUpdateDate = async () => {
+            try {
+                if (editingDate?._id) {
+                    const res = await axios.put(`http://localhost:4001/api/v1/date/${editingDate._id}`, editingDate, AUTH_HEADER);
+                    setDates(dates.map(date => (date._id === editingDate._id ? res.data : date)));
+                    setEditingDate(null);
+                }
+            } catch (error) {
+                console.error("Error updating date:", error);
+            }
+        };
+    
+        const handleDeleteDate = async (_id: string) => {
+            try {
+                await axios.delete(`http://localhost:4001/api/v1/date/${_id}`, AUTH_HEADER);
+                setDates(dates.filter(date => date._id !== _id));
+            } catch (error) {
+                console.error("Error deleting date:", error);
+            }
+        };
     return (
         <Container maxWidth="xl" sx={{ mt: 10 }}>
             <Box sx={{ textAlign: 'center', mt: 10 }}>
@@ -343,6 +396,93 @@ function Admin() {
                     </Button>
                 </DialogActions>
             </Dialog>
+
+
+
+            {/* Date Section */}
+            <Box sx={{ mt: 5 }}>
+                <Typography variant="h5">Dates and events</Typography>
+                <Box sx={{ mb: 3 }}>
+                    <TextField
+                        label="Event"
+                        value={newDate.event || ""}
+                        onChange={(e) => setNewDate({ ...newDate, event: e.target.value })}
+                        sx={{ mr: 2 }}
+                    />
+                 
+                    <TextField
+                        label="Date"
+                        type="date"
+                        value={newDate.date || ""}
+                        onChange={(e) => setNewDate({ ...newDate, date: e.target.value })}
+                        InputLabelProps={{ shrink: true }}
+                        sx={{ mr: 2 }}
+                    />
+                  
+                    <Button variant="contained" onClick={handleCreateDate}>Add Date</Button>
+                </Box>
+                <Grid container spacing={4}>
+                    {dates.map((item) => (
+                        <Grid item xs={12} md={3} key={item._id}>
+                            <Card sx={{ height: '100%', transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.05)' }, backgroundColor: 'background.paper' }}>
+                            
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                        {item.event || 'No event Name'}
+                                    </Typography>
+                                
+                                    <Typography variant="body2" color="text.secondary">
+                                        Date: {item.date}
+                                    </Typography>
+                                    <Button variant="contained" color="primary" onClick={() => {console.log("Deleting date with ID:", item._id); 
+                                        setEditingDate(item)}}>
+                                        Edit
+                                    </Button>
+                                    <Button variant="contained" color="secondary" onClick={() => {
+                                        console.log("Deleting date with ID:", item._id); // Add this line
+                                        handleDeleteDate(item._id);
+                                    }}>
+                                        Delete
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    ))}
+                </Grid>
+            </Box>
+
+            {/* Edit date Dialog */}
+            <Dialog open={!!editingDate} onClose={() => setEditingDate(null)}>
+                <DialogTitle>Edit Date</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        label="Event Name"
+                        value={editingDate?.event || ""}
+                        onChange={(e) => setEditingDate({ ...editingDate, event: e.target.value })}
+                        sx={{ mr: 2 }}
+                        fullWidth
+                    />
+                    <TextField
+                        label="Date"
+                        type="date"
+                        value={editingDate?.date || ""}
+                        onChange={(e) => setEditingDate({ ...editingDate, date: e.target.value })}
+                        InputLabelProps={{ shrink: true }}
+                        sx={{ mr: 2 }}
+                        fullWidth
+                    />
+
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setEditingDate(null)} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleUpdateDate} color="primary">
+                        Save
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
         </Container>
     );
 }

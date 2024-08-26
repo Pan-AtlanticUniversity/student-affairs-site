@@ -26,4 +26,11 @@ const theme = createTheme({
     }
 });
 
+export const primary = "#26315F";
+export const purple = "#A673B1";
+export const accent = "#18BC9C";
+export const grey = "#F8F8FF";
+export const disabled = "#787A81";
+export const dark = "#0F0F12";
+
 export default theme;

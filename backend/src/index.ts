@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
 app.use('/api/v1/', router); //get's the route declared above
 
 
+  
 app.use(notFound);
 
 app.use(errorHandlerMiddleware);
@@ -35,7 +36,6 @@ app.use(errorHandlerMiddleware);
         app.listen(port, host);
     } catch (error) {
         console.error('Failed to connect to the database:', error);
-        // Optionally, handle the error here or let the errorHandlerMiddleware catch it
     }
 })();
 

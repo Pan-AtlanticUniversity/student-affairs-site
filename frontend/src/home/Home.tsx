@@ -2,15 +2,20 @@
 import React from 'react'
 import Navbar from '../components/homeComponents/Navbar'
 import Footer from '../components/homeComponents/Footer'
-import Landing from '../components/homeComponents/Landing'
+import Carousel from '../components/homeComponents/Carousel'
+import News from '../components/homeComponents/News'
+import Date from '../components/homeComponents/Date'
 
 
 function Home() {
     return (
         <>
             <Navbar />
-            <Landing />
+            <Carousel />
+            <News/>
+            <Date/>
             <Footer/>
+            
         </>
 
     )

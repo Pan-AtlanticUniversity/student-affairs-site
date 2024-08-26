@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { About, Admins, Blogs, Clubs, Home, Login, Register, Rules } from "./pages"
+import { About, Admins, BlogDetail, Blogs, ClubDetail, Clubs, ForgotPassword, Home, Login, Register, Rules } from "./pages"
 import { ProtectedRoute } from './components';
 import { AuthProvider } from './context/AuthProvider';
 
@@ -13,7 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Register />} />
-
+        <Route path="/forgot_password" element={<ForgotPassword />} />
 
         <Route
           path="/about"
@@ -32,10 +32,27 @@ function App() {
           }
         />
         <Route
+          path="/clubs/:_id"
+          element={
+            <ProtectedRoute>
+              <ClubDetail />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/blogs"
           element={
             <ProtectedRoute>
               <Blogs />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/blogs/:_id"
+          element={
+            <ProtectedRoute>
+              <BlogDetail />
             </ProtectedRoute>
           }
         />

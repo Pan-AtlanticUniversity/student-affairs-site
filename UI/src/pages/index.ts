@@ -1,11 +1,14 @@
-import Admins from "./Admins";
-import Blogs from "./Blogs";
-import Clubs from "./Clubs";
-import Home from "./Home";
-import About from "./About"
-import Rules from "./Rules";
-import Login from "./Login";
-import Register from "./Register";
+import Admins from "./admin/Admins";
+import Blogs from "./content/Blogs";
+import Clubs from "./content/Clubs";
+import Home from "./content/Home";
+import About from "./content/About";
+import Rules from "./content/Rules";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
+import BlogDetail from "./content/BlogDetail";
+import ClubDetail from "./content/ClubDetail";
+import ForgotPassword from "./auth/ForgotPassword";
 
 export {
     Admins,
@@ -15,5 +18,8 @@ export {
     About,
     Rules,
     Login,
-    Register
+    Register,
+    BlogDetail,
+    ClubDetail,
+    ForgotPassword
 }

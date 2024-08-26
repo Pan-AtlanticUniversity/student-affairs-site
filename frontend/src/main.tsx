@@ -7,22 +7,14 @@ import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
   </BrowserRouter>
+  //hjh
 )
 
 
 
 
 
-// ReactDOM.createRoot(document.getElementById("root")).render(
-//   <BrowserRouter>
-//     <AuthProvider>
-//       <div className="dark:bg-slate-900 dark:text-white">
-//         <App />
-//       </div>
-//     </AuthProvider>
-//   </BrowserRouter>
-// );

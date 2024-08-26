@@ -3,6 +3,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import { grey, primary } from "../context/theme";
 
 
 const StyledMenuItem = styled(IconButton)({
@@ -12,8 +13,8 @@ const StyledMenuItem = styled(IconButton)({
 
 const Footer = () => {
     return (
-        <Stack gap={5} bgcolor={"#26315F"} width={"100%"} alignItems={"center"} pt={"5vh"} pb={"10vh"} borderRadius={"20px 20px 0 0"}>
-            <Typography variant="h6" color={"#F8F8FF"}>
+        <Stack gap={5} bgcolor={primary} width={"100%"} alignItems={"center"} pt={"5vh"} pb={"10vh"} borderRadius={"20px 20px 0 0"} zIndex={1}>
+            <Typography variant="h6" color={grey}>
                 PAU Student Affairs
             </Typography>
 
@@ -32,7 +33,7 @@ const Footer = () => {
                 </StyledMenuItem>
             </Stack>
 
-            <Typography color={"#F8F8FF"}>
+            <Typography color={grey}>
                 Copyright All rights reserved
             </Typography>
         </Stack>

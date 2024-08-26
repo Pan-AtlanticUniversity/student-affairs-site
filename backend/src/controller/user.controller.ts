@@ -5,81 +5,84 @@ import { StatusCodes } from "http-status-codes";
 import { sendMail, sendUpdateMail } from "../services/mail";
 import passfather from "passfather";
 
-export const signup = async (req: Request, res: Response, next: NextFunction) => {
+export const signup = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { fullname, email } = req.body;
 
-    try {
+    if (!fullname || !email)
+      throw new CustomAPIError("Provide all fields", StatusCodes.BAD_REQUEST);
 
+    const user = await User.findOne({ email });
 
+    if (user)
+      throw new CustomAPIError("User already exists", StatusCodes.FORBIDDEN);
 
-        const { fullname, email } = req.body;
+    const password = passfather();
+    const createdUser = await User.create({ ...req.body, password });
+    await sendMail(email, password);
+    const token = createdUser.getToken();
 
-        if (!fullname || !email) throw new CustomAPIError("Provide all fields", StatusCodes.BAD_REQUEST);
-
-        const user = await User.findOne({ email });
-
-        if (user) throw new CustomAPIError("User already exists", StatusCodes.FORBIDDEN);
-
-        const password = passfather();
-        const createdUser = await User.create({ ...req.body, password });
-        await sendMail(email, password);
-        const token = createdUser.getToken();
-
-        res.status(StatusCodes.CREATED).json({
-            message: 'User created successfully',
-            token
-        })
-
-    } catch (err) {
-        next(err);
-    }
-
+    res.status(StatusCodes.CREATED).json({
+      message: "User created successfully",
+      token,
+    });
+  } catch (err) {
+    next(err);
+  }
 };
-export const login = async (req: Request, res: Response, next: NextFunction) => {
+export const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { email, password } = req.body;
 
-    try {
+    const user = await User.findOne({ email });
+    const isMatch = await user?.comparePassword(password);
 
-        const { email, password } = req.body;
+    if (!user || !isMatch) throw new BadRequest("Invalid username or password");
 
-        const user = await User.findOne({ email });
-        const isMatch = await user?.comparePassword(password);
+    const token = user.getToken();
 
-        if (!user || !isMatch) throw new BadRequest("Invalid username or password");
-
-        const token = user.getToken();
-
-        res.status(StatusCodes.OK).json({
-            message: "Login successful",
-            user: user.fullname.split(' ')[0],
-            token
-        });
-
-    } catch (err) {
-        next(err);
-    }
-
-
+    res.status(StatusCodes.OK).json({
+      message: "Login successful",
+      token,
+    });
+  } catch (err) {
+    next(err);
+  }
 };
 
-export const forgotPassword = async (req: Request, res: Response, next: NextFunction) => {
+export const validateToken = async (req: Request, res: Response) => {
+  res.status(StatusCodes.OK).json({ valid: true, message: "Token is valid" });
+};
 
-    try {
+export const forgotPassword = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
 
-        const { email } = req.body;
-        const user = await User.findOne({ email });
+    if (!user) throw new BadRequest("User does not exist");
 
-        if (!user) throw new BadRequest("User does not exist");
+    const password = passfather();
+    user.password = password;
+    await user.save();
 
-        const password = passfather();
-        user.password = password;
-        await user.save();
+    await sendUpdateMail(email, password);
 
-        await sendUpdateMail(email, password);
-
-        res.status(StatusCodes.OK).json("User password updated successfully");
-
-    } catch (err) {
-        next(err);
-    }
-
-
+    res
+      .status(StatusCodes.OK)
+      .json({ message: "A new password has been sent to your mail" });
+  } catch (err) {
+    next(err);
+  }
 };

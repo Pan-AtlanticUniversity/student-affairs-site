@@ -5,9 +5,14 @@ import LockIcon from '@mui/icons-material/Lock';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Image from 'mui-image';
-import { AuthNavBar, Footer, Message } from '../components';
+import { AuthNavBar, Footer, Message } from '../../components';
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../context/authContext';
+import useAuth from '../../context/authContext';
+import { disabled } from '../../context/theme';
+
+import loginSVG from '../../assets/svgs/login.svg';
+
+
 
 const Login = () => {
 
@@ -40,11 +45,26 @@ const Login = () => {
     };
 
     return (
-        <Stack sx={{ overflowY: "scroll", overflowX: "hidden" }} alignItems={"center"} gap={3} >
+        <Stack alignItems={"center"} gap={3}
+            sx={{
+                overflowY: "scroll", overflowX: "hidden", position: 'relative', zIndex: 0,
+                '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: '0',
+                    left: '100%',
+                    transform: 'translate(-75%, -25%)',
+                    zIndex: -1,
+                    backgroundColor: 'secondary.main',
+                    width: "clamp(200px, 50vw, 400px)",
+                    aspectRatio: 1,
+                    borderRadius: '50%'
+                }
+            }} >
             <AuthNavBar />
             <Message message={message} openState={openState} setOpenState={setOpenState} mode={mode} />
             <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center" }} width={"100%"} >
-                <Stack component="form" onSubmit={handleSubmit} sx={{ minWidth: "400px", maxWidth: "40%", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
+                <Stack component="form" onSubmit={handleSubmit} sx={{ width: { xs: "100%", sm: "400px" }, marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
                     <Typography variant='h5' color={"primary"} fontFamily={"leckerli-one"} sx={{ textAlign: "center" }}>
                         Hello there again!!!
                     </Typography>
@@ -95,11 +115,16 @@ const Login = () => {
                             label="Password"
                         />
                     </FormControl>
-                    <Stack alignItems={"center"} width={"100%"} gap={2}>
+                    <Stack alignItems={"center"} width={"100%"} gap={1}>
                         <Button variant='contained' sx={{ textTransform: 'none', padding: "15px 0", width: "100%" }} type='submit'>
                             Sign In
                         </Button>
-                        <Typography variant='caption' color={"#787A81"}>
+
+                        <Button sx={{ textTransform: 'none', fontWeight: "400", fontSize: '12px', color: disabled, padding: 0 }} onClick={() => navigate("../forgot_password")}>
+                            Forgot Password
+                        </Button>
+
+                        <Typography variant='caption' color={disabled}>
                             Don't have an account yet?
                             {
                                 <Button sx={{ textTransform: 'none', fontWeight: "400" }} onClick={() => navigate("../signup")}>
@@ -107,22 +132,15 @@ const Login = () => {
                                 </Button>
                             }
                         </Typography>
+
                     </Stack>
                 </Stack>
                 <Box sx={{ flexGrow: 1, maxWidth: "500px" }} zIndex={1}>
-                    <Image src="/svgs/login.svg" style={{ height: "100%" }} />
+                    <Image src={loginSVG} style={{ height: "100%" }} />
                 </Box>
             </Stack>
             <Footer />
-
-            <Box
-                sx={{ width: "60vw", aspectRatio: "1", right: { xs: "-15vw", md: "-10vw" }, top: { md: "-7vw" }, maxWidth: "450px", }}
-                bgcolor={"#A673B1"}
-                position="absolute"
-                zIndex={0}
-                borderRadius={500}
-            />
-        </Stack>
+        </Stack >
     );
 };
 
