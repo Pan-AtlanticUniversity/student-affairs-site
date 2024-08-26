@@ -38,7 +38,7 @@ const Blog = () => {
             Authorization: `Bearer ${token}`
           }
         };
-        const res = await axios.get<BlogItem[]>(`http://${import.meta.env.VITE_BACKEND_HOST}:${import.meta.env.VITE_BACKEND_PORT}/api/v1/blog`, AUTH_HEADER);
+        const res = await axios.get<BlogItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/blog`, AUTH_HEADER);
         setBlogs(res.data);
       } catch (error) {
         console.log("Error fetching blogs:", error);

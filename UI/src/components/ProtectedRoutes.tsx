@@ -25,7 +25,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
                 };
                 try {
                     const response = await axios.get(
-                        `http://${import.meta.env.VITE_BACKEND_HOST}:${import.meta.env.VITE_BACKEND_PORT}/api/v1/auth/validate_token`,
+                        `${import.meta.env.VITE_BACKEND_HOST}/api/v1/auth/validate_token`,
                         AUTH_HEADER
                     );
                     if (response.status === 200) {
