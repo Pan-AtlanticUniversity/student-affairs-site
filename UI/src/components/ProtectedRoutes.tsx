@@ -13,7 +13,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
     const [message, setMessage] = useState<string>('');
     const [openState, setOpenState] = useState(false);
-    const [mode, setMode] = useState("");
+    const [mode, setMode] = useState<"success" | "error" | "warning" | "info">("success");
 
     useEffect(() => {
         const validateToken = async () => {
