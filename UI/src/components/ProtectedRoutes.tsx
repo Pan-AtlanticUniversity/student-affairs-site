@@ -15,9 +15,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     const [openState, setOpenState] = useState(false);
     const [mode, setMode] = useState("");
 
-
     useEffect(() => {
-        (async () => {
+        const validateToken = async () => {
             if (token) {
                 const AUTH_HEADER = {
                     headers: {
@@ -25,41 +24,45 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
                     }
                 };
                 try {
-                    const response = await axios.post(
-                        `http://${import.meta.env.VITE_BACKEND_HOST}:${import.meta.env.VITE_BACKEND_PORT}/api/v1/auth/validate-token`, AUTH_HEADER
+                    const response = await axios.get(
+                        `http://${import.meta.env.VITE_BACKEND_HOST}:${import.meta.env.VITE_BACKEND_PORT}/api/v1/auth/validate_token`,
+                        AUTH_HEADER
                     );
-
                     if (response.status === 200) {
                         setIsAuthenticated(true);
                     } else {
-                        setIsAuthenticated(false);
-                        setMessage('Your session has expired. Please log in again.');
-                        setOpenState(true);
-                        setMode("error");
-                        logout();
+                        handleInvalidSession('Your session has expired. Please log in again.');
                     }
                 } catch (error) {
-                    setIsAuthenticated(false);
-                    setMessage('Error validating token. Please log in again.');
-                    setOpenState(true);
-                    setMode("error");
-                    logout();
+                    handleInvalidSession('Error validating token. Please log in again.');
                 }
             } else {
                 setIsAuthenticated(false);
             }
-        })();
+        };
+
+        const handleInvalidSession = (msg: string) => {
+            setIsAuthenticated(false);
+            setMessage(msg);
+            setOpenState(true);
+            setMode("error");
+            logout();
+        };
+
+        validateToken();
     }, [token, logout]);
 
-    /* Add animation on loading 
 
+    /*
+
+    // Optionally render a loading spinner while checking token validity
     if (isAuthenticated === null) {
-        // Optionally render a loading spinner while checking token validity
         return <div>Loading...</div>;
     }
+
     */
 
-    if (!isAuthenticated) {
+    if (isAuthenticated === false) {
         return <Navigate to="/login" replace />;
     }
 

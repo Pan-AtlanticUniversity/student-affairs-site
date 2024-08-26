@@ -32,7 +32,27 @@ const ClubDetail = () => {
                 <Typography sx={{ fontSize: { xs: '24px', md: '32px' }, zIndex: 1 }} width={'100%'} textAlign={'center'} fontFamily={'leckerli-one'} color={dark}>{club.club_name}</Typography>
             </Stack>
 
-            <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 5, md: 7 } }} alignItems={'center'}>
+            <Stack pl={3} alignItems={'center'} pr={3} position={'relative'} zIndex={0} overflowX='visible' overflowY='hidden'
+                sx={{
+                    flexDirection: "column",
+                    gap: { xs: 5, md: 7 },
+                    '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: '100%',
+                        left: '0',
+                        transform: 'translate(-50%, -45%)  rotate(35deg)',
+                        zIndex: -1,
+                        border: '15px #18BC9C solid',
+                        width: { xs: '65vw' },
+                        aspectRatio: '1',
+                        maxWidth: "300px",
+                        borderRadius: 5,
+                        display: "block"
+                    }
+                }}
+
+            >
 
                 <Typography variant="body1" color={dark} zIndex={1}>
                     {club.about}
@@ -40,25 +60,7 @@ const ClubDetail = () => {
 
                 {
                     club.executives.length > 0 &&
-                    <Stack gap={'inherit'} position={'relative'} zIndex={0} overflow='visible'
-                        sx={{
-                            overflow: 'visible',
-                            '&::before': {
-                                content: '""',
-                                position: 'absolute',
-                                top: { xs: '50%', md: '25%' },
-                                left: { xs: '-50vw', md: '-25%' },
-                                transform: 'translateY(-10%)  rotate(35deg)',
-                                zIndex: -1,
-                                border: '15px #18BC9C solid',
-                                width: { xs: '65vw' },
-                                aspectRatio: "3/5",
-                                maxWidth: "350px",
-                                borderRadius: 5,
-                                display: "block"
-                            }
-                        }}
-                    >
+                    <Stack gap={'inherit'}>
 
                         <Typography variant="h5" fontFamily={"leckerli-one"} color={dark} width={'100%'} textAlign='center'>
                             Executives
