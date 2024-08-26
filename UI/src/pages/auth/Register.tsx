@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
 import { AuthNavBar, Footer, Message } from '../../components';
 import useAuth from '../../context/authContext';
-import { disabled, purple } from '../../context/theme';
+import { disabled } from '../../context/theme';
 import registerSVG from '../../assets/svgs/register.svg';
 
 const Register = () => {
@@ -15,7 +15,7 @@ const Register = () => {
 
   const [message, setMessage] = useState<string | null>(null);
   const [openState, setOpenState] = useState(false);
-  const [mode, setMode] = useState("");
+  const [mode, setMode] = useState<"success" | "error" | "warning" | "info">("info");
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({

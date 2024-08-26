@@ -1,6 +1,6 @@
-import { Box, Stack, Typography } from "@mui/material"
+import { Stack, Typography } from "@mui/material"
 import { Banner, Club, Footer, NavBar } from "../../components"
-import { dark, grey, primary } from "../../context/theme"
+import { dark, grey } from "../../context/theme"
 import ClubsImage from '../../assets/images/laughing-guy.jpg';
 
 const Clubs = () => {

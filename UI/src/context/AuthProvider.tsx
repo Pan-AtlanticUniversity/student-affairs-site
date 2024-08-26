@@ -7,8 +7,8 @@ export interface AuthContextType {
     user: string | null;
     token: string | null;
     forgotPassword: (email: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<string>>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => Promise<void>;
-    login: (email: string, password: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<string>>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => Promise<void>;
-    register: (firstName: string, lastName: string, email: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<string>>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => Promise<void>;
+    login: (email: string, password: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<"success" | "error" | "warning" | "info">>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => Promise<void>;
+    register: (firstName: string, lastName: string, email: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<"success" | "error" | "warning" | "info">>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => Promise<void>;
     logout: () => void;
 }
 
@@ -41,7 +41,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         }
     }, [token]);
 
-    const login = async (email: string, password: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<string>>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => {
+    const login = async (email: string, password: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<"success" | "error" | "warning" | "info">>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => {
         try {
             const response = await axios.post(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/auth/login`, { email, password });
             setMessage(response.data.message);
@@ -86,7 +86,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         }
     };
 
-    const register = async (firstName: string, lastName: string, email: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<string>>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => {
+    const register = async (firstName: string, lastName: string, email: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<"success" | "error" | "warning" | "info">>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => {
         try {
             const response = await axios.post(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/auth/register`, {
                 fullname: `${firstName} ${lastName}`,

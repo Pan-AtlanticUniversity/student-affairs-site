@@ -3,14 +3,14 @@ interface MessageProps {
     message: string | null;
     openState: boolean;
     setOpenState: React.Dispatch<React.SetStateAction<boolean>>;
-    mode: any;
+    mode: 'success' | 'error' | 'warning' | 'info';
 }
 
 
 const Message: React.FC<MessageProps> = ({ message, openState, setOpenState, mode }) => {
 
     const handleClose = (
-        event?: React.SyntheticEvent | Event,
+        _event?: React.SyntheticEvent | Event,
         reason?: SnackbarCloseReason,
     ) => {
         if (reason === 'clickaway') {

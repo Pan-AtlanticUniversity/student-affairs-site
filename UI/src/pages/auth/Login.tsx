@@ -27,7 +27,8 @@ const Login = () => {
 
     const [message, setMessage] = useState<string | null>(null);
     const [openState, setOpenState] = useState(false);
-    const [mode, setMode] = useState("");
+    const [mode, setMode] = useState<"success" | "error" | "warning" | "info">("success");
+
     const { login } = useAuth();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

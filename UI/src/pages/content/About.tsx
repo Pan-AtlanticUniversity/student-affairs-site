@@ -1,6 +1,6 @@
 import { Box, Paper, Stack, Typography } from "@mui/material"
 import { Carousel, Footer, NavBar } from "../../components"
-import { dark, disabled, grey } from "../../context/theme"
+import { dark, grey } from "../../context/theme"
 
 import dayjs, { Dayjs } from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
