@@ -72,6 +72,12 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
                         <StyledMenuItem onClick={() => handleNavigation('/clubs')}>Clubs</StyledMenuItem>
                         <StyledMenuItem onClick={() => handleNavigation('/blogs')}>Blog</StyledMenuItem>
                         <StyledMenuItem onClick={() => handleNavigation('/rules')}>Rules</StyledMenuItem>
+                        <StyledMenuItem
+                            onClick={() => window.location.href = 'mailto:studentaffairs@pau.edu.ng?subject=Know%20Your%20Mentor'}
+                        >
+                            Know your mentor!
+                        </StyledMenuItem>
+
                     </Menu>
                     {
                         user
