@@ -35,8 +35,16 @@ const Clubs = () => {
           <Typography variant="h5" fontFamily={"leckerli-one"} color={dark} textAlign={'center'}>
             Be part of the community by joining a club
           </Typography>
-          <Typography textAlign="center">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          <Typography textAlign="center" lineHeight={1.8}>
+            <b>Now, this is the heart of campus life.</b>
+            <br/>
+            Ready to enrich your university experience? At Pan-Atlantic University, our diverse student clubs are the pulse of student life. 
+            <br/>
+            If you're passionate about debating, eager to explore new hobbies, or just looking to connect with a community that shares your 
+            interests, there's a club waiting for you.
+            All you need to do is find the right one, make lasting friendships, and discover all the amazing opportunities that await you.
+            <br/>
+            Get to know all of them below and find your perfect fit
           </Typography>
         </Stack>
 
