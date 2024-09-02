@@ -235,7 +235,13 @@ const About = () => {
                         }
                     }
                     }>
-                        {Array(7).fill(< Title position={"President"} name={"Miracle Nnadiukwu"} email={'miracle@mail.com'} phone={'+234 812 456 2930'} />)}
+                        {Array(7).fill(
+                            < Title
+                                position={"President"}
+                                name={"Miracle Nnadiukwu"}
+                                email={'miracle@mail.com'}
+                                phone={'+234 812 456 2930'}
+                            />)}
                     </Stack>
 
                 </Stack>
