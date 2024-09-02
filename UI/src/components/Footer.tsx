@@ -18,7 +18,7 @@ const Footer = () => {
                 PAU Student Affairs
             </Typography>
 
-            <Stack sx={{flexDirection: {xs: "column", md: "row"}}} gap={1}>
+            <Stack sx={{ flexDirection: "row" }} gap={1}>
                 <StyledMenuItem aria-label="Linked In">
                     <LinkedInIcon />
                 </StyledMenuItem>
