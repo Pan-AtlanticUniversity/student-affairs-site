@@ -1,15 +1,9 @@
-import { IconButton, Stack, styled, Typography } from "@mui/material"
+import { IconButton, Stack, Typography } from "@mui/material"
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import XIcon from '@mui/icons-material/X';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import { grey, primary } from "../context/theme";
-
-
-const StyledMenuItem = styled(IconButton)({
-    color: "#F8F8FF"
-});
-
 
 const Footer = () => {
     return (
@@ -19,18 +13,18 @@ const Footer = () => {
             </Typography>
 
             <Stack sx={{ flexDirection: "row" }} gap={1}>
-                <StyledMenuItem aria-label="Linked In">
-                    <LinkedInIcon />
-                </StyledMenuItem>
-                <StyledMenuItem aria-label="Facebook">
-                    <FacebookIcon />
-                </StyledMenuItem>
-                <StyledMenuItem aria-label="Twitter">
-                    <XIcon />
-                </StyledMenuItem>
-                <StyledMenuItem aria-label="Youtube">
-                    <YouTubeIcon />
-                </StyledMenuItem>
+                <IconButton sx={{ color: "#F8F8FF", }}>
+                    <LinkedInIcon sx={{ fontSize: { xs: '20px', md: '28px' } }} />
+                </IconButton>
+                <IconButton sx={{ color: "#F8F8FF", }}>
+                    <FacebookIcon sx={{ fontSize: { xs: '20px', md: '28px' } }} />
+                </IconButton>
+                <IconButton sx={{ color: "#F8F8FF", }}>
+                    <XIcon sx={{ fontSize: { xs: '20px', md: '28px' } }} />
+                </IconButton>
+                <IconButton sx={{ color: "#F8F8FF", }}>
+                    <YouTubeIcon sx={{ fontSize: { xs: '20px', md: '28px' } }} />
+                </IconButton>
             </Stack>
 
             <Typography color={grey}>
