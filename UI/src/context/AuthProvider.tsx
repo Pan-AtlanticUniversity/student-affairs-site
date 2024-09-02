@@ -38,6 +38,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             }
         } else {
             setUser(null);
+            navigate("/login", { replace: true });
         }
     }, [token]);
 

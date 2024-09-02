@@ -15,8 +15,15 @@ const Home = () => {
           <Typography variant="h5" fontFamily={"leckerli-one"} color={dark}>
             What's poppin <span style={{ color: primary }}>PAU!!!</span>
           </Typography>
-          <Typography textAlign="center">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          <Typography textAlign="center" lineHeight={1.8}>
+            <b>Welcome to the heartbeat of campus life at Pan-Atlantic University!</b> 
+            <br />
+            At Student Affairs, we are dedicated to enhancing your campus experience. 
+            Whether you need academic support, want to join student organizations, or seek guidance, 
+            we’re here to <b>help you succeed </b> 
+            and make the most of your time at PAU.
+            We’re committed to fostering a <b>supportive</b> community, ensuring that every student feels <b>connected</b> and <b>empowered</b>. 
+            Your journey at PAU is our priority, and we’re here to support you every step of the way.
           </Typography>
         </Stack>
 

@@ -29,9 +29,9 @@ app.use(errorHandlerMiddleware);
 (async () => {
   try {
     await connectDB(process.env.MONGO_URI as string);
-    console.log("[ ready ] backend connected");
+    console.log("[ ready ] database connected");
     app.listen(port, () => {
-      console.log("backnd currently running");
+      console.log("backend currently running");
     });
   } catch (error) {
     console.error("Failed to connect to the database:", error);

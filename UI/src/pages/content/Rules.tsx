@@ -65,14 +65,23 @@ const About = () => {
                     </Typography>
                     <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center" }} >
                         <Stack sx={{ width: "clamp(100%, 100%, 45%)", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
+                            
                             <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            </Typography>
-                            <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            </Typography>
-                            <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                <b>DRESS FOR SUCCESS AT PAU</b>
+                                <br/>
+                                <br/>
+                                At Pan-Atlantic University, we believe that how you present yourself reflects your commitment to excellence. 
+                                <br/>
+                                Our Dress Code is designed to foster a culture of professionalism, modesty, and respect, consistent with 
+                                our values and Christian identity.
+                                <br/>
+                                <br/>
+                                Whether you're attending lectures, participating in professional events, 
+                                or engaging in recreational activities, your attire should always reflect a sense of decency 
+                                and care for your appearance. 
+                                <br/>
+                                This policy outlines the standards expected of all students to maintain a respectful 
+                                and professional environment on campus.
                             </Typography>
 
                             <StyledButton variant="contained" endIcon={<DownloadIcon />}>Get full PDF</StyledButton>
