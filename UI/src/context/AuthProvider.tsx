@@ -35,6 +35,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             } catch (error) {
                 navigate("/login", { replace: true });
                 setUser(null);
+                setToken(null);
             }
         } else {
             setUser(null);
