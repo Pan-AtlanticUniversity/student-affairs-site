@@ -44,7 +44,7 @@ const Club = () => {
             Authorization: `Bearer ${token}`
           }
         };
-        const res = await axios.get<ClubItem[]>(`http://${import.meta.env.VITE_BACKEND_HOST}:${import.meta.env.VITE_BACKEND_PORT}/api/v1/club`, AUTH_HEADER);
+        const res = await axios.get<ClubItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/club`, AUTH_HEADER);
         setClubs(res.data);
       } catch (error) {
         console.log("Error fetching club details:", error);

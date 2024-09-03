@@ -13,7 +13,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
     const [message, setMessage] = useState<string>('');
     const [openState, setOpenState] = useState(false);
-    const [mode, setMode] = useState("");
+    const [mode, setMode] = useState<"success" | "error" | "warning" | "info">("success");
 
     useEffect(() => {
         const validateToken = async () => {
@@ -25,7 +25,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
                 };
                 try {
                     const response = await axios.get(
-                        `http://${import.meta.env.VITE_BACKEND_HOST}:${import.meta.env.VITE_BACKEND_PORT}/api/v1/auth/validate_token`,
+                        `${import.meta.env.VITE_BACKEND_HOST}/api/v1/auth/validate_token`,
                         AUTH_HEADER
                     );
                     if (response.status === 200) {

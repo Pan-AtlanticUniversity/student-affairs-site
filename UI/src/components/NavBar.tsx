@@ -15,7 +15,10 @@ const StyledToolBar = styled(Toolbar)({
     justifyContent: "space-between",
 });
 const StyledMenuItem = styled(MenuItem)({
-    padding: "8px 35px"
+    padding: "8px 35px",
+    display: 'flex',
+    justifyContent: 'center',
+    textAlign: 'center',
 });
 
 interface NavBarProps {
@@ -75,9 +78,10 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
                         <StyledMenuItem
                             onClick={() => window.location.href = 'mailto:studentaffairs@pau.edu.ng?subject=Know%20Your%20Mentor'}
                         >
-                            Know your mentor!
+                            Know your
+                            <br />
+                            mentor!
                         </StyledMenuItem>
-
                     </Menu>
                     {
                         user

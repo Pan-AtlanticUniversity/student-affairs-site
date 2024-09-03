@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material"
 import { Banner, Blog, Footer, NavBar } from "../../components"
-import { dark, primary } from "../../context/theme"
+import { dark } from "../../context/theme"
 import speakerImage from '../../assets/icons/speaker.png';
 import GoggleKid from '../../assets/images/goggle-kid.png';
 

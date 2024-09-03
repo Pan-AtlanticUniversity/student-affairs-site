@@ -32,10 +32,15 @@ const ClubDetail = () => {
                 <Typography sx={{ fontSize: { xs: '24px', md: '32px' }, zIndex: 1 }} width={'100%'} textAlign={'center'} fontFamily={'leckerli-one'} color={dark}>{club.club_name}</Typography>
             </Stack>
 
-            <Stack pl={3} alignItems={'center'} pr={3} position={'relative'} zIndex={0} overflowX='visible' overflowY='hidden'
+            <Stack position={'relative'}
                 sx={{
                     flexDirection: "column",
+                    overflowX: "visible",
+                    overflowY: 'hidden',
                     gap: { xs: 5, md: 7 },
+                    alignItems: 'center',
+                    paddingHorizontal: 3,
+                    zIndex: 0,
                     '&::before': {
                         content: '""',
                         position: 'absolute',

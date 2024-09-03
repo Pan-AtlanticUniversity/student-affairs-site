@@ -21,7 +21,7 @@ const ForgotPassword = () => {
 
     const [message, setMessage] = useState<string | null>(null);
     const [openState, setOpenState] = useState(false);
-    const [mode, setMode] = useState("");
+    const [mode, setMode] = useState<"success" | "error" | "warning" | "info">("success");
     const { forgotPassword } = useAuth();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
