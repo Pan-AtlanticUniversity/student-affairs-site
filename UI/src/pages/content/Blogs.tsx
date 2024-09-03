@@ -7,7 +7,12 @@ import GoggleKid from '../../assets/images/goggle-kid.png';
 const Blogs = () => {
 
   return (
-    <Stack minHeight={"100vh"} sx={{ gap: { xs: 14, md: 18, lg: 20 } }}>
+    <Stack minHeight={"100vh"}
+      sx={{
+        gap: { xs: 14, md: 18, lg: 20 },
+        overflowY: "scroll",
+        overflowX: "hidden"
+      }}>
       <NavBar route="Blog" />
       <Banner bannerImage={GoggleKid} pushDownBanner />
       <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }}>

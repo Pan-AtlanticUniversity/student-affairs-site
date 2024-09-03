@@ -54,7 +54,7 @@ const Club = () => {
     getClubs();
   }, [token]);
   return (
-    <Grid container spacing={3} width={'100%'} zIndex={1} position={'relative'} overflow={'visible'}
+    <Grid container spacing={3} width={'100%'} zIndex={1} position={'relative'}
       sx={{
         '&::before': {
           content: '""',

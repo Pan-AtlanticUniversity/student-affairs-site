@@ -41,7 +41,7 @@ const Register = () => {
   return (
     <Stack alignItems={"center"} gap={3}
       sx={{
-        overflowY: "scroll", overflowX: "hidden", position: 'relative', zIndex: 0,
+        overflowY: "auto", overflowX: "hidden", position: 'relative', zIndex: 0,
         '&::before': {
           content: '""',
           position: 'absolute',
@@ -58,7 +58,7 @@ const Register = () => {
       <AuthNavBar />
       <Message message={message} openState={openState} setOpenState={setOpenState} mode={mode} />
       <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center" }} width={"100%"} >
-        <Stack component="form" onSubmit={handleSubmit} sx={{ width: { xs: "100%", sm: "400px" }, marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
+        <Stack component="form" onSubmit={handleSubmit} sx={{ width: { xs: "95%", sm: "400px" }, marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
           <Typography variant='h5' color={"primary"} fontFamily={"leckerli-one"} sx={{ textAlign: "center" }}>
             The place for professionals
           </Typography>

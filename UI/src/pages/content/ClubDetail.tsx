@@ -29,17 +29,26 @@ const ClubDetail = () => {
             <NavBar route="Clubs" />
             <Stack sx={{ gap: { xs: 1, md: 5 } }}>
                 <Banner bannerImage={club.image} />
-                <Typography sx={{ fontSize: { xs: '24px', md: '32px' }, zIndex: 1 }} width={'100%'} textAlign={'center'} fontFamily={'leckerli-one'} color={dark}>{club.club_name}</Typography>
+                <Typography
+                    sx={{ fontSize: { xs: '24px', md: '32px' }, zIndex: 1 }}
+                    width={'100%'}
+                    textAlign={'center'}
+                    fontFamily={'leckerli-one'}
+                    color={dark}
+                >
+                    {club.club_name}
+                </Typography>
             </Stack>
 
             <Stack position={'relative'}
+                pl={2} pr={2}
                 sx={{
                     flexDirection: "column",
                     overflowX: "visible",
                     overflowY: 'hidden',
                     gap: { xs: 5, md: 7 },
                     alignItems: 'center',
-                    paddingHorizontal: 3,
+                    padding: '0 3 1 3',
                     zIndex: 0,
                     '&::before': {
                         content: '""',
@@ -59,7 +68,7 @@ const ClubDetail = () => {
 
             >
 
-                <Typography variant="body1" color={dark} zIndex={1}>
+                <Typography variant="body1" color={dark} zIndex={1} sx={{textAlign: {xs: 'center', md: 'left'}}}>
                     {club.about}
                 </Typography>
 
