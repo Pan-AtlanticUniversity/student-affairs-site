@@ -21,7 +21,12 @@ const StyledButton = styled(Button)({
 
 const About = () => {
     return (
-        <Stack minHeight={"100vh"} sx={{ gap: { xs: 14, md: 18, lg: 20 } }}>
+        <Stack minHeight={"100vh"}
+            sx={{
+                gap: { xs: 14, md: 18, lg: 20 },
+                overflowY: "scroll",
+                overflowX: "hidden"
+            }}>
             <NavBar route="Rules" />
             <Banner bannerTitle="Rules and Regulations" titleBackground={grey} titleColor={"primary.main"} bannerImage={ChudiImage} />
             <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }} alignItems={'center'}>
@@ -65,22 +70,22 @@ const About = () => {
                     </Typography>
                     <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center" }} >
                         <Stack sx={{ width: "clamp(100%, 100%, 45%)", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
-                            
+
                             <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }}>
                                 <b>DRESS FOR SUCCESS AT PAU</b>
-                                <br/>
-                                <br/>
-                                At Pan-Atlantic University, we believe that how you present yourself reflects your commitment to excellence. 
-                                <br/>
-                                Our Dress Code is designed to foster a culture of professionalism, modesty, and respect, consistent with 
+                                <br />
+                                <br />
+                                At Pan-Atlantic University, we believe that how you present yourself reflects your commitment to excellence.
+                                <br />
+                                Our Dress Code is designed to foster a culture of professionalism, modesty, and respect, consistent with
                                 our values and Christian identity.
-                                <br/>
-                                <br/>
-                                Whether you're attending lectures, participating in professional events, 
-                                or engaging in recreational activities, your attire should always reflect a sense of decency 
-                                and care for your appearance. 
-                                <br/>
-                                This policy outlines the standards expected of all students to maintain a respectful 
+                                <br />
+                                <br />
+                                Whether you're attending lectures, participating in professional events,
+                                or engaging in recreational activities, your attire should always reflect a sense of decency
+                                and care for your appearance.
+                                <br />
+                                This policy outlines the standards expected of all students to maintain a respectful
                                 and professional environment on campus.
                             </Typography>
 
