@@ -40,7 +40,7 @@ const Home = () => {
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
-                transform: { xs: 'translate(25%, -50%)', sm: 'translate(45%, -25%)', md: 'translate(35vw, -25%)' },
+                transform: { xs: 'translate(25%, -50%)', sm: 'translate(45%, -25%)', md: 'translate(35vw, -25%)', xl: 'translate(40vw, -25%)' },
                 zIndex: -1,
                 backgroundColor: 'secondary.main',
                 width: "clamp(150px, 50vw, 300px)",

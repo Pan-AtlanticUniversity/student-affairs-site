@@ -30,7 +30,7 @@ app.use(errorHandlerMiddleware);
   try {
     await connectDB(process.env.MONGO_URI as string);
     console.log("[ ready ] database connected");
-    app.listen(port, "192.168.1.208", () => {
+    app.listen(port, () => {
       console.log("backend currently running");
     });
   } catch (error) {

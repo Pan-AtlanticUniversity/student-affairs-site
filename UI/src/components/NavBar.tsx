@@ -4,7 +4,6 @@ import React from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../context/authContext';
 import { grey } from '../context/theme';
 
 import PAULogo from '../assets/images/transparent-pau-logo.png';
@@ -27,7 +26,6 @@ interface NavBarProps {
 
 const NavBar: React.FC<NavBarProps> = ({ route }) => {
     const navigate = useNavigate();
-    const { user } = useAuth();
 
     const handleNavigation = (path: string) => {
         navigate(path);
@@ -83,20 +81,9 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
                             mentor!
                         </StyledMenuItem>
                     </Menu>
-                    {
-                        user
-                            ? <Stack direction={"row"} alignItems={"center"} gap={1}>
-                                <Typography variant='body1' color={'primary'} fontWeight={"400"} component={'h6'}>{user}</Typography>
-                                <Box sx={{ width: "35px" }}>
-                                    <Image src={DefaultUser} style={{ height: "100%" }} />
-                                </Box>
-                            </Stack>
-
-                            : <Button variant='contained' sx={{ textTransform: 'none', padding: "10px 20px" }} onClick={() => handleNavigation('/login')}>
-                                Login
-                            </Button>
-
-                    }
+                    <Box sx={{ width: "35px" }}>
+                        <Image src={DefaultUser} style={{ height: "100%" }} />
+                    </Box>
                 </Stack>
 
 

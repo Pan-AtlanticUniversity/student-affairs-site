@@ -9,7 +9,8 @@ const Clubs = () => {
     <Stack minHeight={"100vh"}
       sx={{
         gap: { xs: 14, md: 18, lg: 20 },
-        overflowY: "scroll", overflowX: "hidden"
+        overflowY: "scroll",
+        overflowX: "hidden"
       }}>
       <NavBar route="Clubs" />
       <Banner bannerTitle="School Clubs Here :)" titleBackground={grey} titleColor={"primary.main"} bannerImage={ClubsImage} pushDownBanner />
@@ -35,7 +36,7 @@ const Clubs = () => {
           </Typography>
         </Stack>
 
-        <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 }, overflowY: 'visible' }} gap={5}>
+        <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 }, overflow: 'visible' }} gap={5}>
           <Typography variant="h5" fontFamily={"leckerli-one"} color={dark} width='100%' textAlign="center" overflow={'visible'}
             sx={{
               position: "relative",
@@ -45,7 +46,7 @@ const Clubs = () => {
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
-                transform: { xs: 'translate(25%, -50%)', sm: 'translate(45%, -25%)', md: 'translate(35vw, -25%)' },
+                transform: { xs: 'translate(25%, -50%)', sm: 'translate(45%, -25%)', md: 'translate(35vw, -25%)', xl: 'translate(40vw, -25%)' },
                 zIndex: -1,
                 backgroundColor: 'secondary.main',
                 width: "clamp(150px, 50vw, 300px)",
@@ -62,7 +63,24 @@ const Clubs = () => {
 
 
       </Stack>
-      <Stack zIndex={2}>
+      <Stack zIndex={0}
+        sx={{
+          position: 'relative',
+          overflowX: 'visible',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: '0',
+            right: 0,
+            transform: { xs: 'translate(70%, -50%)  rotate(135deg)', lg: 'translate(60%, -65%)  rotate(135deg)', },
+            zIndex: -1,
+            border: '15px #26315F solid',
+            width: { xs: '65vw' },
+            aspectRatio: "3/5",
+            maxWidth: "350px",
+            borderRadius: 5,
+          }
+        }}>
         <Footer />
       </Stack>
 

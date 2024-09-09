@@ -10,7 +10,6 @@ import {
   Button
 } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
-import useAuth from "../context/authContext";
 import { dark, disabled, grey } from "../context/theme";
 import dayjs from "dayjs";
 
@@ -28,17 +27,10 @@ const Blog = () => {
   const [blogs, setBlogs] = useState<BlogItem[]>([]);
   const navigate = useNavigate();
 
-  const { token } = useAuth();
-
   useEffect(() => {
     const getBlogs = async () => {
       try {
-        const AUTH_HEADER = {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        };
-        const res = await axios.get<BlogItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/blog`, AUTH_HEADER);
+        const res = await axios.get<BlogItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/blog`);
         setBlogs(res.data);
       } catch (error) {
         console.log("Error fetching blogs:", error);
@@ -46,7 +38,7 @@ const Blog = () => {
     };
 
     getBlogs();
-  }, [token]);
+  }, []);
 
 
   //component={Link} to={`/blog/${item._id}`}
@@ -56,8 +48,8 @@ const Blog = () => {
         '&::before': {
           content: '""',
           position: 'absolute',
-          top: { xs: '50%', md: '25%' },
-          left: { xs: '-50vw', md: '-25%' },
+          top: { xs: '50%', md: '25%', lg: '45%'},
+          left: { xs: '-50vw', md: '-25%', xl: '-5vw'},
           transform: 'translateY(-10%)  rotate(35deg)',
           zIndex: -1,
           border: '15px #18BC9C solid',
@@ -73,7 +65,7 @@ const Blog = () => {
         blogs.map((item) => {
           return (
             (
-              <Grid xs={12} sm={6} md={4} key={item._id}>
+              <Grid xs={12} sm={6} md={4} xl={3} key={item._id}>
 
                 <Card
                   sx={{

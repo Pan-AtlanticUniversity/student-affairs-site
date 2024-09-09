@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import multer from "multer";
-import { BadRequest } from "../errors";
 import { StatusCodes } from "http-status-codes";
 
 const fileFilter = (
@@ -21,7 +20,12 @@ const upload = multer({
 });
 
 const uploadHandler = (req: Request, res: Response, next: NextFunction) => {
-  upload.single("image")(req, res, (err: any) => {
+  const uploadFields = upload.fields([
+    { name: "image", maxCount: 1 }, // Single club image
+    { name: "images", maxCount: 15 }, // Multiple images (up to 15) for other purposes
+  ]);
+
+  uploadFields(req, res, (err: any) => {
     if (err) {
       if (err instanceof multer.MulterError) {
         return res
