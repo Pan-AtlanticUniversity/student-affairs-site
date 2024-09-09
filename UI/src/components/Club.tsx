@@ -9,17 +9,19 @@ import {
   Button
 } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
-import useAuth from "../context/authContext";
 import { dark, disabled, grey } from "../context/theme";
 
 export interface ClubItem {
   _id: string;
   club_name: string;
-  image: string;
+  image: {
+    value: string;
+    background: string
+  };
   about: string;
   member_count: number;
   meeting_time: string;
-  social_media_handles: {
+  handles: {
     handle: string;
     url: string;
   }[];
@@ -34,17 +36,10 @@ const Club = () => {
   const [clubs, setClubs] = useState<ClubItem[]>([]);
   const navigate = useNavigate();
 
-  const { token } = useAuth();
-
   useEffect(() => {
     const getClubs = async () => {
       try {
-        const AUTH_HEADER = {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        };
-        const res = await axios.get<ClubItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/club`, AUTH_HEADER);
+        const res = await axios.get<ClubItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/club`);
         setClubs(res.data);
       } catch (error) {
         console.log("Error fetching club details:", error);
@@ -52,15 +47,16 @@ const Club = () => {
     };
 
     getClubs();
-  }, [token]);
+  }, []);
   return (
-    <Grid container spacing={3} width={'100%'} zIndex={1} position={'relative'} overflow={'visible'}
+    <Grid container spacing={3} width={'100%'} zIndex={1} position={'relative'}
       sx={{
+        overflowX: 'visible',
         '&::before': {
           content: '""',
           position: 'absolute',
           top: { xs: '50%', md: '25%' },
-          left: { xs: '-50vw', md: '-25%' },
+          left: { xs: '-50vw', md: '-25%', xl: '-5%' },
           transform: 'translateY(-10%)  rotate(35deg)',
           zIndex: -1,
           border: '15px #18BC9C solid',
@@ -76,7 +72,7 @@ const Club = () => {
         clubs.map((item) => {
           return (
             (
-              <Grid xs={12} sm={6} md={4} key={item._id}>
+              <Grid xs={12} sm={6} md={4} xl={3} key={item._id}>
 
                 <Card
                   sx={{
@@ -98,9 +94,9 @@ const Club = () => {
                   {item.image && (
                     <CardMedia
                       component="img"
-                      image={item.image}
+                      image={item.image.value}
                       alt={item.club_name}
-                      sx={{ borderRadius: 3, aspectRatio: "9/5" }}
+                      sx={{ borderRadius: 3, aspectRatio: "9/5", objectFit: "contain", backgroundColor: item.image.background }}
                     />
                   )}
                   <CardContent sx={{ paddingX: 0, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>

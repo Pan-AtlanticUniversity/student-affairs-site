@@ -11,10 +11,9 @@ import uploadHandler from "../middleware/fileUploadMiddleware";
 
 const router = express.Router();
 
-router.route("/").get(getBlog);
-
 router
-  .route("/create")
+  .route("/")
+  .get(getBlog)
   .post(authenticateTokenMiddleware, uploadHandler, createBlog);
 
 router

@@ -2,11 +2,14 @@ import mongoose from "mongoose";
 
 const clubSchema = new mongoose.Schema({
   club_name: String,
-  image: String,
+  image: {
+    value: String,
+    background: String,
+  },
   about: String,
   member_count: { type: Number, default: 0 },
-  meeting_time: { type: Date, default: Date.now },
-  social_media_handles: [
+  meeting_time: { type: String, default: Date.now.toString() },
+  handles: [
     {
       handle: String,
       url: String,

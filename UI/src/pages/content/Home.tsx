@@ -6,7 +6,10 @@ import speakerImage from '../../assets/icons/speaker.png';
 const Home = () => {
 
   return (
-    <Stack minHeight={"100vh"} sx={{ gap: { xs: 14, md: 18, lg: 20 } }}>
+    <Stack minHeight={"100vh"} sx={{
+      gap: { xs: 14, md: 18, lg: 20 },
+      overflowY: "scroll", overflowX: "hidden"
+    }}>
       <NavBar route="Home" />
       <Carousel />
       <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }}>
@@ -16,13 +19,13 @@ const Home = () => {
             What's poppin <span style={{ color: primary }}>PAU!!!</span>
           </Typography>
           <Typography textAlign="center" lineHeight={1.8}>
-            <b>Welcome to the heartbeat of campus life at Pan-Atlantic University!</b> 
+            <b>Welcome to the heartbeat of campus life at Pan-Atlantic University!</b>
             <br />
-            At Student Affairs, we are dedicated to enhancing your campus experience. 
-            Whether you need academic support, want to join student organizations, or seek guidance, 
-            we’re here to <b>help you succeed </b> 
+            At Student Affairs, we are dedicated to enhancing your campus experience.
+            Whether you need academic support, want to join student organizations, or seek guidance,
+            we’re here to <b>help you succeed </b>
             and make the most of your time at PAU.
-            We’re committed to fostering a <b>supportive</b> community, ensuring that every student feels <b>connected</b> and <b>empowered</b>. 
+            We’re committed to fostering a <b>supportive</b> community, ensuring that every student feels <b>connected</b> and <b>empowered</b>.
             Your journey at PAU is our priority, and we’re here to support you every step of the way.
           </Typography>
         </Stack>
@@ -37,7 +40,7 @@ const Home = () => {
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
-                transform: { xs: 'translate(25%, -50%)', sm: 'translate(45%, -25%)', md: 'translate(35vw, -25%)' },
+                transform: { xs: 'translate(25%, -50%)', sm: 'translate(45%, -25%)', md: 'translate(35vw, -25%)', xl: 'translate(40vw, -25%)' },
                 zIndex: -1,
                 backgroundColor: 'secondary.main',
                 width: "clamp(150px, 50vw, 300px)",

@@ -7,17 +7,18 @@ import {
   getClubById,
 } from "../controller/club.controller";
 import authenticateTokenMiddleware from "../middleware/authenticateTokenMiddleware";
+import uploadHandler from "../middleware/fileUploadMiddleware";
 
 const router = express.Router();
 
 router
   .route("/")
-  .get(authenticateTokenMiddleware, getClub)
-  .post(authenticateTokenMiddleware, createClub);
+  .get(getClub)
+  .post(authenticateTokenMiddleware, uploadHandler, createClub);
 
 router
   .route("/:_id")
-  .get(authenticateTokenMiddleware, getClubById)
+  .get(getClubById)
   .put(authenticateTokenMiddleware, updateClub)
   .delete(authenticateTokenMiddleware, deleteClub);
 

@@ -21,7 +21,12 @@ const StyledButton = styled(Button)({
 
 const About = () => {
     return (
-        <Stack minHeight={"100vh"} sx={{ gap: { xs: 14, md: 18, lg: 20 } }}>
+        <Stack minHeight={"100vh"}
+            sx={{
+                gap: { xs: 14, md: 18, lg: 20 },
+                overflowY: "scroll",
+                overflowX: "hidden"
+            }}>
             <NavBar route="Rules" />
             <Banner bannerTitle="Rules and Regulations" titleBackground={grey} titleColor={"primary.main"} bannerImage={ChudiImage} />
             <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }} alignItems={'center'}>
@@ -42,110 +47,125 @@ const About = () => {
                         /></span>
                 </Typography>
 
-                <Stack width={"100%"} flexDirection={'column'} gap={3}
-                    sx={{
-                        overflow: 'visible',
-                        zIndex: 1,
-                        position: 'relative',
-                        '&::before': {
-                            content: '""',
-                            position: 'absolute',
-                            top: 0,
-                            right: 0,
-                            transform: { xs: 'translate(50%, 25%)', md: 'translate(50%, 0)' },
-                            width: "clamp(150px, 35%, 300px)",
-                            aspectRatio: "1",
-                            borderRadius: '50%',
-                            backgroundColor: "secondary.main",
-                            zIndex: -1,
-                        }
-                    }}>
+                <Stack width={"100%"} flexDirection={'column'} gap={3} sx={{ overflowX: 'visible' }}>
                     <Typography variant="h5" fontFamily={"leckerli-one"} color={dark} textAlign={'center'}>
                         Dress codes
                     </Typography>
-                    <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center" }} >
-                        <Stack sx={{ width: "clamp(100%, 100%, 45%)", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
-                            
+                    <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center", overflowX: 'visible' }} >
+                        <Stack sx={{ width: "clamp(256px, 100%, 1200px)", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
+
                             <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }}>
                                 <b>DRESS FOR SUCCESS AT PAU</b>
-                                <br/>
-                                <br/>
-                                At Pan-Atlantic University, we believe that how you present yourself reflects your commitment to excellence. 
-                                <br/>
-                                Our Dress Code is designed to foster a culture of professionalism, modesty, and respect, consistent with 
+                                <br />
+                                <br />
+                                At Pan-Atlantic University, we believe that how you present yourself reflects your commitment to excellence.
+                                <br />
+                                Our Dress Code is designed to foster a culture of professionalism, modesty, and respect, consistent with
                                 our values and Christian identity.
-                                <br/>
-                                <br/>
-                                Whether you're attending lectures, participating in professional events, 
-                                or engaging in recreational activities, your attire should always reflect a sense of decency 
-                                and care for your appearance. 
-                                <br/>
-                                This policy outlines the standards expected of all students to maintain a respectful 
+                                <br />
+                                <br />
+                                Whether you're attending lectures, participating in professional events,
+                                or engaging in recreational activities, your attire should always reflect a sense of decency
+                                and care for your appearance.
+                                <br />
+                                This policy outlines the standards expected of all students to maintain a respectful
                                 and professional environment on campus.
                             </Typography>
 
                             <StyledButton variant="contained" endIcon={<DownloadIcon />}>Get full PDF</StyledButton>
                         </Stack>
                         <Box
-                            component="img"
-                            src={DressSense}
                             sx={{
-                                objectFit: 'cover',
-                                backgroundSize: "cover",
-                                flexGrow: 1,
-                                maxWidth: "500px",
-                                height: '100%',
-                                verticalAlign: 'middle',
+                                position: 'relative',
+                                display: 'inline-block',
                                 width: '100%',
+                                maxWidth: { xs: "500px", xl: '850px' },
+                                height: '100%',
+                                overflowX: 'visible',
+                                zIndex: 0,
+                                '&::before': {
+                                    content: '""',
+                                    position: 'absolute',
+                                    top: '-5%',
+                                    right: '-25%',
+                                    width: { xs: '50vw', lg: '300px', xl: '500px' },
+                                    aspectRatio: "1",
+                                    borderRadius: '50%',
+                                    backgroundColor: "secondary.main",
+                                    zIndex: -1,
+                                },
                             }}
-                        />
+                        >
+                            <Box
+                                component="img"
+                                src={DressSense}
+                                sx={{
+                                    objectFit: 'cover',
+                                    backgroundSize: "cover",
+                                    height: '100%',
+                                    verticalAlign: 'middle',
+                                    width: '100%',
+                                    zIndex: 0,
+                                    position: 'relative',
+                                }}
+                            />
+                        </Box>
+
                     </Stack>
                 </Stack>
 
-                <Stack width={"100%"} flexDirection={'column'} gap={3} alignItems={'center'}
-                    sx={{
-                        overflow: 'visible',
-                        zIndex: 1,
-                        position: 'relative',
-                        '&::before': {
-                            content: '""',
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            transform: { xs: 'translate(-50%, 25%) rotate(35deg)', md: 'translate(-50%, 0) rotate(35deg)' },
-                            width: "clamp(150px, 45%, 300px)",
-                            aspectRatio: "4/5",
-                            borderRadius: '10px',
-                            border: '15px #18BC9C solid',
-                            zIndex: -1,
-                        }
-                    }}>
+                <Stack width={"100%"} flexDirection={'column'} gap={3} alignItems={'center'} sx={{ overflowX: 'visible' }}>
                     <Typography variant="h5" fontFamily={"leckerli-one"} color={dark} textAlign={'center'}>
                         Process and Guidelines
                     </Typography>
-                    <Stack sx={{ flexDirection: { xs: "column", md: "row" }, justifyContent: "space-evenly", alignItems: "center" }} >
+                    <Stack sx={{ flexDirection: { xs: "column", md: "row", overflowX: 'visible' }, justifyContent: "space-evenly", alignItems: "center" }} >
                         <Box
-                            component="img"
-                            src={GuideLines}
                             sx={{
-                                objectFit: 'cover',
-                                backgroundSize: "cover",
-                                flexGrow: 1,
-                                maxWidth: "500px",
-                                height: '100%',
-                                verticalAlign: 'middle',
+                                position: 'relative',
+                                display: 'inline-block',
                                 width: '100%',
+                                maxWidth: { xs: "500px", xl: '850px' },
+                                height: '100%',
+                                overflowX: 'visible',
+                                zIndex: 0,
+                                '&::before': {
+                                    content: '""',
+                                    position: 'absolute',
+                                    top: '-5%',
+                                    left: '-25%',
+                                    transform: 'rotate(35deg)',
+                                    width: { xs: '50%', lg: '300px', xl: '500px' },
+                                    aspectRatio: "4/5",
+                                    borderRadius: '10px',
+                                    border: '15px #18BC9C solid',
+                                    zIndex: -1,
+                                },
                             }}
-                        />
-                        <Stack sx={{ width: "clamp(100%, 100%, 45%)", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
+                        >
+                            <Box
+                                component="img"
+                                src={GuideLines}
+                                sx={{
+                                    objectFit: 'cover',
+                                    backgroundSize: "cover",
+                                    height: '100%',
+                                    verticalAlign: 'middle',
+                                    width: '100%',
+                                }}
+                            />
+                        </Box>
+                        <Stack sx={{ width: "clamp(256px, 100%, 1200px)", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
                             <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            </Typography>
-                            <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            </Typography>
-                            <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                Understanding the processes and guidelines that shape your experience at Pan-Atlantic University
+                                is essential for a smooth and successful academic journey.
+                                <br />
+                                <br />
+                                Below, you'll find a comprehensive guide that outlines everything from the academic calendar
+                                and grading system to student policies and support services.
+                                <br />
+                                <br />
+                                This document will equip you with the knowledge needed to help you pass through
+                                PAU without a scratch and come out victorious and confident!
                             </Typography>
 
                             <StyledButton variant="contained" endIcon={<DownloadIcon />}>Get full PDF</StyledButton>

@@ -71,7 +71,10 @@ const About = () => {
     const [value, setValue] = useState<Dayjs | null>(dayjs('2024-08-22'));
 
     return (
-        <Stack minHeight={"100vh"} sx={{ gap: { xs: 14, md: 18, lg: 20 } }}>
+        <Stack minHeight={"100vh"} sx={{
+            gap: { xs: 14, md: 18, lg: 20 },
+            overflowY: "scroll", overflowX: "hidden"
+        }}>
             <NavBar route="About" />
             <Carousel />
 
