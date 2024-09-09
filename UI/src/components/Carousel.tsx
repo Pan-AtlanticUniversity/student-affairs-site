@@ -23,8 +23,9 @@ function Carousel() {
     const slides = [welcomeToPAU, guysChilling, people];
 
     return (
-        <Container maxWidth="xl" sx={{
+        <Container sx={{
             marginTop: { xs: "80px", md: "100px" },
+            minWidth: '100vw',
             overflow: "visible",
             position: 'relative',
             alignItems: "center",
@@ -51,7 +52,8 @@ function Carousel() {
                             background: `url(${slide}) no-repeat center center`,
                             backgroundSize: "cover",
                             width: "100%",
-                            height: { xs: "30vh", sm: "45vh", md: "60vh" },
+                            aspectRatio: '5/3',
+                            maxHeight: { md: '450px', xl: '750px' },
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",

@@ -7,17 +7,19 @@ interface BannerProps {
     titleColor?: string;
     titleBackground?: string;
     bannerImage?: string;
-    pushDownBanner?: boolean
+    pushDownBanner?: boolean;
+    contain?: boolean;
+    background?: string
 }
 
-const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackground, bannerImage, pushDownBanner }) => {
+const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackground, bannerImage, pushDownBanner, contain, background }) => {
     return (
         <Container
-            maxWidth="xl"
             sx={{
                 marginTop: { xs: "80px", md: "100px" },
                 alignItems: "center",
                 justifyContent: "center",
+                minWidth: '100vw',
                 zIndex: 1,
                 position: 'relative',
             }}
@@ -26,7 +28,8 @@ const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackgroun
                 sx={{
                     position: 'relative',
                     width: '100%',
-                    height: { xs: "30vh", sm: "45vh", md: "60vh" },
+                    aspectRatio: '5/3',
+                    maxHeight: { md: '450px', xl: '750px' },
                     borderRadius: "10px",
                     overflow: 'visible',
                     zIndex: 1,
@@ -48,11 +51,12 @@ const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackgroun
                     component="img"
                     src={bannerImage}
                     sx={{
-                        objectFit: 'cover',
+                        objectFit: contain ? "contain" : "cover",
                         objectPosition: pushDownBanner ? 'top' : 'center',
                         width: '100%',
                         height: '100%',
                         borderRadius: "10px",
+                        backgroundColor: background ?? '#fff'
 
                     }}
                     alt="Banner"
