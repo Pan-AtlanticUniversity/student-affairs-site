@@ -1,4 +1,4 @@
-import { AppBar, styled, Toolbar, Box, Button, Stack, Menu, MenuItem, Typography } from '@mui/material';
+import { AppBar, styled, Toolbar, Box, Button, Stack, Menu, MenuItem } from '@mui/material';
 import { Image } from 'mui-image'
 import React from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
