@@ -30,7 +30,7 @@ const About = () => {
             <NavBar route="Rules" />
             <Banner bannerTitle="Rules and Regulations" titleBackground={grey} titleColor={"primary.main"} bannerImage={ChudiImage} />
             <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }} alignItems={'center'}>
-                <Typography fontFamily={"Poppins"} color={dark} sx={{ fontSize: { xs: '1rem', md: '1.2rem' }, textAlign: 'center' }}>
+                <Typography color={dark} sx={{ fontSize: { xs: '1rem', md: '1.2rem' }, textAlign: 'center' }}>
                     To ensure a smooth experience here at PAU, here are a few guidelines to get you up and going<span>
                         <Box
                             component="img"
@@ -48,7 +48,7 @@ const About = () => {
                 </Typography>
 
                 <Stack width={"100%"} flexDirection={'column'} gap={3} sx={{ overflowX: 'visible' }}>
-                    <Typography variant="h5" fontFamily={"leckerli-one"} color={dark} textAlign={'center'}>
+                    <Typography variant="h4" fontFamily={"Barlow"} color={dark} textAlign={'center'}>
                         Dress codes
                     </Typography>
                     <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center", overflowX: 'visible' }} >
@@ -115,7 +115,7 @@ const About = () => {
                 </Stack>
 
                 <Stack width={"100%"} flexDirection={'column'} gap={3} alignItems={'center'} sx={{ overflowX: 'visible' }}>
-                    <Typography variant="h5" fontFamily={"leckerli-one"} color={dark} textAlign={'center'}>
+                    <Typography variant="h4" fontFamily={"Barlow"} color={dark} textAlign={'center'}>
                         Process and Guidelines
                     </Typography>
                     <Stack sx={{ flexDirection: { xs: "column", md: "row", overflowX: 'visible' }, justifyContent: "space-evenly", alignItems: "center" }} >

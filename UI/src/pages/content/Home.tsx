@@ -15,23 +15,26 @@ const Home = () => {
       <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }}>
 
         <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 } }} gap={5}>
-          <Typography variant="h5" fontFamily={"leckerli-one"} color={dark}>
+          <Typography variant="h4" fontFamily={"Barlow"} color={dark}>
             What's poppin <span style={{ color: primary }}>PAU!!!</span>
           </Typography>
           <Typography textAlign="center" lineHeight={1.8}>
             <b>Welcome to the heartbeat of campus life at Pan-Atlantic University!</b>
             <br />
+            <br />
             At Student Affairs, we are dedicated to enhancing your campus experience.
             Whether you need academic support, want to join student organizations, or seek guidance,
             we’re here to <b>help you succeed </b>
             and make the most of your time at PAU.
+            <br />
+            <br />
             We’re committed to fostering a <b>supportive</b> community, ensuring that every student feels <b>connected</b> and <b>empowered</b>.
             Your journey at PAU is our priority, and we’re here to support you every step of the way.
           </Typography>
         </Stack>
 
         <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 } }} gap={5} overflow={'visible'}>
-          <Typography variant="h5" fontFamily={"leckerli-one"} color={dark} width='100%' textAlign="center" overflow={'visible'}
+          <Typography variant="h4" fontFamily={"Barlow"} color={dark} width='100%' textAlign="center" overflow={'visible'}
             sx={{
               position: "relative",
               zIndex: 0,

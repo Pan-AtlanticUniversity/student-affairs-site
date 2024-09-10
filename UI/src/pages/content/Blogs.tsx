@@ -17,7 +17,7 @@ const Blogs = () => {
       <Banner bannerImage={GoggleKid} pushDownBanner />
       <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }}>
         <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 } }} gap={5} overflow={'visible'}>
-          <Typography variant="h5" fontFamily={"leckerli-one"} color={dark} width='100%' textAlign="center" overflow={'visible'}
+          <Typography variant="h4" fontFamily={"Barlow"} color={dark} width='100%' textAlign="center" overflow={'visible'}
             sx={{
               position: "relative",
               zIndex: 0,

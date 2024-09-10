@@ -1,4 +1,4 @@
-import { Box, createSvgIcon, IconButton, Paper, Stack, Typography } from '@mui/material';
+import { Box, createSvgIcon, Grid, IconButton, Paper, Stack, Typography } from '@mui/material';
 import { Banner, Footer, NavBar } from '../../components';
 
 import { dark, disabled, grey } from '../../context/theme';
@@ -11,6 +11,7 @@ import { ClubItem } from '../../components/Club';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 const ClubDetail = () => {
 
@@ -34,12 +35,11 @@ const ClubDetail = () => {
         facebook: <FacebookIcon fontSize="small" />,
         linkedin: <LinkedInIcon fontSize="small" />,
         tiktok: <TikTokIcon fontSize="small" />,
+        github: <GitHubIcon fontSize="small" />
     }
 
     const location = useLocation();
     const { club }: { club: ClubItem } = location.state;
-
-    console.log(club)
 
 
     if (!club) {
@@ -50,12 +50,12 @@ const ClubDetail = () => {
         <Stack minHeight={"100vh"} sx={{ gap: { xs: 5, md: 8 } }}>
             <NavBar route="Clubs" />
             <Stack sx={{ gap: { xs: 1, md: 5 } }}>
-                <Banner bannerImage={club.image.value} contain background={club.image.background} />
+                <Banner bannerImage={club.image.value} contain={club.club_name !== "Community Service Project (CSP)"} background={club.image.background} />
                 <Typography
                     sx={{ fontSize: { xs: '24px', md: '32px' }, zIndex: 1 }}
                     width={'100%'}
                     textAlign={'center'}
-                    fontFamily={'leckerli-one'}
+                    fontFamily={'Barlow'}
                     color={dark}
                 >
                     {club.club_name}
@@ -98,41 +98,52 @@ const ClubDetail = () => {
                     club.executives.length > 0 &&
                     <Stack gap={'inherit'}>
 
-                        <Typography variant="h5" fontFamily={"leckerli-one"} color={dark} width={'100%'} textAlign='center'>
+                        <Typography variant="h4" fontFamily={"Barlow"} color={dark} width={'100%'} textAlign='center'>
                             Executives
                         </Typography>
 
-                        <Stack alignItems='center' justifyContent={"center"} flexWrap={"wrap"} sx={{
-                            gap: 7,
-                            flexDirection: "row",
-                        }}>
+                        <Grid container width={'100%'} rowGap={5} justifyContent={'center'}>
                             {
                                 club.executives.map(exec => (
-                                    <Stack direction={'column'} alignItems={'center'} sx={{ gap: 2, width: 'auto' }}>
-                                        <Typography variant="body1" fontFamily={"Poppins"} color={disabled}>
-                                            {exec.full_name}
-                                        </Typography>
-                                        <Box
-                                            component="img"
-                                            src={exec.image}
-                                            sx={{
-                                                width: {
-                                                    xs: "35%", sm: "150px", lg: '200px',
-                                                    aspectRatio: "1/1",
-                                                    borderRadius: '50%'
-                                                }
-                                            }}
-                                            alt='Club executive'
-                                        />
+                                    <Grid
+                                        item
+                                        xs={12} sm={4} md={3} lg={2}
+                                        key={exec._id} 
+                                        display="flex" // Ensure the Grid item uses flexbox for centering
+                                        justifyContent="center" // Centers horizontally
+                                    >
+                                        <Stack width={'100%'} alignItems={'center'} justifyContent={'center'}>
+                                            <Typography
+                                                variant="body1"
+                                                color={disabled}
+                                                textAlign={'center'}
+                                                sx={{
+                                                    wordWrap: 'break-word',  // Enable word wrapping
+                                                    width: '100%',
+                                                }}>
+                                                {exec.full_name}
+                                            </Typography>
+                                            <Box
+                                                component="img"
+                                                src={exec.image}
+                                                sx={{
+                                                    width: {
+                                                        xs: "35%", sm: "150px", lg: '175px',
+                                                        aspectRatio: "1/1",
+                                                        borderRadius: '50%'
+                                                    }
+                                                }}
+                                                alt='Club executive'
+                                            />
 
-                                        <Typography variant="h6" color={dark} fontWeight={300}>
-                                            {exec.post}
-                                        </Typography>
-                                    </Stack>
+                                            <Typography variant="h6" color={dark} fontWeight={300} textAlign={'center'}>
+                                                {exec.post}
+                                            </Typography>
+                                        </Stack>
+                                    </Grid>
                                 ))
                             }
-                        </Stack>
-
+                        </Grid>
 
                     </Stack>
                 }
@@ -159,17 +170,20 @@ const ClubDetail = () => {
                         <Stack flexWrap={'wrap'} gap={0.5} direction={'row'} alignItems={'inherit'}>
                             <PersonIcon sx={{ color: disabled }} />
                             <Typography variant="caption" color="text.secondary">
-                                {club.member_count}
+                                {club.member_count ?? "nil"}
                             </Typography>
 
                         </Stack>
+
                     </Stack>
 
                     <Typography variant="caption" color="text.secondary" sx={{ width: '100%', textAlign: 'left' }}>
                         Meeting Time: {
-                            club.meeting_time.startsWith('custom')
-                                ? club.meeting_time.split(':')[1]
-                                : `${dayjs(club.meeting_time).format("hA dddd")}s`
+                            club.meeting_time
+                                ? club.meeting_time?.startsWith('custom')
+                                    ? club.meeting_time.split(':')[1]
+                                    : `${dayjs(club.meeting_time).format("hA dddd")}s`
+                                : "nil"
                         }
                     </Typography>
 

@@ -20,7 +20,7 @@ const Clubs = () => {
       }}>
 
         <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 } }} gap={5}>
-          <Typography variant="h5" fontFamily={"leckerli-one"} color={dark} textAlign={'center'}>
+          <Typography variant="h4" fontFamily={"Barlow"} color={dark} textAlign={'center'}>
             Be part of the community by joining a club
           </Typography>
           <Typography textAlign="center" lineHeight={1.8}>
@@ -30,6 +30,8 @@ const Clubs = () => {
             <br />
             If you're passionate about debating, eager to explore new hobbies, or just looking to connect with a community that shares your
             interests, there's a club waiting for you.
+            <br />
+            <br />
             All you need to do is find the right one, make lasting friendships, and discover all the amazing opportunities that await you.
             <br />
             Get to know all of them below and find your perfect fit
@@ -37,7 +39,7 @@ const Clubs = () => {
         </Stack>
 
         <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 }, overflow: 'visible' }} gap={5}>
-          <Typography variant="h5" fontFamily={"leckerli-one"} color={dark} width='100%' textAlign="center" overflow={'visible'}
+          <Typography variant="h4" fontFamily={"Barlow"} color={dark} width='100%' textAlign="center" overflow={'visible'}
             sx={{
               position: "relative",
               zIndex: 0,
