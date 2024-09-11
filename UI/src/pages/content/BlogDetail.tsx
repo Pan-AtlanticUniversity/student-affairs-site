@@ -1,44 +1,28 @@
 import { Box, Stack, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Banner, Footer, NavBar } from '../../components';
-import { BlogItem } from '../../components/Blog';
-import useAuth from '../../context/authContext';
-import axios from 'axios';
 import { dark } from '../../context/theme';
 import dayjs from 'dayjs';
 
 import avatar from '../../assets/svgs/default-user.svg';
+import { BlogItem } from '../../components/Blog';
 
 const BlogDetail = () => {
-    const [blog, setBlog] = useState<BlogItem>();
-    const { token } = useAuth();
-    const { _id } = useParams();
 
-    useEffect(() => {
-        const getBlog = async () => {
-            try {
-                const AUTH_HEADER = {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                };
-                const res = await axios.get<BlogItem>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/blog/${_id}`, AUTH_HEADER);
-                setBlog(res.data);
-            } catch (error) {
-                console.log("Error fetching blogs:", error);
-            }
-        };
+    const location = useLocation();
+    const { blog }: { blog: BlogItem } = location.state;
 
-        getBlog();
-    }, []);
+    if (!blog) {
+        return <Typography variant="h6">No blog details available.</Typography>;
+    }
+
 
     return (
         <Stack minHeight={"100vh"} sx={{ gap: { xs: 5, md: 8 } }}>
             <NavBar route="Blog" />
             <Stack sx={{ gap: { xs: 1, md: 5 } }}>
                 <Banner bannerImage={blog?.image} />
-                <Typography sx={{ fontSize: { xs: '24px', md: '32px' } }} width={'100%'} textAlign={'center'} fontFamily={'leckerli-one'} color={dark}>{blog?.title}</Typography>
+                <Typography sx={{ fontSize: { xs: '24px', md: '32px' } }} width={'100%'} textAlign={'center'} fontFamily={'Barlow'} color={dark}>{blog?.title}</Typography>
             </Stack>
 
             <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 5, md: 7 } }}>

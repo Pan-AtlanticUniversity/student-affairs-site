@@ -64,7 +64,6 @@ const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackgroun
             </Box>
             {bannerTitle && (
                 <Typography
-                    fontFamily={"Poppins"}
                     color={titleColor}
                     sx={{
                         position: 'absolute',

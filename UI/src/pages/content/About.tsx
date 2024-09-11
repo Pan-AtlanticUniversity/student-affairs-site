@@ -80,8 +80,8 @@ const About = () => {
 
             <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }}>
 
-                <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 } }} gap={5}>
-                    <Typography variant="h5" fontFamily={"leckerli-one"} color={dark}>
+                <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 } }} gap={3}>
+                    <Typography variant="h4" fontFamily={"Barlow"} color={dark}>
                         Get to know us
                     </Typography>
                     <Typography textAlign="center" lineHeight={1.8}>
@@ -120,7 +120,7 @@ const About = () => {
                         }}
                         gap={2}
                     >
-                        <Typography variant="h5" fontFamily={"leckerli-one"} color={dark}>
+                        <Typography variant="h4" fontFamily={"Barlow"} color={dark}>
                             School Anthem
                         </Typography>
 
@@ -194,7 +194,7 @@ const About = () => {
                         }}
                         elevation={3}
                     >
-                        <Typography variant="h6" fontFamily={"leckerli-one"} color={dark}>
+                        <Typography variant="h5" fontFamily={"Barlow"} color={dark}>
                             Upcoming dates and events
                         </Typography>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -214,7 +214,7 @@ const About = () => {
                 <Stack sx={{
                     flexDirection: 'column', alignItems: 'center', gap: 5, zIndex: 1, position: "relative", overflow: 'visible', width: "100%", marginTop: { xs: 10, md: 0 }
                 }}>
-                    <Typography variant="h5" fontFamily={"leckerli-one"} color={dark}>
+                    <Typography variant="h4" fontFamily={"Barlow"} color={dark} textAlign={'center'}>
                         Meet the Student Council
                     </Typography>
                     <Stack alignItems={'center'} justifyContent={"center"} flexWrap={"wrap"} sx={{

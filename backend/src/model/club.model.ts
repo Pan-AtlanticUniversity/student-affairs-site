@@ -1,7 +1,10 @@
 import mongoose from "mongoose";
 
 const clubSchema = new mongoose.Schema({
-  club_name: String,
+  club_name: {
+    type: String,
+    required: true
+  },
   image: {
     value: String,
     background: String,

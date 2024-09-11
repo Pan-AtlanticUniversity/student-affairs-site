@@ -48,8 +48,8 @@ const Blog = () => {
         '&::before': {
           content: '""',
           position: 'absolute',
-          top: { xs: '50%', md: '25%', lg: '45%'},
-          left: { xs: '-50vw', md: '-25%', xl: '-5vw'},
+          top: { xs: '50%', md: '25%', lg: '45%' },
+          left: { xs: '-50vw', md: '-25%', xl: '-5vw' },
           transform: 'translateY(-10%)  rotate(35deg)',
           zIndex: -1,
           border: '15px #18BC9C solid',
@@ -70,7 +70,6 @@ const Blog = () => {
                 <Card
                   sx={{
                     backgroundColor: grey,
-                    fontFamily: "Poppins",
                     paddingX: { xs: 1.5, md: 2.5 },
                     paddingY: { xs: 1, md: 2 },
                     borderRadius: 3,
@@ -122,7 +121,7 @@ const Blog = () => {
                       <Button
                         variant="outlined"
                         sx={{ width: '100%', borderColor: 'secondary.main', textTransform: "none", paddingY: 1, fontWeight: 300 }}
-                        onClick={() => navigate(`/blogs/${item._id}`, { replace: true })}
+                        onClick={() => navigate(`/blogs/${item._id}`, { replace: true, state: { blog: item } })}
                       >
                         Read More
                       </Button>
