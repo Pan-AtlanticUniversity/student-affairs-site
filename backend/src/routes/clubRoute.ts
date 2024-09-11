@@ -5,6 +5,7 @@ import {
   updateClub,
   deleteClub,
   getClubById,
+  migrateClubs,
 } from "../controller/club.controller";
 import authenticateTokenMiddleware from "../middleware/authenticateTokenMiddleware";
 import uploadHandler from "../middleware/fileUploadMiddleware";
@@ -15,6 +16,8 @@ router
   .route("/")
   .get(getClub)
   .post(authenticateTokenMiddleware, uploadHandler, createClub);
+
+router.route("/migrate").get(migrateClubs);
 
 router
   .route("/:_id")

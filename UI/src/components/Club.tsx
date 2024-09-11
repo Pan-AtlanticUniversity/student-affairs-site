@@ -26,6 +26,7 @@ export interface ClubItem {
     url: string;
   }[];
   executives: {
+    _id: string;
     full_name: string;
     image: string;
     post: string
@@ -77,7 +78,6 @@ const Club = () => {
                 <Card
                   sx={{
                     backgroundColor: grey,
-                    fontFamily: "Poppins",
                     paddingX: { xs: 1.5, md: 2.5 },
                     paddingY: { xs: 1, md: 2 },
                     borderRadius: 3,
@@ -95,8 +95,9 @@ const Club = () => {
                     <CardMedia
                       component="img"
                       image={item.image.value}
+                      loading="lazy"
                       alt={item.club_name}
-                      sx={{ borderRadius: 3, aspectRatio: "9/5", objectFit: "contain", backgroundColor: item.image.background }}
+                      sx={{ borderRadius: 3, aspectRatio: "9/5", objectFit: `${item.club_name === "Community Service Project (CSP)" ? 'cover' : 'contain'}`, backgroundColor: item.image.background }}
                     />
                   )}
                   <CardContent sx={{ paddingX: 0, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>

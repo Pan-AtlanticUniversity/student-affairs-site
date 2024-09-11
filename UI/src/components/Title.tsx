@@ -14,20 +14,20 @@ interface TitleProps {
 const Title: React.FC<TitleProps> = ({ position, name, email, phone }) => {
     return (
         <Stack direction={'column'} alignItems={'center'} sx={{ gap: 2, width: 'auto' }}>
-            <Typography variant="h6" fontFamily={"Poppins"} color={dark}>
+            <Typography variant="h6" color={dark}>
                 {position}
             </Typography>
             <Box sx={{ width: { xs: "35%", sm: "150px", lg: '200px' } }}>
                 <Image src={DefaultUser} style={{ height: "100%" }} alt="User Icon" />
             </Box>
             <Stack direction={'column'} alignItems={'center'} sx={{ gap: 0.5 }}>
-                <Typography variant="body1" fontFamily={"Poppins"} color={disabled}>
+                <Typography variant="body1" color={disabled}>
                     {name}
                 </Typography>
-                <Typography variant="body2" fontFamily={"Poppins"} color={disabled}>
+                <Typography variant="body2" color={disabled}>
                     {email}
                 </Typography>
-                <Typography variant="body2" fontFamily={"Poppins"} color={disabled}>
+                <Typography variant="body2" color={disabled}>
                     {phone}
                 </Typography>
             </Stack>

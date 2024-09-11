@@ -2,6 +2,10 @@ import { NextFunction, Request, Response } from "express";
 import multer from "multer";
 import { StatusCodes } from "http-status-codes";
 
+import fs from "fs";
+import path from "path";
+
+// File filter to allow only images
 const fileFilter = (
   req: Request,
   file: Express.Multer.File,
@@ -14,8 +18,29 @@ const fileFilter = (
   }
 };
 
+// Configure Multer to use disk storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    // Dynamically decide the folder based on request data
+    const clubName = req.body.club_name; // or any logic to decide folder
+    const clubDir = path.join("uploads", "clubs", clubName);
+
+    // Ensure the directory exists
+    fs.mkdirSync(clubDir, { recursive: true });
+
+    // Set the directory to save the file
+    cb(null, clubDir);
+  },
+  filename: (req, file, cb) => {
+    // Create a unique file name
+    const uniqueSuffix = `${Date.now()}${path.extname(file.originalname)}`;
+    cb(null, uniqueSuffix); // Save with unique filename
+  },
+});
+
+// Apply the storage and file filter to multer
 const upload = multer({
-  storage: multer.memoryStorage(),
+  storage,
   fileFilter,
 });
 
