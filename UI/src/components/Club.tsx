@@ -95,6 +95,7 @@ const Club = () => {
                     <CardMedia
                       component="img"
                       image={item.image.value}
+                      loading="lazy"
                       alt={item.club_name}
                       sx={{ borderRadius: 3, aspectRatio: "9/5", objectFit: `${item.club_name === "Community Service Project (CSP)" ? 'cover' : 'contain'}`, backgroundColor: item.image.background }}
                     />

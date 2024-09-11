@@ -107,8 +107,8 @@ const ClubDetail = () => {
                                 club.executives.map(exec => (
                                     <Grid
                                         item
-                                        xs={12} sm={4} md={3} lg={2}
-                                        key={exec._id} 
+                                        xs={12} sm={4} md={3}
+                                        key={exec._id}
                                         display="flex" // Ensure the Grid item uses flexbox for centering
                                         justifyContent="center" // Centers horizontally
                                     >
@@ -128,7 +128,7 @@ const ClubDetail = () => {
                                                 src={exec.image}
                                                 sx={{
                                                     width: {
-                                                        xs: "35%", sm: "150px", lg: '175px',
+                                                        xs: "35%", sm: "150px", lg: '200px',
                                                         aspectRatio: "1/1",
                                                         borderRadius: '50%'
                                                     }
