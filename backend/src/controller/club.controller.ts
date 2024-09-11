@@ -174,7 +174,7 @@ export const migrateClubs = async () => {
           clubDir,
           filename
         );
-        club.image.value = `http://localhost:4001/uploads/clubs/${club.club_name.replace(
+        club.image.value = `https://student-affairs-site.onrender.com/uploads/clubs/${club.club_name.replace(
           / /g,
           "-"
         )}/${filename}.${extension}`;
@@ -200,7 +200,7 @@ export const migrateClubs = async () => {
               clubDir,
               filename
             );
-            executive.image = `http://localhost:4001/uploads/clubs/${club.club_name.replace(
+            executive.image = `https://student-affairs-site.onrender.com/uploads/clubs/${club.club_name.replace(
               / /g,
               "-"
             )}/${filename}.${extension}`;
