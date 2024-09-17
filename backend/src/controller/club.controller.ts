@@ -51,7 +51,8 @@ export const createClub = async (req: Request, res: Response) => {
     });
 
     // Save the main club image in the same folder
-    const clubImagePath = path.join(clubDir, files.image[0].filename);
+    const clubImagePath = path
+      .join(clubDir, files.image[0].filename.replace(/ /g, "-"));
 
     const newPost = new Club({
       name,

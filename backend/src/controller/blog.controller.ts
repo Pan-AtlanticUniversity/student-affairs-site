@@ -13,7 +13,6 @@ export const createBlog = async (req: Request, res: Response) => {
 
     const files = req.files as { [fieldname: string]: Express.Multer.File[] };
 
-
     let imageBase64 = files.image[0].buffer.toString("base64") ?? "";
 
     const newPost = new Blog({
@@ -28,7 +27,6 @@ export const createBlog = async (req: Request, res: Response) => {
     res
       .status(StatusCodes.OK)
       .json({ message: "Blog post created successfully" });
-      
   } catch (error) {
     res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)

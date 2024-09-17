@@ -12,6 +12,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import EmailIcon from '@mui/icons-material/Email';
 
 const ClubDetail = () => {
 
@@ -35,8 +36,11 @@ const ClubDetail = () => {
         facebook: <FacebookIcon fontSize="small" />,
         linkedin: <LinkedInIcon fontSize="small" />,
         tiktok: <TikTokIcon fontSize="small" />,
-        github: <GitHubIcon fontSize="small" />
+        github: <GitHubIcon fontSize="small" />,
+        mail: <EmailIcon fontSize="small" />
     }
+
+    const zoomInImages = ["Community Service Project (CSP)", "Art Club"]
 
     const location = useLocation();
     const { club }: { club: ClubItem } = location.state;
@@ -50,7 +54,7 @@ const ClubDetail = () => {
         <Stack minHeight={"100vh"} sx={{ gap: { xs: 5, md: 8 } }}>
             <NavBar route="Clubs" />
             <Stack sx={{ gap: { xs: 1, md: 5 } }}>
-                <Banner bannerImage={club.image.value} contain={club.name !== "Community Service Project (CSP)"} background={club.image.background} />
+                <Banner bannerImage={club.image.value} contain={!zoomInImages.includes(club.name)} background={club.image.background} />
                 <Typography
                     sx={{ fontSize: { xs: '24px', md: '32px' }, zIndex: 1 }}
                     width={'100%'}
@@ -193,9 +197,9 @@ const ClubDetail = () => {
                                 <IconButton
                                     aria-label={item.handle}
                                     color="primary"
-                                    href={item.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                    href={item.handle === 'mail' ? `mailto:${item.url}` : item.url} // Use mailto for the email handle
+                                    target={item.handle !== 'mail' ? "_blank" : undefined} // Only open in a new tab for non-mail links
+                                    rel={item.handle !== 'mail' ? "noopener noreferrer" : undefined} // Set rel for external links only
 
                                     key={item.handle}
                                 >
