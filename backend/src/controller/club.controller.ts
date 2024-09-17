@@ -131,14 +131,15 @@ export const syncClubs = async (req: Request, res: Response) => {
     }
 
     // Define a directory for this club's images based on its name
-    const clubDir = path.join("/uploads", "clubs", name);
+    const clubDir = path.join("./uploads", "clubs", name).replace(/ /g, "-");
+
     console.log(name)
     fs.mkdirSync(clubDir, { recursive: true }); // Ensure the directory exists
 
     files.images.map((file) => {
       const image = file
-        ? path.join(clubDir, file.filename).replace(/ /g, '-')
-        : "./uploads/defaults/default-image.png"; // Fallback image path
+        ? path.join(clubDir, file.filename).replace(/ /g, "-")
+        : "public/images/default-user.svg"; // Fallback image path
 
       console.log(image);
     });
