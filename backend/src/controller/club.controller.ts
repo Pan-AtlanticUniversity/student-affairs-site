@@ -131,6 +131,7 @@ export const syncMembers = async (req: Request, res: Response) => {
     }
 
     // Define a directory for this club's images based on its name
+
     const clubDir = path.join("./uploads", "members", name).replace(/ /g, "-");
 
     // Save the main club image in the same folder
