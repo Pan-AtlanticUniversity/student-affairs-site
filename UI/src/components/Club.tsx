@@ -42,6 +42,7 @@ const Club = () => {
       try {
         const res = await axios.get<ClubItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/club`);
         setClubs(res.data);
+        console.log(res.data);
       } catch (error) {
         console.log("Error fetching club details:", error);
       }
@@ -71,6 +72,7 @@ const Club = () => {
     >
       {clubs.length > 0 ? (
         clubs.map((item) => {
+
           return (
             (
               <Grid xs={12} sm={6} md={4} xl={3} key={item._id}>
@@ -109,7 +111,9 @@ const Club = () => {
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                     }} mt={1}>
-                      {item.about ?? 'No about'}
+                      
+                      {item.about ?? 'No about'} 
+                     
                     </Typography>
 
                     <Button

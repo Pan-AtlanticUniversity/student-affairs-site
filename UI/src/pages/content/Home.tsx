@@ -1,37 +1,41 @@
-import { Box, Stack, Typography } from "@mui/material"
-import { Blog, Carousel, Footer, NavBar } from "../../components"
-import { dark, primary } from "../../context/theme"
+import { Box, Card, Stack, Typography, Button } from "@mui/material";
+import { Blog, Carousel, Footer, NavBar } from "../../components";
+import { dark, primary } from "../../context/theme";
 import speakerImage from '../../assets/icons/speaker.png';
+// import bgImage from '../../assets/images/bg-pattern.png'; // Example background image
 
 const Home = () => {
 
   return (
     <Stack minHeight={"100vh"} sx={{
       gap: { xs: 14, md: 18, lg: 20 },
-      overflowY: "scroll", overflowX: "hidden"
+      overflowY: "scroll", overflowX: "hidden",
+      backgroundColor: "#f4f4f4",
+      // backgroundImage: `url(${bgImage})`, // Background pattern for aesthetic
+      backgroundSize: "cover",
     }}>
       <NavBar route="Home" />
       <Carousel />
+      
       <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }}>
-
-        <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 } }} gap={5}>
-          <Typography variant="h4" fontFamily={"Barlow"} color={dark}>
-            What's poppin <span style={{ color: primary }}>PAU!!!</span>
-          </Typography>
-          <Typography textAlign="center" lineHeight={1.8}>
-            <b>Welcome to the heartbeat of campus life at Pan-Atlantic University!</b>
-            <br />
-            <br />
-            At Student Affairs, we are dedicated to enhancing your campus experience.
-            Whether you need academic support, want to join student organizations, or seek guidance,
-            we’re here to <b>help you succeed </b>
-            and make the most of your time at PAU.
-            <br />
-            <br />
-            We’re committed to fostering a <b>supportive</b> community, ensuring that every student feels <b>connected</b> and <b>empowered</b>.
-            Your journey at PAU is our priority, and we’re here to support you every step of the way.
-          </Typography>
-        </Stack>
+        <Card sx={{ padding: 4, boxShadow: 3, borderRadius: 2 }}>
+          <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 } }} gap={1}>
+            <Typography variant="h4" fontFamily={"Barlow"} color={dark}>
+              What's poppin <span style={{ color: primary }}>PAU!!!</span>
+            </Typography>
+            <Typography textAlign="center" lineHeight={1.8} color="#555">
+              <b>Welcome to the heartbeat of campus life at Pan-Atlantic University!</b>
+              <br /><br />
+              At Student Affairs, we are dedicated to enhancing your campus experience.
+              Whether you need academic support, want to join student organizations, or seek guidance,
+              we’re here to <b>help you succeed </b>
+              and make the most of your time at PAU.
+              <br /><br />
+              We’re committed to fostering a <b>supportive</b> community, ensuring that every student feels <b>connected</b> and <b>empowered</b>.
+              Your journey at PAU is our priority, and we’re here to support you every step of the way.
+            </Typography>
+          </Stack>
+        </Card>
 
         <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 } }} gap={5} overflow={'visible'}>
           <Typography variant="h4" fontFamily={"Barlow"} color={dark} width='100%' textAlign="center" overflow={'visible'}
@@ -62,19 +66,17 @@ const Home = () => {
                 width: '50px',
                 height: '100%',
                 verticalAlign: 'middle'
-
-
               }}
             /></span>
           </Typography>
           <Blog />
         </Stack>
-
-
       </Stack>
-      <Footer />
+
+      {/* Footer Section */}
+      <Footer/>
     </Stack>
   )
 }
 
-export default Home
+export default Home;
