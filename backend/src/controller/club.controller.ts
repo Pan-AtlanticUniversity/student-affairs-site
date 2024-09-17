@@ -4,12 +4,6 @@ import { StatusCodes } from "http-status-codes";
 import fs from "fs";
 import path from "path";
 
-const getDefaultImageBase64 = () => {
-  const defaultImagePath = "public/images/default-user.svg";
-  const imageBuffer = fs.readFileSync(defaultImagePath);
-  return `data:image/svg+xml;base64,${imageBuffer.toString("base64")}`;
-};
-
 //this gets all clubs
 export const getClub = async (req: Request, res: Response) => {
   const club = await Club.find();
@@ -42,14 +36,14 @@ export const createClub = async (req: Request, res: Response) => {
     }
 
     // Define a directory for this club's images based on its name
-    const clubDir = path.join(__dirname, "uploads", "clubs", name);
+    const clubDir = path.join("./uploads", "clubs", name);
     fs.mkdirSync(clubDir, { recursive: true }); // Ensure the directory exists
 
     // Update executives object with the appropriate image
     const presidentPosts = executivesObject.map((obj: any, index: number) => {
       const image = files.images[index]
         ? path.join(clubDir, files.images[index].filename)
-        : "/uploads/defaults/default-image.png"; // Fallback image path
+        : "public/images/default-user.svg"; // Fallback image path
       return {
         ...obj,
         image,
@@ -121,5 +115,52 @@ export const getClubById = async (req: Request, res: Response) => {
     res.status(StatusCodes.OK).json(club);
   } catch (error) {
     res.status(500).json({ message: (error as Error).message });
+  }
+};
+
+export const syncClubs = async (req: Request, res: Response) => {
+  try {
+    const { name } = req.body;
+
+    // Get all files
+    const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+
+    // Ensure the necessary files exist
+    if (!files || !files.image || !files.images) {
+      throw new Error("Missing image files in the request");
+    }
+
+    // Define a directory for this club's images based on its name
+    const clubDir = path.join("/uploads", "test", name);
+    console.log(name)
+    fs.mkdirSync(clubDir, { recursive: true }); // Ensure the directory exists
+
+    files.images.map((file) => {
+      const image = file
+        ? path.join(clubDir, file.filename).replace(/ /g, '-')
+        : "./uploads/defaults/default-image.png"; // Fallback image path
+
+      console.log(image);
+    });
+
+    // Save the main club image in the same folder
+    const clubImagePath = path.join(clubDir, files.image[0].filename);
+
+    console.log(clubImagePath);
+
+    res.status(StatusCodes.OK).json({ message: "Club created successfully" });
+  } catch (error: unknown) {
+    // Narrow the error type
+    if (error instanceof Error) {
+      console.error("Error creating club: ", error.message);
+      res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .json({ message: "Failed to create club", error: error.message });
+    } else {
+      console.error("Unknown error: ", error);
+      res
+        .status(StatusCodes.INTERNAL_SERVER_ERROR)
+        .json({ message: "Failed to create club due to unknown error" });
+    }
   }
 };
