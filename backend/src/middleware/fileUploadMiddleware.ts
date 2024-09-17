@@ -23,7 +23,10 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     // Dynamically decide the folder based on request data
     const { entity_type, name } = req.body;
-    const dir = path.join("uploads", entity_type, name);
+    console.log(entity_type, name);
+    const dir = path
+      .join("./uploads", entity_type, name)
+      .replace(/ /g, "-");
     // Ensure the directory exists
     fs.mkdirSync(dir, { recursive: true });
 
@@ -31,9 +34,7 @@ const storage = multer.diskStorage({
     cb(null, dir);
   },
   filename: (req, file, cb) => {
-    // Create a unique file name
-    const uniqueSuffix = `${Date.now()}${path.extname(file.originalname)}`;
-    cb(null, uniqueSuffix); // Save with unique filename
+    cb(null, file.originalname); // Save with unique filename
   },
 });
 
