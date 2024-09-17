@@ -5,7 +5,7 @@ import {
   updateClub,
   deleteClub,
   getClubById,
-  syncClubs,
+  syncMembers,
 } from "../controller/club.controller";
 import authenticateTokenMiddleware from "../middleware/authenticateTokenMiddleware";
 import uploadHandler from "../middleware/fileUploadMiddleware";
@@ -17,7 +17,7 @@ router
   .get(getClub)
   .post(authenticateTokenMiddleware, uploadHandler, createClub);
 
-router.route("/sync").post(uploadHandler, syncClubs);
+router.route("/sync").post(uploadHandler, syncMembers);
 
 router
   .route("/:_id")

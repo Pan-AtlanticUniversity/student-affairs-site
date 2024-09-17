@@ -36,7 +36,7 @@ export const createClub = async (req: Request, res: Response) => {
     }
 
     // Define a directory for this club's images based on its name
-    const clubDir = path.join("./uploads", "clubs", name);
+    const clubDir = path.join("./uploads", "clubs", name).replace(/ /g, "-");
     fs.mkdirSync(clubDir, { recursive: true }); // Ensure the directory exists
 
     // Update executives object with the appropriate image
@@ -118,7 +118,7 @@ export const getClubById = async (req: Request, res: Response) => {
   }
 };
 
-export const syncClubs = async (req: Request, res: Response) => {
+export const syncMembers = async (req: Request, res: Response) => {
   try {
     const { name } = req.body;
 
@@ -126,23 +126,13 @@ export const syncClubs = async (req: Request, res: Response) => {
     const files = req.files as { [fieldname: string]: Express.Multer.File[] };
 
     // Ensure the necessary files exist
-    if (!files || !files.image || !files.images) {
+    if (!files || !files.image) {
       throw new Error("Missing image files in the request");
     }
 
     // Define a directory for this club's images based on its name
-    const clubDir = path.join("./uploads", "clubs", name).replace(/ /g, "-");
 
-    console.log(name)
-    fs.mkdirSync(clubDir, { recursive: true }); // Ensure the directory exists
-
-    files.images.map((file) => {
-      const image = file
-        ? path.join(clubDir, file.filename).replace(/ /g, "-")
-        : "public/images/default-user.svg"; // Fallback image path
-
-      console.log(image);
-    });
+    const clubDir = path.join("./uploads", "members", name).replace(/ /g, "-");
 
     // Save the main club image in the same folder
     const clubImagePath = path.join(clubDir, files.image[0].filename);
