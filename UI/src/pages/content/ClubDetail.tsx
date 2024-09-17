@@ -50,7 +50,7 @@ const ClubDetail = () => {
         <Stack minHeight={"100vh"} sx={{ gap: { xs: 5, md: 8 } }}>
             <NavBar route="Clubs" />
             <Stack sx={{ gap: { xs: 1, md: 5 } }}>
-                <Banner bannerImage={club.image.value} contain={club.club_name !== "Community Service Project (CSP)"} background={club.image.background} />
+                <Banner bannerImage={club.image.value} contain={club.name !== "Community Service Project (CSP)"} background={club.image.background} />
                 <Typography
                     sx={{ fontSize: { xs: '24px', md: '32px' }, zIndex: 1 }}
                     width={'100%'}
@@ -58,7 +58,7 @@ const ClubDetail = () => {
                     fontFamily={'Barlow'}
                     color={dark}
                 >
-                    {club.club_name}
+                    {club.name}
                 </Typography>
             </Stack>
 
@@ -96,18 +96,18 @@ const ClubDetail = () => {
 
                 {
                     club.executives.length > 0 &&
-                    <Stack gap={'inherit'}>
+                    <Stack gap={'inherit'} width={'100%'}>
 
                         <Typography variant="h4" fontFamily={"Barlow"} color={dark} width={'100%'} textAlign='center'>
                             Executives
                         </Typography>
 
-                        <Grid container width={'100%'} rowGap={5} justifyContent={'center'}>
+                        <Grid container width={'100%'} rowGap={5} justifyContent={'space-evenly'}>
                             {
                                 club.executives.map(exec => (
                                     <Grid
                                         item
-                                        xs={12} sm={4} md={3}
+                                        xs={12} sm={4} md={2.4}
                                         key={exec._id}
                                         display="flex" // Ensure the Grid item uses flexbox for centering
                                         justifyContent="center" // Centers horizontally
@@ -195,7 +195,10 @@ const ClubDetail = () => {
                                     color="primary"
                                     href={item.url}
                                     target="_blank"
-                                    rel="noopener noreferrer">
+                                    rel="noopener noreferrer"
+
+                                    key={item.handle}
+                                >
                                     {CLUB_MAPPING[item.handle]}
                                 </IconButton>
                             ))

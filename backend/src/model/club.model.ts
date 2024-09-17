@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
 const clubSchema = new mongoose.Schema({
-  club_name: {
+  name: {
     type: String,
-    required: true
+    required: true,
   },
   image: {
     value: String,

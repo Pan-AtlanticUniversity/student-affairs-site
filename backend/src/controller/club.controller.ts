@@ -20,7 +20,7 @@ export const createClub = async (req: Request, res: Response) => {
   try {
     const {
       about,
-      club_name,
+      name,
       executives,
       member_count,
       social_media_handles,
@@ -42,7 +42,7 @@ export const createClub = async (req: Request, res: Response) => {
     }
 
     // Define a directory for this club's images based on its name
-    const clubDir = path.join(__dirname, "uploads", "clubs", club_name);
+    const clubDir = path.join(__dirname, "uploads", "clubs", name);
     fs.mkdirSync(clubDir, { recursive: true }); // Ensure the directory exists
 
     // Update executives object with the appropriate image
@@ -60,7 +60,7 @@ export const createClub = async (req: Request, res: Response) => {
     const clubImagePath = path.join(clubDir, files.image[0].filename);
 
     const newPost = new Club({
-      club_name,
+      name,
       image: {
         value: clubImagePath, // Store the path of the image
         background,

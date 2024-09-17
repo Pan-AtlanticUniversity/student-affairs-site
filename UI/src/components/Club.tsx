@@ -13,7 +13,7 @@ import { dark, disabled, grey } from "../context/theme";
 
 export interface ClubItem {
   _id: string;
-  club_name: string;
+  name: string;
   image: {
     value: string;
     background: string
@@ -88,7 +88,7 @@ const Club = () => {
                   color={dark}>
 
                   <Typography gutterBottom variant="caption" mb={1} color={disabled}>
-                    {item.club_name ?? 'No Name provided'}
+                    {item.name ?? 'No Name provided'}
                   </Typography>
 
                   {item.image && (
@@ -96,8 +96,8 @@ const Club = () => {
                       component="img"
                       image={item.image.value}
                       loading="lazy"
-                      alt={item.club_name}
-                      sx={{ borderRadius: 3, aspectRatio: "9/5", objectFit: `${item.club_name === "Community Service Project (CSP)" ? 'cover' : 'contain'}`, backgroundColor: item.image.background }}
+                      alt={item.name}
+                      sx={{ borderRadius: 3, aspectRatio: "9/5", objectFit: `${item.name === "Community Service Project (CSP)" ? 'cover' : 'contain'}`, backgroundColor: item.image.background }}
                     />
                   )}
                   <CardContent sx={{ paddingX: 0, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
