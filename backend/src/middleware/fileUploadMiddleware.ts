@@ -22,14 +22,13 @@ const fileFilter = (
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     // Dynamically decide the folder based on request data
-    const clubName = req.body.club_name; // or any logic to decide folder
-    const clubDir = path.join("uploads", "clubs", clubName);
-
+    const { entity_type, name } = req.body;
+    const dir = path.join("uploads", entity_type, name);
     // Ensure the directory exists
-    fs.mkdirSync(clubDir, { recursive: true });
+    fs.mkdirSync(dir, { recursive: true });
 
     // Set the directory to save the file
-    cb(null, clubDir);
+    cb(null, dir);
   },
   filename: (req, file, cb) => {
     // Create a unique file name

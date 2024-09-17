@@ -217,35 +217,8 @@ const About = () => {
                     <Typography variant="h4" fontFamily={"Barlow"} color={dark} textAlign={'center'}>
                         Meet the Student Council
                     </Typography>
-                    <Stack alignItems={'center'} justifyContent={"center"} flexWrap={"wrap"} sx={{
-                        gap: 7,
-                        flexDirection: "row",
-                        '&::before': {
-                            content: '""',
-                            position: 'absolute',
-                            top: '50%',
-                            left: { xs: '-50vw' },
-                            transform: 'translateY(-50%)  rotate(35deg)',
-                            zIndex: -1,
-                            border: '15px #18BC9C solid',
-                            width: { xs: '65vw' },
-                            aspectRatio: "3/5",
-                            maxWidth: "350px",
-                            borderRadius: 5,
-                            display: { xs: "block", md: "none" }
 
-
-                        }
-                    }
-                    }>
-                        {Array(7).fill(
-                            < Title
-                                position={"President"}
-                                name={"Miracle Nnadiukwu"}
-                                email={'miracle@mail.com'}
-                                phone={'+234 812 456 2930'}
-                            />)}
-                    </Stack>
+                    <Title />
 
                 </Stack>
             </Stack>

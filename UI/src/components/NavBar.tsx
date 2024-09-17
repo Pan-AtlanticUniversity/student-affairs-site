@@ -43,9 +43,11 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
     return (
         <AppBar position="fixed" sx={{ backgroundColor: grey, boxShadow: "none", padding: "10px 10px" }}>
             <StyledToolBar sx={{ padding: 0 }}>
-                <Box sx={{ width: { xs: "125px", md: "150px", lg: "175px" } }}>
-                    <Image src={PAULogo} style={{ height: "100%" }} />
-                </Box>
+                <Box
+                    sx={{ width: { xs: "125px", md: "150px", lg: "175px" }, height: "100%" }}
+                    component={'img'}
+                    src={PAULogo}
+                />
 
                 <Stack direction="row" sx={{ gap: { xs: 1, md: 3 } }} alignItems={'center'}>
                     <Button
