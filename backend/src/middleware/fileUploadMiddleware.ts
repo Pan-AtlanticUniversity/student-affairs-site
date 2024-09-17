@@ -32,7 +32,7 @@ const storage = multer.diskStorage({
     cb(null, dir);
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname); // Save with unique filename
+    cb(null, file.originalname.replace(/ /g, "-")); // Save with unique filename
   },
 });
 
