@@ -131,7 +131,7 @@ export const syncClubs = async (req: Request, res: Response) => {
     }
 
     // Define a directory for this club's images based on its name
-    const clubDir = path.join("/uploads", "test", name);
+    const clubDir = path.join("/uploads", "clubs", name);
     console.log(name)
     fs.mkdirSync(clubDir, { recursive: true }); // Ensure the directory exists
 
