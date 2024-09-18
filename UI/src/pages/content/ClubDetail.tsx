@@ -101,7 +101,7 @@ const ClubDetail = () => {
                             variant="body1"
                             color={dark}
                             zIndex={1}
-                            sx={{ textAlign: { xs: 'center', md: 'left' } }}
+                            textAlign={'left'}
                             key={index}
                             paragraph
                         >{paragraph}</Typography>
