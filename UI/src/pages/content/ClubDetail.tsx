@@ -52,7 +52,7 @@ const ClubDetail = () => {
     const paragraphs = club.about.split('\n');
 
     return (
-        <Stack minHeight={"100vh"} sx={{ gap: { xs: 5, md: 8 } }}>
+        <Stack minHeight={"100vh"} sx={{ gap: { xs: 5, md: 8 }, alignItems: 'center', }}>
             <NavBar route="Clubs" />
             <Stack sx={{ gap: { xs: 1, md: 5 } }}>
                 <Banner bannerImage={club.image.value} contain={!zoomInImages.includes(club.name)} background={club.image.background} />
@@ -75,7 +75,7 @@ const ClubDetail = () => {
                     overflowY: 'visible',
                     gap: { xs: 5, md: 7 },
                     alignItems: 'center',
-                    padding: '0 3 1 3',
+                    width: '97%',
                     zIndex: 0,
                     '&::before': {
                         content: '""',
