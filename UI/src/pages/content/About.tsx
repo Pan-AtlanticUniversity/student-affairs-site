@@ -215,7 +215,7 @@ const About = () => {
                     flexDirection: 'column', alignItems: 'center', gap: 5, zIndex: 1, position: "relative", overflow: 'visible', width: "100%", marginTop: { xs: 10, md: 0 }
                 }}>
                     <Typography variant="h4" fontFamily={"Barlow"} color={dark} textAlign={'center'}>
-                        Meet the Student Council
+                        Meet the Student Affairs
                     </Typography>
 
                     <Title />
