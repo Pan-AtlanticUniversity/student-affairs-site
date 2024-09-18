@@ -45,10 +45,11 @@ const ClubDetail = () => {
     const location = useLocation();
     const { club }: { club: ClubItem } = location.state;
 
-
     if (!club) {
         return <Typography variant="h6">No club details available.</Typography>;
     }
+
+    const paragraphs = club.about.split('\n');
 
     return (
         <Stack minHeight={"100vh"} sx={{ gap: { xs: 5, md: 8 } }}>
@@ -93,10 +94,20 @@ const ClubDetail = () => {
                 }}
 
             >
+                <div>
+                    {paragraphs.map((paragraph, index) => (
 
-                <Typography variant="body1" color={dark} zIndex={1} sx={{ textAlign: { xs: 'center', md: 'left' } }}>
-                    {club.about}
-                </Typography>
+                        <Typography
+                            variant="body1"
+                            color={dark}
+                            zIndex={1}
+                            sx={{ textAlign: { xs: 'center', md: 'left' } }}
+                            key={index}
+                            paragraph
+                        >{paragraph}</Typography>
+
+                    ))}
+                </div>
 
                 {
                     club.executives.length > 0 &&
