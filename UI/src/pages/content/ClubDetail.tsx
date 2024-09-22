@@ -1,12 +1,12 @@
 import { Box, createSvgIcon, Grid, IconButton, Paper, Stack, Typography } from '@mui/material';
-import { Banner, Footer, NavBar } from '../../components';
-import { dark, disabled, grey } from '../../context/theme';
+import { Banner,Footer, NavBar, ProfileCard, TextBox } from '../../components';
+import { dark, disabled} from '../../context/theme';
 import dayjs from 'dayjs';
 import { useLocation } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
 import XIcon from '@mui/icons-material/X';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import { ClubItem } from '../../components/Club';
+import { ClubItem } from '../../components/club';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -48,79 +48,44 @@ const ClubDetail = () => {
     }
 
     return (
-        <Stack minHeight={"100vh"} sx={{ gap: { xs: 3, md: 6 }, padding: 2 }}>
+        <Stack minHeight={"100vh"} sx={{
+            gap: { xs: 1, md: 1 },
+            overflowY: "scroll", overflowX: "hidden",
+            backgroundColor: "#f4f4f4",
+            // backgroundImage: `url(${bgImage})`, // Background pattern for aesthetic
+            backgroundSize: "cover",
+        }}>
             <NavBar route="Clubs" />
 
-            {/* Banner and Club Name */}
-            <Stack sx={{ gap: { xs: 1.5, md: 3 } }}>
+            <Box>
                 <Banner
                     bannerImage={club.image.value}
                     contain={club.club_name !== "Community Service Project (CSP)"}
                     background={club.image.background}
                 />
-                <Typography
-                    sx={{ fontSize: { xs: '22px', md: '28px' }, fontWeight: 600, zIndex: 1 }}
-                    textAlign={'center'}
-                    fontFamily={'Barlow'}
-                    color={dark}
-                >
-                    {club.club_name}
-                </Typography>
-            </Stack>
+                <TextBox
+                    title={club.club_name}
+                    description={club.about}
+                />
+            </Box>
 
             {/* Club About Section */}
-            <Stack position={'relative'} sx={{ padding: 2, gap: { xs: 3, md: 5 }, alignItems: 'center' }}>
-                <Typography
-                    variant="body1"
-                    color={dark}
-                    zIndex={1}
-                    sx={{
-                        textAlign: { xs: 'center', md: 'left' },
-                        lineHeight: 1.6,
-                        maxWidth: '900px'
-                    }}
-                >
-                    {/* Proper paragraphing for club.about */}
-                    {club.about.split('. ').reduce<string[][]>((acc, sentence, index) => {
-                        if (index % 3 === 0) acc.push([]);
-                        acc[acc.length - 1].push(sentence);
-                        return acc;
-                    }, []).map((paragraph, index) => (
-                        <p key={index} style={{ marginBottom: '1.2em' }}>
-                            {paragraph.join('. ') + '.'}
-                        </p>
-                    ))}
-                </Typography>
-
+            <Stack position={'relative'} sx={{ padding: 0, gap: { xs: 3, md: 3 }, alignItems: 'center' }}>
                 {/* Executives Section */}
                 {club.executives.length > 0 && (
                     <Stack gap={'inherit'} sx={{ width: '100%', alignItems: 'center' }}>
                         <Typography variant="h4" fontFamily={"Barlow"} color={dark} textAlign="center" fontWeight={500}>
                             Executives
                         </Typography>
-
-                        <Grid container spacing={3} justifyContent="center">
-                            {club.executives.map(exec => (
-                                <Grid item xs={12} sm={6} md={4} key={exec._id} display="flex" justifyContent="center">
-                                    <Stack alignItems={'center'}>
-                                        <Typography variant="body1" color={disabled} textAlign={'center'}>
-                                            {exec.full_name}
-                                        </Typography>
-                                        <Box
-                                            component="img"
-                                            src={exec.image}
-                                            sx={{
-                                                width: { xs: "30%", sm: "120px", lg: '180px' },
-                                                aspectRatio: "1/1",
-                                                borderRadius: '50%',
-                                                objectFit: 'cover'
-                                            }}
-                                            alt="Club executive"
-                                        />
-                                        <Typography variant="h6" color={dark} fontWeight={300} textAlign="center">
-                                            {exec.post}
-                                        </Typography>
-                                    </Stack>
+                        <Grid container spacing={4} justifyContent="center">
+                            {club.executives.map((exec, index) => (
+                                <Grid item key={index} xs={12} sm={6} md={3}>
+                                    <ProfileCard
+                                        imageUrl={exec.image}
+                                        name={exec.full_name}
+                                        role={exec.post}
+                                        // contact={profile.contact}
+                                    />
                                 </Grid>
                             ))}
                         </Grid>
@@ -135,8 +100,8 @@ const ClubDetail = () => {
                         alignItems: "center",
                         padding: "15px 10px",
                         borderRadius: "15px",
-                        backgroundColor: grey,
-                        width: { xs: '100%', md: '55%' },
+                        backgroundColor: "#FFFFFF",
+                        width: { xs: '100%', md: '90%' },
                         gap: 1.5,
                     }}
                     elevation={3}

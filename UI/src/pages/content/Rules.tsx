@@ -1,8 +1,8 @@
 import { Box, Button, Stack, styled, Typography } from "@mui/material"
-import { Banner, Footer, NavBar } from "../../components"
+import { Footer, NavBar } from "../../components"
 import { dark, grey } from "../../context/theme"
 import DownloadIcon from '@mui/icons-material/Download';
-import ChudiImage from '../../assets/images/chudi.png';
+// import ChudiImage from '../../assets/images/chudi.png';
 import Smiley from '../../assets/images//smiley.png';
 import GuideLines from '../../assets/svgs/guidelines.svg';
 import DressSense from '../../assets/svgs/dress-sense.svg';
@@ -28,7 +28,7 @@ const About = () => {
                 overflowX: "hidden"
             }}>
             <NavBar route="Rules" />
-            <Banner bannerTitle="Rules and Regulations" titleBackground={grey} titleColor={"primary.main"} bannerImage={ChudiImage} />
+            {/* <Banner bannerTitle="Rules and Regulations" titleBackground={grey} titleColor={"primary.main"} bannerImage={ChudiImage} /> */}
             <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }} alignItems={'center'}>
                 <Typography color={dark} sx={{ fontSize: { xs: '1rem', md: '1.2rem' }, textAlign: 'center' }}>
                     To ensure a smooth experience here at PAU, here are a few guidelines to get you up and going<span>

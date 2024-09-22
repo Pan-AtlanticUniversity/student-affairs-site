@@ -1,5 +1,5 @@
-import { Box, IconButton, Paper, Slider, Stack, Typography } from "@mui/material"
-import { Carousel, Footer, NavBar } from "../../components"
+import { Box, Grid, IconButton, Paper, Slider, Stack, Typography } from "@mui/material"
+import { Carousel, Footer, NavBar, ProfileCard, TextBox, UnderlinedText } from "../../components"
 import { dark, grey } from "../../context/theme"
 
 import dayjs, { Dayjs } from 'dayjs';
@@ -7,7 +7,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { useEffect, useRef, useState } from "react";
-import Title from "../../components/Title";
+// import Title from "../../components/Title";
 
 import PAULogo from '../../assets/svgs/Logo_of_Pan-Atlantic_University.svg';
 import anthemAudio from '../../assets/audio/test_song.mp3';
@@ -15,7 +15,54 @@ import anthemAudio from '../../assets/audio/test_song.mp3';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 
+// import welcomeToPAU from '../../assets/images/welcome-to-pau.png';
+// import people from '../../assets/images/chudi.png';
+import students from '../../assets/images/2.jpg';
+import graduates from '../../assets/images/4.jpg';
+import staff from '../../assets/images/5.jpg';
+import mentalhealth from '../../assets/images/14.jpg';
+// import hugs from '../../assets/images/Clubs and extracurricular/4.jpg';
+
+
 const About = () => {
+
+
+    const profiles = [
+        {
+            imageUrl: 'https://via.placeholder.com/300x200',
+            name: 'Anne Osezua',
+            role: 'Student Affairs Director',
+            contact: '0803 922 6965',
+        },
+        {
+            imageUrl: 'https://via.placeholder.com/300x200',
+            name: 'Felix Francis',
+            role: 'To update..',
+            contact: '0703 016 1494',
+        },
+        {
+            imageUrl: 'https://via.placeholder.com/300x200',
+            name: 'Jessica Amie',
+            role: 'to update',
+            contact: '0814 647 7325',
+        },
+        {
+            imageUrl: 'https://via.placeholder.com/300x200',
+            name: 'Calistus Omeje',
+            role: 'to update',
+            contact: '0813 614 3930',
+        },
+        {
+            imageUrl: 'https://via.placeholder.com/300x200',
+            name: 'Augustine Achike',
+            role: 'to update',
+            contact: '0704 048 1319',
+        },
+
+
+    ];
+
+    const slides = [students, graduates, staff, mentalhealth];
 
     const audioRef = useRef<HTMLAudioElement>(null);
     // media player
@@ -72,25 +119,19 @@ const About = () => {
 
     return (
         <Stack minHeight={"100vh"} sx={{
-            gap: { xs: 14, md: 18, lg: 20 },
+            gap: { xs: 1, md: 1, lg: 0 },
             overflowY: "scroll", overflowX: "hidden"
         }}>
             <NavBar route="About" />
-            <Carousel />
+
+            {/* Carousel & TextBox */}
+            <Box sx={{ paddingTop: '80px' }}>
+                <Carousel images={slides} />
+                <TextBox title="Get to Know Us" description="The Student Affairs Office is dedicated to supporting you throughout your academic journey at Pan-Atlantic University. If you have any questions, need assistance, or simply wish to chat, our doors are always open. Please feel free to visit our office in person, drop us an email, or call any member of our team. Please note that only emails received from students using their official PAU email addresses will be attended to." />
+            </Box>
+
 
             <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }}>
-
-                <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 } }} gap={3}>
-                    <Typography variant="h4" fontFamily={"Barlow"} color={dark}>
-                        Get to know us
-                    </Typography>
-                    <Typography textAlign="center" lineHeight={1.8}>
-                        Pan-Atlantic University is a private, non-profit institution located in Lekki, Lagos State.
-                        <br />
-                        Established in 2002, we evolved from the Lagos Business School to offer a diverse range of programs and initiatives.
-                        Our campuses in Ibeju-Lekki and Ajah provide a setting for academic and personal growth.
-                    </Typography>
-                </Stack>
 
                 <Stack sx={{
                     flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-evenly', alignItems: 'center', gap: 10,
@@ -120,9 +161,9 @@ const About = () => {
                         }}
                         gap={2}
                     >
-                        <Typography variant="h4" fontFamily={"Barlow"} color={dark}>
-                            School Anthem
-                        </Typography>
+                        <UnderlinedText 
+                            text = "School Anthem"
+                        />
 
                         <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }} lineHeight={2.5}>
                             We seek the truth with all our mind and heart, At Pan-Atlantic University
@@ -212,40 +253,25 @@ const About = () => {
 
 
                 <Stack sx={{
-                    flexDirection: 'column', alignItems: 'center', gap: 5, zIndex: 1, position: "relative", overflow: 'visible', width: "100%", marginTop: { xs: 10, md: 0 }
+                    flexDirection: 'column', alignItems: 'center', zIndex: 1, position: "relative", overflow: 'visible', width: "100%", marginTop: { xs: 0, md: 0 }
                 }}>
-                    <Typography variant="h4" fontFamily={"Barlow"} color={dark} textAlign={'center'}>
-                        Meet the Student Council
-                    </Typography>
-                    <Stack alignItems={'center'} justifyContent={"center"} flexWrap={"wrap"} sx={{
-                        gap: 7,
-                        flexDirection: "row",
-                        '&::before': {
-                            content: '""',
-                            position: 'absolute',
-                            top: '50%',
-                            left: { xs: '-50vw' },
-                            transform: 'translateY(-50%)  rotate(35deg)',
-                            zIndex: -1,
-                            border: '15px #18BC9C solid',
-                            width: { xs: '65vw' },
-                            aspectRatio: "3/5",
-                            maxWidth: "350px",
-                            borderRadius: 5,
-                            display: { xs: "block", md: "none" }
+                    <UnderlinedText 
+                            text = "Meet the Student Affairs Team"
+                        />
 
+                    <Grid container spacing={4} justifyContent="center" sx={{ marginTop: '32px' }}>
+                        {profiles.map((profile, index) => (
+                            <Grid item key={index} xs={12} sm={6} md={4}>
+                                <ProfileCard
+                                    imageUrl={profile.imageUrl}
+                                    name={profile.name}
+                                    role={profile.role}
+                                    contact={profile.contact}
+                                />
+                            </Grid>
+                        ))}
+                    </Grid>
 
-                        }
-                    }
-                    }>
-                        {Array(7).fill(
-                            < Title
-                                position={"President"}
-                                name={"Miracle Nnadiukwu"}
-                                email={'miracle@mail.com'}
-                                phone={'+234 812 456 2930'}
-                            />)}
-                    </Stack>
 
                 </Stack>
             </Stack>

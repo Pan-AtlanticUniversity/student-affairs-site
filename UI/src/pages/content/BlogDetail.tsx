@@ -5,7 +5,7 @@ import { dark } from '../../context/theme';
 import dayjs from 'dayjs';
 
 import avatar from '../../assets/svgs/default-user.svg';
-import { BlogItem } from '../../components/Blog';
+import { BlogItem } from '../../components/blog';
 
 const BlogDetail = () => {
 
