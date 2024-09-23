@@ -8,6 +8,7 @@ import Banner from "./Banner";
 import Title from "./Title";
 import Blog from "./Blog";
 import Club from "./Club";
+import AdminNavBar from "./AdminNavBar";
 
 export {
   AuthNavBar,
@@ -19,5 +20,6 @@ export {
   Banner,
   Title,
   Blog,
-  Club
+  Club,
+  AdminNavBar,
 };

@@ -16,13 +16,14 @@ const BlogDetail = () => {
         return <Typography variant="h6">No blog details available.</Typography>;
     }
 
+    const paragraphs = blog?.content?.split('\n');
 
     return (
         <Stack minHeight={"100vh"} sx={{ gap: { xs: 5, md: 8 } }}>
             <NavBar route="Blog" />
             <Stack sx={{ gap: { xs: 1, md: 5 } }}>
                 <Banner bannerImage={blog?.image} />
-                <Typography sx={{ fontSize: { xs: '24px', md: '32px' } }} width={'100%'} textAlign={'center'} fontFamily={'Barlow'} color={dark}>{blog?.title}</Typography>
+                <Typography sx={{ fontSize: { xs: '24px', md: '32px' } }} width={'100%'} textAlign={'center'} fontFamily={'Barlow'} color={dark}>{blog?.name}</Typography>
             </Stack>
 
             <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 5, md: 7 } }}>
@@ -34,9 +35,60 @@ const BlogDetail = () => {
                         {blog?.read_count} views
                     </Typography>
                 </Stack>
-                <Typography variant="body1" color={dark}>
-                    {blog?.content} views
-                </Typography>
+                <div>
+                    {paragraphs?.map((paragraph, index) => {
+                        // Check if the line starts with ## for an <h2> or ### for an <h3>
+                        if (paragraph.startsWith('###')) {
+                            return (
+                                <>
+                                    <br />
+                                    <Typography
+                                        key={index}
+                                        variant="h6" // You can change the variant to match the header level
+                                        color={dark}
+                                        zIndex={1}
+                                        textAlign={'left'}
+                                        gutterBottom // Adds margin below the header
+                                    >
+                                        {paragraph.replace('###', '')}
+                                    </Typography>
+                                </>
+
+                            );
+                        } else if (paragraph.startsWith('##')) {
+                            return (
+                                <>
+                                    <br />
+                                    <Typography
+                                        key={index}
+                                        variant="h4" // You can change the variant to match the header level
+                                        color={dark}
+                                        zIndex={1}
+                                        textAlign={'left'}
+                                        gutterBottom
+                                    >
+                                        {paragraph.replace('##', '')}
+                                    </Typography>
+                                </>
+
+                            );
+                        } else {
+                            // Regular paragraph text
+                            return (
+                                <Typography
+                                    key={index}
+                                    variant="body1"
+                                    color={dark}
+                                    zIndex={1}
+                                    textAlign={'left'}
+                                    paragraph // Adds margin below the paragraph
+                                >
+                                    {paragraph}
+                                </Typography>
+                            );
+                        }
+                    })}
+                </div>
                 <Stack gap={5} direction={'row'} justifyContent={'space-between'} alignItems={'center'} >
                     <Stack flexWrap={'wrap'} flexGrow={1} gap={1} direction={'row'} alignItems={'inherit'}>
                         <Box

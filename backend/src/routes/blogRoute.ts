@@ -11,15 +11,12 @@ import uploadHandler from "../middleware/fileUploadMiddleware";
 
 const router = express.Router();
 
-router
-  .route("/")
-  .get(getBlog)
-  .post(authenticateTokenMiddleware, uploadHandler, createBlog);
+router.route("/").get(getBlog).post(uploadHandler, createBlog);
 
 router
   .route("/:_id")
   .get(authenticateTokenMiddleware, getBlogById)
-  .put(authenticateTokenMiddleware, updateBlog)
+  .patch(uploadHandler, updateBlog)
   .delete(authenticateTokenMiddleware, deleteBlog);
 
 export default router;

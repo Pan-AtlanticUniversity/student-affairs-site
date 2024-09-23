@@ -14,16 +14,22 @@ import { dark, disabled, grey } from "../context/theme";
 import dayjs from "dayjs";
 
 export interface BlogItem {
-  _id: string;
-  title: string;
-  author: string;
-  content: number;
-  date: string;
-  image: string;
-  read_count: number
+  _id?: string;
+  name?: string;
+  author?: string;
+  content?: string;
+  date?: string;
+  image?: string;
+  read_count?: number
 }
 
-const Blog = () => {
+interface BlogProp {
+  mode?: 'admin' | 'student';
+  searchQuery?: string;
+  openEditMenu?: (blogItem: BlogItem) => void;
+}
+
+const Blog: React.FC<BlogProp> = ({ mode, searchQuery, openEditMenu }) => {
   const [blogs, setBlogs] = useState<BlogItem[]>([]);
   const navigate = useNavigate();
 
@@ -40,7 +46,9 @@ const Blog = () => {
     getBlogs();
   }, []);
 
-
+  const filteredBlogs = blogs.filter((blog) =>
+    blog.name?.toLowerCase().includes(searchQuery?.toLowerCase() ?? "")
+  );
   //component={Link} to={`/blog/${item._id}`}
   return (
     <Grid container spacing={3} width={'100%'} zIndex={1} position={'relative'} overflow={'visible'}
@@ -61,8 +69,8 @@ const Blog = () => {
         }
       }}
     >
-      {blogs.length > 0 ? (
-        blogs.map((item) => {
+      {filteredBlogs.length > 0 ? (
+        filteredBlogs.map((item) => {
           return (
             (
               <Grid xs={12} sm={6} md={4} xl={3} key={item._id}>
@@ -80,21 +88,27 @@ const Blog = () => {
                   color={dark}>
 
                   <Typography gutterBottom variant="caption" mb={1} color={disabled}>
-                    {item.title ?? 'No Blog Name'}
+                    {item.name ?? 'No Blog Name'}
                   </Typography>
 
                   {item.image && (
                     <CardMedia
                       component="img"
+                      loading="lazy"
                       image={item.image}
-                      alt={item.title}
+                      alt={item.name}
                       sx={{ borderRadius: 3, aspectRatio: "9/5" }}
                     />
                   )}
                   <CardContent sx={{ paddingX: 0, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
 
-                    <Typography variant="body1" component="div" textTransform={'capitalize'} fontWeight={400}>
-                      {item.title ?? 'No Blog Name'}
+                    <Typography
+                      variant="body1"
+                      component="div"
+                      textTransform={'capitalize'}
+                      fontWeight={400}
+                    >
+                      {item.name ?? 'No Blog Name'}
                     </Typography>
 
                     <Typography gutterBottom variant="body2" component="div" sx={{
@@ -104,7 +118,7 @@ const Blog = () => {
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                     }} mt={1}>
-                      {item.content ?? 'No Blog Content Available'}
+                      {item.content?.replace(/#/g, "") ?? 'No Blog Content Available'}
                     </Typography>
 
                     <Stack sx={{ mt: 'auto', gap: 2 }}>
@@ -118,14 +132,34 @@ const Blog = () => {
                         </Typography>
                       </Stack>
 
-                      <Button
-                        variant="outlined"
-                        sx={{ width: '100%', borderColor: 'secondary.main', textTransform: "none", paddingY: 1, fontWeight: 300 }}
-                        onClick={() => navigate(`/blogs/${item._id}`, { replace: true, state: { blog: item } })}
-                      >
-                        Read More
-                      </Button>
+                      {
+                        mode !== 'admin'
+                          ? <Button
+                            variant="outlined"
+                            sx={{ width: '100%', borderColor: 'secondary.main', textTransform: "none", paddingY: 1, fontWeight: 300 }}
+                            onClick={() => navigate(`/blogs/${item._id}`, { replace: true, state: { blog: item } })}
+                          >
+                            Read More
+                          </Button>
+                          : <Stack gap={2} mt={'auto'} flexDirection={'row'}>
+                            <Button
 
+                              variant="contained"
+                              sx={{ width: '100%', backgroundColor: 'secondary.main', textTransform: "none", paddingY: 1, fontWeight: 300 }}
+                              onClick={() => openEditMenu && openEditMenu(item)}
+                            >
+                              Edit
+                            </Button>
+                            <Button
+
+                              variant="outlined"
+                              sx={{ width: '100%', borderColor: 'secondary.main', textTransform: "none", paddingY: 1, fontWeight: 300 }}
+                              onClick={() => navigate(`/clubs/${item._id}`, { replace: true, state: { club: item } })}
+                            >
+                              Delete
+                            </Button>
+                          </Stack>
+                      }
                     </Stack>
 
                   </CardContent>
