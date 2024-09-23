@@ -39,11 +39,11 @@ const Admins = () => {
     setSelectedBlog((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleBlogUpload = async (event) => {
+  const handleBlogUpload = async (event: React.FormEvent<HTMLFormElement>) => {
 
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const formJson = Object.fromEntries((formData as any).entries());
+    const formJson = Object.fromEntries((formData).entries());
 
     if (selectedBlog) {
       try {

@@ -1,4 +1,4 @@
-import { Box, Card, Dialog, DialogContent, DialogTitle, Slide, Stack, Typography } from "@mui/material";
+import { Box, Dialog, DialogContent, DialogTitle, Slide, Stack, Typography } from "@mui/material";
 import { Blog, Carousel, Footer, NavBar } from "../../components";
 import { dark, primary } from "../../context/theme";
 import speakerImage from '../../assets/icons/speaker.png';
@@ -9,6 +9,7 @@ import { TransitionProps } from "@mui/material/transitions";
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     children: React.ReactElement<any, any>;
   },
   ref: React.Ref<unknown>,

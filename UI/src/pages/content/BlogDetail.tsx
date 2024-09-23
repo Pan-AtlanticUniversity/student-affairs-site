@@ -16,7 +16,7 @@ const BlogDetail = () => {
         return <Typography variant="h6">No blog details available.</Typography>;
     }
 
-    const paragraphs = blog?.content.split('\n');
+    const paragraphs = blog?.content?.split('\n');
 
     return (
         <Stack minHeight={"100vh"} sx={{ gap: { xs: 5, md: 8 } }}>
@@ -36,7 +36,7 @@ const BlogDetail = () => {
                     </Typography>
                 </Stack>
                 <div>
-                    {paragraphs.map((paragraph, index) => {
+                    {paragraphs?.map((paragraph, index) => {
                         // Check if the line starts with ## for an <h2> or ### for an <h3>
                         if (paragraph.startsWith('###')) {
                             return (

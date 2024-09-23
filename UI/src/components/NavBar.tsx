@@ -1,13 +1,11 @@
 import { AppBar, styled, Toolbar, Box, Button, Stack, Menu, MenuItem } from '@mui/material';
-import { Image } from 'mui-image'
-import React from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useNavigate } from 'react-router-dom';
 import { grey } from '../context/theme';
 
 import PAULogo from '../assets/images/transparent-pau-logo.png';
-import DefaultUser from '../assets/svgs/default-user.svg';
+import { useState } from 'react';
 
 const StyledToolBar = styled(Toolbar)({
     display: "flex",
@@ -32,7 +30,7 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
         handleClose();
     };
 
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
