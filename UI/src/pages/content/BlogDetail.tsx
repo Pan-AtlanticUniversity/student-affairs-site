@@ -23,7 +23,7 @@ const BlogDetail = () => {
             <NavBar route="Blog" />
             <Stack sx={{ gap: { xs: 1, md: 5 } }}>
                 <Banner bannerImage={blog?.image} />
-                <Typography sx={{ fontSize: { xs: '24px', md: '32px' } }} width={'100%'} textAlign={'center'} fontFamily={'Barlow'} color={dark}>{blog?.name}</Typography>
+                <Typography sx={{ fontSize: { xs: '24px', md: '32px' }, zIndex: 1 }} width={'100%'} textAlign={'center'} fontFamily={'Barlow'} color={dark}>{blog?.name}</Typography>
             </Stack>
 
             <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 5, md: 7 } }}>
