@@ -6,7 +6,8 @@ import {
   Card,
   CardContent,
   CardMedia,
-  Button
+  Button,
+  Stack
 } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 import { dark, disabled, grey } from "../context/theme";
@@ -33,7 +34,13 @@ export interface ClubItem {
   }[]
 }
 
-const Club = () => {
+interface ClubProp {
+  mode?: 'admin' | 'student';
+  searchQuery?: string;
+  openEditMenu?: () => void;
+}
+
+const Club: React.FC<ClubProp> = ({ mode, searchQuery, openEditMenu }) => {
   const [clubs, setClubs] = useState<ClubItem[]>([]);
   const navigate = useNavigate();
 
@@ -49,6 +56,10 @@ const Club = () => {
 
     getClubs();
   }, []);
+
+  const filteredClubs = clubs.filter((club) =>
+    club.name.toLowerCase().includes(searchQuery?.toLowerCase() ?? "")
+  );
   return (
     <Grid container spacing={3} width={'100%'} zIndex={1} position={'relative'}
       sx={{
@@ -65,12 +76,12 @@ const Club = () => {
           aspectRatio: "3/5",
           maxWidth: "350px",
           borderRadius: 5,
-          display: clubs.length > 0 ? "block" : "none"
+          display: filteredClubs.length > 0 ? "block" : "none"
         }
       }}
     >
-      {clubs.length > 0 ? (
-        clubs.map((item) => {
+      {filteredClubs.length > 0 ? (
+        filteredClubs.map((item) => {
           return (
             (
               <Grid xs={12} sm={6} md={4} xl={3} key={item._id}>
@@ -112,14 +123,40 @@ const Club = () => {
                       {item.about ?? 'No about'}
                     </Typography>
 
-                    <Button
+                    {
+                      mode !== 'admin'
+                        ? <Button
 
-                      variant="outlined"
-                      sx={{ width: '100%', borderColor: 'secondary.main', textTransform: "none", paddingY: 1, fontWeight: 300, marginTop: 'auto' }}
-                      onClick={() => navigate(`/clubs/${item._id}`, { replace: true, state: { club: item } })}
-                    >
-                      More Info
-                    </Button>
+                          variant="outlined"
+                          sx={{ width: '100%', borderColor: 'secondary.main', textTransform: "none", paddingY: 1, fontWeight: 300, marginTop: 'auto' }}
+                          onClick={() => navigate(`/clubs/${item._id}`, { replace: true, state: { club: item } })}
+                        >
+                          More Info
+                        </Button>
+
+                        : 
+                        
+                        <Stack gap={2} mt={'auto'} flexDirection={'row'}>
+                          <Button
+
+                            variant="contained"
+                            sx={{ width: '100%', backgroundColor: 'secondary.main', textTransform: "none", paddingY: 1, fontWeight: 300 }}
+                            onClick={openEditMenu}
+                          >
+                            Edit
+                          </Button>
+                          <Button
+
+                            variant="outlined"
+                            sx={{ width: '100%', borderColor: 'secondary.main', textTransform: "none", paddingY: 1, fontWeight: 300 }}
+                            onClick={() => navigate(`/clubs/${item._id}`, { replace: true, state: { club: item } })}
+                          >
+                            Delete
+                          </Button>
+
+
+                        </Stack>
+                    }
 
                   </CardContent>
 
@@ -132,7 +169,7 @@ const Club = () => {
         )
       ) : (
         <Typography variant="h6" color={disabled}>
-          No blogs available.
+          No Clubs available.
         </Typography>
       )}
     </Grid>

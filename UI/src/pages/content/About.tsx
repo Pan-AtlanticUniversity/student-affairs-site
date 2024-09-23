@@ -124,7 +124,7 @@ const About = () => {
                             School Anthem
                         </Typography>
 
-                        <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }} lineHeight={2.5}>
+                        <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }} lineHeight={2.2}>
                             We seek the truth with all our mind and heart, At Pan-Atlantic University
                             <br />
                             We ask God’s help to fill the whole wide world, With cheerful harmony
