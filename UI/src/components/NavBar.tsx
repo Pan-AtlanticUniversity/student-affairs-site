@@ -83,9 +83,6 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
                             mentor!
                         </StyledMenuItem>
                     </Menu>
-                    <Box sx={{ width: "35px" }}>
-                        <Image src={DefaultUser} style={{ height: "100%" }} />
-                    </Box>
                 </Stack>
 
 

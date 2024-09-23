@@ -161,7 +161,7 @@ const ClubDetail = () => {
                             }
                         </Grid>
                     </Stack>
-                )}
+                }
 
                 {/* More Information Section */}
                 <Paper
