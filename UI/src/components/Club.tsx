@@ -49,6 +49,7 @@ const Club: React.FC<ClubProp> = ({ mode, searchQuery, openEditMenu }) => {
       try {
         const res = await axios.get<ClubItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/club`);
         setClubs(res.data);
+        console.log(res.data);
       } catch (error) {
         console.log("Error fetching club details:", error);
       }
@@ -120,7 +121,9 @@ const Club: React.FC<ClubProp> = ({ mode, searchQuery, openEditMenu }) => {
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                     }} mt={1}>
-                      {item.about ?? 'No about'}
+                      
+                      {item.about ?? 'No about'} 
+                     
                     </Typography>
 
                     {
