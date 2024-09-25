@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Container, Typography } from "@mui/material";
-import { accent } from '../context/theme';
 
 interface BannerProps {
     bannerTitle?: string;
@@ -31,20 +30,6 @@ const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackgroun
                     aspectRatio: '5/3',
                     maxHeight: { md: '450px', xl: '750px' },
                     borderRadius: "10px",
-                    overflow: 'visible',
-                    zIndex: 1,
-                    '&::before': {
-                        content: '""',
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        transform: 'translate(-50%, 50%)',
-                        width: "clamp(150px, 25%, 300px)",
-                        aspectRatio: "1",
-                        borderRadius: '50%',
-                        backgroundColor: accent,
-                        zIndex: -1,
-                    }
                 }}
             >
                 <Box

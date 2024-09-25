@@ -1,26 +1,40 @@
-import { GridCard, InfoBox, UnderlinedText } from '../components';
-import { Grid, Box } from '@mui/material';
+import { GridCard, InfoBox } from '../components';
+import { Grid, Stack } from '@mui/material';
 import FIG from '../assets/images/FIG/3.jpg';
 import Sports from '../assets/images/Clubs and extracurricular/3.jpg';
 import Mentor from '../assets/images/Guidance counselling & mentoring/3.jpg';
 import MedicalService from '../assets/images/Medical service_.jpg';
 import Career from '../assets/images/7.jpg';
 import WorkStudy from '../assets/images/1.jpg'
+import { accent, primary } from '../context/theme';
 
 
-export function Services() {
+const Services = () => {
   return (
     // Updated the margin top to bring the services component closer to the top
-    <Box sx={{ padding: '20px' }} marginTop={'-20px'}>
-      <UnderlinedText
-        text="Our Services"
-      />
-
+    <Stack
+      position={'relative'} overflow={'visible'} zIndex={0}
+      sx={{
+        gap: { xs: 10, md: 15 },
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: '50%',
+          left: 0,
+          transform: 'translate(-50%, -50%)  rotate(35deg)',
+          zIndex: -1,
+          border: `15px ${primary} solid`,
+          width: { xs: '65vw' },
+          aspectRatio: "3/5",
+          maxWidth: "350px",
+          borderRadius: 5,
+        }
+      }}>
 
       <Grid container
         spacing={4}>
         <GridCard title="Student Affairs Office" imageUrl="https://via.placeholder.com/300x200" onClick={() => alert('Dean of students clicked!')} />
-        <GridCard title="Student Clubs and Extracurricular Activities" imageUrl={Sports} onClick={() => alert('Clubs and societies clicked!')} />
+        <GridCard title="Clubs and Extracurriculars" imageUrl={Sports} onClick={() => alert('Clubs and societies clicked!')} />
 
         {/* mentoring would be a subsection */}
         {/* <GridCard title="Guidance and Counselling" imageUrl="https://via.placeholder.com/300x200" onClick={() => alert('Mentoring clicked!')} /> */}
@@ -37,7 +51,24 @@ export function Services() {
         <GridCard title="Medical Services" imageUrl={MedicalService} onClick={() => alert('Health services clicked!')} />
       </Grid>
 
-      <Grid container spacing={3} sx={{ marginTop: '20px' }}>
+      <Grid container spacing={3}
+        sx={{
+          position: "relative", overflowX: 'visible',
+          zIndex: 0,
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: '50%',
+            right: 0,
+            transform: 'translate(50%, -50%)  rotate(135deg)',
+            zIndex: -1,
+            border: `15px ${accent} solid`,
+            width: { xs: '50vw' },
+            aspectRatio: "3/5",
+            maxWidth: "350px",
+            borderRadius: 5,
+          }
+        }}>
         <Grid item xs={12} md={6}>
           <InfoBox
             title="Pan-Atlantic University Chaplaincy"
@@ -54,6 +85,8 @@ export function Services() {
           />
         </Grid>
       </Grid>
-    </Box>
+    </Stack>
   );
 }
+
+export default Services;

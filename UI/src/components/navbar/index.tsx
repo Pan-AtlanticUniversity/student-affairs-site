@@ -3,7 +3,7 @@ import { AppBar, Box, Button, Menu, MenuItem, Stack, Toolbar, styled } from '@mu
 import { Image } from 'mui-image';
 import { useNavigate } from 'react-router-dom';
 import PAULogo from '../../assets/images/transparent-pau-logo.png'; // Replace with your logo
-import { grey, primary } from '../../context/theme';
+import { disabled, grey, primary } from '../../context/theme';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
@@ -122,7 +122,7 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
             <StyledMenuItem onClick={() => handleNavigation('/rules')}>Rules</StyledMenuItem>
             <StyledMenuItem
               onClick={() => window.location.href = 'mailto:studentaffairs@pau.edu.ng?subject=Know%20Your%20Mentor'}
-              sx={{ background: primary, color: grey }}
+              sx={{ background: disabled, color: grey }}
             >
               Contact Us
             </StyledMenuItem>

@@ -27,7 +27,24 @@ const BlogDetail = () => {
         }}>
             <NavBar route="Blog" />
 
-            <Box sx={{ position: 'relative' }}>
+            <Box sx={{
+                position: "relative",
+                width: '100%',
+                zIndex: 0,
+                '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    transform: 'translate(-50%, 50%)',
+                    zIndex: -1,
+                    backgroundColor: accent,
+                    width: "clamp(150px, 50vw, 300px)",
+                    aspectRatio: 1,
+                    maxWidth: "350px",
+                    borderRadius: '50%'
+                }
+            }}>
                 <Banner bannerImage={blog?.image} />
                 <TextBox
                     title={blog?.name}

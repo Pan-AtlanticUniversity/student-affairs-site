@@ -18,7 +18,7 @@ const TextBox: React.FC<TextBoxProps> = ({ title, description }) => {
             backgroundColor: grey,
             borderRadius: '15px',
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-            width: { xs: '80%', md: '50%' },
+            width: { xs: '85%', md: '65%' },
             margin: 'auto', // Center the box horizontally
             position: 'absolute',
             left: '50%',
@@ -26,7 +26,7 @@ const TextBox: React.FC<TextBoxProps> = ({ title, description }) => {
             transform: 'translate(-50%, 50%)',
             zIndex: 2, // Ensure the text box is on top of the carousel
         }}>
-            <Typography variant="h5" sx={{ fontFamily: 'Barlow' }}>
+            <Typography variant="h6" sx={{ fontFamily: 'Barlow' }}>
                 {title}
             </Typography>
 

@@ -1,5 +1,5 @@
 import { Box, Grid, IconButton, Paper, Slider, Stack, Typography } from "@mui/material"
-import { Banner, Footer, NavBar, ProfileCard, UnderlinedText } from "../../components"
+import { Banner, Footer, NavBar, ProfileCard, TextBox, UnderlinedText } from "../../components"
 import { accent, dark, grey } from "../../context/theme"
 
 import dayjs, { Dayjs } from 'dayjs';
@@ -123,7 +123,8 @@ const About = () => {
                     borderRadius: '50%'
                 }
             }}>
-                <Banner bannerImage={getToKnowUs} bannerTitle={"Get to Know Us"} titleBackground={"primary.main"} titleColor={grey} />
+                <Banner bannerImage={getToKnowUs} />
+                <TextBox title="Get to Know Us" />
             </Box>
 
             <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }}>
@@ -256,24 +257,33 @@ const About = () => {
                 </Stack>
 
 
+
                 <Stack sx={{
-                    flexDirection: 'column', alignItems: 'center', zIndex: 1, position: "relative", overflow: 'visible', width: "100%", marginTop: { xs: 0, md: 0 }
+                    flexDirection: 'column', alignItems: 'center', zIndex: 1, position: "relative", overflow: 'visible', width: "100%", gap: 5
                 }}>
                     <UnderlinedText
                         text="Meet the Student Affairs Team"
                     />
 
-                    <Grid container spacing={4} justifyContent="center" sx={{ marginTop: '32px' }}>
-                        {members.map((profile) => (
-                            <Grid
-                                item
-                                xs={12} sm={4} md={3} lg={2.4}
-                                key={profile._id}
-                                display="flex" // Ensure the Grid item uses flexbox for centering
-                                justifyContent="center" // Centers horizontally
-                                alignItems={'center'}
-                                flexDirection={'column'}
-                            >
+                    <Grid container spacing={4} justifyContent="center"
+                        position={'relative'} overflow={'visible'} zIndex={0}
+                        sx={{
+                            '&::before': {
+                                content: '""',
+                                position: 'absolute',
+                                top: '50%',
+                                left: 0,
+                                transform: 'translate(-65%, -50%)  rotate(35deg)',
+                                zIndex: -1,
+                                border: `15px ${accent} solid`,
+                                width: { xs: '40vw' },
+                                aspectRatio: "3/5",
+                                maxWidth: "350px",
+                                borderRadius: 5,
+                            }
+                        }}>
+                        {members.map((profile, index) => (
+                            <Grid item key={index} xs={12} sm={6} md={3}>
                                 <ProfileCard
                                     imageUrl={profile.image}
                                     name={profile.name}
@@ -284,8 +294,6 @@ const About = () => {
                             </Grid>
                         ))}
                     </Grid>
-
-
                 </Stack>
             </Stack>
             <Footer />

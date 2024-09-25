@@ -1,6 +1,6 @@
 import { Box, Button, Stack, styled, Typography } from "@mui/material"
-import { Banner, Footer, NavBar } from "../../components"
-import { dark, grey } from "../../context/theme"
+import { Banner, Footer, NavBar, TextBox } from "../../components"
+import { accent, dark, grey } from "../../context/theme"
 import DownloadIcon from '@mui/icons-material/Download';
 import rulesGuy from '../../assets/images/CS-3625-820x400-1.jpg'
 import Smiley from '../../assets/images//smiley.png';
@@ -28,8 +28,31 @@ const About = () => {
             backgroundSize: "cover",
         }}>
             <NavBar route="Rules" />
-            <Banner bannerImage={rulesGuy} bannerTitle={"Rules and regulations"} titleBackground={'primary.main'} titleColor={grey} />
-            <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }} alignItems={'center'}>
+            <Box sx={{
+                position: "relative",
+                width: '100%',
+                zIndex: 0,
+                '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    transform: 'translate(-50%, 50%)',
+                    zIndex: -1,
+                    backgroundColor: accent,
+                    width: "clamp(150px, 50vw, 300px)",
+                    aspectRatio: 1,
+                    maxWidth: "350px",
+                    borderRadius: '50%'
+                }
+            }}>
+                <Banner bannerImage={rulesGuy} />
+                <TextBox
+                    title="Rules and Regulations"
+                />
+            </Box>
+
+            <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: 'inherit' }} alignItems={'center'}>
                 <Typography color={dark} sx={{ fontSize: { xs: '1rem', md: '1.2rem' }, textAlign: 'center', zIndex: 1 }}>
                     To ensure a smooth experience here at PAU, here are a few guidelines to get you up and going<span>
                         <Box

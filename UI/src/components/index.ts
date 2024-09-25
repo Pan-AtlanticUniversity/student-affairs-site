@@ -8,7 +8,7 @@ import Banner from "./Banner";
 import Title from "./Title";
 import GridCard from "./gridcard";
 import InfoBox from "./infobox";
-import { Services } from "./Services";
+import Services from "./Services";
 import TextBox from "./textbox";
 import ProfileCard from "./profileCard";
 import UnderlinedText from "./typography";

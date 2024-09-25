@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Stack, Typography } from '@mui/material';
-import { dark, disabled } from '../../context/theme';
+import { Avatar, Card, Typography } from '@mui/material';
+import { disabled, grey } from '../../context/theme';
 
 interface ProfileCardProps {
   imageUrl: string;
@@ -12,34 +12,47 @@ interface ProfileCardProps {
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ imageUrl, name, role, contact, mail }) => {
   return (
-    <>
-      <Typography variant="h6" color={dark} noWrap>
+    <Card
+      sx={{
+        borderRadius: '8px',
+        padding: 2,
+        textAlign: 'center',
+        width: 'clamp(250px, 100%, 350px)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 0.5,
+        height: "100%",
+      }}
+    >
+      <Typography variant="body2" color="text.secondary" >
         {role}
       </Typography>
-      <Box
-        component={'img'}
-        src={imageUrl}
+      {/* Circular image */}
+      < Avatar
         alt={name}
+        src={imageUrl}
         sx={{
-          width: { xs: "35%", sm: "150px", lg: '200px' },
-          aspectRatio: '1/1',
-          borderRadius: '50%',
-          backgroundColor: 'info.main'
-        }}
-
+          width: 150,
+          height: 150,
+          marginBottom: 3,
+          border: `1px solid ${grey}`,
+          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.3)',
+        }
+        }
       />
-      <Stack direction={'column'} alignItems={'center'} sx={{ gap: 0.5 }}>
-        <Typography variant="body1" color={disabled}>
-          {name}
-        </Typography>
-        <Typography variant="body2" color={disabled}>
-          {mail}
-        </Typography>
-        <Typography variant="body2" color={disabled}>
-          {contact}
-        </Typography>
-      </Stack>
-    </>
+      <Typography variant="h6" sx={{ fontWeight: '500' }}>
+        {name}
+      </Typography>
+
+      <Typography variant="body2" color={disabled}>
+        {mail}
+      </Typography>
+
+      <Typography variant="body2" color={disabled}>
+        {contact}
+      </Typography>
+    </Card >
   );
 };
 
