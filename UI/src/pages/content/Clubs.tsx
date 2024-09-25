@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material"
+import { Box, Stack } from "@mui/material"
 import { Banner, Footer, NavBar, TextBox } from "../../components"
 import club1 from '../../assets/images/Clubs and extracurricular/5.jpg';
 import Club from "../../components/club";
