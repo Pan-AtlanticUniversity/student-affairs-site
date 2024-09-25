@@ -14,7 +14,7 @@ interface NavBarProps {
 const StyledToolBar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
-  padding: theme.spacing(1.25, 0), // 10px = 1.25 * theme.spacing(8px)
+  padding: theme.spacing(1.25, 1.5), // 10px = 1.25 * theme.spacing(8px)
 }));
 
 const NavLinkButton = styled(Button)(() => ({
@@ -28,13 +28,13 @@ const NavLinkButton = styled(Button)(() => ({
 }));
 
 const SupportButton = styled(Button)(({ theme }) => ({
-  border: `1px solid ${theme.palette.grey[500]}`, // Access grey color from the theme
-  color: theme.palette.grey[500], // Grey text color from theme
+  border: `1px solid ${grey}`, // Access grey color from the theme
+  color: grey, // Grey text color from theme
   borderRadius: 5, // Rounded corners
   textTransform: 'capitalize', // Use lowercase 'capitalize'
   padding: '10px 20px',
   '&:hover': {
-    backgroundColor: theme.palette.grey[700], // Darker grey on hover
+    backgroundColor: grey, // Darker grey on hover
     color: theme.palette.primary.main, // Primary color from the theme
     transition: '0.5s',
   },
