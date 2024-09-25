@@ -137,7 +137,7 @@ const Blog: React.FC<BlogProp> = ({ mode, searchQuery, openEditMenu }) => {
                           ? <Button
                             variant="outlined"
                             sx={{ width: '100%', borderColor: 'secondary.main', textTransform: "none", paddingY: 1, fontWeight: 300 }}
-                            onClick={() => navigate(`/blogs/${item._id}`, { replace: true, state: { blog: item } })}
+                            onClick={() => navigate(`/blogs/${item._id}`, { state: { blog: item } })}
                           >
                             Read More
                           </Button>
