@@ -23,7 +23,7 @@ const Carousel: React.FC<CarouselTopProps> = ({ images }) => {
     return (
         <Container
             sx={{
-                marginTop: { xs: "80px", md: "100px" },
+                marginTop: { xs: "80px", sm: "100px" },
                 minWidth: '100vw',
                 overflow: "visible",
                 position: 'relative',

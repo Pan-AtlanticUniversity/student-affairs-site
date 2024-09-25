@@ -127,7 +127,7 @@ const ClubDetail = () => {
                             alignItems={'center'}
                             justifyContent="center"
                         >
-                            {club.executives.map((exec, index) => (
+                            {club.executives.map((exec, index: number) => (
                                 <Grid item key={index} xs={12} sm={6} md={3}// Ensure the Grid item uses flexbox for centering
                                     justifyContent="center" // Centers horizontally
                                     alignItems={'center'}

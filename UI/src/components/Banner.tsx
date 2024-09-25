@@ -16,7 +16,7 @@ const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackgroun
     return (
         <Container
             sx={{
-                marginTop: { xs: "80px", md: "100px" },
+                marginTop: { xs: "80px", sm: "100px" },
                 alignItems: "center",
                 justifyContent: "center",
                 minWidth: '100vw',
