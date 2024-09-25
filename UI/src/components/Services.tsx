@@ -1,5 +1,5 @@
 import { GridCard, InfoBox, UnderlinedText } from '../components';
-import { Grid, Typography, Box } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import FIG from '../assets/images/FIG/3.jpg';
 import Sports from '../assets/images/Clubs and extracurricular/3.jpg';
 import Mentor from '../assets/images/Guidance counselling & mentoring/3.jpg';
