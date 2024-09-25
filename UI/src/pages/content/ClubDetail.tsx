@@ -1,17 +1,17 @@
 import { Box, createSvgIcon, Grid, IconButton, Paper, Stack, Typography } from '@mui/material';
-import { Banner, Footer, NavBar } from '../../components';
+import { Banner, Footer, NavBar, ProfileCard, TextBox } from '../../components';
 import { dark, disabled, grey } from '../../context/theme';
 import dayjs from 'dayjs';
 import { useLocation } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
 import XIcon from '@mui/icons-material/X';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import { ClubItem } from '../../components/Club';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
+import { ClubItem } from '../../components/Club';
 
 const ClubDetail = () => {
     const TikTokIcon = createSvgIcon(
@@ -54,29 +54,33 @@ const ClubDetail = () => {
     const paragraphs = club.about.split('\n');
 
     return (
-        <Stack minHeight={"100vh"} sx={{ gap: { xs: 5, md: 8 }, alignItems: 'center', }}>
+        <Stack minHeight={"100vh"} sx={{
+            gap: { xs: 6, md: 10, lg: 14 },
+            overflowY: "scroll", overflowX: "hidden",
+            backgroundColor: grey,
+            backgroundSize: "cover",
+        }}>
             <NavBar route="Clubs" />
-            <Stack sx={{ gap: { xs: 1, md: 5 } }}>
-                <Banner bannerImage={club.image.value} contain={!zoomInImages.includes(club.name)} background={club.image.background} />
-                <Typography
-                    sx={{ fontSize: { xs: '22px', md: '28px' }, fontWeight: 600, zIndex: 1 }}
-                    textAlign={'center'}
-                    fontFamily={'Barlow'}
-                    color={dark}
-                >
-                    {club.name}
-                </Typography>
-            </Stack>
+
+            <Box sx={{ position: 'relative' }}>
+                <Banner
+                    bannerImage={club.image.value}
+                    contain={!zoomInImages.includes(club.name)}
+                    background={club.image.background}
+                />
+                <TextBox
+                    title={club.name}
+                />
+            </Box>
 
             <Stack position={'relative'}
-                pl={2} pr={2}
+                pl={3} pr={3}
                 sx={{
                     flexDirection: "column",
                     overflowX: "visible",
                     overflowY: 'visible',
                     gap: { xs: 5, md: 7 },
                     alignItems: 'center',
-                    width: '97%',
                     zIndex: 0,
                     '&::before': {
                         content: '""',
@@ -117,48 +121,26 @@ const ClubDetail = () => {
                         <Typography variant="h4" fontFamily={"Barlow"} color={dark} width={'100%'} textAlign='center'>
                             Executives
                         </Typography>
-
-                        <Grid container width={'100%'} rowGap={5} justifyContent={'space-evenly'}>
-                            {
-                                club.executives.map(exec => (
-                                    <Grid
-                                        item
-                                        xs={12} sm={4} md={2.4}
-                                        key={exec._id}
-                                        display="flex" // Ensure the Grid item uses flexbox for centering
-                                        justifyContent="center" // Centers horizontally
-                                    >
-                                        <Stack width={'100%'} alignItems={'center'} justifyContent={'center'}>
-                                            <Typography
-                                                variant="body1"
-                                                color={disabled}
-                                                textAlign={'center'}
-                                                sx={{
-                                                    wordWrap: 'break-word',  // Enable word wrapping
-                                                    width: '100%',
-                                                }}>
-                                                {exec.full_name}
-                                            </Typography>
-                                            <Box
-                                                component="img"
-                                                src={exec.image}
-                                                sx={{
-                                                    width: {
-                                                        xs: "35%", sm: "150px", lg: '200px',
-                                                        aspectRatio: "1/1",
-                                                        borderRadius: '50%'
-                                                    }
-                                                }}
-                                                alt='Club executive'
-                                            />
-
-                                            <Typography variant="h6" color={dark} fontWeight={300} textAlign={'center'}>
-                                                {exec.post}
-                                            </Typography>
-                                        </Stack>
-                                    </Grid>
-                                ))
-                            }
+                        <Grid
+                            container
+                            spacing={4}
+                            alignItems={'center'}
+                            justifyContent="center"
+                        >
+                            {club.executives.map((exec, index) => (
+                                <Grid item key={index} xs={12} sm={6} md={3}// Ensure the Grid item uses flexbox for centering
+                                    justifyContent="center" // Centers horizontally
+                                    alignItems={'center'}
+                                    display={'flex'}
+                                    flexDirection={'column'}
+                                >
+                                    <ProfileCard
+                                        imageUrl={exec.image}
+                                        name={exec.full_name}
+                                        role={exec.post}
+                                    />
+                                </Grid>
+                            ))}
                         </Grid>
                     </Stack>
                 }
@@ -171,8 +153,8 @@ const ClubDetail = () => {
                         alignItems: "center",
                         padding: "15px 10px",
                         borderRadius: "15px",
-                        backgroundColor: grey,
-                        width: { xs: '100%', md: '55%' },
+                        backgroundColor: "#FFFFFF",
+                        width: { xs: '100%', md: '90%' },
                         gap: 1.5,
                     }}
                     elevation={3}
