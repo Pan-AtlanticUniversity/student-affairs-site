@@ -1,6 +1,6 @@
 import { Box, createSvgIcon, Grid, IconButton, Paper, Stack, Typography } from '@mui/material';
-import { Banner, Footer, NavBar, ProfileCard } from '../../components';
-import { dark, disabled, grey } from '../../context/theme';
+import { Banner, Footer, NavBar, ProfileCard, TextBox } from '../../components';
+import { accent, dark, disabled, grey } from '../../context/theme';
 import dayjs from 'dayjs';
 import { useLocation } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
@@ -62,14 +62,31 @@ const ClubDetail = () => {
         }}>
             <NavBar route="Clubs" />
 
-            <Box sx={{ position: 'relative' }}>
+            <Box sx={{
+                position: "relative",
+                width: '100%',
+                zIndex: 0,
+                '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    transform: 'translate(-50%, 50%)',
+                    zIndex: -1,
+                    backgroundColor: accent,
+                    width: "clamp(150px, 50vw, 300px)",
+                    aspectRatio: 1,
+                    maxWidth: "350px",
+                    borderRadius: '50%'
+                }
+            }}>
                 <Banner
                     bannerImage={club.image.value}
                     contain={!zoomInImages.includes(club.name)}
                     background={club.image.background}
-                    bannerTitle={club.name}
-                    titleBackground={'primary.main'}
-                    titleColor={grey}
+                />
+                <TextBox
+                    title={club.name}
                 />
             </Box>
 
@@ -99,23 +116,43 @@ const ClubDetail = () => {
                 }}
 
             >
-                <Box>
+                <Box sx={{zIndex: 1}}>
                     {paragraphs.map((paragraph, index) => (
-
-                        <Typography
-                            variant="body1"
-                            color={dark}
-                            textAlign={'left'}
-                            key={index}
-                            paragraph
-                        >{paragraph}</Typography>
+                        <>
+                            <Typography
+                                variant="body1"
+                                color={dark}
+                                textAlign={'left'}
+                                key={index}
+                            >{paragraph}</Typography>
+                            <br />
+                        </>
 
                     ))}
                 </Box>
 
                 {
                     club.executives.length > 0 &&
-                    <Stack gap={'inherit'} width={'100%'}>
+                    <Stack gap={'inherit'} width={'100%'}
+                        sx={{
+                            position: "relative",
+                            zIndex: 0,
+                            overflowX: 'visible',
+                            '&::before': {
+                                content: '""',
+                                position: 'absolute',
+                                top: 0,
+                                right: 0,
+                                transform: 'translate(50%, -50%)',
+                                zIndex: -1,
+                                backgroundColor: 'secondary.main',
+                                width: "clamp(150px, 50vw, 300px)",
+                                aspectRatio: 1,
+                                maxWidth: "350px",
+                                borderRadius: '50%'
+                            }
+                        }}
+                    >
 
                         <Typography variant="h4" fontFamily={"Barlow"} color={dark} width={'100%'} textAlign='center'>
                             Executives

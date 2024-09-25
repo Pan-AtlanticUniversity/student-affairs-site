@@ -63,7 +63,7 @@ const Club: React.FC<ClubProp> = ({ mode, searchQuery, openEditMenu }) => {
     club.name.toLowerCase().includes(searchQuery?.toLowerCase() ?? "")
   );
   return (
-    <>
+    <Stack alignItems={'center'} sx={{ overflowX: 'visible' }}>
       <UnderlinedText text="Clubs at Pan-Atlantic University" />
       <Grid container spacing={3} width={'100%'} zIndex={1} position={'relative'}
         sx={{
@@ -217,7 +217,7 @@ const Club: React.FC<ClubProp> = ({ mode, searchQuery, openEditMenu }) => {
           </Typography>
         )}
       </Grid>
-    </>
+    </Stack>
   );
 }
 

@@ -1,8 +1,8 @@
-import { Stack, Typography } from "@mui/material"
-import { Banner, Footer, NavBar } from "../../components"
+import { Box, Stack, Typography } from "@mui/material"
+import { Banner, Footer, NavBar, TextBox } from "../../components"
 import club1 from '../../assets/images/Clubs and extracurricular/5.jpg';
 import Club from "../../components/club";
-import { grey } from "../../context/theme";
+import { accent, grey } from "../../context/theme";
 
 
 const Clubs = () => {
@@ -15,7 +15,31 @@ const Clubs = () => {
       backgroundSize: "cover",
     }}>
       <NavBar route="Clubs" />
-      <Banner bannerImage={club1} bannerTitle={"School Clubs Here :)"} titleBackground={grey} titleColor={'primary'} />
+
+      <Box sx={{
+        position: "relative",
+        width: '100%',
+        zIndex: 0,
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          transform: 'translate(-50%, 50%)',
+          zIndex: -1,
+          backgroundColor: accent,
+          width: "clamp(150px, 50vw, 300px)",
+          aspectRatio: 1,
+          maxWidth: "350px",
+          borderRadius: '50%'
+        }
+      }}>
+        <Banner bannerImage={club1} />
+        <TextBox
+          title="Be part of the community by joining a club today!"
+        />
+      </Box>
+
 
       <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }}>
         <Typography textAlign="center" lineHeight={1.8} sx={{ zIndex: 1 }}>

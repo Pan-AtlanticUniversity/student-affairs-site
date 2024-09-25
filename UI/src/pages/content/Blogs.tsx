@@ -1,6 +1,6 @@
-import { Stack } from "@mui/material"
-import { Banner, Blog, Footer, NavBar, UnderlinedText } from "../../components"
-import { grey } from "../../context/theme"
+import { Box, Stack } from "@mui/material"
+import { Banner, Blog, Footer, NavBar, TextBox, UnderlinedText } from "../../components"
+import { accent, grey } from "../../context/theme"
 import basketBallGuy from '../../assets/images/image 4.png'
 import speakerImg from '../../assets/icons/speaker.png'
 const Blogs = () => {
@@ -14,17 +14,38 @@ const Blogs = () => {
     }}>
       <NavBar route="Blog" />
 
-      <Banner bannerImage={basketBallGuy} bannerTitle={"Trending news!!!"} titleBackground={grey} titleColor={'primary'} pushDownBanner />
+      <Box sx={{
+        position: "relative",
+        width: '100%',
+        zIndex: 0,
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          transform: 'translate(-50%, 50%)',
+          zIndex: -1,
+          backgroundColor: accent,
+          width: "clamp(150px, 50vw, 300px)",
+          aspectRatio: 1,
+          maxWidth: "350px",
+          borderRadius: '50%'
+        }
+      }}>
+        <Banner bannerImage={basketBallGuy} pushDownBanner />
+        <TextBox
+          title="Trending News!!!"
+        />
 
-      <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }}>
-        <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 } }} gap={5} overflow={'visible'}>
-          <UnderlinedText text="Stay up to date with the latest scoops" image={speakerImg} />
+      </Box>
 
-          <Blog />
-        </Stack>
+      <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: 5 }}>
 
+        <UnderlinedText text="Stay up to date with the latest scoops" image={speakerImg} />
 
+        <Blog />
       </Stack>
+
       <Footer />
     </Stack>
   )

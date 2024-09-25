@@ -1,8 +1,6 @@
 import { Box, Dialog, DialogContent, DialogTitle, Slide, Stack, Typography } from "@mui/material";
-import { Carousel, Footer, NavBar, UnderlinedText } from "../../components";
+import { Carousel, Footer, NavBar, Services, TextBox, UnderlinedText } from "../../components";
 import { accent, dark, grey, primary } from "../../context/theme";
-import speakerImage from '../../assets/icons/speaker.png';
-import Blog from "../../components/Blog";
 import welcome from '../../assets/images/welcome-to-pau.png'
 import chudi from '../../assets/images/chudi.png'
 import people from '../../assets/images/4.jpg'
@@ -73,6 +71,9 @@ const Home = () => {
         }
       }}>
         <Carousel images={[welcome, chudi, people]} />
+        <TextBox
+          title="Welcome to Pan-Atlantic University"
+        />
       </Box>
 
 
@@ -115,14 +116,16 @@ const Home = () => {
               }
             }}
           >
-            <UnderlinedText text="Trending news!!!" image={speakerImage} />
+            <UnderlinedText text="Our Services" />
           </Box>
-          <Blog />
+
+          <Services />
         </Stack>
       </Stack>
-
       {/* Footer Section */}
       <Footer />
+
+
       <Dialog
         fullWidth
         open={open}
