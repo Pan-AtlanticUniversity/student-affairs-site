@@ -115,7 +115,7 @@ import StrathmoreLogo from '../assets/images/transparent-pau-logo.png';
 const Footer = () => {
     return (
 
-        <Box component="footer" width="100%" bgcolor="#002E6D" color="#fff" pt={8} pb={4} sx={{ borderStartStartRadius: 15, borderStartEndRadius: 15 }}>
+        <Box component="footer" width="100%" bgcolor="#002E6D" color="#fff" pt={8} pb={4} sx={{ borderStartStartRadius: 15, borderStartEndRadius: 15 }}zIndex={1}>
             <Stack>
                 {/* Logo */}
                 <Box pl={3}  pb={4} component="img" src={StrathmoreLogo} alt="Strathmore University Logo"
