@@ -11,34 +11,34 @@ interface NavBarProps {
   route: string;
 }
 
-const StyledToolBar = styled(Toolbar)({
+const StyledToolBar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
-  padding: { xs: '10px 0', sm: '10px 0' }, // Adjust padding for better spacing
-});
+  padding: theme.spacing(1.25, 0), // 10px = 1.25 * theme.spacing(8px)
+}));
 
-const NavLinkButton = styled(Button)({
-  color: grey,
+const NavLinkButton = styled(Button)(() => ({
+  color: grey, // Accessing grey color from the theme
   fontSize: '1rem',
-  textTransform: 'Capitalize', // Matching the uppercase style of text
+  textTransform: 'capitalize', // Lowercase 'Capitalize'
   '&:hover': {
-    backgroundColor: 'rgba(255, 255, 255, 0.2)', // On hover, slight white background
-    transition: '0.5s'
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    transition: '0.5s',
   },
-});
+}));
 
-const SupportButton = styled(Button)({
-  border: `1px ${grey} solid`,
-  color: grey,
+const SupportButton = styled(Button)(({ theme }) => ({
+  border: `1px solid ${theme.palette.grey[500]}`, // Access grey color from the theme
+  color: theme.palette.grey[500], // Grey text color from theme
   borderRadius: 5, // Rounded corners
-  textTransform: 'Capitalize',
+  textTransform: 'capitalize', // Use lowercase 'capitalize'
   padding: '10px 20px',
   '&:hover': {
-    backgroundColor: grey, // Slightly darker on hover
-    color: primary,
-    transition: '0.5s'
+    backgroundColor: theme.palette.grey[700], // Darker grey on hover
+    color: theme.palette.primary.main, // Primary color from the theme
+    transition: '0.5s',
   },
-});
+}));
 
 
 interface NavBarProps {

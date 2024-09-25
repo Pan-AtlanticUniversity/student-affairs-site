@@ -12,21 +12,22 @@ interface NavBarProps {
     route: string;
 }
 
-const StyledToolBar = styled(Toolbar)({
+
+const StyledToolBar = styled(Toolbar)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'space-between',
-    padding: { xs: '10px 0', sm: '10px 0' }, // Adjust padding for better spacing
-});
+    padding: theme.spacing(1.25, 0), // 10px = 1.25 * theme.spacing(8px)
+}));
 
-const NavLinkButton = styled(Button)({
-    color: grey,
+const NavLinkButton = styled(Button)(() => ({
+    color: grey, // Accessing grey color from the theme
     fontSize: '1rem',
-    textTransform: 'Capitalize', // Matching the uppercase style of text
+    textTransform: 'capitalize', // Lowercase 'Capitalize'
     '&:hover': {
-        backgroundColor: 'rgba(255, 255, 255, 0.2)', // On hover, slight white background
-        transition: '0.5s'
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        transition: '0.5s',
     },
-});
+}));
 
 
 

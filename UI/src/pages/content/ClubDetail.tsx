@@ -11,7 +11,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
-import { ClubItem } from '../../components/Club';
+import { ClubItem } from '../../components/club';
 
 const ClubDetail = () => {
     const TikTokIcon = createSvgIcon(
