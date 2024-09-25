@@ -124,23 +124,23 @@ const About = () => {
                 }
             }}>
                 <Banner bannerImage={getToKnowUs} />
-                <TextBox title="Get to Know Us" />
+                <TextBox
+                    title="Get to Know Us"
+                    description="The Student Affairs Office is dedicated to supporting you throughout your academic journey at Pan-Atlantic University. If you have any questions, need assistance, or simply wish to chat, our doors are always open. Please feel free to visit our office in person, drop us an email, or call any member of our team. Please note that only emails received from students using their official PAU email addresses will be attended to." />
             </Box>
 
-            <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }}>
+            <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: 'inherit' }}>
 
-                <Typography textAlign="center" lineHeight={1.8} sx={{ zIndex: 1 }}>
-                    The Student Affairs Office is dedicated to supporting you throughout your academic journey at Pan-Atlantic University.
-                    If you have any questions, need assistance, or simply wish to chat, our doors are always open.
-                    <br />
-                    <br />
-                    Please feel free to visit our office in person, drop us an email, or call any member of our team.
-                    Please note that only emails received from students using their official PAU email addresses will be attended to.
+                <Typography textAlign="center" lineHeight={1.8} color={dark} sx={{ display: { xs: 'block', md: 'none' }, zIndex: 1 }}>
+                    Pan-Atlantic University is a private, non-profit institution located in Lekki, Lagos State.
+                    Established in 2002, we evolved from the Lagos Business School to offer a diverse range of programs and initiatives.
+                    Our campuses in Ibeju-Lekki and Ajah provide a setting for academic and personal growth."
                 </Typography>
 
                 <Stack sx={{
                     flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-evenly', alignItems: 'center', gap: 10,
-                    position: "relative", overflow: 'visible'
+                    position: "relative", overflow: 'visible',
+                    marginTop: { md: 10 }
                 }}>
                     <Stack
                         sx={{

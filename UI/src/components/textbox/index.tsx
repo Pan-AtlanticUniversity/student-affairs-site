@@ -18,7 +18,7 @@ const TextBox: React.FC<TextBoxProps> = ({ title, description }) => {
             backgroundColor: grey,
             borderRadius: '15px',
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-            width: { xs: '85%', md: '65%' },
+            width: '85%',
             margin: 'auto', // Center the box horizontally
             position: 'absolute',
             left: '50%',
@@ -31,7 +31,7 @@ const TextBox: React.FC<TextBoxProps> = ({ title, description }) => {
             </Typography>
 
             {
-                description && <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
+                description && <Typography variant="body2" sx={{ display: { xs: 'none', md: 'block' }, lineHeight: 1.8 }}>
                     {description}
                 </Typography>
             }

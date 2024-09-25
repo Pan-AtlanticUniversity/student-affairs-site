@@ -1,6 +1,6 @@
 import { Box, Dialog, DialogContent, DialogTitle, Slide, Stack, Typography } from "@mui/material";
 import { Carousel, Footer, NavBar, Services, TextBox, UnderlinedText } from "../../components";
-import { accent, dark, grey, primary } from "../../context/theme";
+import { accent, dark, grey } from "../../context/theme";
 import welcome from '../../assets/images/welcome-to-pau.png'
 import chudi from '../../assets/images/chudi.png'
 import people from '../../assets/images/4.jpg'
@@ -73,27 +73,28 @@ const Home = () => {
         <Carousel images={[welcome, chudi, people]} />
         <TextBox
           title="Welcome to Pan-Atlantic University"
+          description="Pan-Atlantic University is a private, non-profit institution located in Lekki, Lagos State.
+                                Established in 2002, we evolved from the Lagos Business School to offer a diverse range of programs and initiatives.
+                                Our campuses in Ibeju-Lekki and Ajah provide a setting for academic and personal growth."
         />
       </Box>
 
+      <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: 'inherit' }}>
+        <Typography textAlign="center" lineHeight={1.8} color={dark} sx={{ display: { xs: 'block', md: 'none' }, zIndex: 1 }}>
+          Pan-Atlantic University is a private, non-profit institution located in Lekki, Lagos State.
+          Established in 2002, we evolved from the Lagos Business School to offer a diverse range of programs and initiatives.
+          Our campuses in Ibeju-Lekki and Ajah provide a setting for academic and personal growth."
+        </Typography>
 
-      <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }}>
-        <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 } }} gap={1}>
-          <Typography variant="h4" fontFamily={"Barlow"} color={dark} textAlign={'center'} sx={{ zIndex: 2 }}>
-            What's poppin <span style={{ color: primary }}>PAU!!!</span>
-          </Typography>
-          <Typography textAlign="center" lineHeight={1.8} color="#555">
-            <b>Welcome to the heartbeat of campus life at Pan-Atlantic University!</b>
-            <br /><br />
-            At Student Affairs, we are dedicated to enhancing your campus experience.
-            Whether you need academic support, want to join student organizations, or seek guidance,
-            we’re here to <b>help you succeed </b>
-            and make the most of your time at PAU.
-            <br /><br />
-            We’re committed to fostering a <b>supportive</b> community, ensuring that every student feels <b>connected</b> and <b>empowered</b>.
-            Your journey at PAU is our priority, and we’re here to support you every step of the way.
-          </Typography>
-        </Stack>
+        <Typography textAlign="center" lineHeight={1.8} color={dark} sx={{ zIndex: 1, marginTop: { md: 10 } }}>
+          At Student Affairs, we are dedicated to enhancing your campus experience.
+          Whether you need academic support, want to join student organizations, or seek guidance,
+          we’re here to <b>help you succeed </b>
+          and make the most of your time at PAU.
+          <br /><br />
+          We’re committed to fostering a <b>supportive</b> community, ensuring that every student feels <b>connected</b> and <b>empowered</b>.
+          Your journey at PAU is our priority, and we’re here to support you every step of the way.
+        </Typography>
 
         <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 } }} gap={5} overflow={'visible'}>
           <Box
