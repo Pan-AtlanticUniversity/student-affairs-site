@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
-import { Banner, Footer, NavBar } from '../../components';
-import { dark } from '../../context/theme';
+import { Banner, Footer, NavBar, TextBox } from '../../components';
+import { accent, dark, grey, primary } from '../../context/theme';
 import dayjs from 'dayjs';
 
 import avatar from '../../assets/svgs/default-user.svg';
@@ -19,15 +19,23 @@ const BlogDetail = () => {
     const paragraphs = blog?.content?.split('\n');
 
     return (
-        <Stack minHeight={"100vh"} sx={{ gap: { xs: 5, md: 8 } }}>
+        <Stack minHeight={"100vh"} sx={{
+            gap: { xs: 6, md: 10, lg: 14 },
+            overflowY: "scroll", overflowX: "hidden",
+            backgroundColor: grey,
+            backgroundSize: "cover",
+        }}>
             <NavBar route="Blog" />
-            <Stack sx={{ gap: { xs: 1, md: 5 } }}>
+
+            <Box sx={{ position: 'relative' }}>
                 <Banner bannerImage={blog?.image} />
-                <Typography sx={{ fontSize: { xs: '24px', md: '32px' }, zIndex: 1 }} width={'100%'} textAlign={'center'} fontFamily={'Barlow'} color={dark}>{blog?.name}</Typography>
-            </Stack>
+                <TextBox
+                    title={blog?.name}
+                />
+            </Box>
 
             <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 5, md: 7 } }}>
-                <Stack gap={5} direction={'row'} justifyContent={'space-between'}>
+                <Stack gap={5} direction={'row'} justifyContent={'space-between'} sx={{ zIndex: 2 }}>
                     <Typography variant="caption" color="text.secondary">
                         10 minutes read
                     </Typography>
@@ -35,7 +43,38 @@ const BlogDetail = () => {
                         {blog?.read_count} views
                     </Typography>
                 </Stack>
-                <div>
+                <Box sx={{
+                    position: "relative",
+                    width: '100%',
+                    overflowX: 'visible',
+                    zIndex: 0,
+                    '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        right: 0,
+                        transform: 'rotate(135deg) translate(0, -70%)',
+                        width: { xs: '50%', lg: '300px', xl: '500px' },
+                        aspectRatio: "4/5",
+                        borderRadius: '10px',
+                        border: `15px ${primary} solid`,
+                        opacity: 0.1,
+                        zIndex: -1,
+                    },
+                    '&::after': {
+                        content: '""',
+                        position: 'absolute',
+                        top: '75%',
+                        left: 0,
+                        transform: 'rotate(35deg) translate(-70%, 0)',
+                        width: { xs: '50%', lg: '300px', xl: '500px' },
+                        aspectRatio: "4/5",
+                        borderRadius: '10px',
+                        border: `15px ${accent} solid`,
+                        opacity: 0.2,
+                        zIndex: -1,
+                    },
+                }}>
                     {paragraphs?.map((paragraph, index) => {
                         // Check if the line starts with ## for an <h2> or ### for an <h3>
                         if (paragraph.startsWith('###')) {
@@ -88,7 +127,7 @@ const BlogDetail = () => {
                             );
                         }
                     })}
-                </div>
+                </Box>
                 <Stack gap={5} direction={'row'} justifyContent={'space-between'} alignItems={'center'} >
                     <Stack flexWrap={'wrap'} flexGrow={1} gap={1} direction={'row'} alignItems={'inherit'}>
                         <Box

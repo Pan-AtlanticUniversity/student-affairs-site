@@ -1,13 +1,13 @@
-import { Box, IconButton, Paper, Slider, Stack, Typography } from "@mui/material"
-import { Carousel, Footer, NavBar } from "../../components"
-import { dark, grey } from "../../context/theme"
+import { Box, Grid, IconButton, Paper, Slider, Stack, Typography } from "@mui/material"
+import { Banner, Footer, NavBar, ProfileCard, UnderlinedText } from "../../components"
+import { accent, dark, grey } from "../../context/theme"
 
 import dayjs, { Dayjs } from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { useEffect, useRef, useState } from "react";
-import Title from "../../components/Title";
+// import Title from "../../components/Title";
 
 import PAULogo from '../../assets/svgs/Logo_of_Pan-Atlantic_University.svg';
 import anthemAudio from '../../assets/audio/test_song.mp3';
@@ -15,7 +15,20 @@ import anthemAudio from '../../assets/audio/test_song.mp3';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 
+import getToKnowUs from '../../assets/images/chudi.png';
+import axios from 'axios';
+
+
 const About = () => {
+
+    interface TitleItem {
+        _id: string;
+        post: string;
+        name: string;
+        email: string;
+        phone: string;
+        image: string
+    }
 
     const audioRef = useRef<HTMLAudioElement>(null);
     // media player
@@ -42,6 +55,20 @@ const About = () => {
             };
         }
     }, [audioRef]);
+
+    const [members, setMembers] = useState<TitleItem[]>([]);
+
+    useEffect(() => {
+        const getMembers = async () => {
+            try {
+                const res = await axios.get<TitleItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/member`);
+                setMembers(res.data);
+            } catch (error) {
+                console.log("Error fetching member details:", error);
+            }
+        };
+        getMembers();
+    }, []);
 
     const togglePlayPause = () => {
         if (audioRef.current) {
@@ -72,25 +99,43 @@ const About = () => {
 
     return (
         <Stack minHeight={"100vh"} sx={{
-            gap: { xs: 14, md: 18, lg: 20 },
-            overflowY: "scroll", overflowX: "hidden"
+            gap: { xs: 6, md: 10, lg: 14 },
+            overflowY: "scroll", overflowX: "hidden",
+            backgroundColor: grey,
+            backgroundSize: "cover",
         }}>
             <NavBar route="About" />
-            <Carousel />
+
+            <Box sx={{
+                position: "relative",
+                zIndex: 0,
+                '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    transform: 'translate(-50%, 50%)',
+                    zIndex: -1,
+                    backgroundColor: accent,
+                    width: "clamp(150px, 50vw, 300px)",
+                    aspectRatio: 1,
+                    maxWidth: "350px",
+                    borderRadius: '50%'
+                }
+            }}>
+                <Banner bannerImage={getToKnowUs} bannerTitle={"Get to Know Us"} titleBackground={"primary.main"} titleColor={grey} />
+            </Box>
 
             <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }}>
 
-                <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 } }} gap={3}>
-                    <Typography variant="h4" fontFamily={"Barlow"} color={dark}>
-                        Get to know us
-                    </Typography>
-                    <Typography textAlign="center" lineHeight={1.8}>
-                        Pan-Atlantic University is a private, non-profit institution located in Lekki, Lagos State.
-                        <br />
-                        Established in 2002, we evolved from the Lagos Business School to offer a diverse range of programs and initiatives.
-                        Our campuses in Ibeju-Lekki and Ajah provide a setting for academic and personal growth.
-                    </Typography>
-                </Stack>
+                <Typography textAlign="center" lineHeight={1.8} sx={{ zIndex: 1 }}>
+                    The Student Affairs Office is dedicated to supporting you throughout your academic journey at Pan-Atlantic University.
+                    If you have any questions, need assistance, or simply wish to chat, our doors are always open.
+                    <br />
+                    <br />
+                    Please feel free to visit our office in person, drop us an email, or call any member of our team.
+                    Please note that only emails received from students using their official PAU email addresses will be attended to.
+                </Typography>
 
                 <Stack sx={{
                     flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-evenly', alignItems: 'center', gap: 10,
@@ -120,9 +165,9 @@ const About = () => {
                         }}
                         gap={2}
                     >
-                        <Typography variant="h4" fontFamily={"Barlow"} color={dark}>
-                            School Anthem
-                        </Typography>
+                        <UnderlinedText
+                            text="School Anthem"
+                        />
 
                         <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }} lineHeight={2.2}>
                             We seek the truth with all our mind and heart, At Pan-Atlantic University
@@ -212,18 +257,39 @@ const About = () => {
 
 
                 <Stack sx={{
-                    flexDirection: 'column', alignItems: 'center', gap: 5, zIndex: 1, position: "relative", overflow: 'visible', width: "100%", marginTop: { xs: 10, md: 0 }
+                    flexDirection: 'column', alignItems: 'center', zIndex: 1, position: "relative", overflow: 'visible', width: "100%", marginTop: { xs: 0, md: 0 }
                 }}>
-                    <Typography variant="h4" fontFamily={"Barlow"} color={dark} textAlign={'center'}>
-                        Meet the Student Affairs Team
-                    </Typography>
+                    <UnderlinedText
+                        text="Meet the Student Affairs Team"
+                    />
 
-                    <Title />
+                    <Grid container spacing={4} justifyContent="center" sx={{ marginTop: '32px' }}>
+                        {members.map((profile) => (
+                            <Grid
+                                item
+                                xs={12} sm={4} md={3} lg={2.4}
+                                key={profile._id}
+                                display="flex" // Ensure the Grid item uses flexbox for centering
+                                justifyContent="center" // Centers horizontally
+                                alignItems={'center'}
+                                flexDirection={'column'}
+                            >
+                                <ProfileCard
+                                    imageUrl={profile.image}
+                                    name={profile.name}
+                                    role={profile.post}
+                                    contact={profile.phone}
+                                    mail={profile.email}
+                                />
+                            </Grid>
+                        ))}
+                    </Grid>
+
 
                 </Stack>
             </Stack>
             <Footer />
-        </Stack>
+        </Stack >
     )
 }
 

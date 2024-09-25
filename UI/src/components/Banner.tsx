@@ -72,7 +72,7 @@ const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackgroun
                         whiteSpace: 'nowrap',
                         transform: 'translateX(-50%)',
                         backgroundColor: titleBackground,
-                        padding: { xs: '10px 25px', md: '15px 30px' },
+                        padding: { xs: '10px 25px', md: '15px 40px' },
                         borderRadius: '50px',
                         marginBottom: 2,
                         fontSize: { xs: '1rem', md: '1.2rem' },

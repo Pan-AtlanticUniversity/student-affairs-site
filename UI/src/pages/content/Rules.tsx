@@ -2,7 +2,7 @@ import { Box, Button, Stack, styled, Typography } from "@mui/material"
 import { Banner, Footer, NavBar } from "../../components"
 import { dark, grey } from "../../context/theme"
 import DownloadIcon from '@mui/icons-material/Download';
-import ChudiImage from '../../assets/images/chudi.png';
+import rulesGuy from '../../assets/images/CS-3625-820x400-1.jpg'
 import Smiley from '../../assets/images//smiley.png';
 import GuideLines from '../../assets/svgs/guidelines.svg';
 import DressSense from '../../assets/svgs/dress-sense.svg';
@@ -21,16 +21,16 @@ const StyledButton = styled(Button)({
 
 const About = () => {
     return (
-        <Stack minHeight={"100vh"}
-            sx={{
-                gap: { xs: 14, md: 18, lg: 20 },
-                overflowY: "scroll",
-                overflowX: "hidden"
-            }}>
+        <Stack minHeight={"100vh"} sx={{
+            gap: { xs: 6, md: 10, lg: 14 },
+            overflowY: "scroll", overflowX: "hidden",
+            backgroundColor: grey,
+            backgroundSize: "cover",
+        }}>
             <NavBar route="Rules" />
-            <Banner bannerTitle="Rules and Regulations" titleBackground={grey} titleColor={"primary.main"} bannerImage={ChudiImage} />
+            <Banner bannerImage={rulesGuy} bannerTitle={"Rules and regulations"} titleBackground={'primary.main'} titleColor={grey} />
             <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }} alignItems={'center'}>
-                <Typography color={dark} sx={{ fontSize: { xs: '1rem', md: '1.2rem' }, textAlign: 'center' }}>
+                <Typography color={dark} sx={{ fontSize: { xs: '1rem', md: '1.2rem' }, textAlign: 'center', zIndex: 1 }}>
                     To ensure a smooth experience here at PAU, here are a few guidelines to get you up and going<span>
                         <Box
                             component="img"
