@@ -1,6 +1,6 @@
 import React from 'react';
-import { Avatar, Box, Card, Stack, Typography } from '@mui/material';
-import { dark, disabled, grey } from '../../context/theme';
+import { Avatar, Card, Typography } from '@mui/material';
+import { disabled, grey } from '../../context/theme';
 
 interface ProfileCardProps {
   imageUrl: string;
