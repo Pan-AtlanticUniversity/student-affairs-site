@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/material"
+import { Stack } from "@mui/material"
 import { Banner, Blog, Footer, NavBar, UnderlinedText } from "../../components"
 import { grey } from "../../context/theme"
 import basketBallGuy from '../../assets/images/image 4.png'
