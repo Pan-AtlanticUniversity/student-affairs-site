@@ -86,39 +86,28 @@ const Home = () => {
           Our campuses in Ibeju-Lekki and Ajah provide a setting for academic and personal growth."
         </Typography>
 
-        <Typography textAlign="center" lineHeight={1.8} color={dark} sx={{ zIndex: 1, marginTop: { md: 10 } }}>
-          At Student Affairs, we are dedicated to enhancing your campus experience.
-          Whether you need academic support, want to join student organizations, or seek guidance,
-          we’re here to <b>help you succeed </b>
-          and make the most of your time at PAU.
-          <br /><br />
-          We’re committed to fostering a <b>supportive</b> community, ensuring that every student feels <b>connected</b> and <b>empowered</b>.
-          Your journey at PAU is our priority, and we’re here to support you every step of the way.
-        </Typography>
+        <Stack
+          gap={5} overflow={'visible'}
+          sx={{
+            width: "100%", alignItems: "center", marginTop: 15, position: "relative",
+            overflowX: 'visible',
+            zIndex: 0,
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: '15%',
+              right: 0,
+              transform: 'translate(50%, 0)',
+              zIndex: -1,
+              backgroundColor: 'secondary.main',
+              width: "clamp(150px, 50vw, 300px)",
+              aspectRatio: 1,
+              maxWidth: "350px",
+              borderRadius: '50%'
+            }
+          }} >
 
-        <Stack sx={{ width: "100%", alignItems: "center", marginTop: { md: 4, lg: 0 } }} gap={5} overflow={'visible'}>
-          <Box
-            sx={{
-              position: "relative",
-              width: '100%', overflowX: 'visible',
-              zIndex: 0,
-              '&::before': {
-                content: '""',
-                position: 'absolute',
-                top: 0,
-                right: 0,
-                transform: 'translate(50%, -50%)',
-                zIndex: -1,
-                backgroundColor: 'secondary.main',
-                width: "clamp(150px, 50vw, 300px)",
-                aspectRatio: 1,
-                maxWidth: "350px",
-                borderRadius: '50%'
-              }
-            }}
-          >
-            <UnderlinedText text="Our Services" />
-          </Box>
+          <UnderlinedText text="Our Services" />
 
           <Services />
         </Stack>
