@@ -37,20 +37,17 @@ const Clubs = () => {
         <Banner bannerImage={club1} />
         <TextBox
           title="Be part of the community by joining a club today!"
+          description="Now, this is the heart of campus life.
+            Ready to enrich your university experience? At Pan-Atlantic University, our diverse student clubs are the pulse of student life.
+            If you're passionate about debating, eager to explore new hobbies, or just looking to connect with a community that shares your
+            interests, there's a club waiting for you. All you need to do is find the right one, make lasting friendships, and discover all the amazing opportunities that await you.
+            Get to know all of them below and find your perfect fit"
         />
       </Box>
 
 
-      <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: { xs: 10, md: 15 } }}>
-        <Typography textAlign="center" lineHeight={1.8} sx={{ zIndex: 1 }}>
-          Now, this is the heart of campus life.
-          Ready to enrich your university experience? At Pan-Atlantic University, our diverse student clubs are the pulse of student life.
-          <br />
-          <br />
-          If you're passionate about debating, eager to explore new hobbies, or just looking to connect with a community that shares your
-          interests, there's a club waiting for you. All you need to do is find the right one, make lasting friendships, and discover all the amazing opportunities that await you.
-          Get to know all of them below and find your perfect fit
-        </Typography>
+      <Stack pl={3} pr={3} sx={{ flexDirection: "column", marginTop: 10 }}>
+
         <Club />
 
       </Stack>

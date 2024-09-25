@@ -20,6 +20,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ imageUrl, name, role, contact
         width: 'clamp(250px, 100%, 350px)',
         display: 'flex',
         flexDirection: 'column',
+        backgroundColor: grey,
         alignItems: 'center',
         gap: 0.5,
         height: "100%",

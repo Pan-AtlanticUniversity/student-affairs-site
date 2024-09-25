@@ -64,16 +64,19 @@ const Club: React.FC<ClubProp> = ({ mode, searchQuery, openEditMenu }) => {
   );
   return (
     <Stack alignItems={'center'} sx={{ overflowX: 'visible' }}>
-      <UnderlinedText text="Clubs at Pan-Atlantic University" />
+      <div style={{ zIndex: 2 }}>
+        <UnderlinedText text="Clubs at Pan-Atlantic University" />
+      </div>
+
       <Grid container spacing={3} width={'100%'} zIndex={1} position={'relative'}
         sx={{
           overflowX: 'visible',
           '&::before': {
             content: '""',
             position: 'absolute',
-            top: { xs: '50%', md: '25%' },
+            top: '50%',
             left: { xs: '-50vw', md: '-25%', xl: '-5%' },
-            transform: 'translateY(-10%)  rotate(35deg)',
+            transform: 'rotate(35deg)',
             zIndex: -1,
             border: `15px ${accent} solid`,
             width: { xs: '65vw' },
@@ -85,7 +88,7 @@ const Club: React.FC<ClubProp> = ({ mode, searchQuery, openEditMenu }) => {
           '&::after': {
             content: '""',
             position: 'absolute',
-            top: 0,
+            top: '25%',
             right: 0,
             transform: 'translate(50%, -50%)',
             zIndex: -1,
