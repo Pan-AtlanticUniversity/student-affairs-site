@@ -1,5 +1,5 @@
 import { Box, createSvgIcon, Grid, IconButton, Paper, Stack, Typography } from '@mui/material';
-import { Banner, Footer, NavBar, ProfileCard, TextBox } from '../../components';
+import { Banner, Footer, NavBar, ProfileCard } from '../../components';
 import { dark, disabled, grey } from '../../context/theme';
 import dayjs from 'dayjs';
 import { useLocation } from "react-router-dom";
@@ -67,9 +67,9 @@ const ClubDetail = () => {
                     bannerImage={club.image.value}
                     contain={!zoomInImages.includes(club.name)}
                     background={club.image.background}
-                />
-                <TextBox
-                    title={club.name}
+                    bannerTitle={club.name}
+                    titleBackground={'primary.main'}
+                    titleColor={grey}
                 />
             </Box>
 
@@ -81,7 +81,7 @@ const ClubDetail = () => {
                     overflowY: 'visible',
                     gap: { xs: 5, md: 7 },
                     alignItems: 'center',
-                    zIndex: 0,
+                    zIndex: 1,
                     '&::before': {
                         content: '""',
                         position: 'absolute',
@@ -99,20 +99,19 @@ const ClubDetail = () => {
                 }}
 
             >
-                <div>
+                <Box>
                     {paragraphs.map((paragraph, index) => (
 
                         <Typography
                             variant="body1"
                             color={dark}
-                            zIndex={1}
                             textAlign={'left'}
                             key={index}
                             paragraph
                         >{paragraph}</Typography>
 
                     ))}
-                </div>
+                </Box>
 
                 {
                     club.executives.length > 0 &&
