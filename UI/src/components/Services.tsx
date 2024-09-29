@@ -1,19 +1,36 @@
 import { GridCard, InfoBox } from '../components';
 import { Grid, Stack } from '@mui/material';
-import FIG from '../assets/images/FIG/3.jpg';
-import Sports from '../assets/images/Clubs and extracurricular/3.jpg';
-import Mentor from '../assets/images/Guidance counselling & mentoring/3.jpg';
-import MedicalService from '../assets/images/Medical service_.jpg';
-import Career from '../assets/images/7.jpg';
-import WorkStudy from '../assets/images/1.jpg'
 import { accent, primary } from '../context/theme';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
+interface Service {
+  name: string,
+  image: string,
+  content: string
+}
 
 const Services = () => {
+
+  const [services, setServices] = useState<Service[]>([]);
+
+  useEffect(() => {
+    const getServices = async () => {
+      try {
+        const res = await axios.get<Service[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/services`);
+        setServices(res.data);
+      } catch (error) {
+        console.log("Error fetching services:", error);
+      }
+    };
+
+    getServices();
+  }, []);
+
   return (
     // Updated the margin top to bring the services component closer to the top
     <Stack
-      position={'relative'} overflow={'visible'} zIndex={0}
+      position={'relative'} overflow={'visible'}
       sx={{
         gap: { xs: 10, md: 15 },
         '&::before': {
@@ -31,24 +48,20 @@ const Services = () => {
         }
       }}>
 
-      <Grid container
-        spacing={4}>
-        <GridCard title="Student Affairs Office" imageUrl="https://via.placeholder.com/300x200" onClick={() => alert('Dean of students clicked!')} />
-        <GridCard title="Clubs and Extracurriculars" imageUrl={Sports} onClick={() => alert('Clubs and societies clicked!')} />
-
-        {/* mentoring would be a subsection */}
-        {/* <GridCard title="Guidance and Counselling" imageUrl="https://via.placeholder.com/300x200" onClick={() => alert('Mentoring clicked!')} /> */}
-        <GridCard title="The FIG Programme" imageUrl={FIG} onClick={() => alert('New students clicked!')} />
-        <GridCard title="Career and Internship" imageUrl={Career} onClick={() => alert('Career development services clicked!')} />
-
-        {/* Peer 2 peer to be added as a subsection */}
-        <GridCard title="Work Study Programme" imageUrl={WorkStudy} onClick={() => alert('Student Council clicked!')} />
-        <GridCard title="Mentoring" imageUrl={Mentor} onClick={() => alert('Chaplaincy clicked!')} />
-        <GridCard title="Student Businesses" imageUrl="https://via.placeholder.com/300x200" onClick={() => alert('ICT services clicked!')} />
-        <GridCard title="The PAU Student Policies" imageUrl="https://via.placeholder.com/300x200" onClick={() => alert('Student Council clicked!')} />
-        {/* <GridCard title="Town Hall Meetings" imageUrl="https://via.placeholder.com/300x200" onClick={() => alert('Chaplaincy clicked!')} /> */}
-        <GridCard title="The Student handbook and Code of Conduct" imageUrl="https://via.placeholder.com/300x200" onClick={() => alert('ICT services clicked!')} />
-        <GridCard title="Medical Services" imageUrl={MedicalService} onClick={() => alert('Health services clicked!')} />
+      <Grid
+        container
+        spacing={4}
+        sx={{ zIndex: 1 }}
+      >
+        {
+          services.map(item => (
+            <GridCard
+              title={item.name}
+              imageUrl={item.image ?? "https://via.placeholder.com/300x200"}
+              onClick={() => alert('Dean of students clicked!')}
+            />
+          ))
+        }
       </Grid>
 
       <Grid container spacing={3}
