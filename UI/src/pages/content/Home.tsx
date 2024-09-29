@@ -45,7 +45,7 @@ const Home = () => {
 
   return (
     <Stack minHeight={"100vh"} sx={{
-      gap: { xs: 6, md: 10, lg: 14 },
+      gap: { xs: 6, md: 4, lg: 2 },
       overflowY: "scroll", overflowX: "hidden",
       backgroundColor: grey,
       backgroundSize: "cover",

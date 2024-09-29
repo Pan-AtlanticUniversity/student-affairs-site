@@ -26,7 +26,7 @@ const theme: ThemeOptions = createTheme({
   },
 });
 
-export const primary = "#26315F";
+export const primary = "#2e3a6e";
 export const purple = "#A673B1";
 export const accent = "#18BC9C";
 export const grey = "#F8F8FF";
