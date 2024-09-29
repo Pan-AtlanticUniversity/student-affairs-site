@@ -46,6 +46,10 @@ function App() {
         path="/admin"
         element={<Admins />}
       />
+      <Route
+        path="/services/:service"
+        element={<BlogDetail />}
+      />
     </Routes>
   )
 }

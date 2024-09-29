@@ -3,8 +3,9 @@ import { Grid, Stack } from '@mui/material';
 import { accent, primary } from '../context/theme';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-interface Service {
+export interface ServiceInterface {
   name: string,
   image: string,
   content: string
@@ -12,12 +13,13 @@ interface Service {
 
 const Services = () => {
 
-  const [services, setServices] = useState<Service[]>([]);
+  const [services, setServices] = useState<ServiceInterface[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getServices = async () => {
       try {
-        const res = await axios.get<Service[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/services`);
+        const res = await axios.get<ServiceInterface[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/services`);
         setServices(res.data);
       } catch (error) {
         console.log("Error fetching services:", error);
@@ -58,7 +60,7 @@ const Services = () => {
             <GridCard
               title={item.name}
               imageUrl={item.image ?? "https://via.placeholder.com/300x200"}
-              onClick={() => alert('Dean of students clicked!')}
+              onClick={() => navigate(`/services/${item.name}`, { state: { service: item } })}
             />
           ))
         }
