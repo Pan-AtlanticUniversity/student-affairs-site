@@ -89,7 +89,7 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
 
           {/* Support Button */}
           <SupportButton
-            onClick={() => window.location.href = 'mailto:studentaffairs@pau.edu.ng?subject=Know%20Your%20Mentor'}
+            onClick={() => window.location.href = 'mailto:studentaffairs@pau.edu.ng?subject=Contact%20Us%20'}
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
             Contact Us!

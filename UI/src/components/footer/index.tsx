@@ -57,24 +57,58 @@ const Footer = () => {
                         Quick Links
                     </Typography>
                     <Stack spacing={1} pt={2}>
-                        {[
-                            "Chaplaincy", "Guidance & Counseling",
-                            "Student Handbook & Policies",
-                            "Know Your Mentor"
-                        ].map((link, index) => (
-                            <Link
-                                key={index}
-                                fontFamily={'Barlow'}
-                                href={`#${link.toLowerCase().replace(/ & | /g, '-')}`} // Anchor link pattern
-                                sx={{
-                                    textDecoration: 'none',
-                                    color: "#ffffff",
-                                    '&:hover': { color: grey[100] }
-                                }}
-                            >
-                                {link}
-                            </Link>
-                        ))}
+                        <Link
+
+                            fontFamily={'Barlow'}
+                            href={"Chaplaincy".toLowerCase().replace(/ & | /g, '-')} // Anchor link pattern
+                            sx={{
+                                textDecoration: 'none',
+                                color: grey,
+                                '&:hover': { color: grey[100] }
+                            }}
+                        >
+                            Chaplaincy
+                        </Link>
+
+                        <Link
+
+                            fontFamily={'Barlow'}
+                            href={"Guidance & Counseling".toLowerCase().replace(/ & | /g, '-')} // Anchor link pattern
+                            sx={{
+                                textDecoration: 'none',
+                                color: grey,
+                                '&:hover': { color: grey[100] }
+                            }}
+                        >
+                            Guidance & Counseling
+                        </Link>
+
+                        <Link
+
+                            fontFamily={'Barlow'}
+                            href={"/rules"} // Anchor link pattern
+                            sx={{
+                                textDecoration: 'none',
+                                color: grey,
+                                '&:hover': { color: grey[100] }
+                            }}
+                        >
+                            Student Handbook & Policies
+                        </Link>
+
+                        <Link
+
+                            fontFamily={'Barlow'}
+                            href={'mailto:studentaffairs@pau.edu.ng?subject=Know%20your%20mentor'} // Anchor link pattern
+                            sx={{
+                                textDecoration: 'none',
+                                color: grey,
+                                '&:hover': { color: grey[100] }
+                            }}
+                        >
+                            Know Your Mentor
+                        </Link>
+
                     </Stack>
                 </Grid>
 
@@ -155,7 +189,7 @@ const Footer = () => {
             </Grid>
 
             {/* Divider */}
-            <Divider sx={{ bgcolor: '#ffffff', my: 4 }} />
+            <Divider sx={{ bgcolor: grey, my: 4 }} />
 
             {/* Legal Section */}
             <Grid container justifyContent="center">
@@ -168,10 +202,10 @@ const Footer = () => {
                             '&:hover': { color: grey[300] }
                         }}
                     >
-                        <Link href="#privacy-policy" sx={{ color: '#ffffff', textDecoration: 'none', '&:hover': { color: grey[100] } }}>
+                        <Link href="#privacy-policy" sx={{ color: grey, textDecoration: 'none', '&:hover': { color: grey[100] } }}>
                             Privacy Policy
                         </Link> |
-                        <Link href="#terms-of-service" sx={{ pl: 0.35, color: '#ffffff', textDecoration: 'none', '&:hover': { color: grey[100] } }}>
+                        <Link href="#terms-of-service" sx={{ pl: 0.35, color: grey, textDecoration: 'none', '&:hover': { color: grey[100] } }}>
                             Terms of Service
                         </Link>
                     </Typography>
