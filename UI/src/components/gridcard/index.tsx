@@ -43,6 +43,7 @@ const GridCard: React.FC<GridCardProps> = ({ title, imageUrl, content, date, ext
         component="img"
         height="100%"
         image={imageUrl}
+        loading="lazy"
         alt={title}
         sx={{
           borderRadius: '8px', // Rounded corners for the image
