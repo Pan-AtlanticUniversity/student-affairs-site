@@ -89,6 +89,7 @@ const Services = () => {
             title="Pan-Atlantic University Chaplaincy"
             content="Strathmore University Leos popularly known as Strathmore Leos was founded in 2003. It consists of two teams, the sevens team and the fifteens’ team with an involvement of over 60 players."
             buttonText="Find out more"
+            onClick={() => window.location.href = "https://pau.edu.ng/chaplaincy/"}
           />
         </Grid>
         <Grid item xs={12} md={6}>
