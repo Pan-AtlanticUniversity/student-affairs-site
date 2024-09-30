@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { Banner, Footer, NavBar, TextBox } from '../../components';
-import { accent, dark, grey, primary } from '../../context/theme';
+import { accent, dark, grey } from '../../context/theme';
 import { ServiceInterface } from '../../components/Services'
 
 const ServiceDetail = () => {
@@ -54,19 +54,6 @@ const ServiceDetail = () => {
                     width: '100%',
                     overflowX: 'visible',
                     zIndex: 0,
-                    '&::before': {
-                        content: '""',
-                        position: 'absolute',
-                        top: 0,
-                        right: 0,
-                        transform: 'rotate(135deg) translate(0, -70%)',
-                        width: { xs: '50%', lg: '300px', xl: '500px' },
-                        aspectRatio: "4/5",
-                        borderRadius: '10px',
-                        border: `15px ${primary} solid`,
-                        opacity: 0.1,
-                        zIndex: -1,
-                    },
                     '&::after': {
                         content: '""',
                         position: 'absolute',
