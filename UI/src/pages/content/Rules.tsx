@@ -95,7 +95,10 @@ const About = () => {
                                 and professional environment on campus.
                             </Typography>
 
-                            <StyledButton variant="contained" endIcon={<DownloadIcon />}>Get full PDF</StyledButton>
+                            <StyledButton variant="contained" endIcon={<DownloadIcon />}
+                                onClick={() => {
+                                    window.open('https://drive.google.com/file/d/1FbIo1D9MY-68kvNQRYMCsIGH-YEBtyNQ/view?usp=sharing', '_blank');
+                                }}>Get full PDF</StyledButton>
                         </Stack>
                         <Box
                             sx={{
@@ -191,7 +194,11 @@ const About = () => {
                                 PAU without a scratch and come out victorious and confident!
                             </Typography>
 
-                            <StyledButton variant="contained" endIcon={<DownloadIcon />}>Get full PDF</StyledButton>
+                            <StyledButton variant="contained" endIcon={<DownloadIcon />}
+                                onClick={() => {
+                                    window.open('https://drive.google.com/file/d/1X5rna2wlYiHAsj-aEVlb1MAqRoFkKxbZ/view?usp=sharing', '_blank');
+                                }}
+                            >Get full PDF</StyledButton>
                         </Stack>
 
                     </Stack>
