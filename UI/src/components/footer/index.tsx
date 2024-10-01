@@ -23,7 +23,7 @@ const Footer = () => {
                 container
                 spacing={5}
                 justifyContent="space-between"
-                alignItems="flex-start"
+                sx={{ alignItems: { xs: 'center', md: 'flex-start' } }}
                 px={{ xs: 3, md: 6 }}
             >
                 {/* Left Section: Logo and Name */}
@@ -53,14 +53,15 @@ const Footer = () => {
 
                 {/* Quick Links */}
                 <Grid item xs={12} md={3}>
-                    <Typography variant="h6" fontFamily={'Barlow'} color="inherit">
+                    <Typography variant="h6" fontFamily={'Barlow'} color="inherit" sx={{ textAlign: { xs: 'center', md: 'start' } }}>
                         Quick Links
                     </Typography>
-                    <Stack spacing={1} pt={2}>
+                    <Stack spacing={1} pt={2} sx={{ alignItems: { xs: 'center', md: 'start' } }}>
                         <Link
 
                             fontFamily={'Barlow'}
-                            href={"Chaplaincy".toLowerCase().replace(/ & | /g, '-')} // Anchor link pattern
+                            href={"https://pau.edu.ng/chaplaincy/"} // Anchor link pattern
+                            target={"_blank"}
                             sx={{
                                 textDecoration: 'none',
                                 color: grey,
@@ -73,7 +74,8 @@ const Footer = () => {
                         <Link
 
                             fontFamily={'Barlow'}
-                            href={"Guidance & Counseling".toLowerCase().replace(/ & | /g, '-')} // Anchor link pattern
+                            href={"#"} // Anchor link pattern
+                            target={"_blank"}
                             sx={{
                                 textDecoration: 'none',
                                 color: grey,
@@ -86,7 +88,8 @@ const Footer = () => {
                         <Link
 
                             fontFamily={'Barlow'}
-                            href={"/rules"} // Anchor link pattern
+                            href={"https://drive.google.com/file/d/1X5rna2wlYiHAsj-aEVlb1MAqRoFkKxbZ/view?usp=sharing"} // Anchor link pattern
+                            target={"_blank"}
                             sx={{
                                 textDecoration: 'none',
                                 color: grey,
@@ -113,17 +116,17 @@ const Footer = () => {
                 </Grid>
 
                 {/* Contact Information */}
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={3} sx={{ textAlign: { xs: 'center', md: 'start' } }}>
                     <Typography variant="h6" fontFamily={'Barlow'} color="inherit">
                         Contact Information
                     </Typography>
-                    <Typography pt={2} variant="body2" color={grey[300]} fontFamily={'Barlow'}>
+                    <Typography pt={2} variant="body2" color={grey[300]} fontFamily={'Barlow'} sx={{ textAlign: { xs: 'center', md: 'start' } }}>
                         Email: studentaffairs@pau.edu.ng
                     </Typography>
-                    <Typography variant="body2" color={grey[300]} fontFamily={'Barlow'}>
+                    <Typography variant="body2" color={grey[300]} fontFamily={'Barlow'} sx={{ textAlign: { xs: 'center', md: 'start' } }}>
                         Phone: +234 123 456 789, +234 987 654 321
                     </Typography>
-                    <Typography variant="body2" color={grey[300]} fontFamily={'Barlow'}>
+                    <Typography variant="body2" color={grey[300]} fontFamily={'Barlow'} sx={{ textAlign: { xs: 'center', md: 'start' } }}>
                         Address: Pan-Atlantic University, Km 52 Lekki-Epe Expressway, Ibeju-Lekki, Lagos, Nigeria
                     </Typography>
                 </Grid>

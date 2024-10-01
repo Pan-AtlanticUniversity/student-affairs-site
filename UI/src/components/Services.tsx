@@ -86,18 +86,22 @@ const Services = () => {
         }}>
         <Grid item xs={12} md={6}>
           <InfoBox
-            title="Pan-Atlantic University Chaplaincy"
-            content="Strathmore University Leos popularly known as Strathmore Leos was founded in 2003. It consists of two teams, the sevens team and the fifteens’ team with an involvement of over 60 players."
+            title="Get To Know More About Us"
+            content="At Pan-Atlantic University, we are dedicated to fostering academic excellence, personal growth, and innovation. Discover how we are shaping the future through education, research, and leadership, and learn more about the values that guide our institution."
             buttonText="Find out more"
-            onClick={() => window.location.href = "https://pau.edu.ng/chaplaincy/"}
+            onClick={() => navigate('/about')}
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <InfoBox
             title="The Student Handbook and Code of Conduct"
-            content="Higher Education Loans Board (HELB) is currently receiving applications for Diplomas, Undergraduate, and Post-graduate applicants."
+            content="Understanding the processes and guidelines that shape your experience at Pan-Atlantic University is essential for a smooth and successful academic journey.
+"
             buttonText="Download Here"
-            onClick={() => alert('to add feature that downloads the doc.')}
+
+            onClick={() => {
+              window.open('https://drive.google.com/file/d/1X5rna2wlYiHAsj-aEVlb1MAqRoFkKxbZ/view?usp=sharing', '_blank');
+            }}
           />
         </Grid>
       </Grid>
