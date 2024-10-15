@@ -45,7 +45,7 @@ const Admins = () => {
     const formData = new FormData(event.currentTarget);
     const formJson = Object.fromEntries((formData).entries());
 
-    if (selectedBlog) {
+    if (selectedBlog?._id) {
       try {
         await axios.patch<BlogItem>(
           `${import.meta.env.VITE_BACKEND_HOST}/api/v1/blog/${selectedBlog._id}`,
@@ -62,7 +62,6 @@ const Admins = () => {
         console.error("Error uploading blog:", error);
       }
     } else {
-      console.log(formJson)
       try {
         await axios.post<BlogItem>(
           `${import.meta.env.VITE_BACKEND_HOST}/api/v1/blog`,

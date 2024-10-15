@@ -74,6 +74,10 @@ export const updateBlog = async (req: Request, res: Response) => {
       blogDir,
       files.image[0].filename.replace(/ /g, "-")
     );
+
+    clubImagePath = `${
+      process.env.BACKEND_ROUTE as unknown as string
+    }/${clubImagePath.replace(/\\/g, "/")}`;
   } else {
     clubImagePath = image;
   }
@@ -86,9 +90,7 @@ export const updateBlog = async (req: Request, res: Response) => {
         name,
         content,
         author,
-        image: `${
-          process.env.BACKEND_ROUTE as unknown as string
-        }/${clubImagePath.replace(/\\/g, "/")}`,
+        image: clubImagePath,
       },
       {
         new: true,

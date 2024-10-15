@@ -41,7 +41,7 @@ const GridCard: React.FC<GridCardProps> = ({ title, imageUrl, content, date, ext
     >
       <CardMedia
         component="img"
-        height="100%"
+        height="95%"
         image={imageUrl}
         loading="lazy"
         alt={title}
