@@ -10,6 +10,7 @@ import BlogDetail from "./content/BlogDetail";
 import ClubDetail from "./content/ClubDetail";
 import ForgotPassword from "./auth/ForgotPassword";
 import ServiceDetail from "./content/ServiceDetail";
+import Mentorship from "./content/Mentorship";
 
 export {
     Admins,
@@ -23,5 +24,6 @@ export {
     BlogDetail,
     ClubDetail,
     ForgotPassword,
-    ServiceDetail
+    ServiceDetail,
+    Mentorship
 }
