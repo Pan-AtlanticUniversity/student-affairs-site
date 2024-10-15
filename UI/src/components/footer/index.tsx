@@ -112,6 +112,32 @@ const Footer = () => {
                             Know Your Mentor
                         </Link>
 
+                        <Link
+
+                            fontFamily={'Barlow'}
+                            sx={{
+                                textDecoration: 'none',
+                                color: grey,
+                                '&:hover': { color: grey[100] }
+                            }}
+                            onClick = {() => alert('Comig soon!')}
+                        >
+                            Student Council
+                        </Link>
+
+                        <Link
+
+                            fontFamily={'Barlow'}
+                            sx={{
+                                textDecoration: 'none',
+                                color: grey,
+                                '&:hover': { color: grey[100] }
+                            }}
+                            onClick = {() => alert('Coming soon!')}
+                        >
+                            Student Businesses
+                        </Link>
+
                     </Stack>
                 </Grid>
 

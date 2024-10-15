@@ -14,6 +14,8 @@ import ProfileCard from "./profileCard";
 import UnderlinedText from "./typography";
 import AdminNavBar from "./AdminNavBar";
 import Blog from "./Blog";
+import MentorshipInfo from "./mentorship";
+import Faq from "./faq"
 
 export {
   AuthNavBar,
@@ -32,4 +34,6 @@ export {
   UnderlinedText,
   AdminNavBar,
   Blog,
+  MentorshipInfo,
+  Faq
 };

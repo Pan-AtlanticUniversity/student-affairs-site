@@ -5,5 +5,6 @@ import Blog from "./blog.model";
 import Date from "./date.model";
 import Member from "./member.model";
 import Service from "./service.model";
+import Mentor from "./mentor.model";
 
-export { User, Book, Club, Blog, Date, Member, Service };
+export { User, Book, Club, Blog, Date, Member, Service, Mentor};
