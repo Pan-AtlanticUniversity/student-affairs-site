@@ -148,9 +148,8 @@
 
 // export default Mentorship
 import { Box, Grid, Stack, Typography } from "@mui/material";
-import { Banner, Footer, InfoBox, MentorshipInfo, NavBar, ProfileCard, TextBox, UnderlinedText } from "../../components";
-import { accent, dark, grey } from "../../context/theme";
-import mentorship from '../../assets/images/Guidance counselling & mentoring/1.jpg';
+import { Banner, Footer, MentorshipInfo, NavBar, ProfileCard, TextBox, UnderlinedText } from "../../components";
+import { accent, grey } from "../../context/theme";
 import image1 from '../../assets/images/Guidance counselling & mentoring/3.jpg';
 
 import image3 from '../../assets/images/5.jpg';
@@ -212,9 +211,9 @@ const Mentorship = () => {
             </Box>
 
             {/* Info Section */}
-            <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: 'inherit' }} alignItems="center">
+            <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: 'inherit', zIndex: 1 }} alignItems="center">
                 {/*  */}
-                <Grid container spacing={4} alignItems="center" zIndex={1}>
+                <Grid container spacing={4} alignItems="center">
                     <Grid item xs={12} md={6}>
                         <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', fontSize: { xs: '1rem', md: '1.25rem' } }}>
                             What is the mentorship program about?

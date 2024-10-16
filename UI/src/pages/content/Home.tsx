@@ -1,6 +1,6 @@
 import { Box, Dialog, DialogContent, DialogTitle, Slide, Stack, Typography } from "@mui/material";
-import { Carousel, Faq, Footer, NavBar, Services, TextBox, UnderlinedText } from "../../components";
-import { accent, dark, grey } from "../../context/theme";
+import { Faq, Footer, NavBar, Services, TextBox, UnderlinedText } from "../../components";
+import { dark, grey } from "../../context/theme";
 import videoSource from "../../assets/video/SA-video.mp4";
 import Confetti from "react-confetti";
 import { TransitionProps } from "@mui/material/transitions";
@@ -52,21 +52,7 @@ const Home = () => {
 
       <Box sx={{
         position: "relative",
-        width: '100%',
-        zIndex: 0,
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          transform: 'translate(-50%, 50%)',
-          zIndex: -1,
-          backgroundColor: accent,
-          width: "clamp(150px, 50vw, 300px)",
-          aspectRatio: 1,
-          maxWidth: "350px",
-          borderRadius: '50%'
-        }
+        width: '100%'
       }}>
         <video
           //had to reencode the video
@@ -86,20 +72,20 @@ const Home = () => {
         />
         <TextBox
           title="Welcome to PAU Student Affairs!"
-          description="Student Affairs is that part of PAU that helps you make the most of your university experience. From personal growth to academic guidance, campus activities, and community building, we are your one-stop shop for the resources, opportunities, and support you need to succeed and thrive!"
+          description="Student Affairs is that part of PAU that helps you make the most of your university experience. From personal growth to academic guidance, campus activities, and community building, we are your one-stop shop for the resources, opportunities, and support you need to succeed andthrive!"
         />
       </Box>
 
 
-      <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: 'inherit' }}>
+      <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: 'inherit', alignItems: 'center' }}>
         <Typography textAlign="center" lineHeight={1.8} color={dark} sx={{ display: { xs: 'block', md: 'none' }, zIndex: 1 }}>
-          Student Affairs is that part of PAU that helps you make the most of your university experience. From personal growth to academic guidance, campus activities, and community building, we are your one-stop shop for the resources, opportunities, and support you need to succeed and thrive!
+          Student Affairs is that part of PAU that helps you make the most of your university experience. From personal growth to academic guidance, campus activities, and community building, we are your one-stop shop for the resources, opportunities, and support you need to succeed and thrive!
         </Typography>
 
         <Stack
           gap={5} overflow={'visible'}
           sx={{
-            width: "100%", alignItems: "center", marginTop:{xs:5, md:15}, position: "relative",
+            width: "100%", alignItems: "center", marginTop: { xs: 5, md: 15 }, position: "relative",
             overflowX: 'visible',
             zIndex: 0,
             '&::before': {

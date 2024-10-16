@@ -1,6 +1,6 @@
 import { Box, Grid, Typography, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { grey } from '../../context/theme';
+import { disabled, grey } from '../../context/theme';
 
 const faqs = [
   {
@@ -53,23 +53,25 @@ const Faq = () => {
   return (
     <Box
       sx={{
-        padding: { xs: 2, sm: 4, md: 6 },
         backgroundColor: grey,
         borderRadius: '15px',
-        margin: { xs: 1, sm: 2, md: 3 },
+        marginTop: 6,
         width: '100%',
         maxWidth: { xs: '100%', sm: '90%', md: '100%' },
-        mx: 'auto',
+        paddingInline: 0.5
       }}
     >
+
       <Typography
         variant="h4"
         gutterBottom
         sx={{
+          fontFamily: 'Barlow',
           fontSize: { xs: '1.5rem', md: '1.95rem' },
           position: 'relative',
           display: 'inline-block',
           textAlign: 'center',
+          fontWeight: 'semi-bold',
           '::after': {
             content: '""',
             display: 'block',
@@ -85,15 +87,15 @@ const Faq = () => {
       </Typography>
 
       {/* FAQ section */}
-      <Grid container spacing={2} sx={{ mt: 4 }}>
+      <Grid container spacing={3} sx={{ mt: 4 }}>
         {faqs.map((faq, index) => (
           <Grid item xs={12} key={index}>
-            <Accordion sx={{backgroundColor: grey}}>
+            <Accordion sx={{ backgroundColor: grey }}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography sx={{ fontWeight: 'bold' }}>{faq.question}</Typography>
+                <Typography sx={{ fontWeight: '600' }}>{faq.question}</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>{faq.answer}</Typography>
+                <Typography color={disabled}>{faq.answer}</Typography>
               </AccordionDetails>
             </Accordion>
           </Grid>

@@ -2,7 +2,7 @@ import { Box, Grid, Typography, CardMedia } from '@mui/material';
 import image1 from '../../assets/images/FIG/1.jpg';
 import image2 from '../../assets/images/Guidance counselling & mentoring/2.jpg';
 import image3 from '../../assets/images/14.jpg';
-import { accent, grey } from '../../context/theme';
+import { grey } from '../../context/theme';
 
 const MentorshipInfo = () => {
     return (
@@ -15,6 +15,7 @@ const MentorshipInfo = () => {
             backgroundColor: grey,
             borderRadius: '15px',
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            zIndex: 1
 
         }}>
             <Typography
