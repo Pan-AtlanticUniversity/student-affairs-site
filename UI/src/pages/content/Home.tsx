@@ -54,22 +54,15 @@ const Home = () => {
         position: "relative",
         width: '100%'
       }}>
-        <video
-          //had to reencode the video
-          src={videoSource} // Replace with your video source path
-          autoPlay // the video plays automatically
-          muted // no sound
-          loop // plays continuosly
-          // controls
-          // preload="auto"
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover', // Ensures the video covers the entire space
-            backgroundColor: 'black',
-            // border: '1px solid red' // for visibility
-          }}
-        />
+        <video style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'contain', // Ensures the video covers the entire space
+          backgroundColor: 'black',
+          // border: '1px solid red' // for visibility
+        }} autoPlay muted loop playsInline>
+          <source src={videoSource} type="video/mp4" />
+        </video>
         <TextBox
           title="Welcome to PAU Student Affairs!"
           description="Student Affairs is that part of PAU that helps you make the most of your university experience. From personal growth to academic guidance, campus activities, and community building, we are your one-stop shop for the resources, opportunities, and support you need to succeed andthrive!"
