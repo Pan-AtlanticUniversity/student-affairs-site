@@ -8,10 +8,20 @@ interface BannerProps {
     bannerImage?: string;
     pushDownBanner?: boolean;
     contain?: boolean;
-    background?: string
+    background?: string;
+    bannerPosition?: string; // New prop for dynamic positioning
 }
 
-const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackground, bannerImage, pushDownBanner, contain, background }) => {
+const Banner: React.FC<BannerProps> = ({
+    bannerTitle,
+    titleColor,
+    titleBackground,
+    bannerImage,
+    pushDownBanner,
+    contain,
+    background,
+    bannerPosition // Destructure new prop
+}) => {
     return (
         <Container
             sx={{
@@ -37,12 +47,11 @@ const Banner: React.FC<BannerProps> = ({ bannerTitle, titleColor, titleBackgroun
                     src={bannerImage}
                     sx={{
                         objectFit: contain ? "contain" : "cover",
-                        objectPosition: pushDownBanner ? 'top' : 'center',
+                        objectPosition: bannerPosition || (pushDownBanner ? 'top' : 'center'), // Use bannerPosition or fallback
                         width: '100%',
                         height: '100%',
                         borderRadius: "10px",
-                        backgroundColor: background ?? '#fff'
-
+                        backgroundColor: background ?? '#fff',
                     }}
                     alt="Banner"
                 />

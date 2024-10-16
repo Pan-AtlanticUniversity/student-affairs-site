@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { About, Admins, BlogDetail, Blogs, ClubDetail, Clubs, ForgotPassword, Home, Login, Register, Rules, ServiceDetail } from "./pages"
+import { About, Admins, BlogDetail, Blogs, ClubDetail, Clubs, ForgotPassword, Home, Login, Mentorship, Register, Rules, ServiceDetail } from "./pages"
 
 function App() {
 
@@ -49,6 +49,11 @@ function App() {
       <Route
         path="/services/:service"
         element={<ServiceDetail />}
+      />
+
+      <Route
+        path="/mentorship"
+        element={<Mentorship />}
       />
     </Routes>
   )

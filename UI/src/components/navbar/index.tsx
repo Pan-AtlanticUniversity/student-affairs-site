@@ -85,6 +85,7 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
             <NavLinkButton onClick={() => handleNavigation('/clubs')}>Clubs</NavLinkButton>
             <NavLinkButton onClick={() => handleNavigation('/blogs')}>Blog</NavLinkButton>
             <NavLinkButton onClick={() => handleNavigation('/rules')}>Rules</NavLinkButton>
+            <NavLinkButton onClick={() => handleNavigation('/mentorship')}>Mentorship</NavLinkButton>
           </Stack>
 
           {/* Support Button */}
@@ -120,8 +121,9 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
             <StyledMenuItem onClick={() => handleNavigation('/clubs')}>Clubs</StyledMenuItem>
             <StyledMenuItem onClick={() => handleNavigation('/blogs')}>Blog</StyledMenuItem>
             <StyledMenuItem onClick={() => handleNavigation('/rules')}>Rules</StyledMenuItem>
+            <StyledMenuItem onClick={() => handleNavigation('/mentorship')}>Mentorship</StyledMenuItem>
             <StyledMenuItem
-              onClick={() => window.location.href = 'mailto:studentaffairs@pau.edu.ng?subject=Know%20Your%20Mentor'}
+              onClick={() => window.location.href = 'mailto:studentaffairs@pau.edu.ng?subject=Contact%20Us%20'}
               sx={{ background: disabled, color: grey }}
             >
               Contact Us

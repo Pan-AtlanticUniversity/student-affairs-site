@@ -1,13 +1,11 @@
 import { Box, Dialog, DialogContent, DialogTitle, Slide, Stack, Typography } from "@mui/material";
-import { Carousel, Footer, NavBar, Services, TextBox, UnderlinedText } from "../../components";
-import { accent, dark, grey } from "../../context/theme";
-import welcome from '../../assets/images/welcome-to-pau.png'
-import chudi from '../../assets/images/chudi.png'
-import people from '../../assets/images/4.jpg'
-
+import { Faq, Footer, NavBar, Services, TextBox, UnderlinedText } from "../../components";
+import { dark, grey } from "../../context/theme";
+import videoSource from "../../assets/video/SA-video.mp4";
 import Confetti from "react-confetti";
 import { TransitionProps } from "@mui/material/transitions";
 import { forwardRef, useEffect, useState } from "react";
+
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
@@ -54,42 +52,40 @@ const Home = () => {
 
       <Box sx={{
         position: "relative",
-        width: '100%',
-        zIndex: 0,
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          transform: 'translate(-50%, 50%)',
-          zIndex: -1,
-          backgroundColor: accent,
-          width: "clamp(150px, 50vw, 300px)",
-          aspectRatio: 1,
-          maxWidth: "350px",
-          borderRadius: '50%'
-        }
+        width: '100%'
       }}>
-        <Carousel images={[welcome, chudi, people]} />
+        <video
+          //had to reencode the video
+          src={videoSource} // Replace with your video source path
+          autoPlay // the video plays automatically
+          muted // no sound
+          loop // plays continuosly
+          // controls
+          // preload="auto"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover', // Ensures the video covers the entire space
+            backgroundColor: 'black',
+            // border: '1px solid red' // for visibility
+          }}
+        />
         <TextBox
-          title="Welcome to Pan-Atlantic University"
-          description="Pan-Atlantic University is a private, non-profit institution located in Lekki, Lagos State.
-                                Established in 2002, we evolved from the Lagos Business School to offer a diverse range of programs and initiatives.
-                                Our campuses in Ibeju-Lekki and Ajah provide a setting for academic and personal growth."
+          title="Welcome to PAU Student Affairs!"
+          description="Student Affairs is that part of PAU that helps you make the most of your university experience. From personal growth to academic guidance, campus activities, and community building, we are your one-stop shop for the resources, opportunities, and support you need to succeed andthrive!"
         />
       </Box>
 
-      <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: 'inherit' }}>
+
+      <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: 'inherit', alignItems: 'center' }}>
         <Typography textAlign="center" lineHeight={1.8} color={dark} sx={{ display: { xs: 'block', md: 'none' }, zIndex: 1 }}>
-          Pan-Atlantic University is a private, non-profit institution located in Lekki, Lagos State.
-          Established in 2002, we evolved from the Lagos Business School to offer a diverse range of programs and initiatives.
-          Our campuses in Ibeju-Lekki and Ajah provide a setting for academic and personal growth."
+          Student Affairs is that part of PAU that helps you make the most of your university experience. From personal growth to academic guidance, campus activities, and community building, we are your one-stop shop for the resources, opportunities, and support you need to succeed and thrive!
         </Typography>
 
         <Stack
           gap={5} overflow={'visible'}
           sx={{
-            width: "100%", alignItems: "center", marginTop: 15, position: "relative",
+            width: "100%", alignItems: "center", marginTop: { xs: 5, md: 15 }, position: "relative",
             overflowX: 'visible',
             zIndex: 0,
             '&::before': {
@@ -110,6 +106,9 @@ const Home = () => {
           <UnderlinedText text="Our Services" />
           <Services />
         </Stack>
+
+        <Faq />
+
       </Stack>
       {/* Footer Section */}
       <Footer />

@@ -6,10 +6,17 @@ import { dark, grey } from "../../context/theme";
 interface TextBoxProps {
     title?: string;
     description?: string;
+    fontSize? : string;
+    descriptionFontSize? : string;
 }
 
 
-const TextBox: React.FC<TextBoxProps> = ({ title, description }) => {
+const TextBox: React.FC<TextBoxProps> = ({ 
+    title,
+    description,
+    fontSize = { xs: '1.25rem', md: '2rem' },
+    descriptionFontSize = { xs: '0.875rem', md: '1rem' },
+ }) => {
     return (
         <Box sx={{
             textAlign: 'center',
@@ -26,12 +33,12 @@ const TextBox: React.FC<TextBoxProps> = ({ title, description }) => {
             transform: 'translate(-50%, 50%)',
             zIndex: 2, // Ensure the text box is on top of the carousel
         }}>
-            <Typography variant="h6" sx={{ fontFamily: 'Barlow' }}>
+            <Typography variant="h6" sx={{ fontFamily: 'Barlow', fontSize: fontSize }}>
                 {title}
             </Typography>
 
             {
-                description && <Typography variant="body2" sx={{ display: { xs: 'none', md: 'block' }, lineHeight: 1.8 }}>
+                description && <Typography variant="body2" sx={{fontSize:descriptionFontSize, display: { xs: 'none', md: 'block' }, lineHeight: 1.8 }}>
                     {description}
                 </Typography>
             }

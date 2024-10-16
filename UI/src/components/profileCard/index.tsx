@@ -1,11 +1,11 @@
 import React from 'react';
-import { Avatar, Card, Typography } from '@mui/material';
+import { Avatar, Card, Link, Typography } from '@mui/material';
 import { disabled, grey } from '../../context/theme';
 
 interface ProfileCardProps {
   imageUrl: string;
   name: string;
-  role: string;
+  role?: string;
   contact?: string;
   mail?: string;
 }
@@ -47,7 +47,13 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ imageUrl, name, role, contact
       </Typography>
 
       <Typography variant="body2" color={disabled}>
-        {mail}
+        <Link
+          href={`mailto:${mail}?subject=Meeting Request&body=Hi, I would like to schedule a meeting.`}
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
+          {mail}
+        </Link>
+
       </Typography>
 
       <Typography variant="body2" color={disabled}>

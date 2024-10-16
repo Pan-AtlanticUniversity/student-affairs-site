@@ -5,6 +5,7 @@ import { notFound, errorHandlerMiddleware } from "./middleware";
 import router from "./routes/router";
 import connectDB from "./db/connection";
 import path from "path";
+import webpush from "web-push";
 dotenv.config();
 
 const port = process.env.PORT ? Number(process.env.PORT) : 3000;
@@ -21,6 +22,12 @@ app.use(
   express.static(path.join(__dirname, "../uploads"), {
     maxAge: "1d", // Cache for 1 day
   })
+);
+
+webpush.setVapidDetails(
+  process.env.WEB_PUSH_CONTACT as unknown as string,
+  process.env.PUBLIC_VAPID_KEY as unknown as string,
+  process.env.PRIVATE_VAPID_KEY as unknown as string
 );
 
 app.get("/", (req, res) => {
