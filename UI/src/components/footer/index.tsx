@@ -41,7 +41,7 @@ const Footer = () => {
                         <Typography
                             textAlign={{ xs: 'center', md: 'left' }}
                             variant="h6"
-                            fontFamily={'Barlow'}
+
                             sx={{
                                 fontSize: { xs: '1rem', md: '1.1rem' },
                             }}
@@ -53,13 +53,13 @@ const Footer = () => {
 
                 {/* Quick Links */}
                 <Grid item xs={12} md={3}>
-                    <Typography variant="h6" fontFamily={'Barlow'} color="inherit" sx={{ textAlign: { xs: 'center', md: 'start' } }}>
+                    <Typography variant="h6" color="inherit" sx={{ textAlign: { xs: 'center', md: 'start' } }}>
                         Quick Links
                     </Typography>
                     <Stack spacing={1} pt={2} sx={{ alignItems: { xs: 'center', md: 'start' } }}>
                         <Link
 
-                            fontFamily={'Barlow'}
+                            fontFamily={'Poppins'}
                             href={"https://pau.edu.ng/chaplaincy/"} // Anchor link pattern
                             target={"_blank"}
                             sx={{
@@ -73,7 +73,7 @@ const Footer = () => {
 
                         <Link
 
-                            fontFamily={'Barlow'}
+                            fontFamily={'Poppins'}
                             href={"#"} // Anchor link pattern
                             target={"_blank"}
                             sx={{
@@ -87,7 +87,7 @@ const Footer = () => {
 
                         <Link
 
-                            fontFamily={'Barlow'}
+                            fontFamily={'Poppins'}
                             href={"https://drive.google.com/file/d/1X5rna2wlYiHAsj-aEVlb1MAqRoFkKxbZ/view?usp=sharing"} // Anchor link pattern
                             target={"_blank"}
                             sx={{
@@ -101,41 +101,67 @@ const Footer = () => {
 
                         <Link
 
-                            fontFamily={'Barlow'}
-                            href={'mailto:studentaffairs@pau.edu.ng?subject=Know%20your%20mentor'} // Anchor link pattern
+                            fontFamily={'Poppins'}
+                            href={"https://elearning.pau.edu.ng/"} // Anchor link pattern
+                            target={"_blank"}
                             sx={{
                                 textDecoration: 'none',
                                 color: grey,
                                 '&:hover': { color: grey[100] }
                             }}
                         >
-                            Know Your Mentor
+                           E-Learning
                         </Link>
 
                         <Link
 
-                            fontFamily={'Barlow'}
+                            fontFamily={'Poppins'}
+                            href={"https://portal.pau.edu.ng/students/login?msg=4&accesscheck=%2Fstudents%2Findex.php"} // Anchor link pattern
+                            target={"_blank"}
                             sx={{
                                 textDecoration: 'none',
                                 color: grey,
                                 '&:hover': { color: grey[100] }
                             }}
-                            onClick = {() => alert('Comig soon!')}
+                        >
+                          PAU-SIMS
+                        </Link>
+
+                        <Link
+
+                            fontFamily={'Poppins'}
+                            sx={{
+                                textDecoration: 'none',
+                                color: grey,
+                                '&:hover': { color: grey[100] }
+                            }}
+                            onClick={() => alert('Comig soon!')}
                         >
                             Student Council
                         </Link>
 
                         <Link
-
-                            fontFamily={'Barlow'}
+                            fontFamily={'Poppins'}
                             sx={{
                                 textDecoration: 'none',
                                 color: grey,
                                 '&:hover': { color: grey[100] }
                             }}
-                            onClick = {() => alert('Coming soon!')}
+                            onClick={() => alert('Coming soon!')}
                         >
                             Student Businesses
+                        </Link>
+
+                        <Link
+                            fontFamily={'Poppins'}
+                            sx={{
+                                textDecoration: 'none',
+                                color: grey,
+                                '&:hover': { color: grey[100] }
+                            }}
+                            onClick={() => alert('Coming soon!')}
+                        >
+                            Careers Office
                         </Link>
 
                     </Stack>
@@ -143,16 +169,16 @@ const Footer = () => {
 
                 {/* Contact Information */}
                 <Grid item xs={12} md={3} sx={{ textAlign: { xs: 'center', md: 'start' } }}>
-                    <Typography variant="h6" fontFamily={'Barlow'} color="inherit">
+                    <Typography variant="h6" color="inherit">
                         Contact Information
                     </Typography>
-                    <Typography pt={2} variant="body2" color={grey[300]} fontFamily={'Barlow'} sx={{ textAlign: { xs: 'center', md: 'start' } }}>
+                    <Typography pt={2} variant="body2" color={grey[300]} sx={{ textAlign: { xs: 'center', md: 'start' } }}>
                         Email: studentaffairs@pau.edu.ng
                     </Typography>
-                    <Typography variant="body2" color={grey[300]} fontFamily={'Barlow'} sx={{ textAlign: { xs: 'center', md: 'start' } }}>
-                        Phone: +234 123 456 789, +234 987 654 321
+                    <Typography variant="body2" color={grey[300]} sx={{ textAlign: { xs: 'center', md: 'start' } }}>
+                        Phone: +234 814 366 8196
                     </Typography>
-                    <Typography variant="body2" color={grey[300]} fontFamily={'Barlow'} sx={{ textAlign: { xs: 'center', md: 'start' } }}>
+                    <Typography variant="body2" color={grey[300]} sx={{ textAlign: { xs: 'center', md: 'start' } }}>
                         Address: Pan-Atlantic University, Km 52 Lekki-Epe Expressway, Ibeju-Lekki, Lagos, Nigeria
                     </Typography>
                 </Grid>
@@ -161,7 +187,7 @@ const Footer = () => {
                 <Grid item xs={12} md={2}>
                     <Typography
                         variant="h6"
-                        fontFamily={'Barlow'}
+
                         color="inherit"
                         textAlign={{ xs: 'center', md: 'left' }} // Responsive alignment
                         pl={1}

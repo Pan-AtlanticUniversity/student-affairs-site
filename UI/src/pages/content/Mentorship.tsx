@@ -148,7 +148,7 @@
 
 // export default Mentorship
 import { Box, Grid, Stack, Typography } from "@mui/material";
-import { Banner, Footer, MentorshipInfo, NavBar, ProfileCard, TextBox, UnderlinedText } from "../../components";
+import { Banner, Footer, InfoBox, MentorshipInfo, NavBar, ProfileCard, TextBox, UnderlinedText } from "../../components";
 import { accent, grey } from "../../context/theme";
 import image1 from '../../assets/images/Guidance counselling & mentoring/3.jpg';
 
@@ -188,7 +188,7 @@ const Mentorship = () => {
             gap: { xs: 6, md: 7, lg: 9 }, overflowY: "scroll", backgroundColor: grey,
 
         }}>
-            <NavBar route="Mentorship" />
+            <NavBar route="Guidance" />
 
             {/* Banner Section */}
             <Box sx={{
@@ -207,7 +207,7 @@ const Mentorship = () => {
                 }
             }}>
                 <Banner bannerImage={image3} bannerPosition="top" />
-                <TextBox title="Mentorship" />
+                <TextBox title=" Guidance and Counseling" />
             </Box>
 
             {/* Info Section */}
@@ -216,12 +216,12 @@ const Mentorship = () => {
                 <Grid container spacing={4} alignItems="center">
                     <Grid item xs={12} md={6}>
                         <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', fontSize: { xs: '1rem', md: '1.25rem' } }}>
-                            What is the mentorship program about?
+                            Guidance and Counseling Unit
                         </Typography>
                         <Box sx={{ lineHeight: 1.6 }}>
 
                             <Typography variant="body1" sx={{ fontSize: { xs: '0.875rem', md: '1.25rem' } }}>
-                                Mentoring is one of Pan-Atlantic University’s key commitments. Along with research, teaching, and service work, dedication to personal mentoring forms a vital part of the work of every teacher at the University. In the first year, a mentor is assigned to each student. (If necessary, you can request to change your advisor through the Students’ Affairs Department). From that moment on, interviews can be arranged, generally via email, by the advisor or the student.
+                                At PAU, the Guidance and Counseling Unit is dedicated to providing comprehensive support for the personal, emotional, and psychological well-being of our students. Whether you're dealing with academic stress, personal struggles, or just need someone to listen, we're here to support you every step of the way. Our goal is to help you overcome challenges, achieve your goals, and make the most of your university experience.
                             </Typography>
 
                         </Box>
@@ -287,6 +287,21 @@ const Mentorship = () => {
                         </Grid>
                     ))}
                 </Grid>
+
+
+                <InfoBox title={"Peer Counselors and Resident Assistants"} content="To further enhance student support, we have Peer Counselors and Resident Assistants, who are specially trained to offer guidance and support on a peer-to-peer level. These students provide:"
+                    listItems={[
+                        "- Emotional support",
+                        "- Mental health awareness",
+                        "- Conflict resolution",
+                        "- Workshops on stress management and time management",
+                        "- Academic guidance"
+                    ]}
+                    footerText="Feel free to approach any of our Peer Counselors or Resident Assistants for support or guidance."
+                />
+
+
+
             </Stack>
 
             <Footer />

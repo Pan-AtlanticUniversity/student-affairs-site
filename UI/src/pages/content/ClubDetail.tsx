@@ -32,15 +32,16 @@ const ClubDetail = () => {
     );
 
     const CLUB_MAPPING: { [key: string]: JSX.Element } = {
-        instagram: <InstagramIcon fontSize="small" />,
-        twitter: <XIcon fontSize="small" />,
-        youtube: <YouTubeIcon fontSize="small" />,
-        facebook: <FacebookIcon fontSize="small" />,
-        linkedin: <LinkedInIcon fontSize="small" />,
-        tiktok: <TikTokIcon fontSize="small" />,
-        github: <GitHubIcon fontSize="small" />,
-        mail: <EmailIcon fontSize="small" />
-    }
+        instagram: <InstagramIcon sx={{ fontSize: { xs: "20px", sm: "24px", md: "28px" } }} />,
+        twitter: <XIcon sx={{ fontSize: { xs: "20px", sm: "24px", md: "28px" } }} />,
+        youtube: <YouTubeIcon sx={{ fontSize: { xs: "20px", sm: "24px", md: "28px" } }} />,
+        facebook: <FacebookIcon sx={{ fontSize: { xs: "20px", sm: "24px", md: "28px" } }} />,
+        linkedin: <LinkedInIcon sx={{ fontSize: { xs: "20px", sm: "24px", md: "28px" } }} />,
+        tiktok: <TikTokIcon sx={{ fontSize: { xs: "20px", sm: "24px", md: "28px" } }} />,
+        github: <GitHubIcon sx={{ fontSize: { xs: "20px", sm: "24px", md: "28px" } }} />,
+        mail: <EmailIcon sx={{ fontSize: { xs: "20px", sm: "24px", md: "28px" } }} />
+    };
+    
 
     const zoomInImages = ["Community Service Project (CSP)", "Art Club"]
 
@@ -116,7 +117,16 @@ const ClubDetail = () => {
                 }}
 
             >
-                <Box sx={{zIndex: 1}}>
+                <Box sx={{ 
+                    padding: { xs: "10px", md: "30px" }, // Adjust padding for different screen sizes
+                    // backgroundColor: "#f5f5f5", // Light background color to make it stand out
+                    borderRadius: "10px", // Rounded corners for the container
+                    width: "100%", // Ensure it takes up full width
+                    marginBottom: 2, // Space below the container
+                    boxShadow: 1, // Subtle shadow for some depth
+                    zIndex: 1 
+
+                }}>
                     {paragraphs.map((paragraph, index) => (
                         <>
                             <Typography
@@ -187,28 +197,40 @@ const ClubDetail = () => {
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
-                        padding: "15px 10px",
+                        padding: { xs: "20px 15px", md: "30px 25px" },  // Adjust padding based on screen size
                         borderRadius: "15px",
                         backgroundColor: "#FFFFFF",
-                        width: { xs: '100%', md: '90%' },
-                        gap: 1.5,
+                        width: { xs: '95%', sm: '85%', md: '80%', lg: '95%' }, // Responsively adjust width
+                        gap: 2,
                     }}
                     elevation={3}
                 >
                     <Stack direction="row" justifyContent="space-between" width="100%">
-                        <Typography variant="caption" color="text.secondary">
+                        <Typography
+                            variant="body1" // Increase text size for larger screens
+                            color="text.secondary"
+                            sx={{ fontSize: { xs: '12px', md: '14px', lg: '16px' } }}  // Adjust font size dynamically
+                        >
                             More Information
                         </Typography>
 
                         <Stack direction="row" alignItems="center" gap={0.5}>
-                            <PersonIcon sx={{ color: disabled }} />
-                            <Typography variant="caption" color="text.secondary">
+                            <PersonIcon sx={{ color: disabled, fontSize: { xs: '18px', md: '24px' } }} /> {/* Resize the icon */}
+                            <Typography
+                                variant="body1"
+                                color="text.secondary"
+                                sx={{ fontSize: { xs: '12px', md: '14px', lg: '16px' } }}
+                            >
                                 {club.member_count ?? "nil"}
                             </Typography>
                         </Stack>
                     </Stack>
 
-                    <Typography variant="caption" color="text.secondary" sx={{ width: '100%', textAlign: 'left' }}>
+                    <Typography
+                        variant="body1"
+                        color="text.secondary"
+                        sx={{ width: '100%', textAlign: 'left', fontSize: { xs: '12px', md: '14px', lg: '16px' } }}
+                    >
                         Meeting Time: {
                             club.meeting_time
                                 ? club.meeting_time?.startsWith('custom')
@@ -218,24 +240,23 @@ const ClubDetail = () => {
                         }
                     </Typography>
 
-                    <Stack direction={'row'} justifyContent={'center'} alignItems={'center'} >
-                        {
-                            club.handles?.map(item => (
-                                <IconButton
-                                    aria-label={item.handle}
-                                    color="primary"
-                                    href={item.handle === 'mail' ? `mailto:${item.url}` : item.url} // Use mailto for the email handle
-                                    target={item.handle !== 'mail' ? "_blank" : undefined} // Only open in a new tab for non-mail links
-                                    rel={item.handle !== 'mail' ? "noopener noreferrer" : undefined} // Set rel for external links only
-
-                                    key={item.handle}
-                                >
-                                    {CLUB_MAPPING[item.handle]}
-                                </IconButton>
-                            ))
-                        }
+                    <Stack direction={'row'} justifyContent={'center'} alignItems={'center'}>
+                        {club.handles?.map(item => (
+                            <IconButton
+                                aria-label={item.handle}
+                                color="primary"
+                                href={item.handle === 'mail' ? `mailto:${item.url}` : item.url}
+                                target={item.handle !== 'mail' ? "_blank" : undefined}
+                                rel={item.handle !== 'mail' ? "noopener noreferrer" : undefined}
+                                key={item.handle}
+                                sx={{ fontSize: { xs: '20px', md: '24px', lg: '30px' } }}  // Increase icon button size
+                            >
+                                {CLUB_MAPPING[item.handle]}
+                            </IconButton>
+                        ))}
                     </Stack>
                 </Paper>
+
             </Stack>
 
             <Footer />

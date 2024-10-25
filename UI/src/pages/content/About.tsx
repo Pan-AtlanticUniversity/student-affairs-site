@@ -136,13 +136,6 @@ const About = () => {
                     Please feel free to visit our office in person, drop us an email, or call any member of our team.
                     Please note that only emails received from students using their official PAU email addresses will be attended to.
                 </Typography>
-                <Typography textAlign="center" lineHeight={1.8} color={dark} sx={{ zIndex: 1 }}>
-                    We offer a variety of services, including mentorship, counseling, medical services, extracurricular activities, and more.
-                    Our goal is to foster a nurturing environment that promotes both professional excellence and personal growth.
-                    From health and wellness to leadership opportunities, our team is here to guide you through your time at PAU,
-                    ensuring you make the most of your university experience.
-                </Typography>
-
                 <Stack sx={{
                     flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-evenly', alignItems: 'center', gap: 10,
                     position: "relative", overflow: 'visible',
@@ -245,7 +238,7 @@ const About = () => {
                         }}
                         elevation={3}
                     >
-                        <Typography variant="h5" fontFamily={"Barlow"} color={dark}>
+                        <Typography variant="h5" color={dark}>
                             Upcoming dates and events
                         </Typography>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>

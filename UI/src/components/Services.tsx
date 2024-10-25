@@ -60,7 +60,15 @@ const Services = () => {
             <GridCard
               title={item.name}
               imageUrl={item.image ?? "https://via.placeholder.com/300x200"}
-              onClick={() => navigate(`/services/${item.name}`, { state: { service: item } })}
+
+              onClick={() => {
+                if (item.name === 'Sports') {
+                  navigate('/sports');
+                } else {
+                  navigate(`/services/${item.name}`, { state: { service: item } });
+                }
+              }}
+
             />
           ))
         }

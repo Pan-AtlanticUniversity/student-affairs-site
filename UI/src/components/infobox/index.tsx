@@ -5,11 +5,13 @@ import { grey } from '../../context/theme';
 interface InfoBoxProps {
   title: string;
   content: string;
+  listItems?: string[];
+  footerText?: string; // New prop for text after the list
   buttonText?: string;
   onClick?: () => void;
-  height?: string | number; // Adjustable height prop
-  titleFontSize?: string | object; // Adjustable title font size, with responsive support
-  contentFontSize?: string | object; // Adjustable content font size, with responsive support
+  height?: string | number;
+  titleFontSize?: string | object;
+  contentFontSize?: string | object;
 }
 
 /**
@@ -18,13 +20,15 @@ interface InfoBoxProps {
 const InfoBox: React.FC<InfoBoxProps> = ({
   title,
   content,
+  listItems,
+  footerText, // Use new footerText prop
   buttonText,
   onClick,
-  height = '100%', // Default height is 100%
-  titleFontSize = { xs: '1.25rem', md: '1.5rem' }, // Responsive title font size
-  contentFontSize = { xs: '1rem', md: '1.15rem' }, // Responsive content font size
+  height = '100%',
+  titleFontSize = { xs: '1.25rem', md: '1.5rem' },
+  contentFontSize = { xs: '1rem', md: '1.15rem' },
 }) => (
-  <Card sx={{ height: height, borderRadius: '8px', backgroundColor: grey}}>
+  <Card sx={{ height: height, borderRadius: '8px', backgroundColor: grey }}>
     <CardContent
       sx={{
         display: 'flex',
@@ -37,18 +41,44 @@ const InfoBox: React.FC<InfoBoxProps> = ({
       <Typography
         variant="h6"
         component="div"
-        sx={{ fontSize: titleFontSize }} // Use responsive titleFontSize prop
+        sx={{ fontSize: titleFontSize }}
       >
         {title}
       </Typography>
       <Typography
-        variant="body2"
+        component="p"
         color="text.secondary"
         gutterBottom
-        sx={{ fontSize: contentFontSize }} // Use responsive contentFontSize prop
+        sx={{ fontSize: contentFontSize, paddingLeft: 1 }}
       >
         {content}
       </Typography>
+      <Typography
+        component="ul"
+        color="text.secondary"
+        gutterBottom
+        sx={{
+          fontSize: contentFontSize,
+          paddingLeft: 3,
+          margin: 0,
+          listStyleType: 'disc',
+        }}
+      >
+        {listItems && listItems.map((item, index) => (
+          <Typography component="li" key={index} sx={{ marginBottom: 0.5 , fontSize: contentFontSize}}>
+            {item}
+          </Typography>
+        ))}
+      </Typography>
+      {footerText && (
+        <Typography
+          component="p"
+          color="text.secondary"
+          sx={{ fontSize: contentFontSize, paddingTop: 1 }}
+        >
+          {footerText}
+        </Typography>
+      )}
       {buttonText && (
         <Button
           variant="outlined"

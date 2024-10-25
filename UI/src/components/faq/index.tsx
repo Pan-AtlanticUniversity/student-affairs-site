@@ -66,7 +66,6 @@ const Faq = () => {
         variant="h4"
         gutterBottom
         sx={{
-          fontFamily: 'Barlow',
           fontSize: { xs: '1.5rem', md: '1.95rem' },
           position: 'relative',
           display: 'inline-block',

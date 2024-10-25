@@ -71,7 +71,7 @@ const About = () => {
                 </Typography>
 
                 <Stack width={"100%"} flexDirection={'column'} gap={3} sx={{ overflowX: 'visible' }}>
-                    <Typography variant="h4" fontFamily={"Barlow"} color={dark} textAlign={'center'}>
+                    <Typography variant="h4" color={dark} textAlign={'center'}>
                         Dress codes
                     </Typography>
                     <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center", overflowX: 'visible' }} >
@@ -141,7 +141,7 @@ const About = () => {
                 </Stack>
 
                 <Stack width={"100%"} flexDirection={'column'} gap={3} alignItems={'center'} sx={{ overflowX: 'visible' }} id="process-guidelines">
-                    <Typography variant="h4" fontFamily={"Barlow"} color={dark} textAlign={'center'}>
+                    <Typography variant="h4" color={dark} textAlign={'center'}>
                         Process and Guidelines
                     </Typography>
                     <Stack sx={{ flexDirection: { xs: "column", md: "row", overflowX: 'visible' }, justifyContent: "space-evenly", alignItems: "center" }} >

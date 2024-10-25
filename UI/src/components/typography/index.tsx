@@ -19,7 +19,6 @@ const UnderlinedText: React.FC<UnderlinedTextProps> = ({ text, image }) => {
                 variant="h4"
                 align="center"
                 sx={{
-                    fontFamily: 'Barlow',
                     fontWeight: 'semi-bold',
                     mb: 4,
                     position: 'relative', // Required for positioning the underline
