@@ -33,7 +33,7 @@ const TextBox: React.FC<TextBoxProps> = ({
             transform: 'translate(-50%, 50%)',
             zIndex: 2, // Ensure the text box is on top of the carousel
         }}>
-            <Typography variant="h6" sx={{ fontFamily: 'Barlow', fontSize: fontSize }}>
+            <Typography variant="h6" sx={{ fontSize: fontSize }}>
                 {title}
             </Typography>
 

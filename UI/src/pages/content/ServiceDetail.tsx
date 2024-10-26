@@ -54,6 +54,12 @@ const ServiceDetail = () => {
                     width: '100%',
                     overflowX: 'visible',
                     zIndex: 0,
+                    padding: { xs: "10px", md: "30px" }, // Adjust padding for different screen sizes
+                    // backgroundColor: "#f5f5f5", // Light background color to make it stand out
+                    borderRadius: "10px", // Rounded corners for the container
+                    marginBottom: 2, // Space below the container
+                    boxShadow: 1, // Subtle shadow for some depth
+                    // zIndex: 1 
                     '&::after': {
                         content: '""',
                         position: 'absolute',

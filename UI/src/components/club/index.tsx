@@ -146,7 +146,7 @@ const Club: React.FC<ClubProp> = ({ mode, searchQuery, openEditMenu }) => {
                     )}
                     <Typography variant="body2" component="div" sx={{
                       display: '-webkit-box',
-                      WebkitLineClamp: { xs: 2, sm: 3 },
+                      WebkitLineClamp: { xs: 2, sm: 5 },
                       WebkitBoxOrient: 'vertical',
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',

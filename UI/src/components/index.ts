@@ -16,6 +16,7 @@ import AdminNavBar from "./AdminNavBar";
 import Blog from "./Blog";
 import MentorshipInfo from "./mentorship";
 import Faq from "./faq"
+import SportInfo from "./sports";
 
 export {
   AuthNavBar,
@@ -35,5 +36,6 @@ export {
   AdminNavBar,
   Blog,
   MentorshipInfo,
-  Faq
+  Faq,
+  SportInfo
 };

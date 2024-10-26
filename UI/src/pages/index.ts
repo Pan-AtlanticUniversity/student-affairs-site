@@ -11,6 +11,7 @@ import ClubDetail from "./content/ClubDetail";
 import ForgotPassword from "./auth/ForgotPassword";
 import ServiceDetail from "./content/ServiceDetail";
 import Mentorship from "./content/Mentorship";
+import Sports from "./content/Sports";
 
 export {
     Admins,
@@ -25,5 +26,6 @@ export {
     ClubDetail,
     ForgotPassword,
     ServiceDetail,
-    Mentorship
+    Mentorship,
+    Sports
 }

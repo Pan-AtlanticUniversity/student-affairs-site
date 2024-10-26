@@ -114,7 +114,7 @@ const Home = () => {
         TransitionComponent={Transition}
         keepMounted
       >
-        <DialogTitle textAlign={'center'} fontFamily={'Barlow'} sx={{ marginTop: 1 }}>Congratulations on your admission to PAU! 🎉</DialogTitle>
+        <DialogTitle textAlign={'center'}  sx={{ marginTop: 1 }}>Congratulations on your admission to PAU! 🎉</DialogTitle>
         <DialogContent>
           <Box
             component="img"
