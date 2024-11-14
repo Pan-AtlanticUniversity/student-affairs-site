@@ -18,7 +18,8 @@
     "@mui/x-date-pickers": "^7.12.0",
     "axios": "^1.7.2",
     "dayjs": "^1.11.12",
-    "jwt-decode": "^4.0.0",
+    "jwt-js-decode": "^1.9.0",
+    "ldrs": "^1.0.2",
     "mui-image": "^1.0.7",
     "react": "^18.3.1",
     "react-confetti": "^6.1.0",
@@ -40,6 +41,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "typescript": "^5.2.2",
-    "vite": "^5.3.4"
+    "vite": "^5.3.4",
+    "vite-plugin-pwa": "^0.20.5"
   }
 }

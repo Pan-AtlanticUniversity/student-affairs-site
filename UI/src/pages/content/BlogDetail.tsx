@@ -1,13 +1,44 @@
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Button, Dialog, DialogContent, DialogTitle, Slide, Stack, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { Banner, Footer, NavBar, TextBox } from '../../components';
 import { accent, dark, grey, primary } from '../../context/theme';
 import dayjs from 'dayjs';
+import { TransitionProps } from "@mui/material/transitions";
+import { forwardRef, useState } from 'react';
 
 import avatar from '../../assets/svgs/default-user.svg';
+import subscribe from '../../assets/svgs/subscribe.svg';
 import { BlogItem } from '../../components/Blog';
+import subscribeToPushNotifications from '../../subscription';
 
 const BlogDetail = () => {
+    const visited = localStorage.getItem('visited') as unknown as boolean;
+
+    const [open, setOpen] = useState(true);
+
+    const Transition = forwardRef(function Transition(
+        props: TransitionProps & {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            children: React.ReactElement<any, any>;
+        },
+        ref: React.Ref<unknown>,
+    ) {
+        return <Slide direction="up" ref={ref} {...props} />;
+    });
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const subscribeUser = async () => {
+        try {
+            await subscribeToPushNotifications();
+            localStorage.setItem('visited', 'true')
+            handleClose()
+        } catch (e) {
+            console.log('An error occured somewhere')
+        }
+    }
 
     const location = useLocation();
     const { blog }: { blog: BlogItem } = location.state;
@@ -169,6 +200,43 @@ const BlogDetail = () => {
                 </Stack>
             </Stack>
             <Footer />
+
+            <Dialog
+                open={!visited && open}
+                onClose={handleClose}
+                TransitionComponent={Transition}
+                keepMounted
+            >
+                <DialogTitle textAlign={'center'} sx={{ marginTop: 1 }}>
+                    Stay in the loop! ✨
+                </DialogTitle>
+                <DialogContent>
+                    <Box
+                        component="img"
+                        src={subscribe}
+                        sx={{
+                            objectFit: 'cover',
+                            backgroundSize: "cover",
+                            width: '100%',
+                            height: 'auto',
+                            loading: 'lazy',
+                        }}
+                    />
+
+                    <Typography variant="body2" color="text.secondary">
+                        Don't miss out on the latest news and updates!
+                        Subscribe now and stay up-to-date with everything happening.
+                        We’ve got exciting stuff coming your way, and you won’t want to miss a thing!
+                    </Typography>
+                    <Button
+                        variant="outlined"
+                        sx={{ width: '100%', borderColor: 'secondary.main', textTransform: "none", paddingY: 1, fontWeight: 300, mt: 2 }}
+                        onClick={async () => await subscribeUser()}
+                    >
+                        Subscribe
+                    </Button>
+                </DialogContent>
+            </Dialog>
         </Stack>
     );
 };

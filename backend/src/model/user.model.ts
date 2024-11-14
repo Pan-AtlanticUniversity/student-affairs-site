@@ -6,7 +6,7 @@ interface IUser extends Document {
   fullname: string;
   email: string;
   password: string;
-  getToken: () => string;
+  getToken: () => { accessToken: string; refreshToken: string };
   comparePassword: (password: string) => Promise<boolean>;
 }
 
@@ -33,12 +33,18 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.getToken = function () {
-  const token = jwt.sign(
+  const accessToken = `Bearer ${jwt.sign(
     { name: this.fullname.split(" ")[0] },
     process.env.ACCESS_SECRET as string,
     { expiresIn: "48h" }
-  );
-  return token;
+  )}`;
+
+  const refreshToken = `Bearer ${jwt.sign(
+    { name: this.fullname.split(" ")[0] },
+    process.env.REFRESH_SECRET as string,
+    { expiresIn: "7d" }
+  )}`;
+  return { accessToken, refreshToken };
 };
 
 userSchema.methods.comparePassword = async function (password: string) {

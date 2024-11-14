@@ -1,7 +1,6 @@
 import { Box, Grid, Typography, CardMedia } from '@mui/material';
 import image1 from '../../assets/images/Clubs and extracurricular/AM-45.jpg';
 import image2 from '../../assets/images/Clubs and extracurricular/PAUC-10.jpg';
-import image3 from '../../assets/images/14.jpg';
 import { grey } from '../../context/theme';
 
 const SportInfo = () => {
@@ -18,7 +17,7 @@ const SportInfo = () => {
             zIndex: 1
 
         }}>
- 
+
 
 
             {/* Part 1 */}
