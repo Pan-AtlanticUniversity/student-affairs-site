@@ -149,7 +149,7 @@
 
 // export default PhotoGallery;
 import { Typography, IconButton, Box } from '@mui/material';
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import AfconWatchParty from '../../assets/images/Sports/Afcon-watch-party.jpeg';
