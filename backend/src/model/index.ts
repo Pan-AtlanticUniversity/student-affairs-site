@@ -7,6 +7,7 @@ import Member from "./member.model";
 import Service from "./service.model";
 import Mentor from "./mentor.model";
 import SubscriptionModel from "./subscription.model";
+import Counsellor from "./counsellor.model";
 
 export {
   User,
@@ -16,6 +17,6 @@ export {
   Date,
   Member,
   Service,
-  Mentor,
+  Mentor, Counsellor,
   SubscriptionModel,
 };

@@ -1,14 +1,14 @@
 // export default Mentorship
 import { Box, Grid, IconButton, Paper, Stack, Typography } from "@mui/material";
-import { Banner, Footer, NavBar, SportInfo, TextBox, UnderlinedText } from "../../components";
+import { Banner, Footer, NavBar, PhotoGallery, SportInfo, TextBox, UnderlinedText } from "../../components";
 import { accent, grey } from "../../context/theme";
 import image1 from '../../assets/images/Clubs and extracurricular/PAUS-2.jpg';
 
 import image3 from '../../assets/images/Clubs and extracurricular/3.jpg';
 import sportsCommitee from '../../assets/images/Clubs and extracurricular/sports-committee.jpg';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter'; // Use this as X icon if no X icon is available
-
+import XIcon from '@mui/icons-material/X'; // Use this as X icon if no X icon is available
+import { FaTiktok } from 'react-icons/fa';
 
 // Responsive styling applied
 const Sports = () => {
@@ -68,12 +68,12 @@ const Sports = () => {
                 {/*  */}
                 <Grid container spacing={4} alignItems="center">
                     <Grid item xs={12} md={6}>
-                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', fontSize: { xs: '1rem', md: '1.25rem' } }}>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', fontSize: { xs: '0.9rem', md: '1.25rem' } }}>
                             About PAU Sports
                         </Typography>
                         <Box sx={{ lineHeight: 1.6 }}>
 
-                            <Typography variant="body1" sx={{ fontSize: { xs: '0.875rem', md: '1.25rem' } }}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.25rem' }, mb:2}}>
                                 At PAU, we understand the importance of sports and physical activity in fostering community, promoting health, and encouraging teamwork. We offer a wide range of sporting activities, ensuring that all students, regardless of skill level, have the opportunity to participate and compete.
                             </Typography>
 
@@ -90,11 +90,14 @@ const Sports = () => {
                     </Grid>
 
                 </Grid>
-                {/*  */}
 
+                {/*  */}
+                <PhotoGallery/>
                 <SportInfo />
 
-                {/* Mentor Profiles Section */}
+                {/*  */}
+
+                {/* commitee Profiles Section */}
                 <UnderlinedText text="Meet the Team!" />
                 <Grid container justifyContent="center" position="relative" zIndex={0} sx={{
                     '&::before': {
@@ -139,7 +142,7 @@ const Sports = () => {
                     <Typography
                         variant="h6"
                         color="text.primary"
-                        sx={{ fontSize: { xs: '16px', md: '18px' }, textAlign: 'center' }}
+                        sx={{ fontSize: { xs: '0.85rem', md: '18px' }, textAlign: 'center' }}
                     >
                         We encourage all students to stay engaged with our sports community by following our sports social media handles for updates, competitions, and announcements.
                     </Typography>
@@ -147,7 +150,7 @@ const Sports = () => {
                     <Typography
                         variant="body1"
                         color="text.secondary"
-                        sx={{ width: '100%', textAlign: 'center', fontSize: { xs: '14px', md: '16px' } }}
+                        sx={{ width: '100%', textAlign: 'center', fontSize: { xs: '0.85rem', md: '16px' } }}
                     >
                         For more details and updates, follow us on:
                     </Typography>
@@ -166,14 +169,26 @@ const Sports = () => {
 
                         <IconButton
                             aria-label="Twitter"
-                            href=""  // Link to Twitter/X {to update}
+                            href="https://x.com/SportsPAU"  // Link to Twitter/X {to update}
                             target="_blank"
                             rel="noopener noreferrer"
                             color="primary"
                             sx={{ fontSize: { xs: '24px', md: '30px' } }}
                         >
-                            <TwitterIcon fontSize="inherit" />
+                            <XIcon fontSize="inherit" />
                         </IconButton>
+
+                        <IconButton
+                            aria-label="Tik Tok"
+                            href=" https://www.tiktok.com/@pau.sports"  // Link to Twitter/X {to update}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            color="primary"
+                            sx={{ fontSize: { xs: '24px', md: '30px' } }}
+                        >
+                            <FaTiktok fontSize="inherit" />
+                        </IconButton>
+                       
                     </Stack>
                 </Paper>
 

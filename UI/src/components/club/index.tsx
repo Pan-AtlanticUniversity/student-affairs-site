@@ -146,7 +146,9 @@ const Club: React.FC<ClubProp> = ({ mode, searchQuery, openEditMenu }) => {
                     )}
                     <Typography variant="body2" component="div" sx={{
                       display: '-webkit-box',
-                      WebkitLineClamp: { xs: 2, sm: 5 },
+                      
+                      //to reduce the text that shows for the contents of clubs 
+                      WebkitLineClamp: { xs: 2, sm: 3 },
                       WebkitBoxOrient: 'vertical',
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
