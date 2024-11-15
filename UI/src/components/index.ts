@@ -8,7 +8,7 @@ import Banner from "./Banner";
 import Title from "./Title";
 import GridCard from "./gridcard";
 import InfoBox from "./infobox";
-import Services from "./Services";
+import Services from "./services/Services";
 import TextBox from "./textbox";
 import ProfileCard from "./profileCard";
 import UnderlinedText from "./typography";
@@ -17,6 +17,7 @@ import Blog from "./Blog";
 import MentorshipInfo from "./mentorship";
 import Faq from "./faq"
 import SportInfo from "./sports";
+import PhotoGallery from "./gallery";
 
 export {
   AuthNavBar,
@@ -37,5 +38,6 @@ export {
   Blog,
   MentorshipInfo,
   Faq,
-  SportInfo
+  SportInfo,
+  PhotoGallery
 };
