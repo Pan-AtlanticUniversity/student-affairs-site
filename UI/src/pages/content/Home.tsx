@@ -6,21 +6,20 @@ import Confetti from "react-confetti";
 import { TransitionProps } from "@mui/material/transitions";
 import { forwardRef, useEffect, useState } from "react";
 
-
-const Transition = forwardRef(function Transition(
-  props: TransitionProps & {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    children: React.ReactElement<any, any>;
-  },
-  ref: React.Ref<unknown>,
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-
 const Home = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(document.documentElement.clientHeight);
   const [open, setOpen] = useState(false);
+
+  const Transition = forwardRef(function Transition(
+    props: TransitionProps & {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      children: React.ReactElement<any, any>;
+    },
+    ref: React.Ref<unknown>,
+  ) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
 
   useEffect(() => {
 
@@ -114,7 +113,7 @@ const Home = () => {
         TransitionComponent={Transition}
         keepMounted
       >
-        <DialogTitle textAlign={'center'}  sx={{ marginTop: 1 }}>Congratulations on your admission to PAU! 🎉</DialogTitle>
+        <DialogTitle textAlign={'center'} sx={{ marginTop: 1 }}>Congratulations on your admission to PAU! 🎉</DialogTitle>
         <DialogContent>
           <Box
             component="img"

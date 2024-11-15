@@ -1,4 +1,45 @@
-const urlBase64ToUint8Array = (base64String: string) => {
+const vapid_key = import.meta.env.VITE_PUBLIC_VAPID_KEY;
+const server = import.meta.env.VITE_BACKEND_HOST as string;
+
+const subscribeToPushNotifications = async () => {
+  try {
+    // Check if the browser supports the Push API
+    if (!("PushManager" in window)) {
+      console.error("Push notifications are not supported in this browser.");
+      return;
+    }
+
+    // Request permission to show notifications
+    const permission = await Notification.requestPermission();
+    if (permission !== "granted") {
+      console.error("Notification permission not granted.");
+      return;
+    }
+
+    // Subscribe the user to push notifications
+    const registration = await navigator.serviceWorker.ready;
+    const subscription = await registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(vapid_key),
+    });
+
+    // Send the subscription information to your server
+    await fetch(`${server}/api/v1/notifications/subscribe`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(subscription),
+    });
+
+    console.log("Subscribed to push notifications successfully!");
+  } catch (error) {
+    console.error("Error subscribing to push notifications:", error);
+  }
+};
+
+// Utility function to convert a base64 string to a Uint8Array
+function urlBase64ToUint8Array(base64String: string) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
   const base64 = (base64String + padding).replace(/-/g, "+").replace(/_/g, "/");
 
@@ -9,69 +50,6 @@ const urlBase64ToUint8Array = (base64String: string) => {
     outputArray[i] = rawData.charCodeAt(i);
   }
   return outputArray;
-};
+}
 
-const convertedVapidKey = urlBase64ToUint8Array(
-  import.meta.env.VITE_PUBLIC_VAPID_KEY as unknown as string
-);
-
-const sendSubscription = (subscription: PushSubscription) => {
-  return fetch(
-    `${import.meta.env.VITE_BACKEND_HOST}/api/v1/notifications/subscribe`,
-    {
-      method: "POST",
-      body: JSON.stringify(subscription),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-};
-
-export const subscribeUser = () => {
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.ready
-      .then(function (registration) {
-        if (!registration.pushManager) {
-          console.log("Push manager unavailable.");
-          return;
-        }
-
-        registration.pushManager
-          .getSubscription()
-          .then(function (existedSubscription) {
-            if (existedSubscription === null) {
-              console.log("No subscription detected, make a request.");
-              registration.pushManager
-                .subscribe({
-                  applicationServerKey: convertedVapidKey,
-                  userVisibleOnly: true,
-                })
-                .then(function (newSubscription) {
-                  console.log("New subscription added.");
-                  sendSubscription(newSubscription);
-                })
-                .catch(function (e) {
-                  if (Notification.permission !== "granted") {
-                    console.log("Permission was not granted.");
-                  } else {
-                    console.error(
-                      "An error ocurred during the subscription process.",
-                      e
-                    );
-                  }
-                });
-            } else {
-              console.log("Existed subscription detected.");
-              sendSubscription(existedSubscription);
-            }
-          });
-      })
-      .catch(function (e) {
-        console.error(
-          "An error ocurred during Service Worker registration.",
-          e
-        );
-      });
-  }
-};
+export default subscribeToPushNotifications;

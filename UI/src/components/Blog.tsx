@@ -46,6 +46,19 @@ const Blog: React.FC<BlogProp> = ({ mode, searchQuery, openEditMenu }) => {
     getBlogs();
   }, []);
 
+  const deleteBlog = async (id: string | undefined) => {
+    if (id) {
+      setBlogs(prev => prev.filter(blog => blog._id != id));
+      try {
+        await axios.delete(
+          `${import.meta.env.VITE_BACKEND_HOST}/api/v1/blog/${id}`);
+      } catch (error) {
+        console.error("Error deleting blog:", error);
+      }
+    }
+
+  }
+
   const filteredBlogs = blogs.filter((blog) =>
     blog.name?.toLowerCase().includes(searchQuery?.toLowerCase() ?? "")
   );
@@ -154,7 +167,7 @@ const Blog: React.FC<BlogProp> = ({ mode, searchQuery, openEditMenu }) => {
 
                               variant="outlined"
                               sx={{ width: '100%', borderColor: 'secondary.main', textTransform: "none", paddingY: 1, fontWeight: 300 }}
-                              onClick={() => navigate(`/clubs/${item._id}`, { replace: true, state: { club: item } })}
+                              onClick={async () => await deleteBlog(item._id)}
                             >
                               Delete
                             </Button>

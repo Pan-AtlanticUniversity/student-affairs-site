@@ -58,6 +58,7 @@ const Services = () => {
         {
           services.map(item => (
             <GridCard
+              key={item.name}
               title={item.name}
               imageUrl={item.image ?? "https://via.placeholder.com/300x200"}
 

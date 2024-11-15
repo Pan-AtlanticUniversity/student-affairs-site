@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import { Blog } from "../model";
+import { Blog, SubscriptionModel } from "../model";
 import { StatusCodes } from "http-status-codes";
 import path from "path";
 import fs from "fs";
+import sendNotification from "../services/notification/sendNotification";
 
 export const getBlog = async (req: Request, res: Response) => {
   const blog = await Blog.find();
@@ -41,6 +42,18 @@ export const createBlog = async (req: Request, res: Response) => {
     });
 
     await newPost.save();
+
+    const subscriptions = await SubscriptionModel.find();
+
+    subscriptions.forEach(async (subscription) => {
+      await sendNotification(subscription, {
+        title: "A New blog just dropped",
+        body: newPost.name || "New blog",
+        tag: "News",
+      })
+        .then((_result) => console.log("Blog sent"))
+        .catch((e) => console.log("an error occured", e.stack));
+    });
 
     res.status(StatusCodes.OK).json({ message: "Blog created successfully" });
   } catch (error: unknown) {
@@ -105,6 +118,7 @@ export const updateBlog = async (req: Request, res: Response) => {
 
 export const deleteBlog = async (req: Request, res: Response) => {
   try {
+    console.log("here");
     const blog = await Blog.findByIdAndDelete(req.params._id);
     if (!blog) return res.status(404).json({ message: "Blog not found" });
     res.json({ message: "Blog deleted" });

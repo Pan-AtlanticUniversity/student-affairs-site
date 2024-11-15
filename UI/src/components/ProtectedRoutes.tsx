@@ -1,69 +1,76 @@
 import React, { ReactNode, useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import useAuth from '../context/authContext';
 import Message from './Message';
+import CustomLoader from './CustomLoader';
+
+const baseUrl = `${import.meta.env.VITE_BACKEND_HOST as string}api/v1`
+
 
 interface ProtectedRouteProps {
     children: ReactNode;
+    role?: string;
 }
 
+const axiosInstance = axios.create({
+    baseURL: baseUrl,
+    withCredentials: true,
+});
+
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
-    const { token, logout } = useAuth();
-    const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+    const { user, token, isTokenValid, updateAccessToken } = useAuth();
+    const location = useLocation();
+    const [loading, setLoading] = useState(true);
+    const [shouldNavigate, setShouldNavigate] = useState(false);
     const [message, setMessage] = useState<string>('');
     const [openState, setOpenState] = useState(false);
     const [mode, setMode] = useState<"success" | "error" | "warning" | "info">("success");
 
+    const handleInvalidSession = (msg: string) => {
+        setMessage(msg);
+        setOpenState(true);
+        setShouldNavigate(true);
+        setMode("error");
+    };
+
     useEffect(() => {
-        const validateToken = async () => {
-            if (token) {
-                const AUTH_HEADER = {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                };
-                try {
-                    const response = await axios.get(
-                        `${import.meta.env.VITE_BACKEND_HOST}/api/v1/auth/validate_token`,
-                        AUTH_HEADER
-                    );
-                    if (response.status === 200) {
-                        setIsAuthenticated(true);
+        const validateSession = async () => {
+            try {
+                if (!token) {
+                    setShouldNavigate(true);
+                    return;
+                }
+
+                const isValid = await isTokenValid();
+                if (!isValid) {
+                    // Try to refresh the token
+                    const res = await axiosInstance.get('/users/refresh_session');
+                    console.log(res)
+                    if (res.data.accessToken) {
+                        await updateAccessToken(res.data.accessToken);
                     } else {
+                        setShouldNavigate(true);
                         handleInvalidSession('Your session has expired. Please log in again.');
                     }
-                } catch (error) {
-                    handleInvalidSession('Error validating token. Please log in again.');
                 }
-            } else {
-                setIsAuthenticated(false);
+            } catch (error) {
+                handleInvalidSession('An error occured, please try again');
+                setShouldNavigate(true);
+            } finally {
+                setLoading(false);
             }
         };
 
-        const handleInvalidSession = (msg: string) => {
-            setIsAuthenticated(false);
-            setMessage(msg);
-            setOpenState(true);
-            setMode("error");
-            logout();
-        };
+        validateSession();
+    }, [token, location.pathname, isTokenValid, updateAccessToken]);
 
-        validateToken();
-    }, [token, logout]);
-
-
-    /*
-
-    // Optionally render a loading spinner while checking token validity
-    if (isAuthenticated === null) {
-        return <div>Loading...</div>;
+    if (loading) {
+        return <CustomLoader />
     }
 
-    */
-
-    if (isAuthenticated === false) {
-        return <Navigate to="/login" replace />;
+    if (!user || !token || shouldNavigate) {
+        return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
     return (
@@ -75,3 +82,5 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
 };
 
 export default ProtectedRoute;
+
+

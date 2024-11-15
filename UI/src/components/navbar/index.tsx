@@ -88,7 +88,6 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
             <NavLinkButton onClick={() => handleNavigation('/guidance')}>Guidance and Counselling</NavLinkButton>
           </Stack>
 
-          {/* Support Button */}
           <SupportButton
             onClick={() => window.location.href = 'mailto:studentaffairs@pau.edu.ng?subject=Contact%20Us%20'}
             sx={{ display: { xs: 'none', sm: 'block' } }}

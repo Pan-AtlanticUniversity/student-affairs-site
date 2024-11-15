@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { About, Admins, BlogDetail, Blogs, ClubDetail, Clubs, ForgotPassword, Home, Login, Mentorship, Register, Rules, ServiceDetail, Sports } from "./pages"
+import { ProtectedRoute } from './components';
 
 
 function App() {
@@ -43,10 +44,16 @@ function App() {
         path="/rules"
         element={<Rules />}
       />
+
       <Route
         path="/admin"
-        element={<Admins />}
+        element={
+          <ProtectedRoute>
+            <Admins />
+          </ProtectedRoute>
+        }
       />
+
       <Route
         path="/services/:service"
         element={<ServiceDetail />}

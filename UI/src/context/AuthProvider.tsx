@@ -1,61 +1,75 @@
-import React, { createContext, useState, ReactNode, useMemo, useEffect } from 'react';
+import React, { createContext, useState, ReactNode, useMemo, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import { decode, JwtPart } from 'jwt-js-decode';
+import CustomLoader from '../components/CustomLoader';
+
+const baseUrl = `${import.meta.env.VITE_BACKEND_HOST as string}/api/v1`
+
+const axiosInstance = axios.create({
+    baseURL: baseUrl,
+    withCredentials: true, // ensures cookies are sent
+    headers: {
+        'Content-Type': 'application/json',
+    }
+});
+
+interface UserJWT extends JwtPart {
+    email: string;
+}
 
 export interface AuthContextType {
-    user: string | null;
+    user: UserJWT | null;
     token: string | null;
+    isTokenValid: () => Promise<boolean>;
     forgotPassword: (email: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<"success" | "error" | "warning" | "info">>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => Promise<void>;
     login: (email: string, password: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<"success" | "error" | "warning" | "info">>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => Promise<void>;
     register: (firstName: string, lastName: string, email: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<"success" | "error" | "warning" | "info">>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => Promise<void>;
     logout: () => void;
+    updateAccessToken: (token: string) => Promise<void>;
 }
 
-interface JwtPayload {
-    name: string;
-}
+export const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
 
 interface AuthProviderProps {
     children: ReactNode;
 }
 
-export const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-    const navigate = useNavigate();
-    const [user, setUser] = useState<string | null>(null);
-    const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
 
-    useEffect(() => {
-        if (token) {
-            try {
-                const decodedToken = jwtDecode<JwtPayload>(token);
-                setUser(decodedToken.name);
-            } catch (error) {
-                navigate("/login", { replace: true });
-                setUser(null);
-                setToken(null);
-            }
-        } else {
-            setUser(null);
-            navigate("/login", { replace: true });
+    const navigate = useNavigate();
+    const [user, setUser] = useState<UserJWT | null>(null);
+    const [token, setToken] = useState<string | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    const isTokenValid = useCallback(async () => {
+        if (!token) return false;
+
+        try {
+            const res = await axiosInstance.post('/auth/validate_token', {
+                token
+            });
+            return res.data.valid;
+        } catch (error) {
+            console.error('Error validating token:', error);
+            return false;
         }
     }, [token]);
 
-    const login = async (email: string, password: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<"success" | "error" | "warning" | "info">>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => {
+    const login = useCallback(async (email: string, password: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<"success" | "error" | "warning" | "info">>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => {
         try {
-            const response = await axios.post(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/auth/login`, { email, password });
+            const response = await axiosInstance.post('/auth/login', { email, password }
+            );
             setMessage(response.data.message);
             setMode("success");
-
-            const { token } = response.data;
-            const decodedToken = jwtDecode<JwtPayload>(token);
-            setToken(token);
-            setUser(decodedToken.name);
-            localStorage.setItem('token', token);
-            navigate("/");
+            const splitToken = response.data.accessToken.split(" ")[1] || "";
+            setToken(splitToken);
+            const jwt = decode(splitToken) as unknown as UserJWT;
+            setUser(jwt.payload);
+            navigate("/admin");
         } catch (error) {
+            console.log(error)
             if (axios.isAxiosError(error)) {
                 setMessage(error.response?.data.message);
                 setMode("error");
@@ -65,11 +79,55 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             }
         }
         setOpenState(true);
-    };
+    }, [navigate]);
 
-    const forgotPassword = async (email: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<"success" | "error" | "warning" | "info">>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => {
+    const updateAccessToken = useCallback(async (newToken: string) => {
         try {
-            const response = await axios.post(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/auth/forgot_password`, { email });
+            setToken(newToken);
+            const jwt = decode(newToken) as unknown as UserJWT;
+            setUser(jwt.payload);
+        } catch (error) {
+            console.error('Token update error:', error);
+            throw error;
+        }
+    }, []);
+
+    const logout = useCallback(() => {
+        setUser(null);
+        setToken(null);
+        document.cookie = 'refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        navigate("/login", { replace: true });
+    }, [navigate]);
+
+    const register = useCallback(async (firstName: string, lastName: string, email: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<"success" | "error" | "warning" | "info">>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => {
+        try {
+            const response = await axiosInstance.post('/auth/register', {
+                fullname: `${firstName} ${lastName}`,
+                email: email,
+            });
+
+            setMessage(response.data.message);
+            setMode("success");
+            const splitToken = response.data.accessToken.split("")[1] || "";
+            setToken(splitToken);
+            const jwt = decode(splitToken) as unknown as UserJWT;
+            setUser(jwt.payload);
+            navigate("/");
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                setMessage(error.response?.data.message);
+                setMode("error");
+            } else {
+                setMessage('Registration failed');
+                setMode("error");
+            }
+        }
+        setOpenState(true);
+    }, [navigate]);
+
+    const forgotPassword = useCallback(async (email: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<"success" | "error" | "warning" | "info">>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => {
+        try {
+            const response = await axiosInstance.post('/auth/forgot_password', { email });
             setMessage(response.data.message);
             setMode("success");
             setOpenState(true);
@@ -86,41 +144,29 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             }
             setOpenState(true);
         }
-    };
+    }, [navigate]);
 
-    const register = async (firstName: string, lastName: string, email: string, setMessage: React.Dispatch<React.SetStateAction<string | null>>, setMode: React.Dispatch<React.SetStateAction<"success" | "error" | "warning" | "info">>, setOpenState: React.Dispatch<React.SetStateAction<boolean>>) => {
-        try {
-            const response = await axios.post(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/auth/register`, {
-                fullname: `${firstName} ${lastName}`,
-                email: email,
-            });
+    useEffect(() => {
+        const initializeAuth = async () => {
+            try {
+                const res = await axiosInstance.get('/auth/refresh_session');
 
-            setMessage(response.data.message);
-            setMode("success");
-
-            const { token } = response.data;
-            setToken(token);
-            setUser(firstName);
-            localStorage.setItem('token', token);
-            navigate("/");
-        } catch (error) {
-            if (axios.isAxiosError(error)) {
-                setMessage(error.response?.data.message);
-                setMode("error");
-            } else {
-                setMessage('Registration failed');
-                setMode("error");
+                if (res.data.accessToken) {
+                    await updateAccessToken(res.data.accessToken.split(" ")[1] || "");
+                }
+            } catch (error) {
+                if (axios.isAxiosError(error) && error.response?.status === 400) {
+                    console.log('No session available. Redirecting to login.');
+                } else {
+                    console.error('An unexpected error occurred:', error);
+                }
+            } finally {
+                setLoading(false);
             }
-        }
-        setOpenState(true);
-    };
+        };
 
-    const logout = () => {
-        setToken(null);
-        setUser(null);
-        localStorage.removeItem('token');
-        navigate("/login", { replace: true });
-    };
+        initializeAuth();
+    }, [updateAccessToken]);
 
     const value = useMemo(
         () => ({
@@ -129,10 +175,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             login,
             forgotPassword,
             register,
-            logout
+            logout,
+            isTokenValid,
+            updateAccessToken
         }),
-        [token]
+        [forgotPassword, isTokenValid, login, logout, register, token, updateAccessToken, user]
     );
+
+    if (loading) {
+        return <CustomLoader />;
+    }
 
     return (
         <AuthContext.Provider value={value}>

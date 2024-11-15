@@ -1,48 +1,77 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import webpush from "web-push";
+import { PushSubscription } from "web-push";
+import { SubscriptionModel } from "../model";
+import sendNotification from "../services/notification/sendNotification";
 
 export const subscribe = async (req: Request, res: Response) => {
-  const subscription = req.body;
+  const subscription: PushSubscription = req.body;
 
-  const payload = JSON.stringify({
-    title: "Hello!",
-    body: "It works.",
-  });
+  try {
+    // Store the subscription in the database
+    await SubscriptionModel.create(subscription);
 
-  console.log("did it work?");
+    await sendNotification(subscription, {
+      title: "Hello from student affairs",
+      body: "Subscription successful.",
+      tag: "New subscription",
+    });
 
-  console.log(subscription);
+    res.status(StatusCodes.OK).json({ success: true });
+  } catch (error) {
+    console.log("Error sending notification:", error);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ success: false });
+  }
+};
 
-  webpush
-    .sendNotification(subscription, payload)
-    .then((result) => console.log("this is hre", result))
-    .catch((e) => console.log("an error occured", e.stack));
+export const unsubscribe = async (req: Request, res: Response) => {
+  const { endpoint } = req.body;
+  try {
+    const subscription = await SubscriptionModel.findOneAndDelete({ endpoint });
+    if (!subscription)
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: "Blog not found" });
+    res.json({ message: "Unsubscribed from notifications" });
+  } catch (error) {
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: (error as Error).message });
+  }
+};
 
-  res.status(StatusCodes.OK).json({ success: true });
+export const renewSubscription = async (req: Request, res: Response) => {
+  try {
+    const subscription = req.body; // Get the updated subscription data from the request
+
+    // Store or update the subscription in your database
+    const existingSubscription = await SubscriptionModel.findOneAndUpdate(
+      { endpoint: subscription.endpoint },
+      subscription, // Update with the new subscription details
+      { new: true, upsert: true } // Ensure it creates a new one if it doesn't exist
+    );
+
+    res
+      .status(StatusCodes.OK)
+      .json({ message: "Subscription renewes successfully" });
+  } catch (error) {
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Server error" });
+  }
 };
 
 export const test = async (req: Request, res: Response) => {
-  const payload = JSON.stringify({
-    title: "Hello!",
-    body: "It works.",
+  const subscriptions = await SubscriptionModel.find();
+
+  subscriptions.forEach(async (subscription) => {
+    await sendNotification(subscription, {
+      title: "Hello!",
+      body: "It works.",
+    })
+      .then((result) => console.log("this is hre", result))
+      .catch((e) => console.log("an error occured", e.stack));
   });
-
-  const subscription = {
-    endpoint:
-      "https://wns2-par02p.notify.windows.com/w/?token=BQYAAABQeQozEWH%2bfwm95vDKObFdPvsgV9t982knGvdO8VuZVGDrRFxDMSuVGOsl%2bp8OL68uQ7uYaHaicllZTmGzw3hV06QjA129Eh%2fc5qoRS0iEwKob5tZ0m0RUYARZ9Syat8TkPYdgnZ7Dac8hsTXaYfr4l%2brj34ltX51uqchF9hAAhoRNAbpmI4%2bYIsHvENyLfujnrR0spJM3W7PrKDOQkXmtnUzES4WE9iOum5coPllMRRm%2fdlxF9I9MK47wJMjMOOlBCLBtE0%2fA0unrzhzVgEdi%2fTwVgmDaYwP%2fvlunhMqGwefRLN3gbpAzBBgGaPM%2flq8%3d",
-    expirationTime: null,
-    keys: {
-      p256dh:
-        "BDahUZX9yfmnsmZ0kbIvu_4LAfW8rBYmefa4ZO-8zP3s4VNUDRTItxtgSkLJ7XvZ9k0j9rg37E6xqDwsfvSIyfQ",
-      auth: "M4elgt8Wbk5Q4YXo7yDFwg",
-    },
-  };
-
-  webpush
-    .sendNotification(subscription, payload)
-    .then((result) => console.log("this is hre", result))
-    .catch((e) => console.log("an error occured", e.stack));
 
   res.status(StatusCodes.OK).json({ success: true });
 };
