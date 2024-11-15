@@ -18,7 +18,7 @@ interface UserJWT extends JwtPart {
     email: string;
 }
 
-interface AuthContextType {
+export interface AuthContextType {
     user: UserJWT | null;
     token: string | null;
     isTokenValid: () => Promise<boolean>;
@@ -47,7 +47,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         if (!token) return false;
 
         try {
-            const res = await axiosInstance.post('/users/validate_token', {
+            const res = await axiosInstance.post('/auth/validate_token', {
                 token
             });
             return res.data.valid;
@@ -63,12 +63,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             );
             setMessage(response.data.message);
             setMode("success");
-            const { token } = response.data;
-            setToken(token);
-            const jwt = decode(token) as unknown as UserJWT;
+            const splitToken = response.data.accessToken.split(" ")[1] || "";
+            setToken(splitToken);
+            const jwt = decode(splitToken) as unknown as UserJWT;
             setUser(jwt.payload);
-            navigate("/");
+            navigate("/admin");
         } catch (error) {
+            console.log(error)
             if (axios.isAxiosError(error)) {
                 setMessage(error.response?.data.message);
                 setMode("error");
@@ -107,9 +108,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
             setMessage(response.data.message);
             setMode("success");
-            const { token } = response.data;
-            setToken(token);
-            const jwt = decode(token) as unknown as UserJWT;
+            const splitToken = response.data.accessToken.split("")[1] || "";
+            setToken(splitToken);
+            const jwt = decode(splitToken) as unknown as UserJWT;
             setUser(jwt.payload);
             navigate("/");
         } catch (error) {
@@ -148,16 +149,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     useEffect(() => {
         const initializeAuth = async () => {
             try {
-                /*
                 const res = await axiosInstance.get('/auth/refresh_session');
 
-                console.log(res)
                 if (res.data.accessToken) {
-                    await updateAccessToken(res.data.accessToken);
+                    await updateAccessToken(res.data.accessToken.split(" ")[1] || "");
                 }
-                    */
             } catch (error) {
-                console.log('App loaded');
+                if (axios.isAxiosError(error) && error.response?.status === 400) {
+                    console.log('No session available. Redirecting to login.');
+                } else {
+                    console.error('An unexpected error occurred:', error);
+                }
             } finally {
                 setLoading(false);
             }
@@ -165,8 +167,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
         initializeAuth();
     }, [updateAccessToken]);
-
-
 
     const value = useMemo(
         () => ({

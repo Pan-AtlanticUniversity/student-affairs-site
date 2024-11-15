@@ -91,7 +91,7 @@ export const refreshSession = async (
   try {
     const refreshToken = req.cookies.refreshToken?.split(" ")[1] || "";
     if (!refreshToken) {
-      throw new BadRequest("No token provided");
+      throw new BadRequest("No session available. Please log in.");
     }
 
     const verify = validateToken(
@@ -99,7 +99,7 @@ export const refreshSession = async (
       process.env.REFRESH_SECRET as string
     );
     if (!verify) {
-      throw new BadRequest("Invalid refresh token");
+      throw new BadRequest("Invalid session. Please log in.");
     }
 
     const payload = { name: verify.name };
@@ -120,7 +120,7 @@ export const validateAccessToken = async (
   next: NextFunction
 ) => {
   try {
-    const token = req.body.token?.split(" ")[1] || "";
+    const token = req.body.token || "";
     if (!token) {
       return res
         .status(StatusCodes.BAD_REQUEST)

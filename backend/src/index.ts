@@ -13,18 +13,15 @@ const port = process.env.PORT ? Number(process.env.PORT) : 3000;
 
 const app = express();
 const corsOptions = {
-  origin:
-    (process.env.NODE_ENV as string) === "production"
-      ? (process.env.FRONTEND_URL as string)
-      : (process.env.FRONTEND_DEV_URL as string),
-  credentials: true,
-  allowedHeaders: ["Content-Type", "Authorization", "Accept"],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  preflightContinue: true,
-  optionsSuccessStatus: 204, // For legacy browsers
+  origin: true,
+  credentials: true, // Allows cookies to be sent with the request
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Ensure OPTIONS is allowed
+  allowedHeaders: ["Content-Type", "Authorization"],
+  optionsSuccessStatus: 204, // Some legacy browsers might need this (204 is the "no content" status)
 };
 
 app.use(cors(corsOptions));
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

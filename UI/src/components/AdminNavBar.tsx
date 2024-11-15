@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AppBar, Box, Button, Menu, MenuItem, Stack, Toolbar, styled } from '@mui/material';
+import { AppBar, Box, Button, Menu, MenuItem, Stack, Toolbar, styled, Typography } from '@mui/material';
 import { Image } from 'mui-image';
 import { useNavigate } from 'react-router-dom';
 import PAULogo from '../assets/images/transparent-pau-logo.png'; // Replace with your logo
@@ -7,6 +7,7 @@ import user from '../assets/svgs/default-user.svg'
 import { grey, primary } from '../context/theme';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import useAuth from '../context/authContext';
 
 interface NavBarProps {
     route: string;
@@ -36,6 +37,7 @@ interface NavBarProps {
 }
 
 const NavBar: React.FC<NavBarProps> = ({ route }) => {
+    const { user: userJWT } = useAuth();
     const navigate = useNavigate();
     const handleNavigation = (path: string) => {
         navigate(path);
@@ -113,19 +115,23 @@ const NavBar: React.FC<NavBarProps> = ({ route }) => {
                                 Contact Us
                             </StyledMenuItem>
                         </Menu>
-                        <Box
-                            component="img"
-                            src={user}
-                            sx={{
-                                objectFit: 'contain',
-                                backgroundSize: "contain",
-                                width: { xs: '25px', md: '50px' },
-                                height: '100%',
-                                verticalAlign: 'middle'
+                        <Stack direction={'row'} gap={1} alignItems={'center'}>
+                            <Typography variant={'h6'} fontFamily={'Barlow'}>{userJWT?.name}</Typography>
+                            <Box
+                                component="img"
+                                src={user}
+                                sx={{
+                                    objectFit: 'contain',
+                                    backgroundSize: "contain",
+                                    width: { xs: '25px', md: '50px' },
+                                    height: '100%',
+                                    verticalAlign: 'middle'
 
 
-                            }}
-                        />
+                                }}
+                            />
+                        </Stack>
+
                     </Stack>
 
 
