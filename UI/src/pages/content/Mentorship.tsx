@@ -1,151 +1,3 @@
-// import { Box, Button, Grid, Stack, styled, Typography } from "@mui/material"
-// import { Banner, Footer, InfoBox, NavBar, ProfileCard, TextBox } from "../../components"
-// import { accent, dark, grey } from "../../context/theme"
-// import mentorship from '../../assets/images/Guidance counselling & mentoring/1.jpg'
-
-
-// /**
-//  * to update later. update ultimately inludes setting up the backend for this
-//  */
-// const profiles = [
-//     {
-//         imageUrl: 'https://via.placeholder.com/300x200',
-//         name: 'Anne Osezua',
-//         role: 'Student Affairs Director',
-//         contact: '0803 922 6965',
-//     },
-//     {
-//         imageUrl: 'https://via.placeholder.com/300x200',
-//         name: 'Felix Francis',
-//         role: 'To update..',
-//         contact: '0703 016 1494',
-//     },
-//     {
-//         imageUrl: 'https://via.placeholder.com/300x200',
-//         name: 'Jessica Amie',
-//         role: 'to update',
-//         contact: '0814 647 7325',
-//     },
-//     {
-//         imageUrl: 'https://via.placeholder.com/300x200',
-//         name: 'Calistus Omeje',
-//         role: 'to update',
-//         contact: '0813 614 3930',
-//     },
-//     {
-//         imageUrl: 'https://via.placeholder.com/300x200',
-//         name: 'Augustine Achike',
-//         role: 'to update',
-//         contact: '0704 048 1319',
-//     },
-
-
-// ];
-
-
-
-// const Mentorship = () => {
-//     return (
-//         <Stack minHeight={"100vh"} sx={{
-//             gap: { xs: 6, md: 10, lg: 14 },
-//             overflowY: "scroll", overflowX: "hidden",
-//             backgroundColor: grey,
-//             backgroundSize: "cover",
-//         }}>
-//             <NavBar route="Mentorship" />
-//             <Box sx={{
-//                 position: "relative",
-//                 width: '100%',
-//                 zIndex: 0,
-//                 '&::before': {
-//                     content: '""',
-//                     position: 'absolute',
-//                     bottom: 0,
-//                     left: 0,
-//                     transform: 'translate(-50%, 50%)',
-//                     zIndex: -1,
-//                     backgroundColor: accent,
-//                     width: "clamp(150px, 50vw, 300px)",
-//                     aspectRatio: 1,
-//                     maxWidth: "350px",
-//                     borderRadius: '50%'
-//                 }
-//             }}>
-//                 <Banner bannerImage={mentorship} />
-//                 <TextBox
-//                     title="Mentorship"
-//                 />
-//             </Box>
-
-//             <Stack pl={3} pr={3} sx={{ flexDirection: "column", gap: 'inherit' }} alignItems={'center'}>
-//                 {/* <Typography color={dark} sx={{ fontSize: { xs: '1rem', md: '1.2rem' }, textAlign: 'center', zIndex: 1 }}>
-//                     To ensure a smooth experience here at PAU, here are a few guidelines to get you up and going<span>
-//                         <Box
-//                             component="img"
-//                             src={Smiley}
-//                             pl={1}
-//                             sx={{
-//                                 objectFit: 'contain',
-//                                 backgroundSize: "contain",
-//                                 width: '40px',
-//                                 height: '100%',
-//                                 verticalAlign: 'middle'
-
-//                             }}
-//                         /></span>
-//                 </Typography> */}
-
-
-//                 <Stack width={"100%"} flexDirection={'column'} gap={3} sx={{ overflowX: 'visible' }}>
-
-//                     <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center", overflowX: 'visible' }} >
-//                         <Stack sx={{ width: "clamp(256px, 100%, 1200px)", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
-
-//                             <InfoBox
-//                                 title="What is the mentorship program about?"
-//                                 content="At Pan-Atlantic University, we are dedicated to fostering academic excellence, personal growth, and innovation. Discover how we are shaping the future through education, research, and leadership, and learn more about the values that guide our institution."
-//                             />
-
-
-//                             <InfoBox
-//                                 title="Mentors To Meet!"
-//                                 content="At Pan-Atlantic University, we are dedicated to fostering academic excellence, personal growth, and innovation. Discover how we are shaping the future through education, research, and leadership, and learn more about the values that guide our institution."
-//                             />
-//                             <Grid container spacing={4} justifyContent="center" sx={{ marginTop: '32px' }}>
-//                                 {profiles.map((profile, index) => (
-//                                     <Grid item key={index} xs={12} sm={6} md={4}>
-//                                         <ProfileCard
-//                                             imageUrl={profile.imageUrl}
-//                                             name={profile.name}
-//                                             role={profile.role}
-//                                             contact={profile.contact}
-//                                         />
-//                                     </Grid>
-//                                 ))}
-//                             </Grid>
-
-
-//                             <InfoBox
-//                                 title="How to get invloved?"
-//                                 content="At Pan-Atlantic University, we are dedicated to fostering academic excellence, personal growth, and innovation. Discover how we are shaping the future through education, research, and leadership, and learn more about the values that guide our institution."
-//                             />
-
-
-
-//                         </Stack>
-
-
-//                     </Stack>
-//                 </Stack>
-
-
-//             </Stack>
-
-//             <Footer />
-//         </Stack>
-//     )
-// // }
-
 // export default Mentorship
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import { Banner, Footer, InfoBox, MentorshipInfo, NavBar, ProfileCard, TextBox, UnderlinedText } from "../../components";
@@ -165,7 +17,8 @@ const Mentorship = () => {
         meeting_times: string;
         name: string;
         email: string;
-        image: string
+        image: string;
+        emailAddress: string;
     }
 
     const [mentors, setMentors] = useState<TitleItem[]>([]);
@@ -181,6 +34,30 @@ const Mentorship = () => {
         };
         getMentors();
     }, []);
+
+
+    // interface TitleItem {
+    //     _id: string;
+    //     meeting_times: string;
+    //     name: string;
+    //     email: string;
+    //     image: string
+    // }
+
+    const [counsellors, setCounsellors] = useState<TitleItem[]>([]);
+
+    useEffect(() => {
+        const getCounsellors = async () => {
+            try {
+                const res = await axios.get<TitleItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/counsellor`);
+                setCounsellors(res.data);
+            } catch (error) {
+                console.log("Error fetching counsellor details:", error);
+            }
+        };
+        getCounsellors();
+    }, []);
+
 
 
     return (
@@ -299,6 +176,35 @@ const Mentorship = () => {
                     ]}
                     footerText="Feel free to approach any of our Peer Counselors or Resident Assistants for support or guidance."
                 />
+
+
+                <UnderlinedText text="Meet Some Of Our Peer Counselors" />
+                <Grid container spacing={4} justifyContent="center" position={'relative'} zIndex={0} sx={{
+                    '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: '50%',
+                        left: 0,
+                        transform: 'translate(-65%, -50%)  rotate(35deg)',
+                        zIndex: -1,
+                        border: `15px ${accent} solid`,
+                        width: { xs: '40vw' },
+                        aspectRatio: "3/5",
+                        maxWidth: "350px",
+                        borderRadius: 5,
+                    }
+                }}>
+                    {counsellors.map((profile, index) => (
+                        <Grid item key={index} xs={12} sm={6} md={3}>
+                            <ProfileCard
+                                imageUrl={profile.image}
+                                name={profile.name}
+                                // contact={profile.meeting_times}
+                                mail={profile.emailAddress}
+                            />
+                        </Grid>
+                    ))}
+                </Grid>
 
 
 

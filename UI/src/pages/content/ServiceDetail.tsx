@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { Banner, Footer, NavBar, TextBox } from '../../components';
 import { accent, dark, grey } from '../../context/theme';
-import { ServiceInterface } from '../../components/Services'
+import { ServiceInterface } from '../../components/services/Services'
 
 const ServiceDetail = () => {
 

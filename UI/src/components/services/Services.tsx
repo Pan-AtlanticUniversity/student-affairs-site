@@ -1,6 +1,6 @@
-import { GridCard, InfoBox } from '../components';
+import { GridCard, InfoBox } from '..';
 import { Grid, Stack } from '@mui/material';
-import { accent, primary } from '../context/theme';
+import { accent, primary } from '../../context/theme';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -65,7 +65,12 @@ const Services = () => {
               onClick={() => {
                 if (item.name === 'Sports') {
                   navigate('/sports');
-                } else {
+                } else if (item.name == 'Guidance and Counselling') {
+                  navigate('/guidance')
+                } else if (item.name === 'Community Service Project') {
+                  window.location.href = 'http://pau.volunteer.ng';
+                }
+                else {
                   navigate(`/services/${item.name}`, { state: { service: item } });
                 }
               }}
