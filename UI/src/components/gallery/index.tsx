@@ -219,7 +219,7 @@ const PhotoGallery = () => {
       info: "A social event for watching the Afcon matches together.",
     },
   ];
-  
+
 
   // Using HTMLDivElement as the type for the ref
   const trackRef = useRef<HTMLDivElement>(null);
@@ -271,13 +271,13 @@ const PhotoGallery = () => {
                             lg: '24px', // extra large screens
                           },
                           fontWeight: 'bold', // Optional: add font weight
-                          
+
                         }}
                       >
                         {item.name}
                       </Typography>
                       <Typography
-                      
+
                         sx={{
                           fontSize: {
                             xs: '15px',
