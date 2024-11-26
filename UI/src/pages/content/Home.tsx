@@ -1,27 +1,14 @@
-//import { Box, Dialog, DialogContent, DialogTitle, Slide, Stack, Typography } from "@mui/material";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Dialog, DialogContent, DialogTitle, Stack, Typography } from "@mui/material";
 import { Faq, Footer, NavBar, Services, TextBox, UnderlinedText } from "../../components";
 import { dark, grey } from "../../context/theme";
 import videoSource from "../../assets/video/SA-video.mp4";
-//import Confetti from "react-confetti";
-//import { TransitionProps } from "@mui/material/transitions";
-//import { forwardRef, useEffect, useState } from "react";
+import Confetti from "react-confetti";
+import { useEffect, useState } from "react";
 
 const Home = () => {
-  /*
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(document.documentElement.clientHeight);
   const [dialogOpen, setDialogOpen] = useState(false);
-
-  const Transition = forwardRef(function Transition(
-    props: TransitionProps & {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      children: React.ReactElement<any, any>;
-    },
-    ref: React.Ref<unknown>,
-  ) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
 
   useEffect(() => {
     setTimeout(() => setDialogOpen(true), 2000);
@@ -37,7 +24,7 @@ const Home = () => {
 
   const handleClose = () => {
     setDialogOpen(false);
-  };*/
+  };
 
   return (
     <Stack minHeight={"100vh"} sx={{
@@ -104,13 +91,10 @@ const Home = () => {
       {/* Footer Section */}
       <Footer />
 
-      {/*
       <Dialog
         fullWidth
         open={dialogOpen}
         onClose={handleClose}
-        TransitionComponent={Transition}
-        keepMounted={true}
       >
         <DialogTitle textAlign={'center'} sx={{ marginTop: 1 }}>Congratulations on your admission to PAU! 🎉</DialogTitle>
         <DialogContent>
@@ -136,7 +120,6 @@ const Home = () => {
 
       {dialogOpen && <Confetti width={width} height={height} style={{ zIndex: 0 }} />}
 
-      */}
     </Stack >
   )
 }

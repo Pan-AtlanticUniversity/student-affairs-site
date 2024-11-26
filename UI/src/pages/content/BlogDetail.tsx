@@ -1,10 +1,9 @@
-import { Box, Button, Dialog, DialogContent, DialogTitle, Slide, Stack, Typography } from '@mui/material';
+import { Box, Button, Dialog, DialogContent, DialogTitle, Stack, Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { Banner, Footer, NavBar, TextBox } from '../../components';
 import { accent, dark, grey, primary } from '../../context/theme';
 import dayjs from 'dayjs';
-import { TransitionProps } from "@mui/material/transitions";
-import { forwardRef, useState } from 'react';
+import { useState } from 'react';
 
 import avatar from '../../assets/svgs/default-user.svg';
 import subscribe from '../../assets/svgs/subscribe.svg';
@@ -15,16 +14,6 @@ const BlogDetail = () => {
     const visited = localStorage.getItem('visited') as unknown as boolean;
 
     const [open, setOpen] = useState(true);
-
-    const Transition = forwardRef(function Transition(
-        props: TransitionProps & {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            children: React.ReactElement<any, any>;
-        },
-        ref: React.Ref<unknown>,
-    ) {
-        return <Slide direction="up" ref={ref} {...props} />;
-    });
 
     const handleClose = () => {
         setOpen(false);
@@ -57,7 +46,6 @@ const BlogDetail = () => {
             backgroundSize: "cover",
         }}>
             <NavBar route="Blog" />
-
             <Box sx={{
                 position: "relative",
                 width: '100%',
@@ -204,8 +192,6 @@ const BlogDetail = () => {
             <Dialog
                 open={!visited && open}
                 onClose={handleClose}
-                TransitionComponent={Transition}
-                keepMounted
             >
                 <DialogTitle textAlign={'center'} sx={{ marginTop: 1 }}>
                     Stay in the loop! ✨
