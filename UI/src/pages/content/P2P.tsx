@@ -9,7 +9,7 @@ import videoSource from "../../assets/video/p2p.mp4";
 import InfoBox from "../../components/infobox";
 import P2PInfo from "../../components/p2p";
 import { Footer, NavBar, TextBox } from "../../components";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
@@ -17,7 +17,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 // Responsive styling applied
 const P2P = () => {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     return (
         <Stack minHeight="100vh" sx={{
