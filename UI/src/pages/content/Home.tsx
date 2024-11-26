@@ -1,15 +1,17 @@
-import { Box, Dialog, DialogContent, DialogTitle, Slide, Stack, Typography } from "@mui/material";
+//import { Box, Dialog, DialogContent, DialogTitle, Slide, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { Faq, Footer, NavBar, Services, TextBox, UnderlinedText } from "../../components";
 import { dark, grey } from "../../context/theme";
 import videoSource from "../../assets/video/SA-video.mp4";
-import Confetti from "react-confetti";
-import { TransitionProps } from "@mui/material/transitions";
-import { forwardRef, useEffect, useState } from "react";
+//import Confetti from "react-confetti";
+//import { TransitionProps } from "@mui/material/transitions";
+//import { forwardRef, useEffect, useState } from "react";
 
 const Home = () => {
+  /*
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(document.documentElement.clientHeight);
-  const [open, setOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const Transition = forwardRef(function Transition(
     props: TransitionProps & {
@@ -22,14 +24,11 @@ const Home = () => {
   });
 
   useEffect(() => {
-
-    setTimeout(() => setOpen(true), 2000);
-    // Update the dimensions when the window resizes
+    setTimeout(() => setDialogOpen(true), 2000);
     const handleResize = () => {
       setWidth(window.innerWidth);
       setHeight(window.innerHeight);
     };
-
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -37,8 +36,8 @@ const Home = () => {
   }, []);
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setDialogOpen(false);
+  };*/
 
   return (
     <Stack minHeight={"100vh"} sx={{
@@ -105,29 +104,25 @@ const Home = () => {
       {/* Footer Section */}
       <Footer />
 
-
+      {/*
       <Dialog
         fullWidth
-        open={open}
+        open={dialogOpen}
         onClose={handleClose}
         TransitionComponent={Transition}
-        keepMounted
+        keepMounted={true}
       >
         <DialogTitle textAlign={'center'} sx={{ marginTop: 1 }}>Congratulations on your admission to PAU! 🎉</DialogTitle>
         <DialogContent>
-          <Box
-            component="img"
-            src={"https://pau.edu.ng/wp-content/uploads/2024/04/pan-atlantic-university-3-scaled.jpg?id=23379"}
-            sx={{
-              objectFit: 'cover',
-              backgroundSize: "cover",
-              aspectRatio: '7/3',
-              verticalAlign: 'middle',
-              width: '100%',
-              loading: 'lazy',
-              borderRadius: 2
-            }}
-          />
+          <Box component="img" src={"https://pau.edu.ng/wp-content/uploads/2024/04/pan-atlantic-university-3-scaled.jpg?id=23379"} sx={{
+            objectFit: 'cover',
+            backgroundSize: "cover",
+            aspectRatio: '7/3',
+            verticalAlign: 'middle',
+            width: '100%',
+            loading: 'lazy',
+            borderRadius: 2
+          }} />
           <Typography sx={{ marginTop: 3, paddingBottom: 3 }}>
             At Pan-Atlantic University, we are committed to the holistic development of every student.
             Our goal is to shape the PAU student into an ethically grounded and responsible professional.
@@ -138,7 +133,10 @@ const Home = () => {
           </Typography>
         </DialogContent>
       </Dialog>
-      {open && <Confetti width={width} height={height} style={{ zIndex: 10 }} />}
+
+      {dialogOpen && <Confetti width={width} height={height} style={{ zIndex: 0 }} />}
+
+      */}
     </Stack >
   )
 }
