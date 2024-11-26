@@ -12,6 +12,7 @@ import ForgotPassword from "./auth/ForgotPassword";
 import ServiceDetail from "./content/ServiceDetail";
 import Mentorship from "./content/Mentorship";
 import Sports from "./content/Sports";
+import P2P from "./content/P2P";
 
 export {
     Admins,
@@ -27,5 +28,6 @@ export {
     ForgotPassword,
     ServiceDetail,
     Mentorship,
-    Sports
+    Sports,
+    P2P
 }

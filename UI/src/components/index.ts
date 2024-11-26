@@ -18,6 +18,7 @@ import MentorshipInfo from "./mentorship";
 import Faq from "./faq"
 import SportInfo from "./sports";
 import PhotoGallery from "./gallery";
+import P2PInfo from "./p2p";
 
 export {
   AuthNavBar,
@@ -39,5 +40,6 @@ export {
   MentorshipInfo,
   Faq,
   SportInfo,
-  PhotoGallery
+  PhotoGallery,
+  P2PInfo
 };

@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { About, Admins, BlogDetail, Blogs, ClubDetail, Clubs, ForgotPassword, Home, Login, Mentorship, Register, Rules, ServiceDetail, Sports } from "./pages"
+import { About, Admins, BlogDetail, Blogs, ClubDetail, Clubs, ForgotPassword, Home, Login, Mentorship, P2P, Register, Rules, ServiceDetail, Sports } from "./pages"
 import { ProtectedRoute } from './components';
 
 
@@ -67,6 +67,11 @@ function App() {
       <Route
         path="/sports"
         element={<Sports />}
+      />
+
+      <Route
+        path="/p2p"
+        element={<P2P />}
       />
     </Routes>
   )
