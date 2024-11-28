@@ -46,9 +46,16 @@ const MentorshipInfo = () => {
                 <Grid item xs={12} md={6} order={{ xs: 1, md: 1 }}>
                     <Typography variant="h6" gutterBottom sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }}>
                         <Typography variant="h6" fontWeight={"bold"} gutterBottom sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }}>Mrs. Ezinne Olukoya</Typography>
-                        - Our University Guidance Counselor is available for physical counseling sessions from Monday to Friday, 8:30 AM to 5:00 PM. Her office is located in the Mentoring Room on the second floor of the T.Y. Danjuma Academic Complex. Students can either walk in or book an appointment via email at <Link href="mailto:eolukoya@pau.edu.ng?subject=Schedule%20a%20Session">
-                               eolukoya@pau.edu.ng
-                        </Link>.
+                        <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, mb: 2 }}>
+                            - Our University Guidance Counselor is available for physical counseling sessions from Monday to Friday, 8:30 AM to 5:00 PM.
+                        </Typography>
+                        <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, mb: 2 }}>
+                            Her office is located in the Mentoring Room on the second floor of the T.Y. Danjuma Academic Complex. Students can either walk in or book an appointment via email at
+
+                            <Link href="mailto:eolukoya@pau.edu.ng?subject=Schedule%20a%20Session">
+                                eolukoya@pau.edu.ng
+                            </Link>.
+                        </Typography>
 
                     </Typography>
                 </Grid>
@@ -91,49 +98,6 @@ const MentorshipInfo = () => {
                 </Grid>
             </Grid>
 
-            {/* Part 1 */}
-            {/* <Grid container spacing={4} alignItems="center">
-                <Grid item xs={12} md={6}>
-                    <Typography variant="h6" gutterBottom sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }}>
-                        Mrs. Ezinne Olukoya - Our University Guidance Counselor is available for physical counseling sessions from Monday to Friday, 8:30 AM to 5:00 PM. Her office is located in the Mentoring Room on the second floor of the T.Y. Danjuma Academic Complex. Students can either walk in or book an appointment via email at eolukoya@pau.edu.ng.
-                    </Typography>
-
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    <CardMedia
-                        component="img"
-                        image={image1}
-                        alt="Person working on laptop"
-                        sx={{
-                            borderRadius: 3,
-                            width: { xs: '100%', sm: 400, md: 600 },  // 100% for extra small screens, 400px for small, 600px for medium
-                            height: { xs: 'auto', sm: 300, md: 500 }, // auto height for extra small, and specific heights for small and medium screens
-                        }}
-                    />
-                </Grid>
-            </Grid>
-
-            {/* Part 2 */}
-            {/* <Grid container spacing={4} alignItems="center" sx={{ mt: 4 }}>
-                <Grid item xs={12} md={6}>
-                    <CardMedia
-                        component="img"
-                        image={image2}
-                        alt="Team working together"
-                        sx={{
-                            borderRadius: 3,
-                            width: { xs: '100%', sm: 400, md: 600 },  // 100% for extra small screens, 400px for small, 600px for medium
-                            height: { xs: 'auto', sm: 300, md: 500 }, // auto height for extra small, and specific heights for small and medium screens
-                        }}
-                    />
-
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    <Typography variant="h6" gutterBottom sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }}>
-                        Mr Emmanuel Enaholo - Available for both virtual and physical counselling sessions. To schedule a session with him, send an email to eenaholo@pau.edu.ng.
-                    </Typography>
-                </Grid>
-            // </Grid> */}
 
             {/* Part 3 */}
             <Grid container spacing={4} alignItems="center" sx={{ mt: 4 }}>
@@ -143,7 +107,11 @@ const MentorshipInfo = () => {
                     </Typography>
                     <Box sx={{}}>
                         <Typography variant="h6" gutterBottom sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }}>
-                            In collaboration with the Guidance and Counseling Unit, the University’s Health and Wellness Team (H.W. Team) is composed of select staff members dedicated to supporting students with mental and psychological health concerns. The team offer a variety of resources, including counseling services, wellness workshops, and stress management programs.
+                            In collaboration with the Guidance and Counseling Unit, the University’s Health and Wellness Team (H.W. Team) is composed of select staff members dedicated to supporting students with mental and psychological health concerns.
+
+                        </Typography>
+                        <Typography variant="h6" gutterBottom sx={{fontSize: { xs: '1rem', md: '1.25rem' }, mb: 2 }}>
+                            The team offer a variety of resources, including counseling services, wellness workshops, and stress management programs.
                         </Typography>
                     </Box>
                 </Grid>

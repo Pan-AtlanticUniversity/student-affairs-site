@@ -44,15 +44,6 @@ const Mentorship = () => {
         getMentors();
     }, []);
 
-
-    // interface TitleItem {
-    //     _id: string;
-    //     meeting_times: string;
-    //     name: string;
-    //     email: string;
-    //     image: string
-    // }
-
     const [counsellors, setCounsellors] = useState<CounsellorItem[]>([]);
 
     useEffect(() => {
@@ -106,10 +97,15 @@ const Mentorship = () => {
                         </Typography>
                         <Box sx={{ lineHeight: 1.6 }}>
 
-                            <Typography variant="body1" sx={{ fontSize: { xs: '0.875rem', md: '1.25rem' } }}>
-                                At PAU, the Guidance and Counseling Unit is dedicated to providing comprehensive support for the personal, emotional, and psychological well-being of our students. Whether you're dealing with academic stress, personal struggles, or just need someone to listen, we're here to support you every step of the way. Our goal is to help you overcome challenges, achieve your goals, and make the most of your university experience.
+                            <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, mb:2}}>
+                                At PAU, the Guidance and Counseling Unit is dedicated to providing comprehensive support for the personal, emotional, and psychological well-being of our students.
                             </Typography>
-
+                            <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.25rem' } , mb:2}}>
+                                Whether you're dealing with academic stress, personal struggles, or just need someone to listen, we're here to support you every step of the way.
+                            </Typography>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, mb:2 }}>
+                                Our goal is to help you overcome challenges, achieve your goals, and make the most of your university experience.
+                            </Typography>
                         </Box>
 
                     </Grid>
@@ -120,30 +116,6 @@ const Mentorship = () => {
                 {/*  */}
 
                 <MentorshipInfo />
-
-                {/* <Grid container spacing={4} alignItems="center">
-                    <Grid item xs={12} md={6}>
-                        <Box component="img" src={infoBoxImages[1]} alt="Mentors" sx={{ width: "100%", borderRadius: 2 }} />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <InfoBox
-                            title="What is the mentorship program about?"
-                            content="At Pan-Atlantic University, we are dedicated to fostering academic excellence, personal growth, and innovation. Discover how we are shaping the future through education, research, and leadership, and learn more about the values that guide our institution."
-                        />
-                    </Grid>
-                </Grid>
-
-                <Grid container spacing={4} alignItems="center">
-                    <Grid item xs={12} md={6}>
-                        <InfoBox
-                            title="What is the mentorship program about?"
-                            content="At Pan-Atlantic University, we are dedicated to fostering academic excellence, personal growth, and innovation. Discover how we are shaping the future through education, research, and leadership, and learn more about the values that guide our institution."
-                        />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <Box component="img" src={infoBoxImages[2]} alt="Involvement" sx={{ width: "100%", borderRadius: 2 }} />
-                    </Grid>
-                </Grid> */}
 
                 {/* Mentor Profiles Section */}
                 <UnderlinedText text="Book an appointment!" />
