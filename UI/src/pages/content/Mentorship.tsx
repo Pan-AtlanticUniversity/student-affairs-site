@@ -21,6 +21,15 @@ const Mentorship = () => {
         emailAddress: string;
     }
 
+    interface CounsellorItem {
+        _id: string;
+        meeting_times: string;
+        name: string;
+        email: string;
+        image: string;
+        emailAddress: string;
+    }
+
     const [mentors, setMentors] = useState<TitleItem[]>([]);
 
     useEffect(() => {
@@ -44,12 +53,12 @@ const Mentorship = () => {
     //     image: string
     // }
 
-    const [counsellors, setCounsellors] = useState<TitleItem[]>([]);
+    const [counsellors, setCounsellors] = useState<CounsellorItem[]>([]);
 
     useEffect(() => {
         const getCounsellors = async () => {
             try {
-                const res = await axios.get<TitleItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/counsellor`);
+                const res = await axios.get<CounsellorItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/counsellor`);
                 setCounsellors(res.data);
             } catch (error) {
                 console.log("Error fetching counsellor details:", error);

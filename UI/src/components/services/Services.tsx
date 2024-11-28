@@ -69,6 +69,8 @@ const Services = () => {
                   navigate('/guidance')
                 } else if (item.name === 'Community Service Project') {
                   window.location.href = 'http://pau.volunteer.ng';
+                }else if (item.name === 'Peer to Peer Tutorials') {
+                  navigate('/p2p')
                 }
                 else {
                   navigate(`/services/${item.name}`, { state: { service: item } });

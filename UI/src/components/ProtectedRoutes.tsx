@@ -45,7 +45,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
                 const isValid = await isTokenValid();
                 if (!isValid) {
                     // Try to refresh the token
-                    const res = await axiosInstance.get('/users/refresh_session');
+                    const res = await axiosInstance.get('/auth/refresh_session');
                     console.log(res)
                     if (res.data.accessToken) {
                         await updateAccessToken(res.data.accessToken);
