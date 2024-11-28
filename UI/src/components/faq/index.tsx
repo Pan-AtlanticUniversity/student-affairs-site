@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     question: "What is the FIG Programme, and who is it for?",
-    answer: "The Freshman Integration and Guidance (FIG) Programme is designed for first-year students to help ease their transition into university life. Senior students provide guidance and support through regular activities and mentorship."
+    answer: "The First-Year Integration Group (FIG) Programme is designed for first-year students to help ease their transition into university life. Senior students provide guidance and support through regular activities and mentorship."
   },
   {
     question: "How can I find internship opportunities at PAU?",

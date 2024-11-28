@@ -6,6 +6,7 @@ import rulesGuy from '../../assets/images/CS-3625-820x400-1.jpg'
 import Smiley from '../../assets/images//smiley.png';
 import GuideLines from '../../assets/svgs/guidelines.svg';
 import DressSense from '../../assets/svgs/dress-sense.svg';
+import governance from '../../assets/svgs/governance.svg';
 
 const StyledButton = styled(Button)({
     padding: "20px 0",
@@ -203,7 +204,82 @@ const About = () => {
 
                     </Stack>
                 </Stack>
+
+                <Stack width={"100%"} flexDirection={'column'} gap={3} sx={{ overflowX: 'visible' }}>
+                    <Typography variant="h4" color={dark} textAlign={'center'}>
+                        Student Governance Framework
+
+                    </Typography>
+                    <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center", overflowX: 'visible' }} >
+                        <Stack sx={{ width: "clamp(256px, 100%, 1200px)", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
+                            <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }}>
+                                <b>Student Governance Framework at PAU</b>
+                                <br />
+                                <br />
+                                The Student Governance Framework outlines the processes and guidelines for managing student associations, clubs,
+                                and initiatives, ensuring they operate effectively and align with institutional goals
+                                <br />
+                                {/* Our Dress Code is designed to foster a culture of professionalism, modesty, and respect, consistent with
+                                our values and Christian identity.
+                                <br />
+                                <br />
+                                Whether you're attending lectures, participating in professional events,
+                                or engaging in recreational activities, your attire should always reflect a sense of decency
+                                and care for your appearance.
+                                <br />
+                                This policy outlines the standards expected of all students to maintain a respectful
+                                and professional environment on campus. */}
+                            </Typography>
+
+                            <StyledButton variant="contained" endIcon={<DownloadIcon />}
+                                onClick={() => {
+                                    window.open('https://pau.edu.ng/pau-uploads/Student%20Governance%20Framework%20-%200.3.1.1.pdf?_t=1710595698', '_blank');
+                                }}>Get full PDF</StyledButton>
+                        </Stack>
+                        <Box
+                            sx={{
+                                position: 'relative',
+                                display: 'inline-block',
+                                width: '100%',
+                                maxWidth: { xs: "500px", xl: '850px' },
+                                height: '100%',
+                                overflowX: 'visible',
+                                zIndex: 0,
+                                '&::before': {
+                                    content: '""',
+                                    position: 'absolute',
+                                    top: '-5%',
+                                    right: '-25%',
+                                    width: { xs: '50vw', lg: '300px', xl: '500px' },
+                                    aspectRatio: "1",
+                                    borderRadius: '50%',
+                                    backgroundColor: "secondary.main",
+                                    zIndex: -1,
+                                },
+                            }}
+                        >
+                            <Box
+                                component="img"
+                                src={governance}
+                                sx={{
+                                    objectFit: 'cover',
+                                    backgroundSize: "cover",
+                                    height: '100%',
+                                    verticalAlign: 'middle',
+                                    width: '100%',
+                                    zIndex: 0,
+                                    position: 'relative',
+                                }}
+                            />
+                        </Box>
+
+                    </Stack>
+                </Stack>
+
+
             </Stack>
+
+
 
             <Footer />
         </Stack>

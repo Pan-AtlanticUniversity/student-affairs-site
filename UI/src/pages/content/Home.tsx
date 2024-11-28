@@ -1,9 +1,48 @@
-import { Box, Dialog, DialogContent, DialogTitle, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Card, CardContent, Dialog, DialogContent, DialogTitle, Grid, IconButton, Stack, Typography } from "@mui/material";
 import { Faq, Footer, NavBar, Services, TextBox, UnderlinedText } from "../../components";
 import { dark, grey } from "../../context/theme";
 import videoSource from "../../assets/video/SA-video.mp4";
 import Confetti from "react-confetti";
 import { useEffect, useState } from "react";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import { sam, miracle, chima } from "../../assets/images/dev-team";
+
+const team = [
+  {
+    name: "Chima Okwuokei",
+    role: "Developer",
+    image: chima,
+    linkedin: "https://www.linkedin.com/in/chima-okwuokei-59783425b/",
+    github: "https://github.com/chimaOkwuokei",
+    instagram: "https://www.instagram.com/chima.o._/profilecard"
+  },
+  {
+    name: "Miracle Nnadiukwu",
+    role: "Developer",
+    image: miracle,
+    linkedin: "http://linkedin.com/in/miracle-nnadiukwu",
+    github: "#",
+    instagram: ""
+  },
+  {
+    name: "Samuel Oyefusi",
+    role: "Project Manager",
+    image: sam, // Replace with actual paths
+    linkedin: "https://www.linkedin.com/in/samuel-oyefusi?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+    github: "#",
+    instagram: "https://www.instagram.com/koredeoyefusi/profilecard"
+  },
+  {
+    name: "Blessing Bolaji",
+    role: "Content Creator",
+    image: "/path/to/anjola-image.png",
+    linkedin: "#",
+    github: "#",
+    instagram: ""
+  },
+];
 
 const Home = () => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -86,6 +125,70 @@ const Home = () => {
         </Stack>
 
         <Faq />
+
+        <Typography
+          variant="h4"
+          gutterBottom
+          sx={{
+            fontSize: { xs: '1.5rem', md: '1.95rem' },
+            position: 'relative',
+            display: 'inline-block',
+            textAlign: 'center',
+            fontWeight: 'semi-bold',
+            '::after': {
+              content: '""',
+              display: 'block',
+              width: '50%',
+              height: '3px',
+              backgroundColor: 'primary.main',
+              margin: '5px auto 0',
+              borderRadius: '2px',
+            },
+          }}
+        >
+          Meet the Founding Team
+        </Typography>
+
+        <Grid container spacing={4} justifyContent="center">
+          {team.map((member, index) => (
+            <Grid item xs={12} sm={6} md={3} key={index}>
+              <Card
+                elevation={3}
+                sx={{
+                  textAlign: "center",
+                  padding: 2,
+                  borderRadius: 2,
+                }}
+              >
+                <Avatar
+                  src={member.image}
+                  alt={member.name}
+                  sx={{ width: 200, height: 200, margin: "0 auto", marginBottom: 2 }}
+                />
+                <CardContent>
+                  <Typography variant="h6" fontWeight="bold">
+                    {member.name}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" mb={2}>
+                    {member.role}
+                  </Typography>
+                  <Stack direction="row" justifyContent="center" spacing={1}>
+                    <IconButton href={member.linkedin} target="_blank">
+                      <LinkedInIcon />
+                    </IconButton>
+                    <IconButton href={member.github} target="_blank">
+                      <GitHubIcon />
+                    </IconButton>
+                    <IconButton href={member.instagram} target="_blank">
+                      <InstagramIcon />
+                    </IconButton>
+                  </Stack>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+
 
       </Stack>
       {/* Footer Section */}
