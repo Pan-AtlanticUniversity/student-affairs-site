@@ -180,27 +180,27 @@ const SportInfo = () => {
                     </Typography>
                     <Box component="ul" sx={{ paddingLeft: '1.5rem', listStyleType: 'disc', lineHeight: 1.6, mb: 3 }}>
                         <li>
-                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 1 }}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 2 }}>
                                 • Football (Male and Female)
                             </Typography>
                         </li>
                         <li>
-                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 1 }}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 2 }}>
                                 • Basketball (Male and Female)
                             </Typography>
                         </li>
                         <li>
-                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 1 }}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 2 }}>
                                 • Tennis (Male and Female)
                             </Typography>
                         </li>
                         <li>
-                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 1 }}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 2 }}>
                                 • Volleyball (Male and Female)
                             </Typography>
                         </li>
                         <li>
-                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 1 }}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 2 }}>
                                 • Table Tennis (Male and Female)
                             </Typography>
                         </li>
@@ -210,12 +210,12 @@ const SportInfo = () => {
                     </Typography>
                     <Box component="ul" sx={{ paddingLeft: '1.5rem', listStyleType: 'disc', lineHeight: 1.6, mb: 3 }}>
                         <li>
-                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 1 }}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 2 }}>
                                 <strong> • Chess Community:</strong> For students who enjoy strategic thinking and mental challenges, the Chess Community offers a space to practice, learn, and compete.
                             </Typography>
                         </li>
                         <li>
-                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 1 }}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 2 }}>
                                 <strong> •  Games Night:</strong> The PAU Games Night is a social event aimed at bringing together students and staff for low-impact, recreational activities. It includes board games, card games, and other fun group activities designed to foster inclusivity and relaxation.
                             </Typography>
                         </li>
@@ -243,32 +243,32 @@ const SportInfo = () => {
                     </Typography>
                     <Box component="ul" sx={{ paddingLeft: '1.5rem', listStyleType: 'disc', lineHeight: 1.6, mb: 3 }}>
                         <li>
-                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 1 }}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 2}}>
                                 • <strong>Inter Hostel Games</strong>: A sporting event where students from different hostels compete against each other. It brings the school community together with a variety of sports.
                             </Typography>
                         </li>
                         <li>
-                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 1 }}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 2 }}>
                                 • <strong>Battle of the Cohorts</strong>: Different year groups compete for bragging rights across sports disciplines.
                             </Typography>
                         </li>
                         <li>
-                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 1 }}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 2 }}>
                                 • <strong>Inter-University Games</strong>: A multi-sport event allowing PAU students to showcase their athletic talents.
                             </Typography>
                         </li>
                         <li>
-                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 1 }}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 2 }}>
                                 • <strong>Coupe De Escriva Draft Night</strong>: Captains select their teams for the Coupe De Escriva Tournament in an NBA Draft-style event.
                             </Typography>
                         </li>
                         <li>
-                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 1 }}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb:2 }}>
                                 • <strong>Coupe De Escriva Tournament</strong>: The biggest sports event at PAU, featuring football, volleyball, and basketball competitions.
                             </Typography>
                         </li>
                         <li>
-                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 1 }}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.20rem' }, mb: 2 }}>
                                 • <strong>PAU Marathon</strong>: An annual 10km marathon for students and staff to test their endurance.
                             </Typography>
                         </li>
