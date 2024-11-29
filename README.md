@@ -1,4 +1,4 @@
----
+----
 
 # Project Setup
 
@@ -107,7 +107,6 @@ Here’s a brief overview of the project structure:
 - `.env`: Environment variables.
 
 ### 5. Contributing
-
 If you want to contribute to this project, please fork the repository and create a pull request. Follow the standard GitHub workflow for contributions.
 
 ### 6. License
