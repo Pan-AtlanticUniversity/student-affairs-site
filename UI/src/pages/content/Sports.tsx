@@ -12,30 +12,6 @@ import { FaTiktok } from 'react-icons/fa';
 
 // Responsive styling applied
 const Sports = () => {
-
-    // interface TitleItem {
-    //     _id: string;
-    //     meeting_times: string;
-    //     name: string;
-    //     email: string;
-    //     image: string
-    // }
-
-    // const [mentors, setMentors] = useState<TitleItem[]>([]);
-
-    // useEffect(() => {
-    //     const getMentors = async () => {
-    //         try {
-    //             const res = await axios.get<TitleItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/mentor`);
-    //             setMentors(res.data);
-    //         } catch (error) {
-    //             console.log("Error fetching member details:", error);
-    //         }
-    //     };
-    //     getMentors();
-    // }, []);
-
-
     return (
         <Stack minHeight="100vh" sx={{
             gap: { xs: 6, md: 7, lg: 9 }, overflowY: "scroll", backgroundColor: grey,
@@ -73,10 +49,12 @@ const Sports = () => {
                         </Typography>
                         <Box sx={{ lineHeight: 1.6 }}>
 
-                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.25rem' }, mb:2}}>
-                                At PAU, we understand the importance of sports and physical activity in fostering community, promoting health, and encouraging teamwork. We offer a wide range of sporting activities, ensuring that all students, regardless of skill level, have the opportunity to participate and compete.
+                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.25rem' }, mb: 2 }}>
+                                At PAU, we understand the importance of sports and physical activity in fostering community, promoting health, and encouraging teamwork.
                             </Typography>
-
+                            <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.25rem' }, mb: 2 }}>
+                                We offer a wide range of sporting activities, ensuring that all students, regardless of skill level, have the opportunity to participate and compete.
+                            </Typography>
                         </Box>
 
                     </Grid>
@@ -92,7 +70,7 @@ const Sports = () => {
                 </Grid>
 
                 {/*  */}
-                <PhotoGallery/>
+                <PhotoGallery />
                 <SportInfo />
 
                 {/*  */}
@@ -188,7 +166,7 @@ const Sports = () => {
                         >
                             <FaTiktok fontSize="inherit" />
                         </IconButton>
-                       
+
                     </Stack>
                 </Paper>
 

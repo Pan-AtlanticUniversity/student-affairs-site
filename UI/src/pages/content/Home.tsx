@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import { sam, miracle, chima } from "../../assets/images/dev-team";
+import { sam, miracle, chima, blessing } from "../../assets/images/dev-team";
 
 const team = [
   {
@@ -23,23 +23,23 @@ const team = [
     role: "Developer",
     image: miracle,
     linkedin: "http://linkedin.com/in/miracle-nnadiukwu",
-    github: "#",
+    github: "https://github.com/dominioncruz",
     instagram: ""
   },
   {
     name: "Samuel Oyefusi",
     role: "Project Manager",
-    image: sam, // Replace with actual paths
+    image: sam,
     linkedin: "https://www.linkedin.com/in/samuel-oyefusi?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    github: "#",
+    github: "",
     instagram: "https://www.instagram.com/koredeoyefusi/profilecard"
   },
   {
     name: "Blessing Bolaji",
     role: "Content Creator",
-    image: "/path/to/anjola-image.png",
-    linkedin: "#",
-    github: "#",
+    image: blessing,
+    linkedin: "http://linkedin.com/in/blessing-bolaji-7a86161b2",
+    github: "",
     instagram: ""
   },
 ];
@@ -135,6 +135,7 @@ const Home = () => {
             display: 'inline-block',
             textAlign: 'center',
             fontWeight: 'semi-bold',
+            mt:5,
             '::after': {
               content: '""',
               display: 'block',
@@ -146,7 +147,7 @@ const Home = () => {
             },
           }}
         >
-          Meet the Founding Team
+          Meet the Developers
         </Typography>
 
         <Grid container spacing={4} justifyContent="center">
@@ -176,10 +177,10 @@ const Home = () => {
                     <IconButton href={member.linkedin} target="_blank">
                       <LinkedInIcon />
                     </IconButton>
-                    <IconButton href={member.github} target="_blank">
+                    <IconButton href={member?.github} target="_blank">
                       <GitHubIcon />
                     </IconButton>
-                    <IconButton href={member.instagram} target="_blank">
+                    <IconButton href={member?.instagram} target="_blank">
                       <InstagramIcon />
                     </IconButton>
                   </Stack>
