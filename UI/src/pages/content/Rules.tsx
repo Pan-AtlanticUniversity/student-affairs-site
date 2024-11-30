@@ -217,18 +217,8 @@ const About = () => {
                                 <br />
                                 <br />
                                 The Student Governance Framework outlines the processes and guidelines for managing student associations, clubs,
-                                and initiatives, ensuring they operate effectively and align with institutional goals
+                                and initiatives, ensuring they operate effectively and align with institutional goals.
                                 <br />
-                                {/* Our Dress Code is designed to foster a culture of professionalism, modesty, and respect, consistent with
-                                our values and Christian identity.
-                                <br />
-                                <br />
-                                Whether you're attending lectures, participating in professional events,
-                                or engaging in recreational activities, your attire should always reflect a sense of decency
-                                and care for your appearance.
-                                <br />
-                                This policy outlines the standards expected of all students to maintain a respectful
-                                and professional environment on campus. */}
                             </Typography>
 
                             <StyledButton variant="contained" endIcon={<DownloadIcon />}
