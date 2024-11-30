@@ -31,7 +31,7 @@ const team = [
     role: "Project Manager",
     image: sam,
     linkedin: "https://www.linkedin.com/in/samuel-oyefusi?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    github: "",
+    github: "https://github.com/Oyefusi-Samuel",
     instagram: "https://www.instagram.com/koredeoyefusi/profilecard"
   },
   {
