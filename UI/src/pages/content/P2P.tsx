@@ -48,12 +48,12 @@ const P2P = () => {
                 <Grid container spacing={4} alignItems="center">
                     <Grid item xs={12} md={6}>
                         <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', fontSize: { xs: '0.9rem', md: '1.25rem' } }}>
-                            About Peer 2 Peer
+                            About Peer-2-Peer
                         </Typography>
                         <Box sx={{ lineHeight: 1.6 }}>
 
                             <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.25rem' }, mb: 2 }}>
-                                The PAU Peer-to-Peer Tutorial Program offers academic support through student-driven learning, connecting students with high-achieving peers who provide one-on-one or small-group tutoring.
+                                The PAU Peer-2-Peer Tutorial Program offers academic support through student-driven learning, connecting students with high-achieving peers who provide one-on-one or small-group tutoring.
                             </Typography>
                             <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.25rem' }, mb: 2 }}>
                                 The program focuses on helping students understand challenging subjects without assigning grades, tailoring teaching methods to individual learning styles for an effective experience. A code of conduct ensures respect and order during sessions.
