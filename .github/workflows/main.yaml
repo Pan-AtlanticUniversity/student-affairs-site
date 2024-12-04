@@ -46,8 +46,8 @@ jobs:
           sudo mkdir -p ~/.ssh
           sudo chmod 700 ~/.ssh
 
-          # Add the server key to known hosts
-          sudo ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
+          # Add the server key to known hosts (use sudo tee to avoid permission issues)
+          ssh-keyscan -H $SERVER_HOST | sudo tee -a ~/.ssh/known_hosts
 
           # Add the private key
           echo "$SSH_PRIVATE_KEY" | sudo tee ~/.ssh/private_key > /dev/null
