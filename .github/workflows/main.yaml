@@ -41,15 +41,15 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SERVER_HOST: ${{ secrets.SERVER_HOST }}
           SERVER_USER: ${{ secrets.SERVER_USER }}
-        run: |
-          # Add the SSH private key
+          # Add the server key to known hosts   
+          ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
+
+          # Add the private key
           echo "$SSH_PRIVATE_KEY" > private_key
           chmod 600 private_key
 
-          # Transfer the built frontend
+          # Transfer frontend and backend files
           scp -i private_key -r ./UI/dist $SERVER_USER@$SERVER_HOST:/var/www/myapp-frontend
-
-          # Transfer the backend
           scp -i private_key -r ./backend $SERVER_USER@$SERVER_HOST:/var/www/myapp-backend
 
           # Connect to the server and set up services
