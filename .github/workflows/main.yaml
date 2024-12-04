@@ -1,0 +1,71 @@
+name: Deploy App to Ubuntu Server
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Set up Node.js for both frontend and backend
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      # Install and build the frontend (UI)
+      - name: Install and Build Frontend
+        working-directory: ./UI
+        run: |
+          npm install
+          npm run build
+
+      # Install backend dependencies
+      - name: Install Backend Dependencies
+        working-directory: ./backend
+        run: |
+          npm install
+
+      # Deploy frontend and backend to the Ubuntu server
+      - name: Deploy to Server
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+        run: |
+          # Add the SSH private key
+          echo "$SSH_PRIVATE_KEY" > private_key
+          chmod 600 private_key
+
+          # Transfer the built frontend
+          scp -i private_key -r ./UI/dist $SERVER_USER@$SERVER_HOST:/var/www/myapp-frontend
+
+          # Transfer the backend
+          scp -i private_key -r ./backend $SERVER_USER@$SERVER_HOST:/var/www/myapp-backend
+
+          # Connect to the server and set up services
+          ssh -i private_key $SERVER_USER@$SERVER_HOST << 'EOF'
+          # Frontend setup (using Nginx)
+          sudo rm -rf /var/www/html/*
+          sudo mv /var/www/myapp-frontend/* /var/www/html/
+
+          # Backend setup (using PM2 for Node.js)
+          cd /var/www/myapp-backend
+          npm install
+          pm2 stop all || true
+          pm2 start index.js --name myapp-backend
+          pm2 save
+          EOF
+
+      # Cleanup private key
+      - name: Cleanup Private Key
+        run: rm -f private_key
