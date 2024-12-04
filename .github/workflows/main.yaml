@@ -41,7 +41,8 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SERVER_HOST: ${{ secrets.SERVER_HOST }}
           SERVER_USER: ${{ secrets.SERVER_USER }}
-          # Add the server key to known hosts   
+        run: |
+          # Add the server key to known hosts
           ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
 
           # Add the private key
@@ -67,6 +68,5 @@ jobs:
           EOF
 
       # Cleanup private key
-      
       - name: Cleanup Private Key
         run: rm -f private_key
