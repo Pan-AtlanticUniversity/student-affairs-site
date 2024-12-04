@@ -67,5 +67,6 @@ jobs:
           EOF
 
       # Cleanup private key
+      
       - name: Cleanup Private Key
         run: rm -f private_key
