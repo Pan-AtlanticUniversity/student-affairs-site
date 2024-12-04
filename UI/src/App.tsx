@@ -63,12 +63,10 @@ function App() {
         path="/guidance"
         element={<Mentorship />}
       />
-
       <Route
         path="/sports"
         element={<Sports />}
       />
-
       <Route
         path="/p2p"
         element={<P2P />}
