@@ -43,22 +43,22 @@ jobs:
           SERVER_USER: ${{ secrets.SERVER_USER }}
         run: |
           # Create the SSH directory
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
+          sudo mkdir -p ~/.ssh
+          sudo chmod 700 ~/.ssh
 
           # Add the server key to known hosts
-          ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
+          sudo ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
 
           # Add the private key
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/private_key
-          chmod 600 ~/.ssh/private_key
+          echo "$SSH_PRIVATE_KEY" | sudo tee ~/.ssh/private_key > /dev/null
+          sudo chmod 600 ~/.ssh/private_key
 
           # Transfer frontend and backend files
-          scp -i ~/.ssh/private_key -r ./UI/dist $SERVER_USER@$SERVER_HOST:/var/www/myapp-frontend
-          scp -i ~/.ssh/private_key -r ./backend $SERVER_USER@$SERVER_HOST:/var/www/myapp-backend
+          sudo scp -i ~/.ssh/private_key -r ./UI/dist $SERVER_USER@$SERVER_HOST:/var/www/myapp-frontend
+          sudo scp -i ~/.ssh/private_key -r ./backend $SERVER_USER@$SERVER_HOST:/var/www/myapp-backend
 
           # Connect to the server and set up services
-          ssh -i ~/.ssh/private_key $SERVER_USER@$SERVER_HOST << 'EOF'
+          sudo ssh -i ~/.ssh/private_key $SERVER_USER@$SERVER_HOST << 'EOF'
           # Frontend setup (using Nginx)
           sudo rm -rf /var/www/html/*
           sudo mv /var/www/myapp-frontend/* /var/www/html/
@@ -66,11 +66,11 @@ jobs:
           # Backend setup (using PM2 for Node.js)
           cd /var/www/myapp-backend
           npm install
-          pm2 stop all || true
-          pm2 start index.js --name myapp-backend
-          pm2 save
+          sudo pm2 stop all || true
+          sudo pm2 start index.js --name myapp-backend
+          sudo pm2 save
           EOF
 
       # Cleanup SSH directory
       - name: Cleanup SSH Keys
-        run: rm -rf ~/.ssh
+        run: sudo rm -rf ~/.ssh
