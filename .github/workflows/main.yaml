@@ -42,19 +42,23 @@ jobs:
           SERVER_HOST: ${{ secrets.SERVER_HOST }}
           SERVER_USER: ${{ secrets.SERVER_USER }}
         run: |
+          # Create the SSH directory
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+
           # Add the server key to known hosts
           ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
 
           # Add the private key
-          echo "$SSH_PRIVATE_KEY" > private_key
-          chmod 600 private_key
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/private_key
+          chmod 600 ~/.ssh/private_key
 
           # Transfer frontend and backend files
-          scp -i private_key -r ./UI/dist $SERVER_USER@$SERVER_HOST:/var/www/myapp-frontend
-          scp -i private_key -r ./backend $SERVER_USER@$SERVER_HOST:/var/www/myapp-backend
+          scp -i ~/.ssh/private_key -r ./UI/dist $SERVER_USER@$SERVER_HOST:/var/www/myapp-frontend
+          scp -i ~/.ssh/private_key -r ./backend $SERVER_USER@$SERVER_HOST:/var/www/myapp-backend
 
           # Connect to the server and set up services
-          ssh -i private_key $SERVER_USER@$SERVER_HOST << 'EOF'
+          ssh -i ~/.ssh/private_key $SERVER_USER@$SERVER_HOST << 'EOF'
           # Frontend setup (using Nginx)
           sudo rm -rf /var/www/html/*
           sudo mv /var/www/myapp-frontend/* /var/www/html/
@@ -67,6 +71,6 @@ jobs:
           pm2 save
           EOF
 
-      # Cleanup private key
-      - name: Cleanup Private Key
-        run: rm -f private_key
+      # Cleanup SSH directory
+      - name: Cleanup SSH Keys
+        run: rm -rf ~/.ssh
