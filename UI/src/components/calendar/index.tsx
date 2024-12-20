@@ -19,31 +19,35 @@ import axios from 'axios';
  * Mimic fetch with abort controller https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort
  * ⚠️ No IE11 support
  */
-function fakeFetch({ signal }: { signal: AbortSignal }) {
-    return new Promise<{ daysToHighlight: Event[] }>((resolve, reject) => {
-        const timeout = setTimeout(() => {
-            const daysToHighlight: Event[] = [
-                {
-                    name: 'Event 1',
-                    content: 'Event 1 content',
-                    date: dayjs('2024-12-12'),
-                },
-                {
-                    name: 'Event 2',
-                    content: 'Event 1 content',
-                    date: dayjs('2024-12-15'),
-                }
-            ];
+async function fetchDates(month: Dayjs, { signal }: { signal: AbortSignal }) {
+    try {
+        const formattedMonth = month.format("YYYY-MM"); // Format month as 'YYYY-MM'
+        const response = await axios.get(
+            `${import.meta.env.VITE_BACKEND_HOST}/api/v1/date?month=${formattedMonth}`,
+            { signal }
+        );
 
-            resolve({ daysToHighlight });
-        }, 500);
+        console.log(response.data)
 
-        signal.onabort = () => {
-            clearTimeout(timeout);
-            reject(new DOMException('aborted', 'AbortError'));
-        };
-    });
+        const data: { daysToHighlight: Event[] } = await response.data;
+
+        // Parse the date property to dayjs (if needed)
+        const parsedData = data.daysToHighlight.map(event => ({
+            ...event,
+            date: dayjs(event.date),
+        }));
+
+        return { daysToHighlight: parsedData };
+    } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") {
+            console.log("Fetch aborted.");
+        } else {
+            console.error("Error fetching events:", error);
+        }
+        throw error;
+    }
 }
+
 
 
 
@@ -150,14 +154,14 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
         }
     }
 
-    const deleteEvent = async (event: React.FormEvent<HTMLFormElement>) => {
-
+    const deleteEvent = async (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
         try {
             await axios.delete<Event>(
                 `${import.meta.env.VITE_BACKEND_HOST}/api/v1/date${selectedEvent?._id ? '/' + selectedEvent._id : ''}`
             );
 
-            setHighlightedDays(prev => [...(prev?.filter(event => event._id === selectedEvent?._id) ?? [])]);
+            setHighlightedDays(prev => [...(prev?.filter(event => event._id !== selectedEvent?._id) ?? [])]);
             handleClose()
 
         } catch (error) {
@@ -181,9 +185,9 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
         })();
     };
 
-    const fetchHighlightedDays = () => {
+    const fetchHighlightedDays = (month: Dayjs) => {
         const controller = new AbortController();
-        fakeFetch({
+        fetchDates(month, {
             signal: controller.signal,
         })
             .then(({ daysToHighlight }) => {
@@ -202,7 +206,7 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
     };
 
     useEffect(() => {
-        fetchHighlightedDays();
+        fetchHighlightedDays(dayjs());
 
         (async () => {
             const defaultImageFile = await convertDefaultImageToFile(defaultImage);
@@ -216,16 +220,17 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
         console.log(highlightedDays)
     }, [highlightedDays])
 
-    const handleMonthChange = () => {
+    const handleMonthChange = (month: Dayjs) => {
         if (requestAbortController.current) {
             // make sure that you are aborting useless requests
             // because it is possible to switch between months pretty quickly
             requestAbortController.current.abort();
         }
+        console.log(month)
 
         setIsLoading(true);
         setHighlightedDays([]);
-        fetchHighlightedDays();
+        fetchHighlightedDays(month);
     };
 
     return (
@@ -252,7 +257,7 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
                     <DateCalendar
                         value={dayjs(Date.now())}
                         loading={isLoading}
-                        onMonthChange={handleMonthChange}
+                        onMonthChange={month => handleMonthChange(month)}
                         renderLoading={() => <DayCalendarSkeleton />}
                         slots={{
                             day: ServerDay,

@@ -6,8 +6,27 @@ import path from "path";
 import fs from "fs";
 
 export const getDate = async (req: Request, res: Response) => {
-  const date = await Event.find();
-  res.status(StatusCodes.OK).json(date);
+  try {
+    const { month } = req.query; // Month in the format 'YYYY-MM'
+
+    if (!month) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: "Month parameter is required" });
+    }
+
+    // Query for dates containing the month string
+    const events = await Event.find({
+      date: { $regex: `^${month}`, $options: "i" }, // Case-insensitive regex
+    });
+
+    res.status(StatusCodes.OK).json({ daysToHighlight: events });
+  } catch (error) {
+    console.error("Error fetching events:", error);
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: "Failed to fetch events" });
+  }
 };
 
 export const createDate = async (req: Request, res: Response) => {
