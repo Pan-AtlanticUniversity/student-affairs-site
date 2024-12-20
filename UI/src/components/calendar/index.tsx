@@ -3,7 +3,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import { Badge, Button, Dialog, DialogActions, DialogContent, DialogTitle, Paper, TextField, Typography } from '@mui/material';
+import { Badge, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Paper, Stack, TextField, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { dark, disabled, purple } from '../../context/theme';
 import { DayCalendarSkeleton, PickersDay, PickersDayProps } from '@mui/x-date-pickers';
@@ -19,6 +19,17 @@ import axios from 'axios';
  * Mimic fetch with abort controller https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort
  * ⚠️ No IE11 support
  */
+
+const convertDefaultImageToFile = async (defaultImagePath: string) => {
+    try {
+        const response = await fetch(defaultImagePath); // Fetch the image
+        const blob = await response.blob(); // Convert the response to a Blob
+        return new File([blob], 'defaultImage.png', { type: blob.type }); // Create a File object
+    } catch (error) {
+        console.error('Error converting image to file:', error);
+    }
+};
+
 async function fetchDates(month: Dayjs, { signal }: { signal: AbortSignal }) {
     try {
         const formattedMonth = month.format("YYYY-MM"); // Format month as 'YYYY-MM'
@@ -27,15 +38,14 @@ async function fetchDates(month: Dayjs, { signal }: { signal: AbortSignal }) {
             { signal }
         );
 
-        console.log(response.data)
-
         const data: { daysToHighlight: Event[] } = await response.data;
 
         // Parse the date property to dayjs (if needed)
-        const parsedData = data.daysToHighlight.map(event => ({
+        const parsedData = await Promise.all(data.daysToHighlight.map(async (event) => ({
             ...event,
             date: dayjs(event.date),
-        }));
+            image: await convertDefaultImageToFile(event.image as unknown as string)
+        })));
 
         return { daysToHighlight: parsedData };
     } catch (error) {
@@ -47,10 +57,6 @@ async function fetchDates(month: Dayjs, { signal }: { signal: AbortSignal }) {
         throw error;
     }
 }
-
-
-
-
 interface Event {
     _id?: string;
     name?: string;
@@ -88,16 +94,6 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
         }
     };
 
-    const convertDefaultImageToFile = async (defaultImagePath: string) => {
-        try {
-            const response = await fetch(defaultImagePath); // Fetch the image
-            const blob = await response.blob(); // Convert the response to a Blob
-            return new File([blob], 'defaultImage.png', { type: blob.type }); // Create a File object
-        } catch (error) {
-            console.error('Error converting image to file:', error);
-        }
-    };
-
     function ServerDay(props: PickersDayProps<Dayjs> & { highlightedDays?: number[] }) {
         const { highlightedDays = [], day, outsideCurrentMonth, ...other } = props;
 
@@ -116,7 +112,7 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
                     day={day}
                     onClick={() => {
                         if (isAdmin) openDialog(day); // Open dialog if admin
-                        else if (isSelected) console.log('View data as user');
+                        else if (isSelected) openDialog(day)
                     }}
                     sx={{ border: `${isSelected ? 1 : 0}px ${purple} solid` }}
                 />
@@ -173,7 +169,6 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
         setOpen(true);
 
         const selected = highlightedDays?.find(highlightedDay => highlightedDay.date?.isSame(day, 'day'));
-
         // Combine updates into one state setter call
         (async () => {
             const image = selected?.image ?? await convertDefaultImageToFile(defaultImage);
@@ -184,14 +179,12 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
             }));
         })();
     };
-
     const fetchHighlightedDays = (month: Dayjs) => {
         const controller = new AbortController();
         fetchDates(month, {
             signal: controller.signal,
         })
             .then(({ daysToHighlight }) => {
-                console.log(daysToHighlight)
                 setHighlightedDays(daysToHighlight);
                 setIsLoading(false);
             })
@@ -216,17 +209,12 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
         return () => requestAbortController.current?.abort();
     }, []);
 
-    useEffect(() => {
-        console.log(highlightedDays)
-    }, [highlightedDays])
-
     const handleMonthChange = (month: Dayjs) => {
         if (requestAbortController.current) {
             // make sure that you are aborting useless requests
             // because it is possible to switch between months pretty quickly
             requestAbortController.current.abort();
         }
-        console.log(month)
 
         setIsLoading(true);
         setHighlightedDays([]);
@@ -271,81 +259,113 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
                 </LocalizationProvider>
             </Paper>
 
-            <Dialog
-                fullWidth
-                open={open}
-                onClose={handleClose}
-                PaperProps={{
-                    component: 'form',
-                    onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
-                        handleEventUpload(event);
-                    },
-                }}
-            >
-                <DialogTitle>Edit events</DialogTitle>
-                <DialogContent>
-                    <TextField
-                        required
-                        id="event_date"
-                        name="event_date"
-                        type="text"
+            {
+                isAdmin === true ?
+                    <Dialog
                         fullWidth
-                        value={selectedEvent?.date?.format('YYYY-MM-DD')}
-                        sx={{ marginTop: 3 }}
-                        disabled
-                    />
-                    <TextField
-                        required
-                        id="name"
-                        name="name"
-                        label="Event Name"
-                        type="text"
-                        fullWidth
-                        value={selectedEvent?.name}
-                        onChange={handleInputChange}
-                        sx={{ marginTop: 3 }}
-
-                    />
-                    <TextField
-                        required
-                        id="content"
-                        name="content"
-                        label="Event content"
-                        placeholder="Event content"
-                        type="text"
-                        multiline
-                        fullWidth
-                        value={selectedEvent?.content}
-                        onChange={handleInputChange}
-                        rows={5}
-                        sx={{ marginTop: 3 }}
-                    />
-                    <Button
-                        variant="outlined"
-                        component="label"
-                        sx={{ marginTop: 3, borderColor: disabled, textTransform: 'capitalize', paddingTop: 1.5, paddingBottom: 1.5 }}
-                        fullWidth
-                        endIcon={<FileUploadIcon />}
+                        open={open}
+                        onClose={handleClose}
+                        PaperProps={{
+                            component: 'form',
+                            onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
+                                handleEventUpload(event);
+                            },
+                        }}
                     >
-                        {selectedEvent?.image?.name}
-                        <input
-                            type="file"
-                            accept="image/*"
-                            id="image"
-                            name="image"
-                            onChange={handleInputChange}
-                            hidden
-                        />
-                    </Button>
-                </DialogContent>
-                <DialogActions>
-                    {selectedEvent?._id && (
-                        <Button onClick={deleteEvent} variant={'contained'} sx={{ backgroundColor: 'error.main', textTransform: 'capitalize', marginRight: 'auto' }}>Delete</Button>
-                    )}
-                    <Button onClick={handleClose} variant={'outlined'} sx={{ borderColor: 'secondary.main', textTransform: 'capitalize' }}>Cancel</Button>
-                    <Button type="submit" variant={'contained'} sx={{ backgroundColor: 'secondary.main', textTransform: 'capitalize' }}>Upload event</Button>
-                </DialogActions>
-            </Dialog>
+                        <DialogTitle>Edit events</DialogTitle>
+                        <DialogContent>
+                            <TextField
+                                required
+                                id="event_date"
+                                name="event_date"
+                                type="text"
+                                fullWidth
+                                value={selectedEvent?.date?.format('YYYY-MM-DD')}
+                                sx={{ marginTop: 3 }}
+                                disabled
+                            />
+                            <TextField
+                                required
+                                id="name"
+                                name="name"
+                                label="Event Name"
+                                type="text"
+                                fullWidth
+                                value={selectedEvent?.name}
+                                onChange={handleInputChange}
+                                sx={{ marginTop: 3 }}
+
+                            />
+                            <TextField
+                                required
+                                id="content"
+                                name="content"
+                                label="Event content"
+                                placeholder="Event content"
+                                type="text"
+                                multiline
+                                fullWidth
+                                value={selectedEvent?.content}
+                                onChange={handleInputChange}
+                                rows={5}
+                                sx={{ marginTop: 3 }}
+                            />
+                            <Button
+                                variant="outlined"
+                                component="label"
+                                sx={{ marginTop: 3, borderColor: disabled, textTransform: 'capitalize', paddingTop: 1.5, paddingBottom: 1.5 }}
+                                fullWidth
+                                endIcon={<FileUploadIcon />}
+                            >
+                                {selectedEvent?.image?.name}
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    id="image"
+                                    name="image"
+                                    onChange={handleInputChange}
+                                    hidden
+                                />
+                            </Button>
+                        </DialogContent>
+                        <DialogActions>
+                            {selectedEvent?._id && (
+                                <Button onClick={deleteEvent} variant={'contained'} sx={{ backgroundColor: 'error.main', textTransform: 'capitalize', marginRight: 'auto' }}>Delete</Button>
+                            )}
+                            <Button onClick={handleClose} variant={'outlined'} sx={{ borderColor: 'secondary.main', textTransform: 'capitalize' }}>Cancel</Button>
+                            <Button type="submit" variant={'contained'} sx={{ backgroundColor: 'secondary.main', textTransform: 'capitalize' }}>Upload event</Button>
+                        </DialogActions>
+                    </Dialog>
+                    : <Dialog
+                        open={open}
+                        onClose={handleClose}
+                    >
+                        <DialogTitle textAlign={'center'}>
+                            {selectedEvent?.name}
+                        </DialogTitle>
+                        <DialogContent>
+                            <Box
+                                component="img"
+                                src={selectedEvent?.image ? URL.createObjectURL(selectedEvent.image) : ''}
+                                sx={{
+                                    objectFit: 'cover',
+                                    backgroundSize: "cover",
+                                    width: '100%',
+                                    height: 'auto',
+                                    loading: 'lazy',
+                                }}
+                            />
+
+                            <Typography variant="body1" color="text.secondary">
+                                {selectedEvent?.content}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                {`Event date: ${selectedEvent?.date?.format('YYYY-MM-DD')}`}
+                            </Typography>
+                        </DialogContent>
+                    </Dialog>
+            }
+
         </>
     )
 }
