@@ -1,5 +1,5 @@
 import { Box, Button, createSvgIcon, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, InputBase, Paper, Stack, TextField, Typography } from "@mui/material";
-import { AdminNavBar, Blog } from "../../components";
+import { AdminNavBar, Blog, Calendar } from "../../components";
 import { accent, dark, disabled, grey } from "../../context/theme";
 import SearchIcon from '@mui/icons-material/Search';
 import { useEffect, useState } from "react";
@@ -186,6 +186,14 @@ const Admins = () => {
           }
         }}>
         <Blog mode={'admin'} searchQuery={searchQuery} openEditMenu={(BlogItem) => editClub(BlogItem)} />
+        <Calendar isAdmin={true} />
+        <Box
+          sx={{ width: "40vw", aspectRatio: "1", maxWidth: "300px", right: { xs: -50, sm: 35, md: -125 }, bottom: { xs: -75, sm: -90, md: -50, lg: -125 } }}
+          bgcolor={"secondary.main"}
+          position="absolute"
+          zIndex={0}
+          borderRadius={"50%"}
+        />
         <Dialog
           fullWidth
           open={open}
@@ -262,10 +270,10 @@ const Admins = () => {
             <Button type="submit" variant={'contained'} sx={{ backgroundColor: 'secondary.main', textTransform: 'capitalize' }}>Upload</Button>
           </DialogActions>
         </Dialog>
-      </Box>
+      </Box >
 
 
-    </Stack>
+    </Stack >
   )
 }
 

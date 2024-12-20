@@ -56,29 +56,32 @@ const Services = () => {
         sx={{ zIndex: 1 }}
       >
         {
-          services.map(item => (
-            <GridCard
-              key={item.name}
-              title={item.name}
-              imageUrl={item.image ?? "https://via.placeholder.com/300x200"}
+          services.map(item => {
+            console.log(item)
+            return (
+              <GridCard
+                key={item.name}
+                title={item.name}
+                imageUrl={item.image ?? "https://via.placeholder.com/300x200"}
 
-              onClick={() => {
-                if (item.name === 'Sports') {
-                  navigate('/sports');
-                } else if (item.name == 'Guidance and Counselling') {
-                  navigate('/guidance')
-                } else if (item.name === 'Community Service Project') {
-                  window.location.href = 'http://pau.volunteer.ng';
-                }else if (item.name === 'Peer to Peer Tutorials') {
-                  navigate('/p2p')
-                }
-                else {
-                  navigate(`/services/${item.name}`, { state: { service: item } });
-                }
-              }}
+                onClick={() => {
+                  if (item.name === 'Sports') {
+                    navigate('/sports');
+                  } else if (item.name == 'Guidance and Counselling') {
+                    navigate('/guidance')
+                  } else if (item.name === 'Community Service Project') {
+                    window.location.href = 'http://pau.volunteer.ng';
+                  } else if (item.name === 'Peer to Peer Tutorials') {
+                    navigate('/p2p')
+                  }
+                  else {
+                    navigate(`/services/${item.name}`, { state: { service: item } });
+                  }
+                }}
 
-            />
-          ))
+              />)
+          }
+          )
         }
       </Grid>
 

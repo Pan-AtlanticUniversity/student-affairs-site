@@ -1,11 +1,7 @@
-import { Box, Grid, IconButton, Paper, Slider, Stack, Typography } from "@mui/material"
-import { Banner, Footer, NavBar, ProfileCard, TextBox, UnderlinedText } from "../../components"
+import { Box, Grid, IconButton, Slider, Stack, Typography } from "@mui/material"
+import { Banner, Calendar, Footer, NavBar, ProfileCard, TextBox, UnderlinedText } from "../../components"
 import { accent, dark, grey } from "../../context/theme"
 
-import dayjs, { Dayjs } from 'dayjs';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { useEffect, useRef, useState } from "react";
 // import Title from "../../components/Title";
 
@@ -94,8 +90,6 @@ const About = () => {
         const secondLeft = value - minute * 60;
         return `${minute}:${secondLeft < 10 ? `0${secondLeft}` : secondLeft}`;
     };
-
-    const [value, setValue] = useState<Dayjs | null>(dayjs('2024-08-22'));
 
     return (
         <Stack minHeight={"100vh"} sx={{
@@ -223,28 +217,7 @@ const About = () => {
                         </Stack>
                         <audio ref={audioRef} src={anthemAudio} />
                     </Stack>
-                    <Paper
-                        square={false}
-                        sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            flexDirection: "column",
-                            gap: 2,
-                            padding: "30px 20px 0 20px",
-                            borderRadius: "20px",
-                            backgroundColor: grey,
-                            width: "fit-content",
-                            zIndex: 1,
-                        }}
-                        elevation={3}
-                    >
-                        <Typography variant="h5" color={dark}>
-                            Upcoming dates and events
-                        </Typography>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DateCalendar value={value} onChange={(newValue) => setValue(newValue)} />
-                        </LocalizationProvider>
-                    </Paper>
+                    <Calendar isAdmin={false} />
                     <Box
                         sx={{ width: "40vw", aspectRatio: "1", maxWidth: "300px", right: { xs: -50, sm: 35, md: -125 }, bottom: { xs: -75, sm: -90, md: -50, lg: -125 } }}
                         bgcolor={"secondary.main"}

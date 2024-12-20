@@ -15,7 +15,7 @@ const app = express();
 const corsOptions = {
   origin: true,
   credentials: true, // Allows cookies to be sent with the request
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Ensure OPTIONS is allowed
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // Ensure OPTIONS is allowed
   allowedHeaders: ["Content-Type", "Authorization"],
   optionsSuccessStatus: 204, // Some legacy browsers might need this (204 is the "no content" status)
 };

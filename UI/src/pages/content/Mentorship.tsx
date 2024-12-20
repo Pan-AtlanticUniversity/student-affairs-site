@@ -50,6 +50,7 @@ const Mentorship = () => {
         const getCounsellors = async () => {
             try {
                 const res = await axios.get<CounsellorItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/counsellor`);
+                console.log(res)
                 setCounsellors(res.data);
             } catch (error) {
                 console.log("Error fetching counsellor details:", error);

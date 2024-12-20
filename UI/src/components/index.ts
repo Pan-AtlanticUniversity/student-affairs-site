@@ -19,6 +19,7 @@ import Faq from "./faq"
 import SportInfo from "./sports";
 import PhotoGallery from "./gallery";
 import P2PInfo from "./p2p";
+import Calendar from "./calendar";
 
 export {
   AuthNavBar,
@@ -41,5 +42,6 @@ export {
   Faq,
   SportInfo,
   PhotoGallery,
-  P2PInfo
+  P2PInfo,
+  Calendar,
 };
