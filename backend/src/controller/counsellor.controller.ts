@@ -22,23 +22,33 @@ export const addCounsellor = async (req: Request, res: Response) => {
     }
 
     // Define a directory for this mentor's images based on its name
-    const counsellorImageDir = path.join(__dirname, "uploads", "counsellor", name);
+    const counsellorImageDir = path.join(
+      __dirname,
+      "uploads",
+      "counsellor",
+      name
+    );
     //fs.mkdirSync(memberImageDir, { recursive: true }); // Ensure the directory exists
 
     // Save the member image in the same folder
-    const counsellorImagePath = path.join(counsellorImageDir, files.image[0]?.filename);
+    const counsellorImagePath = path.join(
+      counsellorImageDir,
+      files.image[0]?.filename
+    );
 
     const newPost = new Counsellor({
       name,
       image: counsellorImagePath,
       email,
-    //   phone,
-    //   post,
+      //   phone,
+      //   post,
     });
 
     await newPost.save();
 
-    res.status(StatusCodes.OK).json({ message: "Counsellor added successfully" });
+    res
+      .status(StatusCodes.OK)
+      .json({ message: "Counsellor added successfully" });
   } catch (error: unknown) {
     // Narrow the error type
     if (error instanceof Error) {

@@ -23,7 +23,6 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     // Dynamically decide the folder based on request data
     const { entity_type, name } = req.body;
-    console.log(entity_type, name);
     const dir = path.join("./uploads", entity_type, name).replace(/ /g, "-");
     // Ensure the directory exists
     fs.mkdirSync(dir, { recursive: true });
