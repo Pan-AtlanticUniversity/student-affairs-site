@@ -3,7 +3,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import { Badge, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Paper, Stack, TextField, Typography } from '@mui/material';
+import { Badge, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Paper, TextField, Typography } from '@mui/material';
 import { grey } from '@mui/material/colors';
 import { dark, disabled, purple } from '../../context/theme';
 import { DayCalendarSkeleton, PickersDay, PickersDayProps } from '@mui/x-date-pickers';
@@ -172,7 +172,7 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
         // Combine updates into one state setter call
         (async () => {
             const image = selected?.image ?? await convertDefaultImageToFile(defaultImage);
-            setSelectedEvent(prev => ({
+            setSelectedEvent(() => ({
                 ...selected,
                 image,
                 date: day,
