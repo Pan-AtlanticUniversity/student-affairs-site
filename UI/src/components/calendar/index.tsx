@@ -4,8 +4,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { Badge, Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Paper, TextField, Typography } from '@mui/material';
-import { grey } from '@mui/material/colors';
-import { dark, disabled, purple } from '../../context/theme';
+
+import { dark, disabled, grey, purple } from '../../context/theme';
 import { DayCalendarSkeleton, PickersDay, PickersDayProps } from '@mui/x-date-pickers';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 
@@ -38,13 +38,14 @@ async function fetchDates(month: Dayjs, { signal }: { signal: AbortSignal }) {
             { signal }
         );
 
-        const data: { daysToHighlight: Event[] } = await response.data;
+        const data: { daysToHighlight: FetchedEvent[] } = await response.data;
 
         // Parse the date property to dayjs (if needed)
-        const parsedData = await Promise.all(data.daysToHighlight.map(async (event) => ({
+        const parsedData: Event[] = await Promise.all(data.daysToHighlight.map(async (event) => ({
             ...event,
             date: dayjs(event.date),
-            image: await convertDefaultImageToFile(event.image as unknown as string)
+            image: await convertDefaultImageToFile(event?.image as unknown as string),
+            imageUrl: event?.image
         })));
 
         return { daysToHighlight: parsedData };
@@ -57,13 +58,20 @@ async function fetchDates(month: Dayjs, { signal }: { signal: AbortSignal }) {
         throw error;
     }
 }
-interface Event {
+
+interface FetchedEvent {
     _id?: string;
     name?: string;
     content?: string;
     date?: Dayjs;
-    image?: File
+    image?: string;
 }
+
+interface Event extends Omit<FetchedEvent, 'image'> {
+    image?: File;
+    imageUrl?: string;
+}
+
 
 const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
 
@@ -78,7 +86,7 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
 
     const handleClose = async () => {
         setOpen(false);
-        setSelectedEvent({ image: await convertDefaultImageToFile(defaultImage) });
+        setSelectedEvent(null);
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -172,6 +180,7 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
         // Combine updates into one state setter call
         (async () => {
             const image = selected?.image ?? await convertDefaultImageToFile(defaultImage);
+            console.log(image)
             setSelectedEvent(() => ({
                 ...selected,
                 image,
@@ -346,7 +355,7 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
                         <DialogContent>
                             <Box
                                 component="img"
-                                src={selectedEvent?.image ? URL.createObjectURL(selectedEvent.image) : ''}
+                                src={selectedEvent?.imageUrl ?? ''}
                                 sx={{
                                     objectFit: 'cover',
                                     backgroundSize: "cover",
