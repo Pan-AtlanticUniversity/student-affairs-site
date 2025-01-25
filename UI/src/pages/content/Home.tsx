@@ -48,23 +48,23 @@ const Home = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(document.documentElement.clientHeight);
   const [dialogOpen, setDialogOpen] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setDialogOpen(true), 2000);
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-      setHeight(window.innerHeight);
+  /*
+    useEffect(() => {
+      setTimeout(() => setDialogOpen(true), 2000);
+      const handleResize = () => {
+        setWidth(window.innerWidth);
+        setHeight(window.innerHeight);
+      };
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
+  
+    const handleClose = () => {
+      setDialogOpen(false);
     };
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const handleClose = () => {
-    setDialogOpen(false);
-  };
-
+  */
   return (
     <Stack minHeight={"100vh"} sx={{
       gap: { xs: 6, md: 4, lg: 2 },
@@ -135,7 +135,7 @@ const Home = () => {
             display: 'inline-block',
             textAlign: 'center',
             fontWeight: 'semi-bold',
-            mt:5,
+            mt: 5,
             '::after': {
               content: '""',
               display: 'block',
@@ -194,7 +194,7 @@ const Home = () => {
       </Stack>
       {/* Footer Section */}
       <Footer />
-
+      {/*
       <Dialog
         fullWidth
         open={dialogOpen}
@@ -223,7 +223,7 @@ const Home = () => {
       </Dialog>
 
       {dialogOpen && <Confetti width={width} height={height} style={{ zIndex: 0 }} />}
-
+*/}
     </Stack >
   )
 }
