@@ -1,9 +1,7 @@
-import { Avatar, Box, Card, CardContent, Dialog, DialogContent, DialogTitle, Grid, IconButton, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Card, CardContent, Grid, IconButton, Stack, Typography } from "@mui/material";
 import { Faq, Footer, NavBar, Services, TextBox, UnderlinedText } from "../../components";
 import { dark, grey } from "../../context/theme";
 import videoSource from "../../assets/video/SA-video.mp4";
-import Confetti from "react-confetti";
-import { useEffect, useState } from "react";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -45,9 +43,9 @@ const team = [
 ];
 
 const Home = () => {
-  const [width, setWidth] = useState(window.innerWidth);
-  const [height, setHeight] = useState(document.documentElement.clientHeight);
-  const [dialogOpen, setDialogOpen] = useState(false);
+  //const [width, setWidth] = useState(window.innerWidth);
+  //const [height, setHeight] = useState(document.documentElement.clientHeight);
+  //const [dialogOpen, setDialogOpen] = useState(false);
   /*
     useEffect(() => {
       setTimeout(() => setDialogOpen(true), 2000);
