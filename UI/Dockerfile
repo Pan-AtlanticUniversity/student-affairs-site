@@ -1,17 +1,16 @@
-# UI/Dockerfile
-# Base image
-FROM node:18 as build
+# Use an Nginx base image
+FROM nginx:alpine
 
-# Set working directory
-WORKDIR /app
+# Set the working directory
+WORKDIR /usr/share/nginx/html
 
-# Copy package files and install dependencies
-COPY package*.json ./
-RUN npm install
+# Remove the default nginx static assets
+RUN rm -rf ./*
 
-# Copy app files and build
-COPY . .
-RUN npm run build
+# Copy the build output from the frontend's dist folder
+COPY dist .
 
-# Start the frontend
-CMD ["npm", "run", "dev"]
+# Expose the port for the frontend
+EXPOSE 80
+
+# No CMD is needed; Nginx starts by default
