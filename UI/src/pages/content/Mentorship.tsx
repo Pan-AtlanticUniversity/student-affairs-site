@@ -35,7 +35,7 @@ const Mentorship = () => {
     useEffect(() => {
         const getMentors = async () => {
             try {
-                const res = await axios.get<TitleItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/mentor`);
+                const res = await axios.get<TitleItem[]>('api/v1/mentor');
                 setMentors(res.data);
             } catch (error) {
                 console.log("Error fetching member details:", error);
@@ -49,7 +49,7 @@ const Mentorship = () => {
     useEffect(() => {
         const getCounsellors = async () => {
             try {
-                const res = await axios.get<CounsellorItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/counsellor`);
+                const res = await axios.get<CounsellorItem[]>('api/v1/counsellor');
                 console.log(res)
                 setCounsellors(res.data);
             } catch (error) {
@@ -98,13 +98,13 @@ const Mentorship = () => {
                         </Typography>
                         <Box sx={{ lineHeight: 1.6 }}>
 
-                            <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, mb:2}}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, mb: 2 }}>
                                 At PAU, the Guidance and Counseling Unit is dedicated to providing comprehensive support for the personal, emotional, and psychological well-being of our students.
                             </Typography>
-                            <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.25rem' } , mb:2}}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, mb: 2 }}>
                                 Whether you're dealing with academic stress, personal struggles, or just need someone to listen, we're here to support you every step of the way.
                             </Typography>
-                            <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, mb:2 }}>
+                            <Typography variant="body1" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, mb: 2 }}>
                                 Our goal is to help you overcome challenges, achieve your goals, and make the most of your university experience.
                             </Typography>
                         </Box>

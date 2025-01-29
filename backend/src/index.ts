@@ -12,15 +12,6 @@ dotenv.config();
 const port = process.env.PORT ? Number(process.env.PORT) : 3000;
 
 const app = express();
-const corsOptions = {
-  origin: true,
-  credentials: true, // Allows cookies to be sent with the request
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // Ensure OPTIONS is allowed
-  allowedHeaders: ["Content-Type", "Authorization"],
-  optionsSuccessStatus: 204, // Some legacy browsers might need this (204 is the "no content" status)
-};
-
-app.use(cors(corsOptions));
 
 app.use(cookieParser());
 app.use(express.json());

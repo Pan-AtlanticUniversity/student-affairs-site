@@ -57,7 +57,8 @@ const About = () => {
     useEffect(() => {
         const getMembers = async () => {
             try {
-                const res = await axios.get<TitleItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/member`);
+                const res = await axios.get<TitleItem[]>('api/v1/member');
+                console.log(res)
                 setMembers(res.data);
             } catch (error) {
                 console.log("Error fetching member details:", error);

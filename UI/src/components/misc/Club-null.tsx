@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Box, Typography, Grid } from "@mui/material";
-import {disabled} from "../../context/theme";
+import { disabled } from "../../context/theme";
 import UnderlinedText from "../typography";
 import GridCard from "../gridcard";
 
@@ -35,7 +35,7 @@ const Club = () => {
   useEffect(() => {
     const getClubs = async () => {
       try {
-        const res = await axios.get<ClubItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/club`);
+        const res = await axios.get<ClubItem[]>(`/api/v1/club`);
         setClubs(res.data);
       } catch (error) {
         console.log("Error fetching club details:", error);

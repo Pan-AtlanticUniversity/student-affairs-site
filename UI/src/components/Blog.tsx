@@ -36,7 +36,7 @@ const Blog: React.FC<BlogProp> = ({ mode, searchQuery, openEditMenu }) => {
   useEffect(() => {
     const getBlogs = async () => {
       try {
-        const res = await axios.get<BlogItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/blog`);
+        const res = await axios.get<BlogItem[]>(`/api/v1/blog`);
         setBlogs(res.data);
       } catch (error) {
         console.log("Error fetching blogs:", error);
@@ -51,7 +51,7 @@ const Blog: React.FC<BlogProp> = ({ mode, searchQuery, openEditMenu }) => {
       setBlogs(prev => prev.filter(blog => blog._id != id));
       try {
         await axios.delete(
-          `${import.meta.env.VITE_BACKEND_HOST}/api/v1/blog/${id}`);
+          `/api/v1/blog/${id}`);
       } catch (error) {
         console.error("Error deleting blog:", error);
       }

@@ -1,5 +1,4 @@
 const vapid_key = import.meta.env.VITE_PUBLIC_VAPID_KEY;
-const server = import.meta.env.VITE_BACKEND_HOST as string;
 
 const subscribeToPushNotifications = async () => {
   try {
@@ -24,7 +23,7 @@ const subscribeToPushNotifications = async () => {
     });
 
     // Send the subscription information to your server
-    await fetch(`${server}/api/v1/notifications/subscribe`, {
+    await fetch("api/v1/notifications/subscribe", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
