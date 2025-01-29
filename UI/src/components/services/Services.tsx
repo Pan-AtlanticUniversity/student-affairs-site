@@ -20,7 +20,7 @@ const Services = () => {
     const getServices = async () => {
       try {
         const res = await axios.get<ServiceInterface[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/services`);
-        setServices(res.data);
+        setServices(res?.data);
       } catch (error) {
         console.log("Error fetching services:", error);
       }
@@ -57,7 +57,7 @@ const Services = () => {
       >
         {
           services.map(item => {
-            console.log(item)
+            // console.log(item)
             return (
               <GridCard
                 key={item.name}

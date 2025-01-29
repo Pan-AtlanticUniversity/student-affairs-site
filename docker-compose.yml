@@ -1,20 +1,14 @@
 version: '3.8'
 
 services:
-  frontend:
-    build:
-      context: ./UI
-      dockerfile: Dockerfile
-    ports:
-      - "80:80"
-    restart: always
-
   backend:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
+    volumes:
+      - .:/app
     ports:
-      - "4001:4001"
+      - "80:80"
     restart: always
 
   nginx:
@@ -24,16 +18,5 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - frontend
+      - backend
     restart: always
-
-  mongodb:
-    image: mongo:latest
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb_data:/data/db
-    restart: always
-
-volumes:
-  mongodb_data:
