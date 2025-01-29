@@ -5,16 +5,13 @@ import useAuth from '../context/authContext';
 import Message from './Message';
 import CustomLoader from './CustomLoader';
 
-const baseUrl = `/api/v1`
-
-
 interface ProtectedRouteProps {
     children: ReactNode;
     role?: string;
 }
 
 const axiosInstance = axios.create({
-    baseURL: baseUrl,
+    baseURL: '/api/v1',
     withCredentials: true,
 });
 
