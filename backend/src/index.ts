@@ -26,6 +26,14 @@ app.use(
   })
 );
 
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL as string, // Allow frontend domain
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true, // Allow cookies & authentication
+  })
+);
+
 // app.get("/", (req, res) => {
 //   res.send({ message: "Hello API" });
 // });

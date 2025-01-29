@@ -10,6 +10,7 @@ export default defineConfig(({ mode }) => {
         "/api/v1": {
           target: env.VITE_BACKEND_HOST as string,
           changeOrigin: true,
+          secure: false,
         },
       },
     },
