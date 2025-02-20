@@ -18,7 +18,7 @@ const Title = () => {
     useEffect(() => {
         const getMembers = async () => {
             try {
-                const res = await axios.get<TitleItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/member`);
+                const res = await axios.get<TitleItem[]>(`/api/v1/member`);
                 setMembers(res.data);
             } catch (error) {
                 console.log("Error fetching member details:", error);
@@ -78,9 +78,9 @@ const Title = () => {
                                     width: { xs: "35%", sm: "150px", lg: '200px' },
                                     aspectRatio: '1/1',
                                     borderRadius: '50%',
-                                    backgroundColor:'info.main'
+                                    backgroundColor: 'info.main'
                                 }}
-                                
+
                             />
                             <Stack direction={'column'} alignItems={'center'} sx={{ gap: 0.5 }}>
                                 <Typography variant="body1" color={disabled}>

@@ -48,7 +48,7 @@ const Admins = () => {
     if (selectedBlog?._id) {
       try {
         await axios.patch<BlogItem>(
-          `${import.meta.env.VITE_BACKEND_HOST}/api/v1/blog/${selectedBlog._id}`,
+          `/api/v1/blog/${selectedBlog._id}`,
           {
             entity_type: 'blogs', ...formJson, image: selectedFile
           },
@@ -63,8 +63,7 @@ const Admins = () => {
       }
     } else {
       try {
-        await axios.post<BlogItem>(
-          `${import.meta.env.VITE_BACKEND_HOST}/api/v1/blog`,
+        await axios.post<BlogItem>('api/v1/blog',
           { entity_type: 'blogs', ...formJson }, // Body
           {
             headers: {

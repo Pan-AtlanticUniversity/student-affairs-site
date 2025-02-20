@@ -4,10 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { decode, JwtPart } from 'jwt-js-decode';
 import CustomLoader from '../components/CustomLoader';
 
-const baseUrl = `${import.meta.env.VITE_BACKEND_HOST as string}/api/v1`
-
 const axiosInstance = axios.create({
-    baseURL: baseUrl,
+    baseURL: '/api/v1',
     withCredentials: true, // ensures cookies are sent
     headers: {
         'Content-Type': 'application/json',

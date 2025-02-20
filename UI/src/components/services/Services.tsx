@@ -19,8 +19,8 @@ const Services = () => {
   useEffect(() => {
     const getServices = async () => {
       try {
-        const res = await axios.get<ServiceInterface[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/services`);
-        setServices(res?.data);
+        const res = await axios.get<ServiceInterface[]>(`/api/v1/services`);
+        setServices(res.data);
       } catch (error) {
         console.log("Error fetching services:", error);
       }

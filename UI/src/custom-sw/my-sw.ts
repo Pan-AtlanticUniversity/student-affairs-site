@@ -14,7 +14,6 @@ import { precacheAndRoute } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
 import { CacheFirst } from "workbox-strategies";
 import desktopIcon from "../../public/icons/icon-192x192.png";
-const server = import.meta.env.VITE_BACKEND_HOST as string;
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -79,7 +78,7 @@ self.addEventListener(
         //user denied access. Attempt to unsubscribe the user at the backend
         self.registration.pushManager.getSubscription().then((subscription) => {
           subscription?.unsubscribe().then((_successful) => {
-            fetch(`${server}/api/v1/notifications/unsubscribe`, {
+            fetch("api/v1/notifications/unsubscribe", {
               method: "post",
               headers: {
                 "Content-type": "application/json",
@@ -95,7 +94,7 @@ self.addEventListener(
         const subscription = self.registration.pushManager
           .subscribe(event.oldSubscription.options)
           .then((subscription) =>
-            fetch(`${server}/api/v1/notifications/renew-subscription`, {
+            fetch("api/v1/notifications/renew-subscription", {
               method: "post",
               headers: {
                 "Content-type": "application/json",

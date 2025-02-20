@@ -34,7 +34,7 @@ async function fetchDates(month: Dayjs, { signal }: { signal: AbortSignal }) {
     try {
         const formattedMonth = month.format("YYYY-MM"); // Format month as 'YYYY-MM'
         const response = await axios.get(
-            `${import.meta.env.VITE_BACKEND_HOST}/api/v1/date?month=${formattedMonth}`,
+            `/api/v1/date?month=${formattedMonth}`,
             { signal }
         );
 
@@ -139,7 +139,7 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
 
         try {
             const response = await axios.patch<Event>(
-                `${import.meta.env.VITE_BACKEND_HOST}/api/v1/date${selectedEvent?._id ? '/' + selectedEvent._id : ''}`,
+                `/api/v1/date${selectedEvent?._id ? '/' + selectedEvent._id : ''}`,
                 formJson,
                 {
                     headers: {
@@ -162,7 +162,7 @@ const Calendar: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
         event.preventDefault();
         try {
             await axios.delete<Event>(
-                `${import.meta.env.VITE_BACKEND_HOST}/api/v1/date${selectedEvent?._id ? '/' + selectedEvent._id : ''}`
+                `/api/v1/date${selectedEvent?._id ? '/' + selectedEvent._id : ''}`
             );
 
             setHighlightedDays(prev => [...(prev?.filter(event => event._id !== selectedEvent?._id) ?? [])]);

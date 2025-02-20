@@ -12,6 +12,20 @@ dotenv.config();
 const port = process.env.PORT ? Number(process.env.PORT) : 3000;
 
 const app = express();
+
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/public", express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "..", "..", "UI", "dist")));
+
+app.use(
+  "/uploads",
+  express.static(path.join(__dirname, "../uploads"), {
+    maxAge: "1d", // Cache for 1 day
+  })
+);
+
 const corsOptions = {
   origin: true,
   credentials: true, // Allows cookies to be sent with the request
@@ -21,23 +35,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
-app.use(cookieParser());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use("/public", express.static(path.join(__dirname, "../public")));
-app.use(express.static(path.join(__dirname,'..','..','UI' ,"dist")));
-
-
-
-
-
-app.use(
-  "/uploads",
-  express.static(path.join(__dirname, "../uploads"), {
-    maxAge: "1d", // Cache for 1 day
-  })
-);
 
 // app.get("/", (req, res) => {
 //   res.send({ message: "Hello API" });

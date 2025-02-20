@@ -49,7 +49,7 @@ const Club: React.FC<ClubProp> = ({ mode, searchQuery, openEditMenu }) => {
   useEffect(() => {
     const getClubs = async () => {
       try {
-        const res = await axios.get<ClubItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/club`);
+        const res = await axios.get<ClubItem[]>(`/api/v1/club`);
         setClubs(res.data);
       } catch (error) {
         console.log("Error fetching club details:", error);
@@ -146,7 +146,7 @@ const Club: React.FC<ClubProp> = ({ mode, searchQuery, openEditMenu }) => {
                     )}
                     <Typography variant="body2" component="div" sx={{
                       display: '-webkit-box',
-                      
+
                       //to reduce the text that shows for the contents of clubs 
                       WebkitLineClamp: { xs: 2, sm: 3 },
                       WebkitBoxOrient: 'vertical',

@@ -23,7 +23,7 @@ const Blog = () => {
   useEffect(() => {
     const getBlogs = async () => {
       try {
-        const res = await axios.get<BlogItem[]>(`${import.meta.env.VITE_BACKEND_HOST}/api/v1/blog`);
+        const res = await axios.get<BlogItem[]>('api/v1/blog');
         setBlogs(res.data);
       } catch (error) {
         console.log("Error fetching blogs:", error);
