@@ -7,6 +7,9 @@ import Smiley from '../../assets/images//smiley.png';
 import GuideLines from '../../assets/svgs/guidelines.svg';
 import DressSense from '../../assets/svgs/dress-sense.svg';
 import governance from '../../assets/svgs/governance.svg';
+import dressCodePdf from '../../assets/docs/Dress Code Policy - Revised 9th April 2019.pdf';
+import handbookPdf from '../../assets/docs/Student Handbook 2024_2025.pdf';
+import codeOfConductPdf from '../../assets/docs/Student Code of Conduct v3.0.pdf';
 
 const StyledButton = styled(Button)({
     padding: "20px 0",
@@ -20,7 +23,7 @@ const StyledButton = styled(Button)({
 
 
 
-const About = () => {
+const Rules = () => {
     return (
         <Stack minHeight={"100vh"} sx={{
             gap: { xs: 6, md: 10, lg: 14 },
@@ -78,6 +81,8 @@ const About = () => {
                     <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center", overflowX: 'visible' }} >
                         <Stack sx={{ width: "clamp(256px, 100%, 1200px)", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
 
+
+                            {/* dress code */}
                             <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }}>
                                 <b>DRESS FOR SUCCESS AT PAU</b>
                                 <br />
@@ -96,10 +101,15 @@ const About = () => {
                                 and professional environment on campus.
                             </Typography>
 
-                            <StyledButton variant="contained" endIcon={<DownloadIcon />}
+                            <StyledButton
+                                variant="contained"
+                                endIcon={<DownloadIcon />}
                                 onClick={() => {
-                                    window.open('https://drive.google.com/file/d/1FbIo1D9MY-68kvNQRYMCsIGH-YEBtyNQ/view?usp=sharing', '_blank');
-                                }}>Get full PDF</StyledButton>
+                                    window.open(dressCodePdf, '_blank');
+                                }}
+                            >
+                                Get full PDF
+                            </StyledButton>
                         </Stack>
                         <Box
                             sx={{
@@ -141,9 +151,10 @@ const About = () => {
                     </Stack>
                 </Stack>
 
+                {/* process and guidlines */}
                 <Stack width={"100%"} flexDirection={'column'} gap={3} alignItems={'center'} sx={{ overflowX: 'visible' }} id="process-guidelines">
                     <Typography variant="h4" color={dark} textAlign={'center'}>
-                        Process and Guidelines
+                        Student Handbook
                     </Typography>
                     <Stack sx={{ flexDirection: { xs: "column", md: "row", overflowX: 'visible' }, justifyContent: "space-evenly", alignItems: "center" }} >
                         <Box
@@ -195,11 +206,15 @@ const About = () => {
                                 PAU without a scratch and come out victorious and confident!
                             </Typography>
 
-                            <StyledButton variant="contained" endIcon={<DownloadIcon />}
+                            <StyledButton
+                                variant="contained"
+                                endIcon={<DownloadIcon />}
                                 onClick={() => {
-                                    window.open('https://drive.google.com/file/d/1X5rna2wlYiHAsj-aEVlb1MAqRoFkKxbZ/view?usp=sharing', '_blank');
+                                    window.open(handbookPdf, '_blank');
                                 }}
-                            >Get full PDF</StyledButton>
+                            >
+                                Get full PDF
+                            </StyledButton>
                         </Stack>
 
                     </Stack>
@@ -207,24 +222,29 @@ const About = () => {
 
                 <Stack width={"100%"} flexDirection={'column'} gap={3} sx={{ overflowX: 'visible' }}>
                     <Typography variant="h4" color={dark} textAlign={'center'}>
-                        Student Governance Framework
+                        Student Code of Conduct
 
                     </Typography>
                     <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center", overflowX: 'visible' }} >
                         <Stack sx={{ width: "clamp(256px, 100%, 1200px)", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
                             <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }}>
-                                <b>Student Governance Framework at PAU</b>
+                                <b>Student Code of Conduct at PAU</b>
                                 <br />
                                 <br />
-                                The Student Governance Framework outlines the processes and guidelines for managing student associations, clubs,
-                                and initiatives, ensuring they operate effectively and align with institutional goals.
+                                The Student Code of Conduct establishes the rules and regulations that govern student behavior, ensuring a safe,
+                                respectful, and productive environment for all members of the university community.
                                 <br />
                             </Typography>
 
-                            <StyledButton variant="contained" endIcon={<DownloadIcon />}
+                            <StyledButton
+                                variant="contained"
+                                endIcon={<DownloadIcon />}
                                 onClick={() => {
-                                    window.open('https://pau.edu.ng/pau-uploads/Student%20Governance%20Framework%20-%200.3.1.1.pdf?_t=1710595698', '_blank');
-                                }}>Get full PDF</StyledButton>
+                                    window.open(codeOfConductPdf, '_blank');
+                                }}
+                            >
+                                Get full PDF
+                            </StyledButton>
                         </Stack>
                         <Box
                             sx={{
@@ -276,4 +296,4 @@ const About = () => {
     )
 }
 
-export default About
+export default Rules
