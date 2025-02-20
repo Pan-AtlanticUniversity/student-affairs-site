@@ -1,15 +1,18 @@
-import { Box, Button, Stack, styled, Typography } from "@mui/material"
-import { Banner, Footer, NavBar, TextBox } from "../../components"
-import { accent, dark, grey } from "../../context/theme"
+import { Box, Button, Stack, styled, Typography, Link } from "@mui/material";
+import { Banner, Footer, NavBar, TextBox } from "../../components";
+import { accent, dark, grey } from "../../context/theme";
 import DownloadIcon from '@mui/icons-material/Download';
-import rulesGuy from '../../assets/images/CS-3625-820x400-1.jpg'
-import Smiley from '../../assets/images//smiley.png';
+import rulesGuy from '../../assets/images/CS-3625-820x400-1.jpg';
+import Smiley from '../../assets/images/smiley.png';
 import GuideLines from '../../assets/svgs/guidelines.svg';
 import DressSense from '../../assets/svgs/dress-sense.svg';
 import governance from '../../assets/svgs/governance.svg';
 import dressCodePdf from '../../assets/docs/Dress Code Policy - Revised 9th April 2019.pdf';
 import handbookPdf from '../../assets/docs/Student Handbook 2024_2025.pdf';
 import codeOfConductPdf from '../../assets/docs/Student Code of Conduct v3.0.pdf';
+import alcoholPolicyPdf from '../../assets/docs/Updated Alcholol Policy - April 30 2024.pdf'; // Add your new files here
+import drugTestPdf from '../../assets/docs/Updated Drug Test Policy - April 30 2024.pdf';
+import smokingPdf from '../../assets/docs/Updated Smoking policy- April 30 2024.pdf';
 
 const StyledButton = styled(Button)({
     padding: "20px 0",
@@ -20,8 +23,6 @@ const StyledButton = styled(Button)({
     borderRadius: 20,
     boxShadow: "0px 3px 3px 2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12)",
 });
-
-
 
 const Rules = () => {
     return (
@@ -69,20 +70,17 @@ const Rules = () => {
                                 width: '40px',
                                 height: '100%',
                                 verticalAlign: 'middle'
-
                             }}
                         /></span>
                 </Typography>
 
+                {/* Dress Code Section */}
                 <Stack width={"100%"} flexDirection={'column'} gap={3} sx={{ overflowX: 'visible' }}>
                     <Typography variant="h4" color={dark} textAlign={'center'}>
                         Dress codes
                     </Typography>
                     <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center", overflowX: 'visible' }} >
                         <Stack sx={{ width: "clamp(256px, 100%, 1200px)", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
-
-
-                            {/* dress code */}
                             <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }}>
                                 <b>DRESS FOR SUCCESS AT PAU</b>
                                 <br />
@@ -147,11 +145,10 @@ const Rules = () => {
                                 }}
                             />
                         </Box>
-
                     </Stack>
                 </Stack>
 
-                {/* process and guidlines */}
+                {/* Student Handbook Section */}
                 <Stack width={"100%"} flexDirection={'column'} gap={3} alignItems={'center'} sx={{ overflowX: 'visible' }} id="process-guidelines">
                     <Typography variant="h4" color={dark} textAlign={'center'}>
                         Student Handbook
@@ -216,14 +213,13 @@ const Rules = () => {
                                 Get full PDF
                             </StyledButton>
                         </Stack>
-
                     </Stack>
                 </Stack>
 
+                {/* Student Code of Conduct Section */}
                 <Stack width={"100%"} flexDirection={'column'} gap={3} sx={{ overflowX: 'visible' }}>
                     <Typography variant="h4" color={dark} textAlign={'center'}>
                         Student Code of Conduct
-
                     </Typography>
                     <Stack sx={{ flexDirection: { xs: "column-reverse", md: "row" }, justifyContent: "space-evenly", alignItems: "center", overflowX: 'visible' }} >
                         <Stack sx={{ width: "clamp(256px, 100%, 1200px)", marginBottom: { xs: "75px" } }} gap={5} pl={1} pr={1}>
@@ -282,18 +278,59 @@ const Rules = () => {
                                 }}
                             />
                         </Box>
-
                     </Stack>
                 </Stack>
 
+                {/* Additional Files Section */}
+                <Stack width={"100%"} flexDirection={'column'} gap={3} sx={{ overflowX: 'visible' }}>
+                    <Typography variant="h4" color={dark} textAlign={'center'}>
+                        Additional Resources
+                    </Typography>
+                    <Stack sx={{ flexDirection: "column", gap: 2, alignItems: 'center' }}>
+                        <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }}>
+                            <Link
 
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    window.open(alcoholPolicyPdf, '_blank');
+                                }}
+                                sx={{ color: dark, textDecoration: 'underline', cursor: 'pointer' }}
+                            >
+                                Download Alcohol Policy
+                            </Link>
+                        </Typography>
+                        <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }}>
+                            <Link
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    window.open(drugTestPdf, '_blank');
+                                }}
+                                sx={{ color: dark, textDecoration: 'underline', cursor: 'pointer' }}
+                            >
+                                Download Drug Test Policy
+                            </Link>
+                        </Typography>
+                        <Typography sx={{ textAlign: { xs: 'center', md: 'start' } }}>
+                            <Link
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    window.open(smokingPdf, '_blank');
+                                }}
+                                sx={{ color: dark, textDecoration: 'underline', cursor: 'pointer' }}
+                            >
+                                Download Smoking Policy
+                            </Link>
+                        </Typography>
+                    </Stack>
+                </Stack>
             </Stack>
-
-
 
             <Footer />
         </Stack>
-    )
-}
+    );
+};
 
-export default Rules
+export default Rules;
