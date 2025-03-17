@@ -4,11 +4,13 @@ import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
+
+  const backendHost = env.VITE_BACKEND_HOST || "https://student-affairs-site.onrender.com";
   return {
     server: {
       proxy: {
-        "/api/v1": {
-          target: env.VITE_BACKEND_HOST as string,
+        "/api/v1/**": {
+          target: backendHost,
           changeOrigin: true,
           secure: false,
         },
