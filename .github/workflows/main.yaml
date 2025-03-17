@@ -25,8 +25,10 @@ jobs:
     - name: Deploy via SSH
       run: |
         ssh root@139.59.161.146 << 'EOF'
-          cd /path/to/project  # Change this
-          git pull origin main
-          npm install  # Change for your stack
-          pm2 restart all  # Change if needed
+          cd /root/student-affairs-site  # Change to project directory
+          git pull origin main  # Pull latest code
+          docker-compose down  # Stop running containers
+          docker-compose build  # Build a new image from the latest code
+          docker-compose up -d  # Run the updated container in the background
+          docker image prune -f  # Clean up old images
         EOF
