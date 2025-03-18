@@ -35,9 +35,11 @@ const corsOptions = {
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], 
   allowedHeaders: ["Content-Type", "Authorization"],
   optionsSuccessStatus: 204, 
+  preflightContinue: false, // Ensure preflight requests are handled properly
 };
 
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Handle preflight requests globally
 
 // ✅ Move this AFTER all API and static routes
 app.use(express.static(path.join(__dirname, "..", "..", "UI", "dist")));
