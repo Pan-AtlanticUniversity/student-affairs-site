@@ -13,6 +13,9 @@ const port = process.env.PORT ? Number(process.env.PORT) : 3000;
 
 const app = express();
 
+// ✅ Serve API routes FIRST
+app.use("/api/v1/", router); //get's the route declared above
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -40,7 +43,7 @@ app.use(cors(corsOptions));
 //   res.send({ message: "Hello API" });
 // });
 
-app.use("/api/v1/", router); //get's the route declared above
+
 
 app.use(notFound);
 
