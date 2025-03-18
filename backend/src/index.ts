@@ -14,14 +14,14 @@ const port = process.env.PORT ? Number(process.env.PORT) : 3000;
 const app = express();
 
 // ✅ Serve API routes FIRST
-app.use("/api/v1/", router); //get's the route declared above
+app.use("/api/v1/", router);
 
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/public", express.static(path.join(__dirname, "../public")));
-app.use(express.static(path.join(__dirname, "..", "..", "UI", "dist")));
 
+// ✅ Serve static files LAST (after all API routes)
+app.use("/public", express.static(path.join(__dirname, "../public")));
 app.use(
   "/uploads",
   express.static(path.join(__dirname, "../uploads"), {
@@ -30,23 +30,19 @@ app.use(
 );
 
 const corsOptions = {
-  origin: ['https://studentaffairs.pau.edu.ng'],
-  credentials: true, // Allows cookies to be sent with the request
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // Ensure OPTIONS is allowed
+  origin: ["https://studentaffairs.pau.edu.ng"],
+  credentials: true, // Allows cookies
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], 
   allowedHeaders: ["Content-Type", "Authorization"],
-  optionsSuccessStatus: 204, // Some legacy browsers might need this (204 is the "no content" status)
+  optionsSuccessStatus: 204, 
 };
 
 app.use(cors(corsOptions));
 
-// app.get("/", (req, res) => {
-//   res.send({ message: "Hello API" });
-// });
-
-
+// ✅ Move this AFTER all API and static routes
+app.use(express.static(path.join(__dirname, "..", "..", "UI", "dist")));
 
 app.use(notFound);
-
 app.use(errorHandlerMiddleware);
 
 (async () => {
