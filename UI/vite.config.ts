@@ -3,19 +3,17 @@ import react from "@vitejs/plugin-react-swc";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd());
-  const backendHost = env.VITE_BACKEND_HOST;  // Make sure it's correctly loaded!
-
+  // const backendHost = process.env.VITE_BACKEND_HOST || "https://student-affairs-site.onrender.com";
   return {
-    server: {
-      proxy: {
-        "/api/v1/**": {
-          target: backendHost,
-          changeOrigin: true,
-          secure: false,
-        },
-      },
-    },
+    // server: {
+    //   proxy: {
+    //     "/api/v1/**": {
+    //       target: backendHost,
+    //       changeOrigin: true,
+    //       secure: false,
+    //     },
+    //   },
+    // },
 
     plugins: [
       react(),
