@@ -30,7 +30,7 @@ app.use(
 );
 
 const corsOptions = {
-  origin: true,
+  origin: ['https://studentaffairs.pau.edu.ng'],
   credentials: true, // Allows cookies to be sent with the request
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // Ensure OPTIONS is allowed
   allowedHeaders: ["Content-Type", "Authorization"],
