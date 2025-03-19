@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { About, Admins, BlogDetail, Blogs, ClubDetail, Clubs, ForgotPassword, Home, Login, Mentorship, P2P, Register, Rules, ServiceDetail, Sports } from "./pages"
 import { ProtectedRoute } from './components';
 
@@ -71,6 +71,9 @@ function App() {
         path="/p2p"
         element={<P2P />}
       />
+
+       {/* Redirect any unknown page to home */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }
