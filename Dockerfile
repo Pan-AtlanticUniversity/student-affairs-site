@@ -23,7 +23,7 @@
 # # Start the frontend
 # CMD ["npm", "run", "start"]
 # Use Node.js base image
-FROM node:20.04
+FROM node:20
 
 # Set working directory
 WORKDIR /app
