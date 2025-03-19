@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         "/api": {
-          target: "http://localhost:3000", // Match backend port
+          target: "https://student-affairs-site.onrender.com", // Match backend port
           changeOrigin: true,
           secure: false, // Disable SSL for local dev
           rewrite: (path) => path.replace(/^\/api/, "/api/v1"), // Adjust based on backend API path
