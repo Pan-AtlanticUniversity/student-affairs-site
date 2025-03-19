@@ -4,9 +4,9 @@ services:
   backend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: backend/Dockerfile
     volumes:
-      - .:/app
+      - ./backend:/app
     ports:
       - "3000:3000"
     restart: always
