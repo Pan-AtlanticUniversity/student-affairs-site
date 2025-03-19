@@ -5,8 +5,6 @@ services:
     build:
       context: .
       dockerfile: backend/Dockerfile
-    volumes:
-      - ./backend:/app
     ports:
       - "3000:3000"
     restart: always
@@ -14,8 +12,8 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "8080:8080"     # Change 8080 to 80 (default HTTP)
-      - "443:443"   # Keep HTTPS
+      - "8080:80"      # Redirect HTTP traffic to port 80
+      - "443:443"      # HTTPS traffic on 443
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
