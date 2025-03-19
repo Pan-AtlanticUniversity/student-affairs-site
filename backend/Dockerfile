@@ -1,27 +1,33 @@
-# Base image
-FROM node:20 AS builder
+# 🚀 Stage 1: Build the frontend
+FROM node:20 AS frontend-builder
 
 # Set working directory
-WORKDIR /app
+WORKDIR /app/UI
+
+# Copy package files and install dependencies
+COPY UI/package*.json ./
+RUN npm install
+
+# Copy the rest of the UI files
+COPY UI ./
+RUN npm run build  # This generates the `dist/` folder
+
+# 🚀 Stage 2: Build the backend and serve the UI
+FROM node:20 AS backend
+
+# Set working directory
+WORKDIR /app/backend
 
 # Copy backend package files and install dependencies
-COPY backend/package*.json backend/package-lock.json ./  
+COPY backend/package*.json ./
 RUN npm install
 
 # Copy backend source files
-COPY backend ./backend
+COPY backend ./
 
-# Build the frontend first
-WORKDIR /app/UI
-COPY UI/package*.json UI/package-lock.json ./
-RUN npm install
-COPY UI .
-RUN npm run build  
-
-# Move built frontend files into the backend `public/` folder
-WORKDIR /app/backend
+# Create the `public` directory to serve the frontend
 RUN mkdir -p public
-COPY --from=builder /app/UI/dist ./public 
+COPY --from=frontend-builder /app/UI/dist ./public  
 
 # Expose backend API port
 EXPOSE 3000
