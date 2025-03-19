@@ -5,16 +5,16 @@ import { VitePWA } from "vite-plugin-pwa";
 export default defineConfig(({ mode }) => {
 
   return {
-    server: {
-      proxy: {
-        "/api": {
-          target: "https://student-affairs-site.onrender.com", // Match backend port
-          changeOrigin: true,
-          secure: false, // Disable SSL for local dev
-          rewrite: (path) => path.replace(/^\/api/, "/api/v1"), // Adjust based on backend API path
-        },
-      },
-    },
+    // server: {
+    //   proxy: {
+    //     "/api": {
+    //       target: "https://student-affairs-site.onrender.com", // Match backend port
+    //       changeOrigin: true,
+    //       secure: false, // Disable SSL for local dev
+    //       rewrite: (path) => path.replace(/^\/api/, "/api/v1"), // Adjust based on backend API path
+    //     },
+    //   },
+    // },
     plugins: [
       react(),
       VitePWA({
