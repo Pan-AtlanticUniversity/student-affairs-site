@@ -43,6 +43,12 @@ app.use(
 
 app.use(express.static(path.join(__dirname, "..", "..", "UI", "dist")));
 
+// Handle all unknown routes by serving index.html
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname,"..","..","UI","dist", "index.html"));
+  });
+
+  
 app.use(notFound);
 app.use(errorHandlerMiddleware);
 

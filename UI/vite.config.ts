@@ -2,19 +2,7 @@ import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { VitePWA } from "vite-plugin-pwa";
 
-export default defineConfig(({ mode }) => {
-
-  return {
-    // server: {
-    //   proxy: {
-    //     "/api": {
-    //       target: "https://student-affairs-site.onrender.com", // Match backend port
-    //       changeOrigin: true,
-    //       secure: false, // Disable SSL for local dev
-    //       rewrite: (path) => path.replace(/^\/api/, "/api/v1"), // Adjust based on backend API path
-    //     },
-    //   },
-    // },
+export default defineConfig({
     plugins: [
       react(),
       VitePWA({
@@ -81,5 +69,13 @@ export default defineConfig(({ mode }) => {
         },
       }),
     ],
-  };
-});
+    build: {
+      outDir: "dist",
+    },
+    server: {
+      fs: {
+        strict: false, // Prevents errors related to file serving
+      }
+    },
+    
+  });
