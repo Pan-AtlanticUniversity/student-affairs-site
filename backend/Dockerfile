@@ -1,27 +1,27 @@
 # Base image
-FROM node:20
+FROM node:20 AS builder
 
 # Set working directory
 WORKDIR /app
 
-# Copy package files and install dependencies
-COPY backend/package*.json ./
+# Copy backend package files and install dependencies
+COPY backend/package*.json backend/package-lock.json ./  
 RUN npm install
 
-# Copy app files
-COPY . .
+# Copy backend source files
+COPY backend ./backend
 
-# Build the UI first
+# Build the frontend first
 WORKDIR /app/UI
+COPY UI/package*.json UI/package-lock.json ./
 RUN npm install
-RUN npm run build
+COPY UI .
+RUN npm run build  
 
-# Serve the built UI from the backend
+# Move built frontend files into the backend `public/` folder
 WORKDIR /app/backend
-RUN npm install
-
-# Ensure Express serves the UI
-# (Modify your backend to serve static files from /app/UI/dist)
+RUN mkdir -p public
+COPY --from=builder /app/UI/dist ./public 
 
 # Expose backend API port
 EXPOSE 3000
