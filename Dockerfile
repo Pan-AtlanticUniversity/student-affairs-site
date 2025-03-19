@@ -21,4 +21,4 @@ RUN npm install
 RUN npm run build
 
 # Start the frontend
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]
