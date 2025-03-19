@@ -10,7 +10,10 @@ RUN npm install
 
 # Copy the rest of the UI files
 COPY UI ./
-RUN npm run build  # This generates the `dist/` folder
+RUN npm run build  # This generates the dist/ folder
+
+# Debugging: List the contents of the dist folder
+RUN ls -l /app/UI/dist
 
 # 🚀 Stage 2: Build the backend and serve the UI
 FROM node:20 AS backend
@@ -25,9 +28,12 @@ RUN npm install
 # Copy backend source files
 COPY backend ./
 
-# Create the `public` directory to serve the frontend
+# Create the public directory to serve the frontend
 RUN mkdir -p public
 COPY --from=frontend-builder /app/UI/dist ./public  
+
+# Debugging: List the contents of the public folder
+RUN ls -l /app/backend/public
 
 # Expose backend API port
 EXPOSE 3000
