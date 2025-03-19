@@ -1,19 +1,22 @@
 # UI/Dockerfile
 # Base image
-FROM node:latest
+FROM node:20
 
 # Set working directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
-#Copy the entire project directory,excluding files form .dockerignore
+# # Copy package files and install dependencies
+# COPY package*.json ./
+# RUN npm install
+
+# Copy app files and build
 COPY . .
-
-# build the frontend
-WORKDIR /usr/src/app/UI
+# RUN npm run build
+WORKDIR /app/UI
 RUN npm install
 RUN npm run build
 
-WORKDIR /usr/src/app/backend
+WORKDIR /app/backend
 RUN npm install
 RUN npm run build
 
@@ -21,4 +24,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Start the
-CMD ["npm", "run", "start:prod"]
+CMD ["npm", "run", "dev"]
