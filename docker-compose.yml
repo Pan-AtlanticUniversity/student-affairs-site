@@ -1,10 +1,10 @@
-version: '3.8'
+version: "3.8"
 
 services:
   backend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: backend/Dockerfile
     volumes:
       - .:/app
     ports:
@@ -14,8 +14,8 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "8080:8080"
-      - "443:443"
+      - "8080:8080"     # Change 8080 to 80 (default HTTP)
+      - "443:443"   # Keep HTTPS
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro

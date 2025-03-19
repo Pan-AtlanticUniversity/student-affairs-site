@@ -1,4 +1,3 @@
-# backend/Dockerfile
 # Base image
 FROM node:20
 
@@ -12,8 +11,20 @@ RUN npm install
 # Copy app files
 COPY . .
 
-# Expose port for the backend
+# Build the UI first
+WORKDIR /app/UI
+RUN npm install
+RUN npm run build
+
+# Serve the built UI from the backend
+WORKDIR /app/backend
+RUN npm install
+
+# Ensure Express serves the UI
+# (Modify your backend to serve static files from /app/UI/dist)
+
+# Expose backend API port
 EXPOSE 3000
 
 # Start the backend
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]
