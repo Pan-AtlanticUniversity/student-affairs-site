@@ -43,26 +43,6 @@ const team = [
 ];
 
 const Home = () => {
-  //const [width, setWidth] = useState(window.innerWidth);
-  //const [height, setHeight] = useState(document.documentElement.clientHeight);
-  //const [dialogOpen, setDialogOpen] = useState(false);
-  /*
-    useEffect(() => {
-      setTimeout(() => setDialogOpen(true), 2000);
-      const handleResize = () => {
-        setWidth(window.innerWidth);
-        setHeight(window.innerHeight);
-      };
-      window.addEventListener("resize", handleResize);
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }, []);
-  
-    const handleClose = () => {
-      setDialogOpen(false);
-    };
-  */
   return (
     <Stack minHeight={"100vh"} sx={{
       gap: { xs: 6, md: 4, lg: 2 },

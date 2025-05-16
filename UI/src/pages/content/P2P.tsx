@@ -53,10 +53,10 @@ const P2P = () => {
                         <Box sx={{ lineHeight: 1.6 }}>
 
                             <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.25rem' }, mb: 2 }}>
-                                The PAU Peer-2-Peer Tutorial Program offers academic support through student-driven learning, connecting students with high-achieving peers who provide one-on-one or small-group tutoring.
+                                The PAU Peer-2-Peer Tutorial Programme offers academic support through student-driven learning, connecting students with high-achieving peers who provide one-on-one or small-group tutoring.
                             </Typography>
                             <Typography variant="body1" sx={{ fontSize: { xs: '0.85rem', md: '1.25rem' }, mb: 2 }}>
-                                The program focuses on helping students understand challenging subjects without assigning grades, tailoring teaching methods to individual learning styles for an effective experience. A code of conduct ensures respect and order during sessions.
+                                The programme focuses on helping students understand challenging subjects without assigning grades, tailoring teaching methods to individual learning styles for an effective experience. A code of conduct ensures respect and order during sessions.
                             </Typography>
                         </Box>
 
@@ -102,7 +102,7 @@ const P2P = () => {
                     <Grid item xs={12} md={6}>
                         <InfoBox
                             title="Tutorial Guidelines for Tutors"
-                            content="Ensure you are familiar with the processes and expectations for participating in the Peer-to-Peer Tutorial Program. This includes understanding the code of conduct, attendance requirements, and preparation tips for your sessions."
+                            content="Ensure you are familiar with the processes and expectations for participating in the Peer-to-Peer Tutorial Programme. This includes understanding the code of conduct, attendance requirements, and preparation tips for your sessions."
                             buttonText="View Tutor Guidelines"
                             onClick={() => {
                                 window.open('https://shorturl.at/THU2M', '_blank');
@@ -112,7 +112,7 @@ const P2P = () => {
                     <Grid item xs={12} md={6}>
                         <InfoBox
                             title="Tutorial Guidelines for Tutees"
-                            content="The essential documents for tutees, including detailed tutorial guidelines, orientation materials, and other resources, are readily available to help you navigate the program successfully."
+                            content="The essential documents for tutees, including detailed tutorial guidelines, orientation materials, and other resources, are readily available to help you navigate the programme successfully."
                             buttonText="View Tutee Guidelines"
                             onClick={() => {
                                 window.open('https://shorturl.at/Mi0QT', '_blank');

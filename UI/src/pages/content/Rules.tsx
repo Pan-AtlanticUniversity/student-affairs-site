@@ -172,7 +172,6 @@ const Rules = () => {
                                     width: { xs: '50%', lg: '300px', xl: '500px' },
                                     aspectRatio: "4/5",
                                     borderRadius: '10px',
-                                    border: '15px #18BC9C solid',
                                     zIndex: -1,
                                 },
                             }}
