@@ -218,7 +218,7 @@ const Club: React.FC<ClubProp> = ({ mode, searchQuery, openEditMenu }) => {
           )
         ) : (
           <Typography variant="h6" color={disabled}>
-            No Clubs available.
+            Loading...
           </Typography>
         )}
       </Grid>

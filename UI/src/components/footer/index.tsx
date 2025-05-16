@@ -74,7 +74,7 @@ const Footer = () => {
                         <Link
 
                             fontFamily={'Poppins'}
-                            href={"#"} // Anchor link pattern
+                            href={"/guidance"} // Anchor link pattern
                             target={"_blank"}
                             sx={{
                                 textDecoration: 'none',
@@ -135,7 +135,7 @@ const Footer = () => {
                                 color: grey,
                                 '&:hover': { color: grey[100] }
                             }}
-                            onClick={() => alert('Comig soon!')}
+                            onClick={() => alert('Coming soon!')}
                         >
                             Student Council
                         </Link>
