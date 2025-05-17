@@ -105,7 +105,7 @@ const P2P = () => {
                             content="Ensure you are familiar with the processes and expectations for participating in the Peer-to-Peer Tutorial Programme. This includes understanding the code of conduct, attendance requirements, and preparation tips for your sessions."
                             buttonText="View Tutor Guidelines"
                             onClick={() => {
-                                window.open('https://shorturl.at/THU2M', '_blank');
+                                window.open('https://panatlanticuniversity-my.sharepoint.com/:b:/g/personal/peer2peertutorials_pau_edu_ng/EU_0gcHnrd5EknjClADCFF0BR2LCiq2Ksx24ao4QsVHOew?e=jSp7xP', '_blank');
                             }}
                         />
                     </Grid>
@@ -115,7 +115,7 @@ const P2P = () => {
                             content="The essential documents for tutees, including detailed tutorial guidelines, orientation materials, and other resources, are readily available to help you navigate the programme successfully."
                             buttonText="View Tutee Guidelines"
                             onClick={() => {
-                                window.open('https://shorturl.at/Mi0QT', '_blank');
+                                window.open('https://panatlanticuniversity-my.sharepoint.com/:b:/g/personal/peer2peertutorials_pau_edu_ng/ERHjDYHcF9dEj1LFf2ey16wBkw6YqZm1E3y-HHlzscWf8g?e=SDs9r9', '_blank');
                             }}
                         />
                     </Grid>
