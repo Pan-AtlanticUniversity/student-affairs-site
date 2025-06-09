@@ -184,36 +184,6 @@ const Home = () => {
       </Stack>
       {/* Footer Section */}
       <Footer />
-      {/*
-      <Dialog
-        fullWidth
-        open={dialogOpen}
-        onClose={handleClose}
-      >
-        <DialogTitle textAlign={'center'} sx={{ marginTop: 1 }}>Congratulations on your admission to PAU! 🎉</DialogTitle>
-        <DialogContent>
-          <Box component="img" src={"https://pau.edu.ng/wp-content/uploads/2024/04/pan-atlantic-university-3-scaled.jpg?id=23379"} sx={{
-            objectFit: 'cover',
-            backgroundSize: "cover",
-            aspectRatio: '7/3',
-            verticalAlign: 'middle',
-            width: '100%',
-            loading: 'lazy',
-            borderRadius: 2
-          }} />
-          <Typography sx={{ marginTop: 3, paddingBottom: 3 }}>
-            At Pan-Atlantic University, we are committed to the holistic development of every student.
-            Our goal is to shape the PAU student into an ethically grounded and responsible professional.
-            <br />
-            <br />
-            Explore the resources available to you—from medical services and student clubs to mentorship and
-            career guidance and let’s start shaping your future, today!
-          </Typography>
-        </DialogContent>
-      </Dialog>
-
-      {dialogOpen && <Confetti width={width} height={height} style={{ zIndex: 0 }} />}
-*/}
     </Stack >
   )
 }
