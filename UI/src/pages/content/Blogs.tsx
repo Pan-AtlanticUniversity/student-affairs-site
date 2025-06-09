@@ -20,7 +20,7 @@ const Blogs = () => {
         zIndex: 0,
         '&::before': {
           content: '""',
-          position: 'absolute',
+          position: 'center',
           bottom: 0,
           left: 0,
           transform: 'translate(-50%, 50%)',
