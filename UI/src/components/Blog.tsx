@@ -73,7 +73,6 @@ const Blog: React.FC<BlogProp> = ({ mode, searchQuery, openEditMenu }) => {
           left: { xs: '-50vw', md: '-25%', xl: '-5vw' },
           transform: 'translateY(-10%)  rotate(35deg)',
           zIndex: -1,
-          border: '15px #18BC9C solid',
           width: { xs: '65vw' },
           aspectRatio: "3/5",
           maxWidth: "350px",
