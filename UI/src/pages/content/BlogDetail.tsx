@@ -57,7 +57,6 @@ const BlogDetail = () => {
                     left: 0,
                     transform: 'translate(-50%, 50%)',
                     zIndex: -1,
-                    backgroundColor: accent,
                     width: "clamp(150px, 50vw, 300px)",
                     aspectRatio: 1,
                     maxWidth: "350px",
