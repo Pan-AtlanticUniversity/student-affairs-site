@@ -13,7 +13,7 @@ import { ExpirationPlugin } from "workbox-expiration";
 import { precacheAndRoute } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
 import { CacheFirst } from "workbox-strategies";
-import desktopIcon from "../../public/icons/icon-192x192.png";
+import desktopIcon from "../../public/icons/icon-192x192.webp";
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -31,8 +31,10 @@ registerRoute(
   ({ url }) =>
     url.origin === self.location.origin &&
     (url.pathname.endsWith(".png") ||
+      url.pathname.endsWith(".jpeg") ||
       url.pathname.endsWith(".jpg") ||
-      url.pathname.endsWith(".svg")),
+      url.pathname.endsWith(".svg") ||
+      url.pathname.endsWith(".webp")),
   // Customize this strategy as needed, e.g., by changing to CacheFirst.
   new CacheFirst({
     cacheName: "images",
