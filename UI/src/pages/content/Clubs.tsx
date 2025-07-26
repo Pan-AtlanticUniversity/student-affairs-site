@@ -1,6 +1,6 @@
 import { Box, Stack } from "@mui/material"
 import { Banner, Footer, NavBar, TextBox } from "../../components"
-import club1 from '../../assets/images/Clubs and extracurricular/5.jpg';
+import club1 from '../../assets/images/Clubs and extracurricular/5.webp';
 import Club from "../../components/club";
 import { accent, grey } from "../../context/theme";
 
