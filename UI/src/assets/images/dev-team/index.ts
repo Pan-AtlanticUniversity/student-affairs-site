@@ -1,11 +1,11 @@
-import sam from '../dev-team/sam.jpg';
-import miracle from '../dev-team/miracle.jpg';
-import chima from '../dev-team/chima.jpg';
-import blessing from '../dev-team/blessing.jpg';
+import sam from '../dev-team/sam.webp';
+import miracle from '../dev-team/miracle.webp';
+import chima from '../dev-team/chima.webp';
+import blessing from '../dev-team/blessing.webp';
 export {
-    sam,
-    miracle,
-    chima,
-    blessing
-  };
-  
+  sam,
+  miracle,
+  chima,
+  blessing
+};
+
