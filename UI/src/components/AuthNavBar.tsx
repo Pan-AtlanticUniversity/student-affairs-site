@@ -7,25 +7,25 @@ import { grey } from '../context/theme';
 import PAULogo from '../assets/images/transparent-pau-logo.webp';
 
 const StyledToolBar = styled(Toolbar)({
-  display: "flex",
-  justifyContent: "space-between",
+    display: "flex",
+    justifyContent: "space-between",
 });
 
 const AuthNavBar = () => {
-  const navigate = useNavigate();
-  return (
-    <AppBar position="sticky" sx={{ backgroundColor: "transparent", boxShadow: "none", paddingTop: "10px 10px" }}>
-      <StyledToolBar>
-        <Box sx={{ width: { xs: "125px", md: "150px", lg: "175px" } }}>
-          <Image src={PAULogo} style={{ height: "100%" }} />
-        </Box>
-        <Button sx={{ textTransform: 'none', color: grey }} endIcon={<HomeIcon />} onClick={() => navigate("/")}>
-          Home
-        </Button>
-      </StyledToolBar>
+    const navigate = useNavigate();
+    return (
+        <AppBar position="sticky" sx={{ backgroundColor: "transparent", boxShadow: "none", paddingTop: "10px 10px" }}>
+            <StyledToolBar>
+                <Box sx={{ width: { xs: "125px", md: "150px", lg: "175px" } }}>
+                    <Image src={PAULogo} style={{ height: "100%" }} />
+                </Box>
+                <Button sx={{ textTransform: 'none', color: grey }} endIcon={<HomeIcon />} onClick={() => navigate("/")}>
+                    Home
+                </Button>
+            </StyledToolBar>
 
-    </AppBar>
-  )
+        </AppBar>
+    )
 }
 
 export default AuthNavBar

