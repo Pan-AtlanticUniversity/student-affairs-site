@@ -11,7 +11,7 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 
-import defaultImage from '../../assets/images/transparent-pau-logo.png'
+import defaultImage from '../../assets/images/transparent-pau-logo.webp'
 import axios from 'axios';
 
 
@@ -24,7 +24,7 @@ const convertDefaultImageToFile = async (defaultImagePath: string) => {
     try {
         const response = await fetch(defaultImagePath); // Fetch the image
         const blob = await response.blob(); // Convert the response to a Blob
-        return new File([blob], 'defaultImage.png', { type: blob.type }); // Create a File object
+        return new File([blob], 'defaultImage.webp', { type: blob.type }); // Create a File object
     } catch (error) {
         console.error('Error converting image to file:', error);
     }

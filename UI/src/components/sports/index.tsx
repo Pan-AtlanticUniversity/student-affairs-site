@@ -1,6 +1,6 @@
 // import { Box, Grid, Typography, CardMedia } from '@mui/material';
-// import image1 from '../../assets/images/Clubs and extracurricular/AM-45.jpg';
-// import image2 from '../../assets/images/Clubs and extracurricular/PAUC-10.jpg';
+// import image1 from '../../assets/images/Clubs and extracurricular/AM-45.webp';
+// import image2 from '../../assets/images/Clubs and extracurricular/PAUC-10.webp';
 // import { grey } from '../../context/theme';
 
 // const SportInfo = () => {
@@ -151,8 +151,8 @@
 
 // export default SportInfo;
 import { Box, Grid, Typography, CardMedia } from '@mui/material';
-import image1 from '../../assets/images/Clubs and extracurricular/AM-45.jpg';
-import image2 from '../../assets/images/Clubs and extracurricular/PAUC-10.jpg';
+import image1 from '../../assets/images/Clubs and extracurricular/AM-45.webp';
+import image2 from '../../assets/images/Clubs and extracurricular/PAUC-10.webp';
 import { grey } from '../../context/theme';
 
 const SportInfo = () => {

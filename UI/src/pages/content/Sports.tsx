@@ -2,10 +2,10 @@
 import { Box, Grid, IconButton, Paper, Stack, Typography } from "@mui/material";
 import { Banner, Footer, NavBar, PhotoGallery, SportInfo, TextBox, UnderlinedText } from "../../components";
 import { accent, grey } from "../../context/theme";
-import image1 from '../../assets/images/Clubs and extracurricular/PAUS-2.jpg';
+import image1 from '../../assets/images/Clubs and extracurricular/PAUS-2.webp';
 
-import image3 from '../../assets/images/Clubs and extracurricular/3.jpg';
-import sportsCommitee from '../../assets/images/Clubs and extracurricular/sports-committee.jpg';
+import image3 from '../../assets/images/Clubs and extracurricular/3.webp';
+import sportsCommitee from '../../assets/images/Clubs and extracurricular/sports-committee.webp';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import XIcon from '@mui/icons-material/X'; // Use this as X icon if no X icon is available
 import { FaTiktok } from 'react-icons/fa';

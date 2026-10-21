@@ -4,9 +4,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // Import your images here
-import welcomeToPAU from '../assets/images/welcome-to-pau.png';
-import guysChilling from '../assets/images/guys-chilling.jpg';
-import people from '../assets/images/chudi.png';
+import welcomeToPAU from '../assets/images/welcome-to-pau.webp';
+import guysChilling from '../assets/images/guys-chilling.webp';
+import people from '../assets/images/chudi.webp';
 
 interface TextBoxProps {
     title?: string;

@@ -1,6 +1,6 @@
 // export default SportInfo;
 import { Box, Grid, Typography, CardMedia } from '@mui/material';
-import image1 from '../../assets/images/Clubs and extracurricular/p2p-2.jpg';
+import image1 from '../../assets/images/Clubs and extracurricular/p2p-2.webp';
 import { grey } from '../../context/theme';
 
 const P2PInfo = () => {

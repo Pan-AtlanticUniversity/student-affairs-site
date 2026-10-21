@@ -11,6 +11,12 @@ dist/
 *.log
 
 # Environment variables
+.env
+.env.local
+.env.*.local
+
+# Editor-specific settings
+.vscode/
 
 # TypeScript config and build files
 *.tsbuildinfo

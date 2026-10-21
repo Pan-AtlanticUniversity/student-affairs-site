@@ -4,7 +4,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
 import { grey } from '../context/theme';
 
-import PAULogo from '../assets/images/transparent-pau-logo.png';
+import PAULogo from '../assets/images/transparent-pau-logo.webp';
 
 const StyledToolBar = styled(Toolbar)({
     display: "flex",

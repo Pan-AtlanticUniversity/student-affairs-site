@@ -152,13 +152,13 @@ import { Typography, IconButton, Box } from '@mui/material';
 import { useState, useRef } from 'react';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import AfconWatchParty from '../../assets/images/Sports/Afcon-watch-party.jpeg';
-import draftNight from '../../assets/images/Sports/draft-night.jpg';
-import marathon from '../../assets/images/Sports/marathon.jpeg';
-import alumnimatch from '../../assets/images/Sports/alumni-match.jpg';
-import battleOfCohorts from '../../assets/images/Sports/battle-of-cohorts.jpg';
-import IUG from '../../assets/images/Sports/IUG.jpg';
-import Coupe from '../../assets/images/Sports/coupe.jpeg';
+import AfconWatchParty from '../../assets/images/Sports/Afcon-watch-party.webp';
+import draftNight from '../../assets/images/Sports/draft-night.webp';
+import marathon from '../../assets/images/Sports/marathon.webp';
+import alumnimatch from '../../assets/images/Sports/alumni-match.webp';
+import battleOfCohorts from '../../assets/images/Sports/battle-of-cohorts.webp';
+import IUG from '../../assets/images/Sports/IUG.webp';
+import Coupe from '../../assets/images/Sports/coupe.webp';
 
 const PhotoGallery = () => {
   const items = [
