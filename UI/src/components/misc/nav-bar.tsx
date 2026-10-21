@@ -6,7 +6,7 @@
 // import { useNavigate } from 'react-router-dom';
 // import { grey } from '../context/theme';
 
-// import PAULogo from '../assets/images/transparent-pau-logo.png';
+// import PAULogo from '../assets/images/transparent-pau-logo.webp';
 // import DefaultUser from '../assets/svgs/default-user.svg';
 
 // const StyledToolBar = styled(Toolbar)({
@@ -101,7 +101,7 @@
 // import MenuIcon from '@mui/icons-material/Menu'; // Menu icon for mobile view
 // import { Image } from 'mui-image';
 // import { useNavigate } from 'react-router-dom';
-// import PAULogo from '../assets/images/transparent-pau-logo.png'; // Replace with your logo
+// import PAULogo from '../assets/images/transparent-pau-logo.webp'; // Replace with your logo
 
 // const StyledToolBar = styled(Toolbar)({
 //   display: 'flex',

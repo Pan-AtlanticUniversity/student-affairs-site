@@ -11,7 +11,7 @@ import anthemAudio from '../../assets/audio/test_song.mp3';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 
-import getToKnowUs from '../../assets/images/chudi.png';
+import getToKnowUs from '../../assets/images/chudi.webp';
 import axios from 'axios';
 
 

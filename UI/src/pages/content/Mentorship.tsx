@@ -2,9 +2,9 @@
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import { Banner, Footer, InfoBox, MentorshipInfo, NavBar, ProfileCard, TextBox, UnderlinedText } from "../../components";
 import { accent, grey } from "../../context/theme";
-import image1 from '../../assets/images/Guidance counselling & mentoring/3.jpg';
+import image1 from '../../assets/images/Guidance counselling & mentoring/3.webp';
 
-import image3 from '../../assets/images/5.jpg';
+import image3 from '../../assets/images/5.webp';
 import { useEffect, useState } from "react";
 import axios from "axios";
 

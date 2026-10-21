@@ -1,7 +1,7 @@
 import { Box, Grid, Typography, CardMedia, Link } from '@mui/material';
-import image1 from '../../assets/images/Guidance counselling & mentoring/Ezinne-Olukoya/Ezinne-O.jpeg';
-import image2 from '../../assets/images/Guidance counselling & mentoring/Emmanuel-Enaholo/Emmanuel-Enaholo.jpg';
-import image3 from '../../assets/images/14.jpg';
+import image1 from '../../assets/images/Guidance counselling & mentoring/Ezinne-Olukoya/Ezinne-O.webp';
+import image2 from '../../assets/images/Guidance counselling & mentoring/Emmanuel-Enaholo/Emmanuel-Enaholo.webp';
+import image3 from '../../assets/images/14.webp';
 import { grey } from '../../context/theme';
 
 const MentorshipInfo = () => {

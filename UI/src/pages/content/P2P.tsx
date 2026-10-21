@@ -1,7 +1,7 @@
 // export default Mentorship
 import { Box, Grid, IconButton, Paper, Stack, Typography } from "@mui/material";
 import { accent, grey } from "../../context/theme";
-import image1 from '../../assets/images/Clubs and extracurricular/p2p-1.jpg';
+import image1 from '../../assets/images/Clubs and extracurricular/p2p-1.webp';
 import videoSource from "../../assets/video/p2p.mp4";
 // import InstagramIcon from '@mui/icons-material/Instagram';
 // import XIcon from '@mui/icons-material/X'; // Use this as X icon if no X icon is available

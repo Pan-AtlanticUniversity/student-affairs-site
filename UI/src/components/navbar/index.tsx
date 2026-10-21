@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AppBar, Box, Button, Menu, MenuItem, Stack, Toolbar, styled } from '@mui/material';
 import { Image } from 'mui-image';
 import { useNavigate } from 'react-router-dom';
-import PAULogo from '../../assets/images/transparent-pau-logo.png'; // Replace with your logo
+import PAULogo from '../../assets/images/transparent-pau-logo.webp'; // Replace with your logo
 import { disabled, grey, primary } from '../../context/theme';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
