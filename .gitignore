@@ -11,9 +11,7 @@ dist/
 *.log
 
 # Environment variables
-.env.*.local
-
-# Editor-specific settings
+.env
 
 # TypeScript config and build files
 *.tsbuildinfo
@@ -21,4 +19,3 @@ dist/
 # OS-specific files
 .DS_Store
 Thumbs.db
-config.bat
