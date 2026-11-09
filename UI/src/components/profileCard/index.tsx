@@ -26,13 +26,15 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ imageUrl, name, role, contact
         height: "100%",
       }}
     >
-      <Typography variant="body2" color="text.secondary" >
-        {role}
-      </Typography>
-      {/* Circular image */}
-      < Avatar
+      {role && (
+        <Typography variant="body2" color="text.secondary">
+          {role}
+        </Typography>
+      )}
+      <Avatar
         alt={name}
         src={imageUrl}
+        imgProps={{ loading: 'lazy', decoding: 'async' }}
         sx={{
           width: 150,
           height: 150,

@@ -128,6 +128,37 @@ Here’s a brief overview of the project structure:
 - `package.json`: Project metadata and dependencies.
 - `.env`: Environment variables.
 
-### 5. Contributing
+### 5. Images and media storage
+
+All images that come from the database (clubs, executives, staff, blogs, events, mentors, counsellors, services) live under `backend/uploads/`. The database stores them as `uploads/<key>`, for example `uploads/clubs/art-club/logo.webp`. The API never sends that raw value. Each model turns it into a public URL when it is sent as JSON (`backend/src/media.ts`):
+
+```
+<MEDIA_BASE_URL>/<key>
+```
+
+`MEDIA_BASE_URL` defaults to `/uploads`, so the backend serves the files itself. Absolute URLs (`https://...`) pass through unchanged.
+
+**Moving to Cloudflare R2 or Cloudinary** needs no code change and no database migration:
+
+1. Upload the contents of `backend/uploads/` so that each object key equals its path under `uploads/`.
+   - Cloudflare R2: `rclone copy backend/uploads r2:<bucket>`, then connect a public domain to the bucket.
+   - Cloudinary: upload each file with its folder path as the public ID (for example `clubs/art-club/logo`).
+2. Set `MEDIA_BASE_URL` in the backend `.env` and restart:
+   - R2: `MEDIA_BASE_URL=https://media.example.com`
+   - Cloudinary: `MEDIA_BASE_URL=https://res.cloudinary.com/<cloud-name>/image/upload/f_auto,q_auto`
+3. To roll back, remove `MEDIA_BASE_URL`.
+
+Note: new admin uploads still go to `backend/uploads/` on the server. Copy them to the bucket too until uploads write to the bucket directly.
+
+**Adding a new set of club or staff photos**
+
+1. Put the raw photos in a folder that uses the final keys (`clubs/<club-slug>/logo.webp`, `clubs/<club-slug>/banner.webp`, `clubs/<club-slug>/executives/<person-slug>.webp`, `members/<person-slug>.webp`).
+2. Shrink them: `backend/scripts/optimise-media.sh <raw-folder> backend/uploads` (needs ImageMagick).
+3. Update the names and posts in `backend/src/content/roster.ts`. A person's file name is the slug of their name.
+4. Write them to the database: `cd backend && npm run sync:roster`. The script stops before it writes anything if a file is missing. It matches clubs and staff by name (not case sensitive), replaces each listed club's executives, and leaves clubs that are not listed alone. You can run it more than once.
+
+Use a new file name when you replace a photo. Browsers cache `/uploads` files for a day.
+
+### 6. Contributing
 
 If you want to contribute to this project, please create a branch, make the necessary changes and submit a pull request. Follow the standard GitHub workflow for contributions.
