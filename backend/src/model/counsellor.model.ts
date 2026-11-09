@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { withMediaUrls } from "../media";
 
 const counsellorSchema = new mongoose.Schema({
   name: {
@@ -13,6 +14,7 @@ const counsellorSchema = new mongoose.Schema({
   image: String,
   
 });
+counsellorSchema.plugin(withMediaUrls("image"));
 const Counsellor = mongoose.model("Counsellor", counsellorSchema);
 
 export default Counsellor;

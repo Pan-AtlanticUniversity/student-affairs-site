@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { withMediaUrls } from "../media";
 
 const mentorSchema = new mongoose.Schema({
   name: {
@@ -9,6 +10,7 @@ const mentorSchema = new mongoose.Schema({
   mail: String,
   meeting_times: String,
 });
+mentorSchema.plugin(withMediaUrls("image"));
 const Mentor = mongoose.model("Mentor", mentorSchema);
 
 export default Mentor;

@@ -13,15 +13,18 @@ import {
 import Grid from '@mui/material/Unstable_Grid2';
 import { accent, dark, disabled, grey } from '../../context/theme';
 import UnderlinedText from "../typography";
+import { clubCover } from "./cover";
 
 export interface ClubItem {
   _id: string;
   name: string;
-  image: {
-    value: string;
-    background: string
+  image?: {
+    value?: string;
+    background?: string
   };
-  about: string;
+  logo?: string;
+  banner?: string;
+  about?: string;
   member_count: number;
   meeting_time: string;
   handles: {
@@ -32,9 +35,31 @@ export interface ClubItem {
     _id: string;
     full_name: string;
     image: string;
-    post: string
+    post?: string
   }[]
 }
+
+export const ClubLogo: React.FC<{ club: ClubItem; size: number }> = ({ club, size }) =>
+  club.logo ? (
+    <Box
+      component="img"
+      src={club.logo}
+      alt={`${club.name} logo`}
+      loading="lazy"
+      decoding="async"
+      sx={{
+        width: "auto",
+        minWidth: size,
+        maxWidth: size * 2.5,
+        height: size,
+        objectFit: "contain",
+        backgroundColor: "#fff",
+        borderRadius: 2,
+        padding: 0.5,
+        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.18)",
+      }}
+    />
+  ) : null;
 
 interface ClubProp {
   mode?: 'admin' | 'student';
@@ -103,6 +128,7 @@ const Club: React.FC<ClubProp> = ({ mode, searchQuery, openEditMenu }) => {
       >
         {filteredClubs.length > 0 ? (
           filteredClubs.map((item) => {
+            const cover = clubCover(item);
             return (
               (
                 <Grid xs={12} sm={6} md={4} xl={3} key={item._id}>
@@ -123,26 +149,31 @@ const Club: React.FC<ClubProp> = ({ mode, searchQuery, openEditMenu }) => {
                       {item.name ?? 'No Name provided'}
                     </Typography>
 
-                    {item.image && (
-                      <Box sx={{ overflow: 'hidden', borderRadius: 3 }}> {/* Ensure the image zoom is contained */}
-                        <CardMedia
-                          component="img"
-                          image={item.image.value}
-                          loading="lazy"
-                          alt={item.name}
-                          sx={{
-                            borderRadius: 3,
-                            aspectRatio: "9/5",
-                            objectFit: `${item.name === "Community Service Project (CSP)" ? 'cover' : 'contain'}`,
-                            backgroundColor: item.image.background,
-                            transition: 'transform 0.3s ease-in-out', // Smooth zoom effect
-                            '&:hover': {
-                              transform: 'scale(1.1)', // Only the image zooms on hover
-                            },
-                          }}
-                        />
+                    {cover.src && (
+                      <Box sx={{ position: 'relative' }}>
+                        <Box sx={{ overflow: 'hidden', borderRadius: 3 }}>
+                          <CardMedia
+                            component="img"
+                            image={cover.src}
+                            loading="lazy"
+                            decoding="async"
+                            alt={item.name}
+                            sx={{
+                              borderRadius: 3,
+                              aspectRatio: "9/5",
+                              objectFit: cover.fit,
+                              backgroundColor: cover.background,
+                              transition: 'transform 0.3s ease-in-out',
+                              '&:hover': {
+                                transform: 'scale(1.1)',
+                              },
+                            }}
+                          />
+                        </Box>
+                        <Box sx={{ position: 'absolute', left: 12, bottom: -20, lineHeight: 0 }}>
+                          <ClubLogo club={item} size={56} />
+                        </Box>
                       </Box>
-
                     )}
                     <Typography variant="body2" component="div" sx={{
                       display: '-webkit-box',
@@ -152,9 +183,9 @@ const Club: React.FC<ClubProp> = ({ mode, searchQuery, openEditMenu }) => {
                       WebkitBoxOrient: 'vertical',
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
-                    }} mt={1}>
+                    }} mt={item.logo ? 3.5 : 1}>
 
-                      {item.about ?? 'No about'}
+                      {item.about}
 
                     </Typography>
 

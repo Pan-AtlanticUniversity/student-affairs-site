@@ -2,7 +2,9 @@ import { Box, createSvgIcon, Grid, IconButton, Paper, Stack, Typography } from '
 import { Banner, Footer, NavBar, ProfileCard, TextBox } from '../../components';
 import { accent, dark, disabled, grey } from '../../context/theme';
 import dayjs from 'dayjs';
-import { useLocation } from "react-router-dom";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useLocation, useParams } from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
 import XIcon from '@mui/icons-material/X';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -11,7 +13,34 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
-import { ClubItem } from '../../components/club';
+import { ClubItem, ClubLogo } from '../../components/club';
+import { clubCover } from '../../components/club/cover';
+import CustomLoader from '../../components/CustomLoader';
+
+const useClub = (id?: string): ClubItem | null | undefined => {
+    const location = useLocation();
+    const passedClub: ClubItem | undefined = location.state?.club;
+    const fromState = passedClub?._id === id ? passedClub : undefined;
+    const [fetched, setFetched] = useState<{ id: string; club: ClubItem | null }>();
+
+    useEffect(() => {
+        if (fromState || !id) return;
+        let active = true;
+        axios.get<ClubItem>(`/api/v1/club/${id}`)
+            .then((res) => active && setFetched({ id, club: res.data?._id ? res.data : null }))
+            .catch(() => active && setFetched({ id, club: null }));
+        return () => { active = false; };
+    }, [id, fromState]);
+
+    return fromState ?? (fetched && fetched.id === id ? fetched.club : undefined);
+};
+
+const formatMeetingTime = (meetingTime?: string) => {
+    if (!meetingTime) return "nil";
+    if (meetingTime.startsWith('custom')) return meetingTime.split(':')[1];
+    const time = dayjs(meetingTime);
+    return time.isValid() ? `${time.format("hA dddd")}s` : "nil";
+};
 
 const ClubDetail = () => {
     const TikTokIcon = createSvgIcon(
@@ -43,16 +72,19 @@ const ClubDetail = () => {
     };
     
 
-    const zoomInImages = ["Community Service Project (CSP)", "Art Club"]
+    const { _id } = useParams();
+    const club = useClub(_id);
 
-    const location = useLocation();
-    const { club }: { club: ClubItem } = location.state;
+    if (club === undefined) {
+        return <CustomLoader />;
+    }
 
-    if (!club) {
+    if (club === null) {
         return <Typography variant="h6">No club details available.</Typography>;
     }
 
-    const paragraphs = club.about.split('\n');
+    const cover = clubCover(club);
+    const paragraphs = (club.about ?? '').split('\n').filter((paragraph) => paragraph.trim());
 
     return (
         <Stack minHeight={"100vh"} sx={{
@@ -82,9 +114,9 @@ const ClubDetail = () => {
                 }
             }}>
                 <Banner
-                    bannerImage={club.image.value}
-                    contain={!zoomInImages.includes(club.name)}
-                    background={club.image.background}
+                    bannerImage={cover.src}
+                    contain={cover.fit === "contain"}
+                    background={cover.background}
                 />
                 <TextBox
                     title={club.name}
@@ -117,32 +149,34 @@ const ClubDetail = () => {
                 }}
 
             >
-                <Box sx={{ 
-                    padding: { xs: "10px", md: "30px" }, // Adjust padding for different screen sizes
-                    // backgroundColor: "#f5f5f5", // Light background color to make it stand out
-                    borderRadius: "10px", // Rounded corners for the container
-                    width: "100%", // Ensure it takes up full width
-                    marginBottom: 2, // Space below the container
-                    boxShadow: 1, // Subtle shadow for some depth
-                    zIndex: 1 
-
-                }}>
-                    {paragraphs.map((paragraph, index) => (
-                        <>
-                            <Typography
-                                variant="body1"
-                                color={dark}
-                                textAlign={'left'}
-                                key={index}
-                            >{paragraph}</Typography>
-                            <br />
-                        </>
-
-                    ))}
-                </Box>
+                {(club.logo || paragraphs.length > 0) &&
+                    <Stack sx={{
+                        padding: { xs: "10px", md: "30px" },
+                        borderRadius: "10px",
+                        width: "100%",
+                        marginBottom: 2,
+                        boxShadow: 1,
+                        zIndex: 1,
+                        gap: 2,
+                        alignItems: { xs: 'center', md: 'flex-start' },
+                        flexDirection: { xs: 'column', md: 'row' },
+                    }}>
+                        <ClubLogo club={club} size={120} />
+                        <Stack gap={2}>
+                            {paragraphs.map((paragraph, index) => (
+                                <Typography
+                                    variant="body1"
+                                    color={dark}
+                                    textAlign={'left'}
+                                    key={index}
+                                >{paragraph}</Typography>
+                            ))}
+                        </Stack>
+                    </Stack>
+                }
 
                 {
-                    club.executives.length > 0 &&
+                    club.executives?.length > 0 &&
                     <Stack gap={'inherit'} width={'100%'}
                         sx={{
                             position: "relative",
@@ -231,13 +265,7 @@ const ClubDetail = () => {
                         color="text.secondary"
                         sx={{ width: '100%', textAlign: 'left', fontSize: { xs: '12px', md: '14px', lg: '16px' } }}
                     >
-                        Meeting Time: {
-                            club.meeting_time
-                                ? club.meeting_time?.startsWith('custom')
-                                    ? club.meeting_time.split(':')[1]
-                                    : `${dayjs(club.meeting_time).format("hA dddd")}s`
-                                : "nil"
-                        }
+                        Meeting Time: {formatMeetingTime(club.meeting_time)}
                     </Typography>
 
                     <Stack direction={'row'} justifyContent={'center'} alignItems={'center'}>

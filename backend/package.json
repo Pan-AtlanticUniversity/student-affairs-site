@@ -7,7 +7,8 @@
     "dev": "nodemon src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "start:prod": "node ./dist/index.js"
+    "start:prod": "node ./dist/index.js",
+    "sync:roster": "ts-node src/scripts/syncRoster.ts"
   },
   "dependencies": {
     "@types/node": "~18.16.9",
